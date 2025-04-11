@@ -1,0 +1,65 @@
+{% extends "layouts/nav_app_honey.html" %}
+
+{% block main_link_css %}
+    <!-- <link rel="stylesheet" href="{{ url_for('static', filename='home.css') }}"> -->
+    <!-- <link rel="stylesheet" href="{{ url_for('static', filename='styles/styles_restaurant/restaurant_profile.css') }}"> -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/styles_restaurant/notifications.css') }}">
+{% endblock %}
+
+{% block main_body %}
+    <div class="container-fluid-block">          
+        <div class="title-page">
+            <h1>Notificaciones</h1>
+        </div>      
+        {% if notifications %}
+        <div class="container-all-notifications">
+            {% for notification in notifications  %}
+            <div class="block-container-main-notifications">
+                <div class="notificacion-header">
+                    <div class="block-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"><path fill="#fe8c01" d="M4 19v-2h2v-7q0-2.075 1.25-3.687T10.5 4.2v-.7q0-.625.438-1.062T12 2q.625 0 1.063.438T13.5 3.5v.7q2 .5 3.25 2.113T18 10v7h2v2zm8 3q-.825 0-1.412-.587T10 20h4q0 .825-.587 1.413T12 22M2 10q0-2.5 1.113-4.587T6.1 1.95l1.175 1.6q-1.5 1.1-2.387 2.775T4 10zm18 0q0-2-.888-3.675T16.726 3.55l1.175-1.6q1.875 1.375 2.988 3.463T22 10z"/></svg>
+                    </div>
+                    <div class="block-text">
+                        <span>{{ notification.title }}</span>
+                        
+                    </div>
+                </div>
+                <div class="notificacion-body">
+                    <div class="block-image">
+                        <img src="{{ url_for('static', filename='images/images_restaurant/images_profiles/') }}2023-09-28_15_08_25G1KxmfNAF.jpg" alt="Perfil">
+                    </div>
+                    <div class="block-text">
+                        <span>{{ notification.text }}</span>
+                    </div>
+                </div>
+                <div class="notificacion-footer">
+                    <a href="#">
+                        <button>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 256 256"><path fill="#ffffff" d="M208.49 191.51a12 12 0 0 1-17 17L128 145l-63.51 63.49a12 12 0 0 1-17-17L111 128L47.51 64.49a12 12 0 0 1 17-17L128 111l63.51-63.52a12 12 0 0 1 17 17L145 128Z"/></svg>
+                        </button>
+                    </a>
+                </div>
+            </div>
+
+            
+            
+            {% endfor %}
+        </div><!--end row-->
+        {% else %}
+        <div class="w-100 text-center">
+            <span>No se encontró notificaciones</span>
+        </div>
+        {% endif %}
+        
+    </div>
+{% endblock %}
+
+{% block main_link_js %}
+    <script src="{{ url_for('static', filename='js/notificationsController.js') }}"></script>
+    <script>
+        const notifications= new NotificationsController();
+        notifications.approveRequest();
+        notifications.rejectRequest();
+        
+    </script>
+{% endblock %}

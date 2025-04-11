@@ -1,0 +1,58 @@
+{% extends "layouts/nav_app_honey.html" %}
+
+{% block main_link_css %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/ui/input.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/styles_restaurant/create_notifications.css') }}">
+{% endblock %}
+
+{% block main_body %}
+<div class="container-all-seccion">
+    <div class="container-fluid-block-create">          
+        <div class="title-page">
+            <h1>Crear notificaciones</h1>
+        </div>      
+        <form action="" method="post">
+            <div class="coolinput-main-template">
+                <label for="title" class="text-main-template">Titulo *</label>
+                <input type="text" placeholder="" name="title" id="title" class="input-main-template" required>
+            </div> 
+            <div class="coolinput-main-template">
+                <label for="text" class="text-main-template">Cuerpo *</label>
+                <input type="text" placeholder="" name="text" id="text" class="input-main-template" required>
+            </div> 
+            <div class="coolinput-main-template">
+                <label for="link" class="text-main-template">URL *</label>
+                <input type="text" placeholder="" name="link" id="link" class="input-main-template" required>
+            </div> 
+            <div class="coolinput-main-template">
+                <label for="id_receiver" class="text-main-template">Usuario *</label>
+                <select name="id_receiver" id="id_receiver" class="input-main-template" required>
+                    <option value="" selected disabled>Seleccione usuario</option>
+                    {% for user in users %}
+                        <option value="{{ user.id }}">{{ user.user_last_name }}, {{ user.user_first_name }}</option>
+                    {% endfor %}
+                </select>
+            </div> 
+
+            <div class="container-message-not-edit-delete">
+                <span>** Las notificaciones son de envío único, una vez enviado no podrá editar ni eliminar.</span>
+            </div>
+            <div class="container-btn-create">
+                <button type="submit">Crear</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+{% endblock %}
+
+{% block main_link_js %}
+    <script src="{{ url_for('static', filename='js/notificationsController.js') }}"></script>
+    <script>
+        const notifications= new NotificationsController();
+        notifications.approveRequest();
+        notifications.rejectRequest();
+        
+    </script>
+{% endblock %}

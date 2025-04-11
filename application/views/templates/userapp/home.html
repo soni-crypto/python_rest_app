@@ -1,0 +1,326 @@
+{% extends "layouts/userapp.html" %}
+{% block styles %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/ui/favorite_1.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/styles_restaurant/pages_admin/page_main.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/userapp/home.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/libraries/swiper-bundle.min.css') }}">
+{% endblock %}
+{% block main_body %}
+    <script>
+        const l = document.getElementById('container-main-loader-mobile-all');
+        l.querySelector("span").textContent = "Cargando...";
+        l.style.display = 'flex';
+        window.addEventListener("load", ()=>{
+            l.style.display = 'none';
+        })
+    </script>
+    {% if data_admin and type_food_data %}
+    <div class="container-main-result-search-main">
+        <div class="container-main-block-header">
+            <div class="container-landscape-header">
+                <div class="container-landscape-header__mask">
+                    <div class="container-block-text-all">
+                        <div class="title-main">
+                            <h1>{{ data_admin.company_name }}</h1>
+                        </div>
+                        <span></span>
+                        <div class="info-partner">
+                            <div class="block-info">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"><path fill="#ffffff" d="M12 12q.825 0 1.413-.587T14 10q0-.825-.587-1.412T12 8q-.825 0-1.412.588T10 10q0 .825.588 1.413T12 12m0 10q-4.025-3.425-6.012-6.362T4 10.2q0-3.75 2.413-5.975T12 2q3.175 0 5.588 2.225T20 10.2q0 2.5-1.987 5.438T12 22"/></svg>
+                                <span>{{ data_admin.company_location_2 }}</span>
+                            </div>
+                            <div class="block-info block-info-whatsapp">
+                                <a href="https://wa.me/{{ data_admin.user_number }}?text=Hola, vengo desde la app de emtorch.">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"><path fill="#51c951" d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21c5.46 0 9.91-4.45 9.91-9.91c0-2.65-1.03-5.14-2.9-7.01A9.816 9.816 0 0 0 12.04 2m.01 1.67c2.2 0 4.26.86 5.82 2.42a8.225 8.225 0 0 1 2.41 5.83c0 4.54-3.7 8.23-8.24 8.23c-1.48 0-2.93-.39-4.19-1.15l-.3-.17l-3.12.82l.83-3.04l-.2-.32a8.188 8.188 0 0 1-1.26-4.38c.01-4.54 3.7-8.24 8.25-8.24M8.53 7.33c-.16 0-.43.06-.66.31c-.22.25-.87.86-.87 2.07c0 1.22.89 2.39 1 2.56c.14.17 1.76 2.67 4.25 3.73c.59.27 1.05.42 1.41.53c.59.19 1.13.16 1.56.1c.48-.07 1.46-.6 1.67-1.18c.21-.58.21-1.07.15-1.18c-.07-.1-.23-.16-.48-.27c-.25-.14-1.47-.74-1.69-.82c-.23-.08-.37-.12-.56.12c-.16.25-.64.81-.78.97c-.15.17-.29.19-.53.07c-.26-.13-1.06-.39-2-1.23c-.74-.66-1.23-1.47-1.38-1.72c-.12-.24-.01-.39.11-.5c.11-.11.27-.29.37-.44c.13-.14.17-.25.25-.41c.08-.17.04-.31-.02-.43c-.06-.11-.56-1.35-.77-1.84c-.2-.48-.4-.42-.56-.43c-.14 0-.3-.01-.47-.01"/></svg>      
+                                    <span>{{ data_admin.user_number }}</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="container-circle-profile">
+                <div class="circle-profile">
+                    <img src="{{ data_admin.company_icon }}" alt="">
+                </div>
+            </div>
+        </div>
+        
+        <main class="main-content-products-all">
+            {% for type_food in type_food_data %}
+            {% if type_food.state == 1 and type_food.foods_all %}
+            <section class="section-products">
+                <div class="container-title">
+                    <h2>{{ type_food.name_type }}</h2>
+                    <span>
+                        {{ type_food.description }}
+                    </span>
+                </div>
+                <!-- Slider main container -->
+                <div class="container-swiper-main">
+                    <swiper-container class="mySwiper" pagination="true" pagination-clickable="true" space-between="0" slides-per-view="auto">
+                        {% for food in type_food.foods_all %}
+                        {% if food.state == 1 %}
+                        <swiper-slide>
+                            <div class="container-block-product">
+                                <div class="container-image-product">
+                                    <img src="{{ food.image }}" alt="">
+                                </div>
+                                <div class="container-description-product">
+                                    <div class="container-description-product__info">
+                                        <h3>{{ food.name }}</h3>
+                                        <!-- <span class="descr">{{ food.description }}</span> -->
+                                    </div>
+                                    <div class="container-description-product__more">
+                                        <div class="container-main-btn-animation">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="svg-animation-carshop" viewBox="0 0 24 24"><g fill="none"><path d="M24 0v24H0V0zM12.593 23.258l-.011.002l-.071.035l-.02.004l-.014-.004l-.071-.035c-.01-.004-.019-.001-.024.005l-.004.01l-.017.428l.005.02l.01.013l.104.074l.015.004l.012-.004l.104-.074l.012-.016l.004-.017l-.017-.427c-.002-.01-.009-.017-.017-.018m.265-.113l-.013.002l-.185.093l-.01.01l-.003.011l.018.43l.005.012l.008.007l.201.093c.012.004.023 0 .029-.008l.004-.014l-.034-.614c-.003-.012-.01-.02-.02-.022m-.715.002a.023.023 0 0 0-.027.006l-.006.014l-.034.614c0 .012.007.02.017.024l.015-.002l.201-.093l.01-.008l.004-.011l.017-.43l-.003-.012l-.01-.01z"/><path fill="#328af1" d="M9 20a1 1 0 1 1 0 2a1 1 0 0 1 0-2m7 0a1 1 0 1 1 0 2a1 1 0 0 1 0-2M2.2 2.9a1 1 0 0 1 1.295-.269l.105.07l1.708 1.28a2 2 0 0 1 .653.848l.06.171h12.846a2 2 0 0 1 1.998 2.1l-.013.148l-.457 3.655a5 5 0 0 1-4.32 4.34l-.226.023l-7.313.61l.26 1.124H17.5a1 1 0 0 1 .117 1.993L17.5 19H8.796a2 2 0 0 1-1.906-1.393l-.043-.157l-2.74-11.87L2.4 4.3a1 1 0 0 1-.2-1.4"/></g></svg>
+                                            <button class="button-append-product-to-car" data-identifier="{{ food.id }}" data-app="{{ food.id_user_admin }}" data-price_unique="{{ food.price }}">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 48 48"><g fill="none"><path d="M39 32H13L8 12h36z"/><path stroke="#ffffff" stroke-linecap="round" stroke-linejoin="round" stroke-width="4" d="M3 6h3.5L8 12m0 0l5 20h26l5-20z"/><circle cx="13" cy="39" r="3" stroke="#ffffff" stroke-linecap="round" stroke-linejoin="round" stroke-width="4"/><circle cx="39" cy="39" r="3" stroke="#ffffff" stroke-linecap="round" stroke-linejoin="round" stroke-width="4"/><path stroke="#ffffff" stroke-linecap="round" stroke-linejoin="round" stroke-width="4" d="M22 22h8m-4 4v-8"/></g></svg>
+                                            </button>
+                                        </div>
+                                        <span>{{ dataConfigAdmin.currency }} {{ food.price }}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </swiper-slide>
+                        {% endif %}
+                        {% endfor %}
+                        
+                    </swiper-container>
+                </div>
+            </section>
+            {% endif %}
+            {% endfor %}
+        </main>
+        <div class="container-main-btn-redirect-products">
+            <button class="button-complet-pay-products-all" id="btn-view-products-in-cart">
+                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 256 256"><path fill="#ffffff" d="M233.21 56.31A12 12 0 0 0 224 52H66l-5.47-30.15A12 12 0 0 0 48.73 12H24a12 12 0 0 0 0 24h14.71l24.91 137a28 28 0 0 0 4.07 10.21A32 32 0 1 0 123 196h34a32 32 0 1 0 31-24H91.17a4 4 0 0 1-3.93-3.28L84.92 156H196.1a28 28 0 0 0 27.55-23l12.16-66.86a12 12 0 0 0-2.6-9.83M100 204a8 8 0 1 1-8-8a8 8 0 0 1 8 8m88 8a8 8 0 1 1 8-8a8 8 0 0 1-8 8m12-83.28a4 4 0 0 1-3.9 3.28H80.56L70.38 76h139.24Z"/></svg>
+            </button>
+            <label class="container">
+                <input type="checkbox" {% if data_admin.favorite == 1 %} checked {% endif %} value="{{ data_admin.id }}" class="checkbox-favority-admin">
+                <div class="checkmark">
+                    <svg viewBox="0 0 256 256">
+                    <rect fill="none" height="256" width="256"></rect>
+                    <path d="M224.6,51.9a59.5,59.5,0,0,0-43-19.9,60.5,60.5,0,0,0-44,17.6L128,59.1l-7.5-7.4C97.2,28.3,59.2,26.3,35.9,47.4a59.9,59.9,0,0,0-2.3,87l83.1,83.1a15.9,15.9,0,0,0,22.6,0l81-81C243.7,113.2,245.6,75.2,224.6,51.9Z"  stroke="#FFF" fill="#d5cccc"></path></svg>
+                </div>
+            </label>
+            <button class="open-modal-read-description" onclick="openModal(document.getElementById('modal-view-description-rest'))">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 512 512"><rect width="320" height="416" x="96" y="48" fill="none" stroke="#ffffff" stroke-linejoin="round" stroke-width="32" rx="48" ry="48"/><path fill="none" stroke="#ffffff" stroke-linecap="round" stroke-linejoin="round" stroke-width="32" d="M176 128h160m-160 80h160m-160 80h80"/></svg>
+            </button>
+        </div>
+    </div>
+    {% else %}
+    
+    <div class="container-search-url-admin">
+        <form action="" method="get">
+            <input type="text" value="{{ search_value }}" name="search" placeholder="Search: ID">
+            <button type="submit">
+                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 512 512"><path fill="#ffffff" d="M464 428L339.92 303.9a160.48 160.48 0 0 0 30.72-94.58C370.64 120.37 298.27 48 209.32 48S48 120.37 48 209.32s72.37 161.32 161.32 161.32a160.48 160.48 0 0 0 94.58-30.72L428 464ZM209.32 319.69a110.38 110.38 0 1 1 110.37-110.37a110.5 110.5 0 0 1-110.37 110.37"/></svg>
+            </button>
+        </form>
+    </div>
+
+    <div class="container-not-found-main-all">
+        {% if not search_value or not search_value is defined %}
+            <div class="container-welcome-user-view">    
+                <div class="container-image-profile">
+                    <img src="{{ data_user_app.image }}" alt="" class="imagen-cafe">
+                </div>
+                <div class="container-data-user">
+                    <span><span>👋 Hola</span>{{ data_user_app.first_name }}!</span>
+                    <span><svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24"><path fill="#666666" d="M8.886 7.17c.183.005.386.015.579.443c.128.285.343.81.519 1.238c.137.333.249.607.277.663c.064.128.104.275.02.448l-.028.058a1.4 1.4 0 0 1-.23.37l-.143.17c-.085.104-.17.206-.242.278c-.129.128-.262.266-.114.522s.668 1.098 1.435 1.777a6.6 6.6 0 0 0 1.903 1.2q.105.045.17.076c.257.128.41.108.558-.064c.149-.173.643-.749.817-1.005c.168-.256.34-.216.578-.128c.238.089 1.504.71 1.761.837l.143.07c.179.085.3.144.352.23c.064.109.064.62-.148 1.222c-.218.6-1.267 1.176-1.742 1.22l-.135.016c-.436.052-.988.12-2.956-.655c-2.426-.954-4.027-3.32-4.35-3.799l-.053-.076l-.006-.008c-.147-.197-1.048-1.402-1.048-2.646c0-1.19.587-1.81.854-2.092l.047-.05a.95.95 0 0 1 .687-.32c.173 0 .347 0 .495.005"/><path fill="#666666" fill-rule="evenodd" d="M2.184 21.331a.4.4 0 0 0 .487.494l4.607-1.204a10 10 0 0 0 4.76 1.207h.004c5.486 0 9.958-4.446 9.958-9.912a9.83 9.83 0 0 0-2.914-7.011A9.92 9.92 0 0 0 12.042 2c-5.486 0-9.958 4.446-9.958 9.911c0 1.739.458 3.447 1.33 4.954zm2.677-4.068a1.5 1.5 0 0 0-.148-1.15a8.4 8.4 0 0 1-1.129-4.202c0-4.63 3.793-8.411 8.458-8.411c2.27 0 4.388.877 5.986 2.468a8.33 8.33 0 0 1 2.472 5.948c0 4.63-3.793 8.412-8.458 8.412h-.005a8.5 8.5 0 0 1-4.044-1.026a1.5 1.5 0 0 0-1.094-.132l-2.762.721z" clip-rule="evenodd"/></svg>{{ data_user_app.tel_whats }}</span>
+                    <span><svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24"><g fill="none" stroke="#666666" stroke-width="1.5"><rect width="18.5" height="17" x="2.682" y="3.5" rx="4"/><path stroke-linecap="round" stroke-linejoin="round" d="m2.729 7.59l7.205 4.13a3.96 3.96 0 0 0 3.975 0l7.225-4.13"/></g></svg>{{ data_user_app.email }}</span>
+                </div>
+            </div>
+            <div class="container-title-block-header">
+                <span>Sección neeva</span>
+            </div>
+            <div class="container-image-anuncio">
+                <a href="#">
+                    <img src="{{ url_for('static', filename='images/userapp/images_default/Deliciosa-pizza-flyer.min.webp') }}" alt="">
+                </a>
+            </div>
+            <div class="container-title-block-header">
+                <span>Más</span>
+            </div>
+            <div class="container-block-three-columns">
+                <div onclick="openModalMessageLittle('<span>No disponible.</>', true)">
+                    <!-- <a href="/userapp/payments"> -->
+                        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24"><path fill="#7c3aed" d="M17 18a2 2 0 0 1 2 2a2 2 0 0 1-2 2a2 2 0 0 1-2-2c0-1.11.89-2 2-2M1 2h3.27l.94 2H20a1 1 0 0 1 1 1c0 .17-.05.34-.12.5l-3.58 6.47c-.34.61-1 1.03-1.75 1.03H8.1l-.9 1.63l-.03.12a.25.25 0 0 0 .25.25H19v2H7a2 2 0 0 1-2-2c0-.35.09-.68.24-.96l1.36-2.45L3 4H1zm6 16a2 2 0 0 1 2 2a2 2 0 0 1-2 2a2 2 0 0 1-2-2c0-1.11.89-2 2-2m9-7l2.78-5H6.14l2.36 5z"/></svg>
+                        Carrito
+                    <!-- </a> -->
+                </div>
+                <div onclick="openModalMessageLittle('<span>No disponible.</>', true)">
+                    <!-- <a href=""> -->
+                        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24"><path fill="#65a30d" d="M20 3h-1V1h-2v2H7V1H5v2H4c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2m0 18H4V10h16zm0-13H4V5h16z"/></svg>
+                        Hoy
+                    <!-- </a> -->
+                </div>
+                <div onclick="openModalMessageLittle('<span>No disponible.</>', true)">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24"><path fill="none" stroke="#ba95f9" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 9h8m-8 4h6m4-9a3 3 0 0 1 3 3v8a3 3 0 0 1-3 3h-5l-5 3v-3H6a3 3 0 0 1-3-3V7a3 3 0 0 1 3-3z"/></svg>
+                    Mensajes
+                </div>
+                <div onclick="openModalMessageLittle('<span>No disponible.</>', true)">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 48 48"><path fill="none" stroke="#eab308" stroke-linecap="round" stroke-linejoin="round" stroke-width="4" d="m20.1 8.1l4.243 4.243M30 4v6zm9.9 4.1l-4.243 4.243zM44 18h-6zm-4.1 9.9l-4.243-4.243zM30 32v-6zm-9.9-4.1l4.243-4.243zM16 18h6zm13.586.414L5.544 42.456"/></svg>
+                    Sorpréndeme
+                </div>
+            </div>
+        {% else %}
+            <!-- <span>No se encontró resultados para {{ search_value }}</span> -->
+            <div class="container-main-all-profiles-admins">
+                {% for data in data_admins %}
+                <a href="?search={{ data.id_secondary }}">
+                    <div class="block-row-profiles-content">
+                        <div class="container-main-image-profile">
+                            <img src="{{ data.company_icon }}" alt="">
+                        </div>
+                        <div class="container-main-info-res">
+                            <h1>{{ data.company_name }}</h1>  
+                            <p>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 128 128"><path fill="#9E740B" d="M107.77 15.16c-14.5-11.48-35.93-6.24-46.72 3.2c-12.08 10.56-12.42 27.25-6.13 40.88l-43.58 42.77c-1.77 1.74-3.59 14.19-3.5 16.64l5.9 4.12s9.99 2.99 14.34-.41s8.17-9.56 7.72-12.33c-.26-1.59.08-3.07 1.11-4.08c1.28-1.26 3.32-1.47 5.39-.78c1.59.53 3.36.08 4.55-1.09l.42-.41c1.69-1.58 1.88-3.42 1.55-4.96c-.51-2.39.36-4.37 1.7-6.12c1.16-1.52 3.36-2.16 5.28-2.19c3.46-.05 5.7-.79 8.15-3.19l6.38-6.24c14.36 6.4 31.97 3.51 43.4-8.68c14.66-15.64 10.91-43.77-5.96-57.13m-8.64 33.35c-4 3.92-10.48 3.92-14.48 0s-4-10.29 0-14.21s10.48-3.92 14.48 0s4 10.29 0 14.21"/><path fill="#FFCA28" d="M107.77 15.16c-14.88-14.88-39-14.88-53.88 0c-11.39 11.39-14.05 28.18-8.01 42.11L7.83 95.08a9.1 9.1 0 0 0-2.67 6.76l.44 11.75c2.17 1.22 2.24 5.07 2.24 5.07l9.9.76c2.53.08 4.98-.89 6.76-2.67l3.14-3.14c1.96-1.96 3.07-4.73 2.58-7.45c-.31-1.69.03-3.27 1.1-4.34c1.26-1.26 3.23-1.5 5.26-.87c1.69.53 3.53.19 4.79-1.06l.43-.43c1.71-1.63 1.9-3.52 1.57-5.1c-.51-2.46.37-4.49 1.71-6.29c1.17-1.57 3.4-2.22 5.33-2.25c3.49-.05 5.76-.81 8.23-3.28l5.98-5.95c14.13 6.65 31.49 4.14 43.17-7.54c14.86-14.89 14.86-39.01-.02-53.89m-13.6 28.22c-4.04 4.04-10.59 4.04-14.62 0c-4.04-4.04-4.04-10.59 0-14.62c4.04-4.04 10.59-4.04 14.62 0c4.04 4.03 4.04 10.58 0 14.62"/><path fill="#DBA010" d="M5.6 113.59s1.24.84 2.24 5.07l47.48-48.27c1.55-1.7-5.4-.82-7.48 1.25z"/><path fill="#FFF59D" d="M60.43 19.92c-3.9 2.12-8.3 7.8-9.51 16c-1.1 7.44-.63 12.61 1.87 16.96c2.83 4.91 6.68 2.31 5.13-2.47c-1.02-3.15-1.28-4.34-1.42-7.68c-.11-2.61.16-5.24.9-7.74c1.84-6.2 6.11-10.27 7.36-12.28c1.59-2.57-.92-4.66-4.33-2.79m-27.38 59.8c-2.84 2.42.1-5.11 2.28-7.65C38.2 68.71 45 61.58 46.2 60.97c1.64-.83 1.54 3.75.87 4.59C44.69 68.5 35.9 77.3 33.05 79.72"/></svg>
+                                {{ data.id_secondary }}
+                            </p>
+                            <span>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"><path fill="#27276d" d="M12 12q.825 0 1.413-.587T14 10q0-.825-.587-1.412T12 8q-.825 0-1.412.588T10 10q0 .825.588 1.413T12 12m0 7.35q3.05-2.8 4.525-5.087T18 10.2q0-2.725-1.737-4.462T12 4Q9.475 4 7.738 5.738T6 10.2q0 1.775 1.475 4.063T12 19.35M12 22q-4.025-3.425-6.012-6.362T4 10.2q0-3.75 2.413-5.975T12 2q3.175 0 5.588 2.225T20 10.2q0 2.5-1.987 5.438T12 22m0-12"/></svg>
+                                {{ data.company_location_1 }}, {{ data.company_location_2 }}
+                            </span>
+                        </div>
+                    </div>
+                </a>
+                {% endfor %}
+            </div>
+            
+        {% endif %}    
+    </div>
+    {% endif %}
+    <!-- MODALS -->
+    <div id="modal-message-admin-not-supported" class="modal">
+        <div class="modal-background" id="modal-background-admin-not-supported"></div>
+    
+        <div class="modal-content">
+            <div class="box">
+                <div class="btn-close-modal-container-main">
+                    <button class="button is-small is-rounded" id="btn-close-admin-not-supported" aria-label="close"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 256 256"><path fill="#191334" d="M208.49 191.51a12 12 0 0 1-17 17L128 145l-63.51 63.49a12 12 0 0 1-17-17L111 128L47.51 64.49a12 12 0 0 1 17-17L128 111l63.51-63.52a12 12 0 0 1 17 17L145 128Z"/></svg></button>
+                </div>
+                <p>Ya tiene productos en su carrito por lo que no es posible agregar productos de diferentes restaurantes al carrito.<br> Por favor, asegúrese de que todos los productos que deseas reservar sean del mismo restaurante.</p>
+            </div>
+        </div>
+    </div>
+    <!-- Aviso descripcion -->
+    <div class="modal" id="modal-view-description-rest">
+        <div class="modal-background"></div>
+        <div class="modal-content">
+            <div class="container-title">
+                <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 14 14"><g fill="none" stroke="#eab308" stroke-linecap="round" stroke-linejoin="round"><path d="m7.182 3.747l3.857 6.681m-.202-.351l-9.51 2.209L.72 11.23L7.386 4.1"/><path d="m3.396 11.805l.524.906a1.421 1.421 0 1 0 2.455-1.432l-.084-.145m1.153-9.297V.583m4.802 6.057H13.5m-12.111 0h1.253m.519-4.283l.886.887m6.793 0l.886-.887"/></g></svg>
+                <h3>AVISO IMPORTANTE</h3>
+            </div>
+            {% if data_admin %}
+            <p>{{ data_admin.company_description }}</p>
+            {% endif %}
+        </div>
+        <button class="modal-close is-large"></button>
+    </div>
+    <div class="modal" id="modal-show-details-product-app">
+        <div class="modal-background"></div>
+        <div class="modal-content box">
+            <div class="container-carusel-image-product">
+                <div class="swiper">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide">
+                            <img src="/static/images/images_restaurant/onlyadmin/icon_food/2025-02-23_20_02_41sW7oIqG8Bf.jpg" alt="Placeholder image" />
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="/static/images/images_restaurant/onlyadmin/icon_food/2025-02-23_20_03_00pwxgC2GGHt.jpg" alt="Placeholder image" />
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="/static/images/images_restaurant/onlyadmin/icon_food/2025-02-23_20_03_17p7H56W3K4w.jpg" alt="Placeholder image" />
+                        </div>
+                    </div>
+                    <div class="swiper-button-next"></div>
+                    <div class="swiper-button-prev"></div>
+                    <div class="swiper-pagination"></div>
+                </div>
+            </div>
+            <div class="container-details-all-product">
+                <div class="container-title">
+                    <h1>Útiles escolares colegio</h1>
+                </div>
+                <div class="container-more-info-product">
+                    <span class="span-date">31 de mayo del 2025</span>
+                    <span class="span-price">S/. 30</span>
+                </div>
+                <div class="container-description-product">
+                    <span>Utiles escolares para estudiantes del colegio, implementado para que su hijo vaya a sus clases correctamente.</span>
+                </div>
+                <div class="container-details-product">
+                    <ul>
+                        <li>2 Lapiceros</li>
+                        <li>3 Cuadernos</li>
+                        <li>2 lapices</li>
+                        <li>100 hoja bond</li>
+                        <li>2 Tijeras</li>
+                        <li>2 Tijeras</li>
+                    </ul>
+                </div>
+                <div class="container-button-action-product">
+                    <button class="" onclick="closeModal(document.getElementById('modal-show-details-product-app'))">Cerrar</button>
+                    <button class="">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 48 48"><g fill="none"><path d="M39 32H13L8 12h36z"/><path stroke="#ffffff" stroke-linecap="round" stroke-linejoin="round" stroke-width="4" d="M3 6h3.5L8 12m0 0l5 20h26l5-20z"/><circle cx="13" cy="39" r="3" stroke="#ffffff" stroke-linecap="round" stroke-linejoin="round" stroke-width="4"/><circle cx="39" cy="39" r="3" stroke="#ffffff" stroke-linecap="round" stroke-linejoin="round" stroke-width="4"/><path stroke="#ffffff" stroke-linecap="round" stroke-linejoin="round" stroke-width="4" d="M22 22h8m-4 4v-8"/></g></svg>
+                        Agregar
+                    </button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+{% endblock %}
+
+{% block selected_route_3 %}
+    block-nav-circle-now__select
+{% endblock %}
+
+{% block scripts %}
+    <script src="{{ url_for('static', filename='js/user_app/my_favorities.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/pages_admin/controll_products.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/libraries/swiper-bundle.min.js') }}"></script>
+    <script>
+        document.addEventListener("touchstart", function() {}, false);
+        add_to_cart();
+        favorities();
+        const btn_view_products_in_cart = document.getElementById("btn-view-products-in-cart");
+        btn_view_products_in_cart.addEventListener("click", async()=>{
+            let data_products = localStorage.getItem("products");
+            if (data_products && data_products.length > 0 ){
+                document.getElementById('container-main-loader-mobile-all').style.display = "flex";
+                const form = document.createElement("form");
+                form.method = "POST";
+                form.action = "/userapp/payments";
+                let input = document.createElement("input");
+                input.type = "hidden";
+                input.name = "products";
+                input.value = data_products;
+                form.appendChild(input);
+                document.body.appendChild(form);
+                form.submit();
+            }else{
+                openModalMessageLittle("No ha agregado ningún producto", true);
+            };
+        });
+        const swiper = new Swiper('.swiper', {
+            // Configuración básica
+            loop: true, // Permite bucle infinito
+            autoplay: {
+                delay: 3000, // Cambia automáticamente cada 3 segundos
+            },
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            },
+            pagination: {
+                el: '.swiper-pagination',
+                clickable: true,
+            },
+        });
+    </script>
+    <script src="{{ url_for('static', filename='js/libraries/swiper-element-bundle.min.js') }}"></script>
+{% endblock %}

@@ -1,0 +1,49 @@
+.coolinput-main-template {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    position: static;
+    max-width: 100%;
+    position: relative;
+}
+
+.coolinput-main-template label.text-main-template {
+    font-size: 0.75rem;
+    color: #393939;
+    font-weight: 700;
+    position: relative;
+    top: 0.5rem;
+    margin: 0 0 0 7px;
+    padding: 0 3px;
+    background: white;
+    width: fit-content;
+}
+.coolinput-main-template select.input-main-template ,
+.coolinput-main-template input.input-main-template {
+    padding: 11px 10px;
+    font-size: 0.75rem;
+    border:1px #9a9a9afe solid;
+    border-radius: 5px;
+    background: white;
+    width: 100%;
+}
+
+.coolinput-main-template select.input-main-template:focus ,
+.coolinput-main-template input.input-main-template:focus {
+    outline: none;
+}
+.input-main-template:focus-within + .text-main-template::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: blue; 
+}
+/* 
+    <div class="coolinput-main-template">
+        <label for="input" class="text-main-template">Name:</label>
+        <input type="text" placeholder="Write here..." name="input" class="input-main-template">
+    </div> 
+*/

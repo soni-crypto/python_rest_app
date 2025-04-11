@@ -1,0 +1,597 @@
+.container-main-all-reservations{
+    background-color: white;
+    height: 100%;
+    width: 100%;
+}
+.container-main-all-reservations .container-title{
+    width: 100%;
+    text-align: center;
+    margin-top: .6rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.container-main-all-reservations .container-title .container-menu-actions{
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    column-gap: 1rem;
+    padding-left: .6rem;
+    padding-right: .8rem;
+    width: 100%;
+}
+.container-main-all-reservations .container-title .container-menu-actions .container-search-by-key{
+    padding: 0rem;
+    background-color: white;
+    border-radius: .4rem;
+}
+.container-main-all-reservations .container-title .container-menu-actions .container-search-by-key form{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    column-gap: .4rem;
+}
+.container-main-all-reservations .container-title .container-menu-actions .container-search-by-key form input{
+    padding: .4rem;
+    border: none;
+    outline: none;
+    background-color: white;
+    border-radius: .3rem;
+    width: 9rem;
+    border: 1px solid rgb(209, 211, 224);
+}
+.container-main-all-reservations .container-title .container-menu-actions .container-search-by-key button{
+    background-color: transparent;
+    border: none;
+    outline: none;
+    width: auto;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    column-gap: .3rem;
+    padding: .4rem;
+    border-radius: .3rem;
+    color: white;
+    cursor: pointer;
+    background-color: var(--color-blue-dark-1);
+}
+.container-main-all-reservations .container-title .container-menu-actions .container-search-by-key button:hover{
+    outline: 1px solid rgba(255, 255, 255, 0.446);
+    
+}
+.container-main-all-reservations .container-title .container-menu-actions select{
+    background-color: white;
+    padding: .4rem;
+    border-radius: .4rem;
+    border: none;
+    outline: none;
+    width: 9rem;
+    border: 1px solid rgb(209, 211, 224);
+}
+.container-main-all-reservations .container-title h1{
+    font-size: 1.2rem;
+    margin-right: .5rem;
+    color: rgb(131, 209, 62);
+    font-size: .9rem;
+}
+.container-main-block-all{
+    padding: .6rem;
+    display: flex;
+    justify-content: center;
+    align-items: start;
+    flex-wrap: wrap;
+    column-gap: 1.5rem;
+    row-gap: 1.9rem;
+    margin-top: .9rem;
+}
+.container-main-block-all .block-reservation-main{
+    width: 20rem;
+    height: auto;
+    min-height: 20rem;
+    background-color: white;
+    border-radius: .6rem;
+    box-shadow: 1px 1px 10px rgb(207, 206, 206);
+}
+.container-main-block-all .block-reservation-main:hover{
+    outline: 2px solid rgba(102, 102, 255, 0.653);
+}
+.container-main-block-all .block-reservation-main .container-profile-user-app-all{
+    width: 100%;
+    height: 4rem;
+    border-bottom: 1px solid rgb(186, 186, 186);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    /* flex-wrap: wrap; */
+    padding: .6rem;
+    column-gap: .6rem;
+}
+.container-main-block-all .block-reservation-main .container-profile-user-app-all .container-image-icon{
+    width: 3rem;
+    height: 3rem;
+    border-radius: 50%;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.container-main-block-all .block-reservation-main .container-profile-user-app-all .container-image-icon img{
+    width: auto;
+    height: auto;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.block-reservation-main .container-profile-user-app-all .container-info-user{
+    width: calc( 100% - 3.6rem );
+}
+.block-reservation-main .container-profile-user-app-all .container-info-user .name-user-container{
+    text-align: center;
+}
+.block-reservation-main .container-profile-user-app-all .container-info-user .name-user-container span{
+    font-weight: 600;
+}
+.block-reservation-main .container-profile-user-app-all .container-info-user .contacts-user-container{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    column-gap: 1.2rem;
+}
+.block-reservation-main .container-profile-user-app-all .container-info-user .contacts-user-container .container-block-contacts{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    column-gap: .3rem;
+    width: auto;
+    font-size: .8rem;
+}
+.container-main-block-all .block-reservation-main .container-created-and-code-r{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: .1rem .4rem;
+}
+.container-main-block-all .block-reservation-main .container-created-and-code-r .key-reservation-main{
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    column-gap: .3rem;
+    font-size: .8rem;
+    color: blue;
+    font-weight: 500;
+}
+.block-reservation-main .container-date-created-start{
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    column-gap: .7rem;    
+    padding: .4rem;
+    width: auto;
+}
+.block-reservation-main .container-date-created-start h3{
+    font-size: .7rem;
+    margin: 0;
+}
+.block-reservation-main .container-date-created-start span{
+    font-size: .7rem;
+    margin: 0;
+}
+
+
+.block-reservation-main .container-date-reservation-main{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: .4rem;
+    width: 100%;
+}
+.block-reservation-main .container-date-reservation-main .container-block-date{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    column-gap: .4rem;
+}
+.block-reservation-main .container-date-reservation-main .container-block-date span .btn-open-map-delivery{
+    background-color: white;
+    color: black;
+    border-radius: 0rem;
+    padding: 0rem;
+    border: none;
+    outline: none;
+    margin-left: .4rem;
+    cursor: pointer;
+}
+.block-reservation-main .container-date-reservation-main .container-block-date span .btn-open-map-delivery svg:hover{
+    fill: blue;
+}
+.block-reservation-main .container-date-reservation-main .container-block-date span{
+    display: block;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: .8rem;
+}
+
+.block-reservation-main .container-all-reservations-foods{
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+    width: 100%;
+    height: 13rem;
+    overflow-y: scroll;
+}
+.block-reservation-main .container-all-reservations-foods::-webkit-scrollbar{
+    width: 4px;
+}
+.block-reservation-main .container-all-reservations-foods::-webkit-scrollbar-thumb{
+    background-color: rgba(0, 0, 255, 0.647);
+    border-radius: 1.5rem;
+}
+.block-reservation-main .container-all-reservations-foods .block-row-details-food{
+    padding: .4rem;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    column-gap: .4rem;
+    /* border-top: 1px solid black; */
+}
+.block-reservation-main .container-all-reservations-foods .block-row-details-food .container-image-food{
+    width: 4.4rem;
+    height: 3rem;
+    background-color: white;
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.block-reservation-main .container-all-reservations-foods .block-row-details-food .container-image-food img{
+    max-width: 100%;
+    max-height: 100%;
+    border-radius: .4rem;
+}
+.container-details-food-info{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: calc( 100% - 4rem );
+}
+.container-details-food-info .block-info-food-1{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: start;
+}
+.container-details-food-info .block-info-food-1 span:nth-child(1){
+    font-weight: 600;
+    font-size: .8rem;
+}
+.container-details-food-info .block-info-food-1 span:nth-child(2){
+    font-size: .8rem;
+}
+.container-details-food-info .block-info-food-2{
+    width: 4rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: end;
+    background-color: white;
+}
+.container-details-food-info .block-info-food-2 span:nth-child(1){
+    font-size: .9rem;
+    font-weight: 600;
+}
+.container-details-food-info .block-info-food-2 span:nth-child(2){
+    font-size: .8rem;
+}
+.block-reservation-main{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+.block-reservation-main .container-details-pay-amount{
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    column-gap: .5rem;
+    padding: .4rem;
+    border-top: 1px solid rgb(186, 186, 186);
+    border-bottom: 1px solid rgb(186, 186, 186);
+}
+.block-reservation-main .container-details-pay-amount .container-image-voucher{
+    width: 5rem;
+    height: 5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid rgb(186, 186, 186);
+    border-radius: .5rem;
+    overflow: hidden;
+}
+.block-reservation-main .container-details-pay-amount .container-image-voucher img{
+    max-width: 100%;
+    max-height: 100%;
+}
+.block-reservation-main .container-details-pay-amount .container-more-info-pay{
+    width: calc( 100% - 6.5rem );
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+    /* background-color: brown; */
+    padding: .4rem;
+    row-gap: .6rem;
+}
+.block-reservation-main .container-details-pay-amount .container-more-info-pay .container-message-pay{
+    width: 100%;
+    text-align: start;
+    min-height: 2.1rem;
+}
+.block-reservation-main .container-details-pay-amount .container-more-info-pay .container-message-pay span{
+    font-size: .8rem;
+    line-height: .9rem;
+    display: flex;
+}
+.block-reservation-main .container-details-pay-amount .container-more-info-pay .container-amount-all{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+.block-reservation-main .container-details-pay-amount .container-more-info-pay .container-amount-all h4{
+    font-size: .9rem;
+    font-weight: 600;
+    margin: 0;
+    padding: 0;
+}
+.block-reservation-main .container-details-pay-amount .container-more-info-pay .container-amount-all span{
+    margin: 0;
+    padding: 0;
+    display: block;
+}
+
+
+
+
+.block-reservation-main .container-buttons-state{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    column-gap: .6rem;
+    padding: .4rem;
+    box-sizing: border-box;
+}
+.block-reservation-main .container-buttons-state button{
+    width: 50%;
+    border: none;
+    padding: .4rem;
+    font-size: 1rem;
+    font-weight: 500;
+    color: rgb(53, 53, 53);
+    background-color: rgb(217, 217, 217);
+    border-radius: .4rem;
+}
+.block-reservation-main .container-buttons-state button:hover{
+    background-color: var(--color-blue-dark-1);
+    color: white;
+}
+.block-reservation-main .container-buttons-state .container-button-accepted-state{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+    width: 100%;
+}
+.block-reservation-main .container-buttons-state .container-button-accepted-state button{
+    width: auto;
+    color:white;
+    background-color: rgb(130, 126, 210);
+}
+.block-reservation-main .container-buttons-state .container-button-accepted-state button:active{
+    background-color: aqua;
+}
+.block-reservation-main .container-buttons-state .container-button-accepted-state .message-state-reservation__rejected,
+.block-reservation-main .container-buttons-state .container-button-accepted-state .message-state-reservation__accepted{
+    width: 90%;
+    box-sizing: border-box;
+    text-align: center;
+}
+.message-state-reservation{
+    padding: .3rem;
+    font-size: .8rem;
+    font-weight: 600;
+
+}
+.image-voucher-zoom-in-modal{
+    max-width: 95%;
+    max-height: 95%;
+}
+.container-not-found-empty {
+    width: 100%;
+    height: auto;
+    min-height: 10rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+/* styles modals all */
+.modal .modal-content{
+    width: 95%;
+    max-width: 26rem;
+    height: 95%;
+    max-height: 38rem;
+    background-color: white;
+    border-radius: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+.modal-content-reservation-concluded{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    row-gap: .8rem;
+}
+.modal-content-reservation-concluded > h3{
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+.modal-content-reservation-concluded .container-methods-form-pay{
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: start;
+    text-align: start;
+    width: 70%;
+}
+.modal-content-reservation-concluded .container-methods-form-pay h4{
+    font-size: .9rem;
+    font-weight: 600;
+    color: rgb(21, 21, 76);
+}
+.modal-content-reservation-concluded .container-methods-form-pay .container-methods-form-pay__labels{
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: start;
+    row-gap: .6rem;
+    width: 100%;
+    margin-top: .6rem;
+}
+.modal-content-reservation-concluded .container-methods-form-pay .container-methods-form-pay__labels label{
+    display: flex;
+    justify-content: start;
+    align-items: start;
+    width: 100%;
+    column-gap: .2rem;
+}
+.modal-content-reservation-concluded .container-methods-form-pay .container-methods-form-pay__labels label .block-type-client{
+    height: 3rem;
+    width: 100%;
+    padding: .2rem;
+    background-color: white;
+    border: 1px solid rgb(100, 95, 95);
+    border-radius: .3rem;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    padding-left: .4rem;
+}
+.modal-content-reservation-concluded .container-methods-form-pay .container-methods-form-pay__labels label .block-type-client:hover{
+    background-color: var(--color-blue-dark-1);
+    color: white;
+}
+.modal-content-reservation-concluded .container-methods-form-pay .container-methods-form-pay__labels input{
+    display: none;
+}
+.modal-content-reservation-concluded .container-methods-form-pay .container-methods-form-pay__labels label span{
+    font-size: .9rem;
+    line-height: 1rem;
+}
+.modal-content-reservation-concluded .container-button-action{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 2.4rem;
+}
+.modal-content-reservation-concluded .container-button-action button{
+    width: 70%;
+    padding: .7rem;
+    background-color: var(--color-blue-dark-1);
+    color: white;
+    border: none;
+    outline: none;
+    border-radius: .4rem;
+    font-size: 1rem;
+    font-weight: 600;
+}
+/* end styles modal all */
+/* Modal show map */
+#modal-show-map-geolocation-user .modal-content{
+    background-color: white;
+    width: 95%;
+    max-width: 46rem;
+    height: 95%;
+    padding: .4rem;
+    border-radius: .4rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+#modal-show-map-geolocation-user .modal-content .modal-body-map-render-location{
+    height: calc(100% - 4.4rem);
+    width: 100%;
+}
+#modal-show-map-geolocation-user .modal-content .container-buttons-action{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    column-gap: .3rem;
+    margin-top: 1.8rem;
+}
+#modal-show-map-geolocation-user .modal-content .container-buttons-action button{
+    height: 2.6rem;
+    width: 90%;
+    background-color: var(--color-blue-dark-1);
+    color: white;
+    font-size: 1rem;
+    font-weight: bold;
+    border-radius: .4rem;
+    border: none;
+    outline: none;
+}
+/* End modal show map */
+@media screen and (orientation: portrait) {
+    .block-reservation-main .container-all-reservations-foods{
+        height: auto;
+        max-height: 13rem;
+    }
+    .container-main-all-reservations .container-title .container-menu-actions{
+        justify-content: center;
+    }
+    .container-main-all-reservations .container-title .container-menu-actions .container-search-by-key{
+        width: 100%;
+        max-width: 28rem;
+    }
+    .container-main-all-reservations .container-title .container-menu-actions .container-search-by-key form{
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        row-gap: .4rem;
+        width: 100%;
+    }
+    .container-main-all-reservations .container-title .container-menu-actions .container-search-by-key form button{
+        width: 100%;
+        background-color: var(--color-blue-dark-4);
+        font-size: 1.1rem;
+    }
+    .container-main-all-reservations .container-title .container-menu-actions .container-search-by-key form select,
+    .container-main-all-reservations .container-title .container-menu-actions .container-search-by-key form input{
+        width: 100%;
+        font-size: 1rem;
+        padding: .5rem;
+    }
+    .container-main-block-all .block-reservation-main{
+        width: 98%;
+    }
+}

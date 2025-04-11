@@ -1,0 +1,337 @@
+.section-container-all{
+    width: 100%;
+}
+.section-container-all .tabs{
+    padding: .6rem;
+}
+.container-state-id-secondary{
+    position: absolute;
+    right: 0;
+    top: .8rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* background-color: aqua; */
+    height: 100%;
+}
+.container-state-id-secondary .loader-ping{
+    margin-top: -.4rem;
+    display: none;
+}
+.container-state-id-secondary svg{
+    display: none;
+    margin-bottom: .6rem;
+    margin-right: .4rem;
+}
+/* CHEVRONS */
+.chevron-left-container-main-all-app{    
+    width: 100%;
+    margin-top: 0;
+}
+.chevron-left-container-main-all-app .chevron-left-a{
+    background-color: rgb(242, 242, 242);
+    width: 2.4rem;
+    height: 2.4rem;
+    border-radius: 50%;
+    position: relative;
+    left: 1rem;
+    top: 0rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+    margin: 0;
+    fill: rgb(132, 132, 132);
+}
+.chevron-left-container-main-all-app .chevron-left-a svg{
+    width: 1.8rem;
+    height: 1.8rem;
+}
+.chevron-left-container-main-all-app .chevron-left-a:hover{
+    background-color: rgb(35, 33, 73);
+    fill: white;
+}
+/* FIN CHEBROLET */
+.page-content{
+    height: 100%;
+    padding-top: 70px;
+    padding-left: 0;
+    padding-right: 0;
+    /* padding-bottom: 0; */
+    background-color: white;
+}
+.container-div-form{
+    margin: .8rem;
+}
+.container-div-form form {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+    flex-wrap: wrap;
+    width: 100%;
+    column-gap: 6rem;
+    row-gap: 2rem;
+    position: relative;
+}
+.container-div-form form .container-btn-update-save{
+    width: 100%;
+    max-width: 60rem;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+}
+.container-div-form form .container-btn-update-save .btn-update-save{
+    width: 11rem;
+    background-color: var(--color-green-1);
+    height: 2.3rem;
+    border: none;
+    border-radius: .3rem;
+    font-size: .9rem;
+    color: rgb(42, 42, 42);
+    transition: .4s;
+}
+.container-div-form form .container-btn-update-save .btn-update-save:hover{
+    background-color: var(--color-black-1);
+    color: var(--color-green-1);
+}
+.block-container-forms-div-main{
+    width: 100%;
+    max-width: 60rem;
+    box-sizing: border-box;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: start;
+    row-gap: .3rem;
+    column-gap: .6rem;
+    background-color: rgb(255, 255, 255);
+    box-shadow: 1px 1px 10px rgb(222, 216, 216);
+    border: 1px solid rgb(186, 173, 173);
+    border-radius: .6rem;
+    padding: .8rem;
+}
+.title-main-panel-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    color: rgb(45, 43, 43);
+}
+/* DROPDOWN btn */
+.dropdown-container-location{
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    width: 100%;
+    max-width: 18rem;
+}
+.dropdown-container-location .dropdown-menu{
+    gap: 0;
+}
+.dropdown-container-location .div-container-location-1{
+    overflow-y: scroll;
+    max-height: 20rem;
+    width: 100%;
+    background-color: white;
+    border: 1px solid rgb(230, 230, 243);
+    /* padding: .2rem; */
+    border-radius: 0 0 .4rem .4rem;
+}
+.dropdown-container-location .div-container-location-1::-webkit-scrollbar{
+    width: 0px;
+}
+.dropdown-container-location .div-container-location-1 label{
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    width: 100%;
+    padding: .2rem .5rem;
+    margin-bottom: 0;
+    column-gap: .5rem;
+}
+.dropdown-container-location .div-container-location-1 label:hover{
+    background-color: rgb(173, 255, 255);
+}
+.dropdown-container-location .div-container-location-1 label input{
+    height: 0;
+    width: 0;
+    overflow: hidden;
+}
+.btn-select-location-1{
+    width: 100%;
+    background-color: white;
+    height: 2.6rem;
+    margin-top: .8rem;
+    border-radius: .3rem;
+    border: 1px solid rgb(177, 177, 177);
+    outline: none;
+    text-align: left;
+}
+/* INPUT STYLES  */
+.block-container-forms-div-main .coolinput-main-template{
+    max-width: 18rem;
+}
+.block-container-forms-div-main .coolinput-main-template .text-main-template{
+    color: rgb(100, 100, 100);
+    font-weight: normal;
+    font-size: .7rem;
+}
+.block-container-forms-div-main .container-main-template-input-simple {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+    row-gap: .4rem;
+    margin-top: .5rem;
+    width: 100%;
+    max-width: 18rem;
+}
+.block-container-forms-div-main .container-main-template-input-simple label{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.block-container-forms-div-main .container-main-template-input-simple img{
+    width: 7rem;
+    border-radius: .5rem;
+    margin-left: 1.4rem;
+}
+.block-container-forms-div-main .container-main-template-input-simple .btn-upload-image{
+    width: auto;
+    padding: 0 1rem;
+    height: 2.5rem;
+    background-color: var(--color-blue-dark-1);
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    column-gap: .5rem;
+    border-radius: 1.5rem;
+    cursor: pointer;
+}
+.block-container-forms-div-main .container-main-template-input-simple input[type="file"] {
+    display: none;
+}
+/* FIN */
+
+/* METHODS PAY */
+.block-container-forms-div-main-payments{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: start;
+
+}
+.block-container-forms-div-main-payments .container-title{
+    width: 100%;
+    text-align: left;
+}
+.block-container-forms-div-main-payments .container-title h1{
+    font-size: 1rem;
+    font-weight: 600;
+}
+.block-container-forms-div-main-payments .container-content-methods-pay{
+    display: flex;
+    justify-content: center;
+    align-items: start;
+    width: 100%;
+    height: 100%;
+    padding-left: 1rem;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+.block-container-forms-div-main-payments .container-content-methods-pay .block-row-pay-method{
+    width: 95%;
+    max-width: 19rem;
+    height: 24rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: start;
+    box-sizing: border-box;
+    box-shadow: 1px 1px 10px rgb(236, 229, 229);
+    border: 1px solid rgb(207, 196, 196);
+    padding: .4rem;
+    border-radius: .6rem;
+}
+.block-container-forms-div-main-payments .container-content-methods-pay .block-row-pay-method label{
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    column-gap: .6rem;
+    box-sizing: border-box;
+}
+.block-row-pay-method .container-block-image-input-preview{
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+    align-items: center;
+    row-gap: .7rem;
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    
+}
+.block-row-pay-method .container-block-image-input-preview img{ 
+    max-width: 60%;
+    /* max-height: 13.5rem; */
+    border-radius: .6rem;
+}
+.block-row-pay-method .container-block-image-input-preview label input{
+    display: none;
+}
+.block-row-pay-method .container-block-image-input-preview label .btn-upload-image{
+    width: auto;
+    padding: 0 1rem;
+    height: 2.5rem;
+    background-color: var(--color-blue-dark-1);
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    column-gap: .5rem;
+    border-radius: 1.5rem;
+    cursor: pointer;
+}
+/* END METHODS PAY */
+.container-main-map-marker-app{
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+.container-main-map-marker-app img{
+    position: absolute;
+    width: 1.9rem;
+    margin-top: -2.4rem;
+}
+.map_view_location_main{
+    width: 100%;
+    height: 23rem;
+    background-color: rgb(86, 72, 72);
+    margin-top: .6rem;
+    border-radius: .6rem;
+    box-shadow: .1px 1px 5px rgb(168, 159, 159);
+}
+
+
+@media screen and (orientation:portrait) {
+    .container-div-form form {
+        justify-content: center;
+        align-items: center;
+    }       
+    .block-container-forms-div-main{
+        max-width: 25rem;
+    }
+    .block-container-forms-div-main .coolinput-main-template{
+        max-width: 25rem;
+    }
+
+}

@@ -1,0 +1,81 @@
+{% extends "layouts/nav_admin.html" %}
+
+{% block container_css %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/ui/input.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/admin_main/payments_control.css') }}">
+{% endblock %}
+
+{% block main_body %}
+    <div class="container-main-all-payments">
+        <div class="container-block-form-details">
+        
+            <div class="container-title">
+                <h1>Actualizar fecha de servicio</h1>
+            </div>
+            <div class="container-form-description">
+                <div class="container-text">
+                    <span>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laudantium ipsum perferendis iure libero numquam culpa, ex soluta quaerat quibusdam consectetur?</span>
+                </div>
+                <div class="container-form-main">
+                    <div class="coolinput-main-template">
+                        <label for="input" class="text-main-template">Correo:</label>
+                        <input type="text" placeholder="" name="country_name" class="input-main-template" autofocus required>
+                    </div> 
+                    <div class="coolinput-main-template">
+                        <label for="input" class="text-main-template">Fecha final:</label>
+                        <input type="text" placeholder="" name="country_name" class="input-main-template" autofocus required>
+                    </div> 
+                    
+                    <button class="btn-submit-ajax">
+                        Actualizar
+                    </button>
+                
+                </div>
+            </div>
+            
+        </div>
+        <div>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Fecha</th>
+                        <th>F_I_S</th>
+                        <th>F_F_S</th>
+                        <th>Nombre</th>
+                        <th>Correo</th>
+                        <th>Celular</th>
+                        <th>Voucher</th>
+                        <th>Mensage</th>
+                        <th>Acción</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for payment in data_payments %}
+                    <tr>
+                        <td>{{ loop.index }}</td>
+                        <td>{{ payment.created_at }}</td>
+                        <td>{{ payment.subscription_start_date }}</td>
+                        <td>{{ payment.subscription_end_date }}</td>
+                        <td>{{ payment.user_surnames }}, {{ payment.user_name }}</td>
+                        <td>{{ payment.user_email }}</td>
+                        <td>{{ payment.user_number }}</td>
+                        <td>
+                            <div class="div-container-image-voucher">
+                                <img src="{{ payment.image_voucher }}" alt="icon Voucher">
+                            </div>
+                        </td>
+                        <td>{{ payment.message }}</td>
+                        <td>
+                            <div>
+                                <button>del</button>
+                                <button>OK</button>
+                            </div>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,22 @@
+{
+    "name": "Foodie Admin",
+    "short_name": "Foodie Admin",
+    "description": "Foodie Admin",
+    "start_url": "/honey/",
+    "display": "standalone",
+    "background_color": "#ffffff",
+    "theme_color": "#4f85ee",
+    "icons": [
+      {
+        "src": "/static/images/emTorch-nuevo-512px-512px.min.png",
+        "sizes": "512x512",
+        "type": "image/png"
+      },
+      {
+        "src": "/static/images/emTorch-nuevo-256px-256px.min.png",
+        "sizes": "256x256",
+        "type": "image/png"
+      }
+    ]
+  }
+  

@@ -1,0 +1,289 @@
+{% extends "layouts/nav_app_honey.html" %}
+
+{% block main_link_css %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/styles_restaurant/tables.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/ui/input_simple.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/ui/btn_div_1.css') }}">
+{% endblock %}
+
+{% block main_body %}
+    <section class="section-container-all">
+        <div class="container-header">
+            {% if level_user_context | int == 2 %}
+            <button onclick="openModal(document.getElementById('create-new-table'))">
+                <svg xmlns="http://www.w3.org/2000/svg" width="34" height="19.23076923076924" viewBox="0 0 1664 1472"><path fill="#ffffff" d="M64 606L0 576V448L832 64l832 384v128l-64 30v534q0 38-26.5 57t-69.5 19t-69.5-19t-26.5-57V694L928 916v480q0 38-26.5 57t-69.5 19t-69.5-19t-26.5-57V916L256 694v446q0 38-26.5 57t-69.5 19t-69.5-19t-26.5-57zm768 226l768-352l-768-352L64 480z"/></svg>
+                Crear nueva mesa
+            </button>
+            <button onclick="openModal(document.getElementById('create-new-category-table'))">
+                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 24 24"><path fill="#ffffff" d="M15 7.808h4zm-10 0h9.046h-.834h.311zm.38-1H18.6L17.077 5H6.904zM10 12.962l2-1l2 1V7.808h-4zM14.03 20H4V6.916L6.416 4h11.15L20 6.954v4.355q-.206-.059-.437-.082q-.23-.023-.447-.023H19V7.808h-4v5.152q-.279.192-.554.516t-.4.634L12 13.096l-3 1.5V7.808H5V19h8.523q.09.28.224.524q.134.243.284.476m4.565.596v-3h-3v-1h3v-3h1v3h3v1h-3v3z"/></svg>
+                Categoría
+            </button>
+            {% elif level_user_context | int == 4 %}
+                <span>Listado de mesas</span>
+            {% endif %}
+        </div>
+        <div class="container-all-data-table-category">
+            <div class="container-categories-table">
+                <div class="container-title">
+                    <h1>Categoría</h1>
+                </div>
+                <div class="container-all-categories">
+                    <div class="container-row {% if not category_selected %} container-row-selected {% endif %}">
+                        <a href="#" data-category="0" class="a-link-category-table-all">Todos</a>
+                        <!-- <div class="container-btns-action">
+                            <button><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"><path fill="none" stroke="#132be7" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="m19.5 5.5l-.402 6.506M4.5 5.5l.605 10.025c.154 2.567.232 3.85.874 4.774c.317.456.726.842 1.2 1.131c.671.41 1.502.533 2.821.57m10-7l-7 7m7 0l-7-7M3 5.5h18m-4.944 0l-.683-1.408c-.453-.936-.68-1.403-1.071-1.695a2 2 0 0 0-.275-.172C13.594 2 13.074 2 12.035 2c-1.066 0-1.599 0-2.04.234a2 2 0 0 0-.278.18c-.395.303-.616.788-1.058 1.757L8.053 5.5" color="#ffffff"/></svg></button>
+                            <button><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"><path fill="none" stroke="#f50f0f" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="m14.363 5.652l1.48-1.48a2 2 0 0 1 2.829 0l1.414 1.414a2 2 0 0 1 0 2.828l-1.48 1.48m-4.243-4.242l-9.616 9.615a2 2 0 0 0-.578 1.238l-.242 2.74a1 1 0 0 0 1.084 1.085l2.74-.242a2 2 0 0 0 1.24-.578l9.615-9.616m-4.243-4.242l4.243 4.242"/></svg></button>
+                        </div> -->
+                    </div>
+                    {% for c in table_categories %}
+                    <div class="container-row {% if category_selected == c.id | string %} container-row-selected {% endif %}">
+                        <a href="#" data-category="{{ c.id }}" class="a-link-category-table-all">{{ c.name }}</a>
+                        {% if level_user_context | int == 2 %}
+                        <div class="container-btns-action">
+                            <button class="btns-delete-category-table" data-identifier="{{ c.id }}"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"><path fill="none" stroke="#f50f0f" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="m19.5 5.5l-.402 6.506M4.5 5.5l.605 10.025c.154 2.567.232 3.85.874 4.774c.317.456.726.842 1.2 1.131c.671.41 1.502.533 2.821.57m10-7l-7 7m7 0l-7-7M3 5.5h18m-4.944 0l-.683-1.408c-.453-.936-.68-1.403-1.071-1.695a2 2 0 0 0-.275-.172C13.594 2 13.074 2 12.035 2c-1.066 0-1.599 0-2.04.234a2 2 0 0 0-.278.18c-.395.303-.616.788-1.058 1.757L8.053 5.5" color="#ffffff"/></svg></button>
+                            <button class="btns-update-category-table" data-identifier="{{ c.id }}"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"><path fill="none" stroke="#132be7" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="m14.363 5.652l1.48-1.48a2 2 0 0 1 2.829 0l1.414 1.414a2 2 0 0 1 0 2.828l-1.48 1.48m-4.243-4.242l-9.616 9.615a2 2 0 0 0-.578 1.238l-.242 2.74a1 1 0 0 0 1.084 1.085l2.74-.242a2 2 0 0 0 1.24-.578l9.615-9.616m-4.243-4.242l4.243 4.242"/></svg></button>
+                        </div>
+                        {% endif %}
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="container-tables-main-block">
+                <div class="container-title">
+                    <h2>listado de mesas</h2>
+                </div>
+                {% if data_table %}
+                <div class="container-table-all">
+                    {% for data in data_table %}
+                    <div data-category="{{ data.category_id }}" class="block-table {% if data.state == 1 %} block-free {% elif data.state == 2 %} block-busy {% elif data.state == 3 %} block-reserved {% endif %}" >
+                        {% if level_user_context | int == 2 %}
+                        <div class="block-options">
+                            <button class="btn-delete-table" data-id="{{ data.id }}"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 20 20"><path fill="#2a2626" d="m9.129 0l1.974.005c.778.094 1.46.46 2.022 1.078c.459.504.7 1.09.714 1.728h5.475a.69.69 0 0 1 .686.693a.69.69 0 0 1-.686.692l-1.836-.001v11.627c0 2.543-.949 4.178-3.041 4.178H5.419c-2.092 0-3.026-1.626-3.026-4.178V4.195H.686A.69.69 0 0 1 0 3.505c0-.383.307-.692.686-.692h5.47c.014-.514.205-1.035.554-1.55C7.23.495 8.042.074 9.129 0m6.977 4.195H3.764v11.627c0 1.888.52 2.794 1.655 2.794h9.018c1.139 0 1.67-.914 1.67-2.794zM6.716 6.34c.378 0 .685.31.685.692v8.05a.69.69 0 0 1-.686.692a.69.69 0 0 1-.685-.692v-8.05c0-.382.307-.692.685-.692m2.726 0c.38 0 .686.31.686.692v8.05a.69.69 0 0 1-.686.692a.69.69 0 0 1-.685-.692v-8.05c0-.382.307-.692.685-.692m2.728 0c.378 0 .685.31.685.692v8.05a.69.69 0 0 1-.685.692a.69.69 0 0 1-.686-.692v-8.05a.69.69 0 0 1 .686-.692M9.176 1.382c-.642.045-1.065.264-1.334.662c-.198.291-.297.543-.313.768l4.938-.001c-.014-.291-.129-.547-.352-.792c-.346-.38-.73-.586-1.093-.635z"/></svg></button>
+                            <button class="btn-edit-table" data-id="{{ data.id }}"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 32 32"><path fill="#2a2626" d="M2 26h28v2H2zM25.4 9c.8-.8.8-2 0-2.8l-3.6-3.6c-.8-.8-2-.8-2.8 0l-15 15V24h6.4zm-5-5L24 7.6l-3 3L17.4 7zM6 22v-3.6l10-10l3.6 3.6l-10 10z"/></svg></button>
+                            <a href="/honey/table/details?table={{ data.id }}">
+                                <button><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"><path fill="#2a2626" d="m11.293 17.293l1.414 1.414L19.414 12l-6.707-6.707l-1.414 1.414L15.586 11H6v2h9.586z"/></svg></button>
+                            </a>
+                        </div>
+                        {% endif %}
+                        <a href="/honey/table/details?table={{ data.id }}">
+                            <div class="container-data-number-img">
+                                <img src="{{ url_for('static', filename='images/images_restaurant/images_default/restaurante-mesa.min.png') }}" alt="">
+                            </div>
+                            <div class="block-details-table">
+                                <div class="block-row-details">
+                                    <span>{{ data.number_table }}</span>
+                                    <span>
+                                        {% if data.state == 1 %}
+                                            Libre
+                                        {% elif data.state == 2 %}
+                                            Ocupado
+                                        {% elif data.state == 3 %}
+                                            Reservado
+                                        {% endif %}
+                                    </span>
+                                    <span>{{ data.category_name }}</span>  
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    {% endfor %}
+                </div>
+                {% else %}
+                <div class="container-not-found-empty">
+                    <span>No se encontraron mesas</span>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </section>
+    <!-- Modals create-->
+    <div class="modal" id="create-new-table">
+        <div class="modal-background"></div>
+        <div class="modal-content">
+            <div class="container-title">
+                <h1>Crear nueva mesa</h1>
+            </div>
+            <form action="" id="form-new-table">
+                <div class="container-main-template-input-simple">
+                    <label for="number_table">
+                        <span>Número de mesa *</span>
+                        <input type="number" value="" name="number_table" id="number_table" class="input-simple-main-template">
+                    </label>
+                </div>
+                <div class="container-main-template-input-simple">
+                    <label for="category_id">
+                        <span>Categoría *</span>
+                        <select name="category_id" id="category_id" class="input-simple-main-template">
+                            <option value="" selected disabled>Seleccione categoría</option>
+                            {% for c in table_categories %}
+                            <option value="{{ c.id }}">{{ c.name }}</option>
+                            {% endfor %}
+                        </select>
+                    </label>
+                </div>
+                <div class="container-main-template-input-simple">
+                    <label for="limit_number_of_users">
+                        <span>Limite de personas *</span>
+                        <input type="number" value="" name="limit_number_of_users" id="limit_number_of_users" class="input-simple-main-template">
+                    </label>
+                </div>
+            </form>
+            <div class="container-buttons">
+                <button onclick="closeModal(document.getElementById('create-new-table'))">Cerrar</button>
+                <button id="btn-submit-new-table">Enviar</button>
+            </div>
+        </div>
+        <button class="modal-close is-large"></button>
+    </div>
+    <!-- Modal edit -->
+    <div class="modal" id="update-table">
+        <div class="modal-background"></div>
+        <div class="modal-content">
+            <div class="container-title">
+                <h1>Actualizar mesa</h1>
+            </div>
+            <form action="" id="form-update-table">
+                <input type="hidden" name="id_table_update" id="id_table_update">
+                <div class="container-main-template-input-simple">
+                    <label for="number_table_update">
+                        <span>Número de mesa *</span>
+                        <input type="number" value="" name="number_table_update" id="number_table_update" class="input-simple-main-template">
+                    </label>
+                </div>
+                <div class="container-main-template-input-simple">
+                    <label for="limit_number_of_users_update">
+                        <span>Limite de personas *</span>
+                        <input type="number" value="" name="limit_number_of_users_update" id="limit_number_of_users_update" class="input-simple-main-template">
+                    </label>
+                </div>
+                <div class="container-main-template-input-simple">
+                    <label for="category_id_update">
+                        <span>Limite de personas *</span>
+                        <select name="category_id_update" id="category_id_update" class="input-simple-main-template">
+                            {% for c in table_categories %}
+                            <option value="{{ c.id }}">{{ c.name }}</option>
+                            {% endfor %}
+                        </select>
+                    </label>
+                </div>
+                <div class="container-main-template-input-simple">
+                    <label for="state_update">
+                        <span>Estado de la mesa *</span>
+                        <select name="state_update" id="state_update" class="input-simple-main-template">
+                            <option value="1">Libre</option>
+                            <option value="2">Ocupado</option>
+                            <option value="3">Reservado</option>
+                        </select>
+                    </label>
+                </div>
+            </form>
+            <div class="container-buttons">
+                <button onclick="closeModal(document.getElementById('update-table'))">Cerrar</button>
+                <button id="btn-submit-update-table">Actualizar</button>
+            </div>
+        </div>
+        <button class="modal-close is-large"></button>
+    </div>
+    <!-- End Modal edit -->
+    <div class="modal" id="delete-table-modal">
+        <div class="modal-background"></div>
+        <div class="modal-content">
+            <div class="container-title">
+                <h1>Eliminar mesa?</h1>
+            </div>
+            <div class="container-text">
+                <span>Junto a la mesa se eliminarán todos los ordenes que no esten concluídas.</span>
+            </div>
+            <div class="container-buttons">
+                <button onclick="closeModal(document.getElementById('delete-table-modal'))">Cerrar</button>
+                <button id="btn-submit-delete-table">Eliminar</button>
+            </div>
+        </div>
+        <button class="modal-close is-large"></button>
+    </div>
+    <div class="modal" id="delete-category-table-modal">
+        <div class="modal-background"></div>
+        <div class="modal-content">
+            <div class="container-title">
+                <h1>Eliminar categoría?</h1>
+            </div>
+            <div class="container-text">
+                <span>Se eliminarán todas las mesas asignados a esta categoría, esto implicará eliminar todos los órdenes asignados a esta categoria que no esten concluídas.</span>
+            </div>
+            <div class="container-buttons">
+                <button onclick="closeModal(document.getElementById('delete-category-table-modal'))">Cerrar</button>
+                <button id="btn-submit-delete-category-table">Eliminar</button>
+            </div>
+        </div>
+        <button class="modal-close is-large"></button>
+    </div>
+    <div class="modal" id="create-new-category-table">
+        <div class="modal-background"></div>
+        <div class="modal-content">
+            <div class="container-title">
+                <h1>Crear categoría</h1>
+            </div>
+            <div class="container-main-template-input-simple">
+                <label for="category_name">
+                    <span>Nombre de la categoría *</span>
+                    <input type="text" value="" name="name" id="category_name" class="input-simple-main-template">
+                </label>
+            </div>
+            <div class="container-buttons">
+                <button onclick="closeModal(document.getElementById('create-new-category-table'))">Cerrar</button>
+                <button id="btn-submit-create-category">Enviar</button>
+            </div>
+        </div>
+    </div>
+    <div class="modal" id="update-category-table">
+        <div class="modal-background"></div>
+        <div class="modal-content">
+            <div class="container-title">
+                <h1>Actualizar categoría</h1>
+            </div>
+            <div class="container-main-template-input-simple">
+                <label for="category_name_update">
+                    <span>Nombre de la categoría *</span>
+                    <input type="text" value="" name="name" id="category_name_update" class="input-simple-main-template">
+                </label>
+            </div>
+            <div class="container-buttons">
+                <button onclick="closeModal(document.getElementById('update-category-table'))">Cerrar</button>
+                <button id="btn-submit-update-category">Actualizar</button>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block main_link_js %}
+    <script src="{{url_for('static', filename='js/tableController.js')}}"></script>
+    <script>
+        create_new_table();
+        update_table();
+        delete_table();
+        createCategory();
+        updateCategory();
+        deleteCategory();
+    </script>
+    <script>
+        const categories = document.querySelectorAll(".a-link-category-table-all");
+        const tables = document.querySelectorAll(".block-table");
+        categories.forEach(c => {
+            c.addEventListener("click", ()=>{
+                let i = c.dataset.category;
+                tables.forEach(t =>{
+                    let j = t.dataset.category;
+                    if (i === "0"){
+                        t.removeAttribute("style");
+                    }else{
+                        if (i === j){
+                            t.removeAttribute("style");
+                        }else{
+                            t.style.display = "none";
+                        };
+                    }
+                })
+            })
+        })
+    </script>
+{% endblock %}

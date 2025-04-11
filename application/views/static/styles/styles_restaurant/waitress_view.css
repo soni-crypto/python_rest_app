@@ -1,0 +1,172 @@
+.container-main-body-all{
+    padding: .8rem .4rem;
+    box-sizing: border-box;
+    width: 100%;
+}
+.container-main-body-all .title-main-panel-container{
+    text-align: start;
+    width: 100%;
+}
+.container-main-body-all .container-div-create{
+    margin-top: 1rem;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+    column-gap: .6rem;
+}
+.container-main-body-all .container-div-create .button{
+    border-radius: .4rem;
+    font-size: .9rem;
+}
+.container-main-body-all .container-main-block-div-all-users{
+    width: 100%;
+    height: calc(100% - 8.5rem);
+    margin-top: .8rem;
+    overflow-y: auto;
+}
+.container-main-body-all .container-main-block-div-all-users .table{
+    width: 100%;
+    border-radius: .6rem;
+    overflow: hidden;
+}
+.container-main-body-all .container-main-block-div-all-users .table thead{
+    background-color: rgb(244, 231, 231);
+}
+.container-main-body-all .container-main-block-div-all-users .table thead tr th{
+    color: rgb(37, 36, 71);
+    font-size: .8rem;
+}
+.container-main-body-all .container-main-block-div-all-users .table tbody tr td{
+    font-size: .9rem;
+}
+.container-main-body-all .container-main-block-div-all-users .table tbody tr td img{
+    max-width: 2rem;
+    max-height: 2rem;
+}
+.container-main-body-all .container-main-block-div-all-users .table tbody .container-buttons{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    column-gap: .4rem;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* modals */
+#modal-update-user .modal-content,
+#modal-create-new-user .modal-content{
+    background-color: white;
+    width: 100%;
+    max-width: 34rem;
+    padding: 1.2rem;
+    border-radius: .4rem;
+    border-top: 4px solid rgb(38, 165, 38);
+}
+#modal-update-user .modal-content .container-title,
+#modal-create-new-user .modal-content .container-title{
+    width: 100%;
+    text-align: center;
+}
+#modal-update-user .modal-content form,
+#modal-create-new-user .modal-content form{
+    margin-top: .8rem;
+}
+#modal-update-user .modal-content form .container-main-inputs-create,
+#modal-create-new-user .modal-content form .container-main-inputs-create{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: .6rem;
+}
+#modal-update-user .modal-content form .container-main-inputs-create .container-ui-input-with-icon__image,
+#modal-create-new-user .modal-content form .container-main-inputs-create .container-ui-input-with-icon__image{
+    grid-column: 1/3;
+}
+#modal-update-user .modal-content form .container-main-inputs-create .container-ui-input-with-icon,
+#modal-create-new-user .modal-content form .container-main-inputs-create .container-ui-input-with-icon{
+    max-width: 100%;
+}
+#modal-update-user .modal-content form .container-buttons,
+#modal-create-new-user .modal-content form .container-buttons{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 1.8rem;
+    width: 100%;
+    column-gap: .4rem;
+    box-sizing: border-box;
+}
+#modal-update-user .modal-content form .container-buttons .button,
+#modal-create-new-user .modal-content form .container-buttons .button{
+    width: 50%;
+    box-sizing: border-box;
+}
+/* modal delete */
+#modal-confirm-delete .modal-content{
+    background-color: rgb(255, 186, 186);
+    color: rgb(255, 38, 38);
+    padding: .8rem;
+    border-radius: .6rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    max-width: 20rem;
+    row-gap: 1.2rem;
+}
+#modal-confirm-delete .modal-content h5{
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+#modal-confirm-delete .modal-content .container-buttons{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    column-gap: .6rem;
+}
+#modal-confirm-delete .modal-content .container-buttons button{
+    width: 50%;
+}
+/* end modal */
+
+@media screen and (orientation:portrait) {
+    .container-main-body-all .title-main-panel-container{
+        text-align: center;
+    }
+}

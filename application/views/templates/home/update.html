@@ -1,0 +1,93 @@
+{% extends "layouts/navigation_0.0.1.html" %}
+
+{% block main_link_css %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='home.css') }}">
+{% endblock %}
+
+{% block main_body %}
+    <section>
+        <div class="title-page-details">
+            <h1>Actualizar Orden de comida
+                <img src="{{ url_for('static', filename='images/images_restaurant/logo_food_2.png') }}" alt="" class="icon-title-body-main">
+            </h1>
+        </div>
+        <div class="container-form-create-user">
+            <form action="" method="post">
+                <input type="hidden" name="row" value="{{ foodData[0] }}">
+                <div class="mb-3">
+                    <label for="type_food" class="form-label">Tipo de plato*</label>
+                    <select class="form-select" name="type_food" id="type_food" aria-label="Default select example" required>
+                        <option selected disabled value="">Seleccione tipo de plato*</option>
+                        {% for data_type in data_type_food %}
+                        <option value="{{ data_type[0] }}" {% if data_type[0]|string == foodData[3]|string %} selected {% endif %} >{{ data_type[2] }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label for="name_food" class="form-label">Plato*</label>
+                    <select class="form-select" name="name" id="name_food" aria-label="Default select example" required>
+                        <option selected disabled value="">Seleccione plato*</option>
+                        {% for data in foodAllSel %}
+                        <option value="{{ data[0] }}" {% if data[0]|string == foodData[2]|string %} selected {% endif %}>{{ data[1] }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label for="extras_food" class="form-label">Observaciones</label>
+                    <input type="text" name="extras_food" value="{{ foodData[4] }}" class="form-control" id="extras_food" placeholder="Observaciones">
+                </div>
+                <div class="mb-3">
+                    <label for="quantity_food" class="form-label">Cantidad</label>
+                    <input type="number" name="quantity_food" value="{{ foodData[5] }}" class="form-control" id="quantity_food" placeholder="Cantidad de platos" required>
+                </div>
+                <div class="mb-3">
+                    <label for="table_number" class="form-label">N° de mesa</label>
+                    <input type="number" name="table_number" value="{{ foodData[6] }}" class="form-control" id="table_number" placeholder="N° de mesa" required>
+                </div>
+                <div class="mb-3">
+                    <label for="class_food" class="form-label">Para llevar?*</label>
+                    <select class="form-select" name="class_food" id="class_food" aria-label="Default select example" required>
+                        <option selected disabled value="">Para llevar?*</option>
+                        <option value="0" {% if foodData[7]== 0 %}selected{% endif %}>NO</option>
+                        <option value="1" {% if foodData[7]== 1 %}selected{% endif %}>SI</option>
+                    </select>
+                </div>
+                
+                <button class="btn-submit btn btn-primary" type="submit">Guardar</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- MESSAGE ALERTS AND INFO -->
+    </section>
+        <div class="container-main-all-messages-and-notifications-in-app">
+            {% if message|string == "200" %}
+                <div class="alert alert-primary alert-dismissible fade show" role="alert">
+                    <strong>Orden actualizada!</strong> Una orden ha sido actualizada en la lista de ordenes.
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            {% endif %}
+        </div>
+    <section>
+{% endblock %}
+
+{% block main_link_js %}
+    <script>
+        const type_food = document.getElementById("type_food");
+        const name_food = document.getElementById("name_food");
+        type_food.addEventListener("change", async()=>{
+            name_food.innerHTML="<option selected disabled value=''>Seleccione plato*</option>";
+            const req_id = String(type_food.value);
+            await fetch(`datafoodmain/${req_id}`).then(res=>res.json()).then(data=>{
+                
+                data.data.forEach((list_data)=>{
+                    const optionTag = document.createElement("option");
+                    optionTag.value=list_data[0];
+                    optionTag.textContent=list_data[1];
+                    name_food.insertAdjacentElement("beforeend", optionTag)
+                })
+                
+            })
+        })
+    </script>
+{% endblock %}

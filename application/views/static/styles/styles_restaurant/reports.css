@@ -1,0 +1,195 @@
+
+.container-main-reports{
+    width: 100%;
+    margin-top: .8rem;
+    padding: .4rem;
+    box-sizing: border-box;
+}
+.container-main-reports .container-form{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.container-main-reports .container-form form{
+    display: flex;
+    justify-content: start;
+    align-items: end;
+    width: 100%;
+    column-gap: .6rem;
+} 
+.container-main-reports .container-form form label{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: start;
+}
+.container-main-reports .container-form form label span{
+    font-size: .8rem;
+    color: black;
+}
+.container-main-reports .container-form form label input,
+.container-main-reports .container-form form label select{
+    padding: .4rem;
+    font-size: .9rem;
+    border-radius: .4rem;
+    background-color: white;
+    border: 1px solid rgb(154, 146, 146);
+    outline: none;
+    width: 8rem;
+}
+.container-button-submit button{
+    padding: .4rem;
+    font-size: .9rem;
+    background-color: white;
+    border: 1px solid black;
+    border-radius: .4rem;
+    width: 5rem;
+}
+
+
+
+
+.container-main-reports .container-table-in-record-main{
+    width: 100%;
+    display: flex;
+    justify-content: start;
+    align-items: start;
+    column-gap: 1.5rem;
+    row-gap: 1rem;
+    flex-wrap: wrap;
+    margin-top: 2rem;
+    padding-bottom: 1.6rem;
+}
+.container-main-reports .container-table-in-record-main .table-container{
+    box-shadow: 1px 1px 10px rgb(197, 200, 208);
+    padding: .4rem;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+    border-radius: .4rem;
+    height: auto;
+    overflow-y: scroll;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+}
+.container-main-reports .container-table-in-record-main .table-container table{
+    border-radius: .6rem;
+    overflow: hidden;
+    min-width: 48rem;
+}
+.container-main-reports .container-table-in-record-main .div-container-table-1 table thead{
+    background-color: rgb(237, 234, 247);
+}
+.container-main-reports .container-table-in-record-main .div-container-table-2 table thead{
+    background-color: rgb(237, 234, 247);
+}
+.container-main-reports .container-table-in-record-main .div-container-table-3 table thead{
+    background-color: rgb(237, 234, 247);
+}
+.container-main-reports .container-table-in-record-main .table-container table thead th{
+    color: rgb(54, 49, 87);
+    font-size: .9rem;
+}
+.container-main-reports .container-table-in-record-main .table-container table thead .row-free{
+    background-color: white;
+}
+.container-main-reports .container-table-in-record-main .div-container-table-1 table tbody tr{
+    text-align: center;
+}
+.container-main-reports .container-table-in-record-main .div-container-table-3 table tbody tr:hover,
+.container-main-reports .container-table-in-record-main .div-container-table-2 table tbody tr:hover,
+.container-main-reports .container-table-in-record-main .div-container-table-1 table tbody tr:hover{
+    background-color: rgb(207, 245, 186);
+}
+.container-main-reports .container-table-in-record-main .table-container table tbody tr td:first-child{
+    font-size: .9rem;
+    font-weight: 600;
+    text-align: start;
+    background-color: rgb(237, 234, 247);
+    color: rgb(40, 37, 37);
+}
+.container-main-reports .container-table-in-record-main .table-container table tbody tr td{
+    font-size: .9rem;
+}
+.container-main-reports .container-table-in-record-main .table-container .container-description-table{
+    width: 100%;
+    text-align: center;
+    padding-bottom: .4rem;
+}
+.container-main-reports .container-table-in-record-main .table-container .container-description-table span{
+    font-size: 1rem;
+    color:  black;
+    font-weight: bold;
+
+}
+
+/* APEXCHART */
+.container-reports-apexchart-all{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    column-gap: 1rem;
+    background-color: rgb(255, 255, 255);
+}
+.container-reports-apexchart-all #chart-1{
+    max-width: 650px;
+    width: 50%;
+    margin: 35px auto;
+    border: 1px solid rgb(222, 213, 213);
+    border-radius: .4rem;
+}
+.container-reports-apexchart-all #chart-2{
+    width: 50%;
+    max-width: 650px;
+    margin: 35px auto;
+    border: 1px solid rgb(222, 213, 213);
+    border-radius: .4rem;
+}
+.container-reports-apexchart-all #chart-1 .apexcharts-xaxis-label,
+.container-reports-apexchart-all #chart-2 .apexcharts-xaxis-label{
+    font-weight: bold;
+}
+/* END APEXCHART */
+
+
+
+
+@media (orientation: portrait){
+    .container-reports-apexchart-all{
+        flex-direction: column;
+    }   
+    .container-reports-apexchart-all #chart-1,
+    .container-reports-apexchart-all #chart-2{
+        width: 100%;
+    }
+    .container-main-reports .container-form form{
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        justify-content: center;
+        align-items: center;
+    }
+    .container-main-reports .container-form form label input,
+    .container-main-reports .container-form form label select{
+        width: 100%;
+    }
+    .container-button-submit{
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: end;
+        height: 100%;
+        padding-bottom: .1rem;
+    }
+    .container-button-submit button{
+        width: 100%;
+    }
+}
+@media screen and (max-width: 900px) {
+    .container-main-reports .container-table-in-record-main .table-container{
+        align-items: start;
+    }
+}

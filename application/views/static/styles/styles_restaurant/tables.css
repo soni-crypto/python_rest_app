@@ -1,0 +1,486 @@
+.section-container-all{
+    padding: .6rem;
+    width: 100%;
+    height: 100%;
+}
+.section-container-all .container-header{
+    width: 100%;
+    display: flex;
+    justify-content: start;
+    align-items: start;
+    column-gap: .9rem;
+}
+.section-container-all .container-header button{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    column-gap: .4rem;
+    border: none;
+    height: 2.6rem;
+    padding: .4rem;
+    border-radius: .4rem;
+    color: white;
+    font-weight: bold;
+    background-color: var(--color-blue-dark-4);
+}
+.section-container-all .container-all-data-table-category{
+    width: 100%;
+    height: calc(100% - 2.1 );
+    display: flex;
+    justify-content: start;
+    align-items: start;
+    column-gap: .6rem;
+    row-gap: .6rem;
+    flex-wrap: wrap;
+    box-sizing: border-box;
+    padding: 0rem;
+    padding-top: 1rem;
+    padding-bottom: 0;
+}
+.section-container-all .container-categories-table{
+    width: 18rem;
+    height: 30rem;
+    background-color: rgb(238, 246, 246);
+    border-radius: .4rem;
+    padding: .4rem;
+}
+.section-container-all .container-categories-table .container-title{
+    width: 100%;
+    text-align: center;
+}
+.section-container-all .container-categories-table .container-title h1{
+    color: black;
+}
+.section-container-all .container-categories-table .container-all-categories{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+    row-gap: .5rem;
+}
+.section-container-all .container-categories-table .container-all-categories .container-row{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    column-gap: .5rem;
+}
+.section-container-all .container-categories-table .container-all-categories .container-row a{
+    padding: .2rem;
+    padding-left: .4rem;
+    width: 100%;
+    border-radius: .4rem;
+    font-size: .9rem;
+    color: black;
+    background-color: transparent;
+}
+.section-container-all .container-categories-table .container-all-categories .container-row-selected a{
+    background-color: #ced4fe;
+}
+.section-container-all .container-categories-table .container-all-categories .container-row a:hover{
+    background-color: rgb(139, 205, 139);
+}
+.section-container-all .container-categories-table .container-all-categories .container-row .container-btns-action{
+    display: flex;
+    column-gap: .3rem;
+}
+.section-container-all .container-categories-table .container-all-categories .container-row .container-btns-action button{
+    border: none;
+    outline: none;
+    width: 1.8rem;
+    height: 1.8rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: .3rem;
+}
+.section-container-all .container-categories-table .container-all-categories .container-row .container-btns-action button:nth-child(1){
+    background-color: #f5adad;
+}
+.section-container-all .container-categories-table .container-all-categories .container-row .container-btns-action button:nth-child(2){
+    background-color: #a2adfd;
+}
+.container-tables-main-block{
+    width: calc( 100% - 18.6rem);
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+    row-gap: .6rem;
+}
+.container-tables-main-block .container-title{
+    width: 100%;
+    padding: .4rem;
+    text-align: center;
+    background-color: #eff1ff;
+    border-radius: .4rem;
+}
+.container-tables-main-block .container-title h2{
+    font-weight: bold;
+    color: black;
+}
+.section-container-all .container-table-all{
+    width: 100%;
+    margin-top: 0rem;
+    display: flex;
+    justify-content: center;
+    align-items: start;
+    flex-wrap:wrap;
+    gap: .6rem;
+}
+.section-container-all .container-table-all .block-table{
+    width: 6rem;
+    height: auto;
+    border-radius: .4rem;
+    padding: .2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+    cursor: pointer;
+    position: relative;
+    color: white;
+    user-select: none;
+}
+.section-container-all .container-table-all .block-table > a{
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+    padding: 0;
+    position: relative;
+}
+.section-container-all .container-table-all .block-free{
+    background-color: rgb(201, 249, 163);
+}
+.section-container-all .container-table-all .block-busy{
+    background-color: rgb(235, 155, 155);
+}
+.section-container-all .container-table-all .block-reserved{
+    background-color: rgb(63, 78, 244);
+}
+.section-container-all .container-table-all .block-table .block-options{
+    position: absolute;
+    top: -2.6rem;
+    left: 0rem;
+    width: 100%;
+    height: 2.6rem;
+    display: none;
+    justify-content: space-between;
+    align-items: center;
+    background-color: white;
+    border: 1px solid rgb(199, 179, 179);
+    column-gap: 0rem;
+    border-radius: .4rem;
+}
+.section-container-all .container-table-all .block-table:hover .block-options{
+    display: flex;
+}
+.section-container-all .container-table-all .block-table .block-options a{
+    background-color: transparent;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.section-container-all .container-table-all .block-table .block-options button{
+    background-color: transparent;
+    border: none;
+    outline: none;
+}
+.section-container-all .container-table-all .block-table > span{
+    font-size: 1.6rem;
+    font-weight: bold;
+    color: rgb(229, 255, 215);
+}
+.section-container-all .container-table-all .block-table .block-details-table{
+    width: 100%;
+    background-color: white; 
+    border-radius: .4rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: start;
+    padding: .3rem;
+}
+.section-container-all .container-table-all .block-table .block-details-table .block-row-details{
+    width: 100%;
+    max-width: 11rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: start;
+    column-gap: .3rem;  
+}
+.section-container-all .container-table-all .block-table .block-details-table .block-row-details span{
+    font-size: .8rem;
+    display: block;
+    line-height: .9rem;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    width: 100%;
+    color: rgb(71, 71, 218);
+}
+.section-container-all .container-table-all .block-table .block-details-table .block-row-details span:nth-child(1){
+    font-weight: bold;
+    width: 100%;
+    text-align: center;
+    background-color: #edeffe;
+    padding: .1rem;
+    border-radius: .2rem;
+}
+.section-container-all .container-table-all .block-table .container-data-number-img{
+    width: 100%;
+    height: 3rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    user-select: none;
+}
+.section-container-all .container-table-all .block-table .container-data-number-img img{
+    max-width: 100%;
+    max-height: 100%;
+    user-select: none;
+}
+.container-not-found-empty {
+    width: 100%;
+    height: auto;
+    min-height: 10rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+/* modal create table */
+#update-category-table .modal-content,
+#create-new-category-table .modal-content,
+#create-new-table .modal-content{
+    background-color: white;
+    width: 100%;
+    max-width: 18rem;
+    height: auto;
+    padding: .8rem;
+    border-radius: .5rem;
+    box-sizing: border-box;
+}
+#update-category-table .modal-content .container-title,
+#create-new-category-table .modal-content .container-title,
+#create-new-table .modal-content .container-title{
+    width: 100%;
+    text-align: center;
+    margin-top: .8rem;
+    margin-bottom: .6rem;
+}
+#update-category-table .modal-content .container-title h1,
+#create-new-category-table .modal-content .container-title h1,
+#create-new-table .modal-content .container-title h1{
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: black;
+}
+#create-new-table .modal-content form{
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+    row-gap: .6rem;
+    width: 100%;
+}
+#create-new-table .modal-content form .container-main-template-input-simple{
+    width: 100%;
+}
+#update-category-table .modal-content .container-buttons,
+#create-new-category-table .modal-content .container-buttons,
+#create-new-table .modal-content .container-buttons{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    column-gap: .4rem;
+    margin-top: .6rem;
+}
+#update-category-table .modal-content .container-buttons button,
+#create-new-category-table .modal-content .container-buttons button,
+#create-new-table .modal-content .container-buttons button{
+    width: 50%;
+    box-sizing: border-box;
+    border: none;
+    outline: none;
+    height: 2.3rem;
+    border-radius: .4rem;
+    color: white;
+    font-weight: bold;
+}
+#update-category-table .modal-content .container-buttons button:nth-child(1),
+#create-new-category-table .modal-content .container-buttons button:nth-child(1),
+#create-new-table .modal-content .container-buttons button:nth-child(1){
+    background-color: var(--color-blue-dark-1);
+}
+#update-category-table .modal-content .container-buttons button:nth-child(2),
+#create-new-category-table .modal-content .container-buttons button:nth-child(2),
+#create-new-table .modal-content .container-buttons button:nth-child(2){
+    background-color: var(--color-blue-dark-4);
+}
+/* end modal create table */
+/* modal edit table */
+#update-table .modal-content{
+    background-color: white;
+    width: 100%;
+    max-width: 18rem;
+    height: auto;
+    padding: .8rem;
+    border-radius: .5rem;
+    box-sizing: border-box;
+}
+#update-table .modal-content .container-title{
+    width: 100%;
+    text-align: center;
+    margin-top: .8rem;
+    margin-bottom: .6rem;
+}
+#update-table .modal-content .container-title h1{
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: black;
+}
+#update-table .modal-content form{
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+    row-gap: .6rem;
+    width: 100%;
+}
+#update-table .modal-content form .container-main-template-input-simple{
+    width: 100%;
+}
+#update-table .modal-content .container-buttons{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    column-gap: .4rem;
+    margin-top: .6rem;
+}
+#update-table .modal-content .container-buttons button{
+    width: 50%;
+    box-sizing: border-box;
+    border: none;
+    outline: none;
+    height: 2.3rem;
+    border-radius: .4rem;
+    color: white;
+    font-weight: bold;
+}
+#update-table .modal-content .container-buttons button:nth-child(1){
+    background-color: var(--color-blue-dark-1);
+}
+#update-table .modal-content .container-buttons button:nth-child(2){
+    background-color: var(--color-blue-dark-4);
+}
+/* end modal edit table */
+/* modal delete table */
+#delete-category-table-modal .modal-content,
+#delete-table-modal .modal-content{
+    background-color: white;
+    width: 100%;
+    max-width: 18rem;
+    height: auto;
+    padding: .8rem;
+    border-radius: .5rem;
+    box-sizing: border-box;
+}
+#delete-category-table-modal .modal-content .container-title,
+#delete-table-modal .modal-content .container-title{
+    width: 100%;
+    text-align: center;
+    margin-top: .8rem;
+    margin-bottom: .6rem;
+}
+#delete-category-table-modal .modal-content .container-title h1,
+#delete-table-modal .modal-content .container-title h1{
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: black;
+}
+#delete-category-table-modal .modal-content .container-text,
+#delete-table-modal .modal-content .container-text{
+    width: 100%;
+}
+#delete-category-table-modal .modal-content .container-text span,
+#delete-table-modal .modal-content .container-text span{
+    font-size: .9rem;
+    display: block;
+    line-height: 1rem;
+}
+#delete-category-table-modal .modal-content form .container-main-template-input-simple,
+#delete-table-modal .modal-content form .container-main-template-input-simple{
+    width: 100%;
+}
+#delete-category-table-modal .modal-content .container-buttons,
+#delete-table-modal .modal-content .container-buttons{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    column-gap: .4rem;
+    margin-top: .6rem;
+}
+#delete-category-table-modal .modal-content .container-buttons button,
+#delete-table-modal .modal-content .container-buttons button{
+    width: 50%;
+    box-sizing: border-box;
+    border: none;
+    outline: none;
+    height: 2.3rem;
+    border-radius: .4rem;
+    color: white;
+    font-weight: bold;
+}
+#delete-category-table-modal .modal-content .container-buttons button:nth-child(1),
+#delete-table-modal .modal-content .container-buttons button:nth-child(1){
+    background-color: var(--color-blue-dark-1);
+}
+#delete-category-table-modal .modal-content .container-buttons button:nth-child(2),
+#delete-table-modal .modal-content .container-buttons button:nth-child(2){
+    background-color: rgb(233, 31, 31);
+}
+/* end modal delete table */
+
+
+
+@media screen and (orientation:portrait) {
+    .section-container-all .container-table-all{
+        width: 100%;
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        justify-content: center;
+        align-items: center;
+    }    
+    .section-container-all .container-table-all .block-table{
+        width: 100%;
+    }
+    .section-container-all .container-categories-table{
+        max-width: 28rem;
+        width: 100%;
+        height: auto;
+        background-color: rgb(238, 246, 246);
+        border-radius: .4rem;
+        padding: .4rem;
+    }
+    .section-container-all .container-all-data-table-category{
+        justify-content: center;
+    }
+    .container-tables-main-block{
+        width: 100%;
+    }
+    .section-container-all .container-header{
+        margin-left: 1.6rem;
+    }
+}

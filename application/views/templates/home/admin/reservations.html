@@ -1,0 +1,325 @@
+{% extends "layouts/nav_app_honey.html" %}
+
+{% block main_link_css %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/styles_restaurant/reservations.css') }}">
+{% endblock %}
+
+{% block main_body %}
+    <div class="container-main-all-reservations">
+        <div class="container-title">
+            <div class="container-menu-actions">
+                <div class="container-search-by-key">
+                    <form action="" method="get">
+                        <input type="text" value="{{ data_config_get.reservation_code }}" name="key_reservation" placeholder="Llave">
+                        <select id="select-filter-state-reservations" name="state_reservation">
+                            <option value="">Todos</option>
+                            <option value="0" {% if data_config_get.only_state == "0" %} selected {% endif %}>En proceso</option>
+                            <option value="1" {% if data_config_get.only_state == "1" %} selected {% endif %} >Aceptado</option>
+                            <option value="2" {% if data_config_get.only_state == "2" %} selected {% endif %}>Rechazado</option>
+                            <option value="3" {% if data_config_get.only_state == "3" %} selected {% endif %}>Concluído</option>
+                        </select>
+                        <input type="number" value="20" name="limit" placeholder="Cantidad de reservaciones">
+                        <button>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 20 20"><path fill="#ffffff" d="M12.2 13.6a7 7 0 1 1 1.4-1.4l5.4 5.4l-1.4 1.4zM3 8a5 5 0 1 0 10 0A5 5 0 0 0 3 8"/></svg>
+                            Buscar
+                        </button>
+                    </form>
+                </div>
+            </div>
+            <!-- <h1>Reservaciones</h1> -->
+        </div>
+        <div class="container-main-block-all">
+            {% if reservations_data %}
+            {% for data in reservations_data %}
+            <div class="block-reservation-main" data-state-reservation="{{ data.state_reservation }}">
+                <div class="container-profile-user-app-all">
+                    <div class="container-info-user">
+                        <div class="name-user-container">
+                            <span>{{ data.user_app_name }}</span>
+                        </div>
+                        <div class="contacts-user-container">
+                            <div class="container-block-contacts">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"><path fill="#2e264a" d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21c5.46 0 9.91-4.45 9.91-9.91c0-2.65-1.03-5.14-2.9-7.01A9.816 9.816 0 0 0 12.04 2m.01 1.67c2.2 0 4.26.86 5.82 2.42a8.225 8.225 0 0 1 2.41 5.83c0 4.54-3.7 8.23-8.24 8.23c-1.48 0-2.93-.39-4.19-1.15l-.3-.17l-3.12.82l.83-3.04l-.2-.32a8.188 8.188 0 0 1-1.26-4.38c.01-4.54 3.7-8.24 8.25-8.24M8.53 7.33c-.16 0-.43.06-.66.31c-.22.25-.87.86-.87 2.07c0 1.22.89 2.39 1 2.56c.14.17 1.76 2.67 4.25 3.73c.59.27 1.05.42 1.41.53c.59.19 1.13.16 1.56.1c.48-.07 1.46-.6 1.67-1.18c.21-.58.21-1.07.15-1.18c-.07-.1-.23-.16-.48-.27c-.25-.14-1.47-.74-1.69-.82c-.23-.08-.37-.12-.56.12c-.16.25-.64.81-.78.97c-.15.17-.29.19-.53.07c-.26-.13-1.06-.39-2-1.23c-.74-.66-1.23-1.47-1.38-1.72c-.12-.24-.01-.39.11-.5c.11-.11.27-.29.37-.44c.13-.14.17-.25.25-.41c.08-.17.04-.31-.02-.43c-.06-.11-.56-1.35-.77-1.84c-.2-.48-.4-.42-.56-.43c-.14 0-.3-.01-.47-.01"/></svg>
+                                {{ data.user_app_number }}
+                            </div>
+                            <div class="container-block-contacts">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"><path fill="#2e264a" d="M22 6c0-1.1-.9-2-2-2H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2zm-2 0l-8 5l-8-5zm0 12H4V8l8 5l8-5z"/></svg>
+                                {{ data.user_app_email }}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="container-image-icon">
+                        <img src="{{ data.user_app_profile }}" alt="">
+                    </div>
+                </div>
+                <div class="container-created-and-code-r">
+                    <span class="key-reservation-main">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 32 32"><path fill="#333333" d="M20 3c-4.945 0-9 4.055-9 9c0 .52.086.977.156 1.438L3.281 21.28L3 21.594V29h7v-3h3v-3h3v-2.969c1.18.578 2.555.969 4 .969c4.945 0 9-4.055 9-9s-4.055-9-9-9m0 2c3.855 0 7 3.145 7 7s-3.145 7-7 7a7.356 7.356 0 0 1-3.406-.875l-.25-.125H14v3h-3v3H8v3H5v-4.563l7.906-7.937l.375-.344l-.094-.531C13.086 13.023 13 12.488 13 12c0-3.855 3.145-7 7-7m2 3a1.999 1.999 0 1 0 0 4a1.999 1.999 0 1 0 0-4"/></svg>
+                        {{ data.reservation_code }}
+                    </span>
+                    <div class="container-date-created-start">
+                        <h3>Creado en:</h3>
+                        <span>{{ data.created_at }}</span>  
+                    </div>
+                </div>
+                <div class="container-date-reservation-main">
+                    <div class="container-block-date">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"><path fill="" d="M12 14q-.425 0-.712-.288T11 13q0-.425.288-.712T12 12q.425 0 .713.288T13 13q0 .425-.288.713T12 14m-4 0q-.425 0-.712-.288T7 13q0-.425.288-.712T8 12q.425 0 .713.288T9 13q0 .425-.288.713T8 14m8 0q-.425 0-.712-.288T15 13q0-.425.288-.712T16 12q.425 0 .713.288T17 13q0 .425-.288.713T16 14m-4 4q-.425 0-.712-.288T11 17q0-.425.288-.712T12 16q.425 0 .713.288T13 17q0 .425-.288.713T12 18m-4 0q-.425 0-.712-.288T7 17q0-.425.288-.712T8 16q.425 0 .713.288T9 17q0 .425-.288.713T8 18m8 0q-.425 0-.712-.288T15 17q0-.425.288-.712T16 16q.425 0 .713.288T17 17q0 .425-.288.713T16 18M5 22q-.825 0-1.412-.587T3 20V6q0-.825.588-1.412T5 4h1V2h2v2h8V2h2v2h1q.825 0 1.413.588T21 6v14q0 .825-.587 1.413T19 22zm0-2h14V10H5z"/></svg>
+                        <span>{{ data.date_reservation }}</span>
+                    </div>
+                    <div class="container-block-date">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"><path fill="" d="M9 3V1h6v2zm2 11h2V8h-2zm1 8q-1.85 0-3.488-.712T5.65 19.35q-1.225-1.225-1.937-2.863T3 13q0-1.85.713-3.488T5.65 6.65q1.225-1.225 2.863-1.937T12 4q1.55 0 2.975.5t2.675 1.45l1.4-1.4l1.4 1.4l-1.4 1.4Q20 8.6 20.5 10.025T21 13q0 1.85-.713 3.488T18.35 19.35q-1.225 1.225-2.863 1.938T12 22m0-2q2.9 0 4.95-2.05T19 13q0-2.9-2.05-4.95T12 6Q9.1 6 7.05 8.05T5 13q0 2.9 2.05 4.95T12 20m0-7"/></svg>
+                        <span>{{ data.time_reservation }}</span>
+                    </div>
+                    <div class="container-block-date">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"><path fill="" d="M1 22c0 .54.45 1 1 1h13c.56 0 1-.46 1-1v-1H1zM8.5 9C4.75 9 1 11 1 15h15c0-4-3.75-6-7.5-6m-4.88 4c1.11-1.55 3.47-2 4.88-2s3.77.45 4.88 2zM1 17h15v2H1zM18 5V1h-2v4h-5l.23 2h9.56l-1.4 14H18v2h1.72c.84 0 1.53-.65 1.63-1.47L23 5z"/></svg>
+                        <span>
+                            {% if data.type_reservation == 1 %}
+                                Para mesa
+                            {% elif data.type_reservation == 2 %}
+                                Para llevar
+                            {% elif data.type_reservation == 3 %}
+                                Delivery
+                                <button class="btn-open-map-delivery" data-user_coordinates="{{ data.user_coordinates }}">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="" viewBox="0 0 41 32"><g fill=""><path d="M9.239 31.927c.009.006.021.003.03.009A.51.51 0 0 0 9.5 32a.5.5 0 0 0 .132-.018L20.5 29.016l10.868 2.966A.5.5 0 0 0 31.5 32a.492.492 0 0 0 .23-.065c.01-.005.021-.003.03-.009l9-5.5a.501.501 0 0 0 .22-.563l-4.984-17.5a.499.499 0 0 0-.726-.3l-4.962 2.784a.501.501 0 0 0 .491.872l4.409-2.475l4.707 16.526l-8.015 4.899l-1.904-15.231a.5.5 0 0 0-.993.124l1.907 15.259L21 28.116v-2.73a.5.5 0 0 0-1 0v2.73l-9.911 2.705l1.907-15.259a.5.5 0 1 0-.993-.124L9.1 30.669l-8.015-4.898L5.792 9.246l4.409 2.475a.501.501 0 0 0 .491-.872L5.729 8.064a.496.496 0 0 0-.725.3L.02 25.864a.498.498 0 0 0 .22.563z"/><path d="M20.161 23.368a.5.5 0 0 0 .675.003C21.169 23.068 29 15.882 29 8.5C29 3.733 25.267 0 20.5 0S12 3.733 12 8.5c0 7.254 7.828 14.56 8.161 14.868M20.5 1C24.775 1 28 4.224 28 8.5c0 6.097-5.993 12.337-7.497 13.807C19.002 20.82 13 14.498 13 8.5C13 4.224 16.225 1 20.5 1"/><path d="M25 8.5C25 6.019 22.981 4 20.5 4S16 6.019 16 8.5s2.019 4.5 4.5 4.5S25 10.981 25 8.5M20.5 12c-1.93 0-3.5-1.57-3.5-3.5S18.57 5 20.5 5S24 6.57 24 8.5S22.43 12 20.5 12"/></g></svg>
+                                </button>
+                            {% else %}
+                                Sin dato
+                            {% endif %}
+                        </span>
+                    </div>
+                </div>
+                <div class="container-all-reservations-foods">
+                    {% for food in data.foods_reservation %}
+                    <div class="block-row-details-food">
+                        <div class="container-image-food">
+                            <img src="{{ food.image }}" alt="">
+                        </div>
+                        <div class="container-details-food-info">
+                            <div class="block-info-food-1">
+                                <span>{{ food.name }}</span>
+                                <span>{{ food.type_food }}</span>
+                            </div>
+                            <div class="block-info-food-2">
+                                <span>{{ admin_settings.currency }} {{ food.price }}</span>
+                                <span>{{ food.cantity }}</span>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+                <div class="container-details-pay-amount">
+                    <div class="container-image-voucher">
+                        <img src="{{ data.vouchers_reservations }}" alt="">
+                    </div>
+                    <div class="container-more-info-pay">
+                        <div class="container-message-pay">
+                            <span>{{ data.message_reservation }}</span>
+                        </div>
+                        <div class="container-amount-all">
+                            <h4>Total: </h4>
+                            <span>{{ admin_settings.currency }} {{ data.total_price }} {% if data.price_per_delivery and data.type_reservation == 3 %} + {{ admin_settings.currency }} {{ data.price_per_delivery }} {% endif %}</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="container-buttons-state">
+                    {% if data.state_reservation == 0 %}
+                        <button class="button-change-state-all" data-identifier="{{ data.id }}-{{ data.id_admin }}-1">Aceptar</button>
+                        <button class="button-change-state-all"  data-identifier="{{ data.id }}-{{ data.id_admin }}-2">Rechazar</button>
+                    {% elif data.state_reservation == 1 %}
+                        <div class="container-button-accepted-state">
+                            <button class="button-modal-reservation-concluded" data-identifier="{{ data.id }}">
+                                Terminar
+                            </button>
+                            <span class="message-state-reservation message-state-reservation__accepted">Aceptado</span>
+                        </div>
+                    {% elif data.state_reservation == 2 %}
+                        <div class="container-button-accepted-state">
+                            <!-- <button class="button-modal-reservation-delete">
+                                Eliminar
+                            </button> -->
+                            <span class="message-state-reservation message-state-reservation__rejected">Rechazado</span>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+            {% endfor %}
+            {% else %}
+            <div class="container-not-found-empty">
+                <span>No tiene reservaciones 
+                    en estado <br>
+                    <span class="tag is-light is-primary">
+                        {% if data_config_get.only_state == "0" %}En proceso
+                        {% elif data_config_get.only_state == "1" %}Aceptado
+                        {% elif data_config_get.only_state == "2" %}Rechazado
+                        {% elif data_config_get.only_state == "3" %}Cocluido
+                        {% else %}Todos los estados
+                        {% endif %}
+                    </span>
+                </span>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+    <!-- Modal -->
+    <div class="modal" id="modal_view_voucher">
+        <div class="modal-background"></div>
+        <div class="modal-content">               
+            <img src="" class="image-voucher-zoom-in-modal">
+        </div>
+        <button class="modal-close is-large"></button>
+    </div>
+    <!-- reservation concluded -->
+     <di class="modal" id="modal-reservation-concluded">
+        <div class="modal-background"></div>
+        <div class="modal-content">
+            <div class="modal-content-reservation-concluded">
+                <h3>Concluir La Reserva</h3>
+                <div class="container-methods-form-pay">
+                    <h4>Conformidad con el cliente (requerido): *</h4>
+                    <div class="container-methods-form-pay__labels">
+                        <label for="1">
+                            <div class="block-type-client">
+                                <input type="radio" value="1" name="type_of_customer_behavior" id="1"><span>Cliente agradable</span>
+                            </div>
+                        </label>
+                        <label for="2">
+                            <div class="block-type-client">
+                                <input type="radio" value="2" name="type_of_customer_behavior" id="2"><span>Cliente maleducado</span>
+                            </div>
+                        </label>
+                        <label for="3">
+                            <div class="block-type-client">
+                                <input type="radio" value="3" name="type_of_customer_behavior" id="3"><span>Cliente exigente</span>
+                            </div>
+                        </label>
+                        <label for="4">
+                            <div class="block-type-client">
+                                <input type="radio" value="4" name="type_of_customer_behavior" id="4"><span>Cliente perdido</span>
+                            </div>
+                        </label>
+                        <label for="5">
+                            <div class="block-type-client">
+                                <input type="radio" value="5" name="type_of_customer_behavior" id="5"><span>Cliente quejoso</span>
+                            </div>
+                        </label>
+                        <label for="6">
+                            <div class="block-type-client">
+                                <input type="radio" value="6" name="type_of_customer_behavior" id="6"><span>Cliente inpuntual</span>
+                            </div>
+                        </label>
+                        <label for="7">
+                            <div class="block-type-client">
+                                <input type="radio" value="7" name="type_of_customer_behavior" id="7"><span>Cliente crítico</span>
+                            </div>
+                        </label>
+                    </div>
+                </div>
+                <div class="container-button-action">
+                    <button id="button-to-conclude-reservation">Concluir</button>
+                </div>
+            </div>
+        </div>
+        <button class="modal-close is-large"></button>
+    </div>
+      <!--modal delere reservation  -->
+    <div class="modal" id="modal-reservation-delete">
+        <div class="modal-background"></div>
+        <div class="modal-content">
+            <h3>Eliminar la reserva</h3>
+            <div class="container-methods-form-pay">
+                <h4>Motivo</h4>
+                <div class="container-methods-form-pay__labels">
+                    <label for="">
+                        <input type="radio" name="" id="">
+                        <span>Fraude</span>
+                    </label>
+                    <label for="">
+                        <input type="radio" name="" id="">
+                        <span>Error en los datos de la reserva</span>
+                    </label>
+                    <label for="">
+                        <input type="radio" name="" id="">
+                        <span>Fecha errónea</span>
+                    </label>
+                    <label for="">
+                        <input type="radio" name="" id="">
+                        <span>Ninguno</span>
+                    </label>
+                    <label for="">
+                        <span>Otros: </span>
+                        <input type="text" name="" id="" placeholder="Escriba aquí">
+                    </label>
+                </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+              <button type="button" class="btn btn-primary">Eliminar</button>
+            </div>
+        </div>
+        <button class="modal-close is-large"></button>
+    </div>
+    <div class="modal" id="modal-show-map-geolocation-user">
+        <div class="modal-background"></div>
+        <div class="modal-content">
+            <div id="gmp-map" class="modal-body-map-render-location"></div>
+            <div class="container-buttons-action">
+                <button onclick="closeModal(document.getElementById('modal-show-map-geolocation-user'))">Cerrar</button>
+            </div>
+        </div>
+        <button class="modal-close is-large"></button>
+    </div>
+
+{% endblock %}
+
+{% block main_link_js %}
+    <script src="{{ url_for('static', filename='js/pages_admin/reservationsController.js') }}"></script>
+    <script>
+        const type_of_customer_behavior = document.getElementsByName("type_of_customer_behavior");
+        type_of_customer_behavior.forEach((type)=>{
+            type.addEventListener("change", ()=>{
+                type_of_customer_behavior.forEach(e=>{
+                    e.parentElement.removeAttribute("style");
+                })
+                type.parentElement.style.backgroundColor = "var(--color-blue-dark-4)";
+                type.parentElement.style.color = "white";
+            })
+        })
+        state_reservation();
+        voucher_preview();
+        window_event();
+
+
+    </script>
+    <script>
+        const btn_open_map_delivery = document.querySelectorAll(".btn-open-map-delivery");
+        function show_map(){
+            btn_open_map_delivery.forEach((btn)=>{
+                btn.addEventListener("click", ()=>{
+                    let user_coordinates = btn.dataset.user_coordinates;
+                    user_coordinates = user_coordinates.split(",");
+                    const value_center_map = { lat: parseFloat(user_coordinates[0]), lng: parseFloat(user_coordinates[1]) };
+                    openModal(document.getElementById("modal-show-map-geolocation-user"));
+                    const map = new google.maps.Map(document.querySelector("#gmp-map"), {
+                        zoom: 16,
+                        center: value_center_map,
+                        mapTypeControl: false,
+                        fullscreenControl: true,
+                        zoomControl: true,  
+                        streetViewControl: true,
+                    });
+                    const marker = new google.maps.Marker({
+                        map: map, 
+                        draggable: false, 
+                        position: value_center_map,
+                        icon:{
+                            url : "/static/images/userapp/images_default/3d-location-pin-icon.min.png",
+                            scaledSize: new google.maps.Size(29, 40),
+                        }
+                    });
+                })  
+            })
+        };
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA_ddX0DZ2PhoqwRoHaoHVD9JZI8PcW9yc&libraries=places&callback=show_map" async defer></script>
+{% endblock %}

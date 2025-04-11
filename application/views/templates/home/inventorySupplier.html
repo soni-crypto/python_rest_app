@@ -1,0 +1,187 @@
+{% extends "layouts/nav_app_honey.html" %}
+
+{% block main_link_css %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/ui/input_simple.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/styles_restaurant/inventoryCustomer.css') }}">
+{% endblock %}
+
+{% block main_body %}
+    <div class="container-main-body-all">
+        <div class="title-main-panel-container">
+            <h1>Administrador de Proveedores</h1>
+        </div>
+        <div class="container-main-form-table">
+            <div class="container-button-open">
+                <button id="btn-open-modal-create-customer">Crear nuevo proveedor</button>
+            </div>
+            <div class="container-table-container">
+                <div class="table-container container-main-table">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Nombre</th>
+                                <th>Empresa</th>
+                                <th>Descripción</th>
+                                <th><abbr title="Dirección">Dir.</abbr></th>
+                                <th>Ciudad</th>
+                                <th>País</th>
+                                <th>Email</th>
+                                <th><abbr title="Teléfono">Tel.</abbr></th>
+                                <th><abbr title="RUC/CIF/CUIT/RUT/EIN/RFC/NIT/...">RUC/...</abbr></th>
+                                <th><abbr title="Número de cuenta bancaria">N° C. B.</abbr></th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody id="tbody-for-pagination">
+                            {% for c in suppliers %}
+                            <tr>
+                                <td><strong>{{ loop.index }}</strong></td>
+                                <td>{{ c.name }}</td>
+                                <td>{{ c.company_name }}</td>
+                                <td class="td-special-row">{{ c.description }}</td>
+                                <td class="td-special-row">{{ c.address }}</td>
+                                <td>{{ c.city }}</td>
+                                <td>{{ c.country }}</td>
+                                <td>{{ c.email }}</td>
+                                <td>{{ c.phone }}</td>
+                                <td>{{ c.tax_id }}</td>
+                                <td>{{ c.bank_account_number }}</td>
+                                <td>
+                                    <div class="container-btn-action">
+                                        <button class="btn-edit-customer" data-i="{{ c.id }}"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"><path fill="none" stroke="#132be7" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="m14.363 5.652l1.48-1.48a2 2 0 0 1 2.829 0l1.414 1.414a2 2 0 0 1 0 2.828l-1.48 1.48m-4.243-4.242l-9.616 9.615a2 2 0 0 0-.578 1.238l-.242 2.74a1 1 0 0 0 1.084 1.085l2.74-.242a2 2 0 0 0 1.24-.578l9.615-9.616m-4.243-4.242l4.243 4.242"/></svg></button>
+                                        <button class="btn-delete-customer" data-i="{{ c.id }}"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"><path fill="none" stroke="#f50f0f" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="m19.5 5.5l-.402 6.506M4.5 5.5l.605 10.025c.154 2.567.232 3.85.874 4.774c.317.456.726.842 1.2 1.131c.671.41 1.502.533 2.821.57m10-7l-7 7m7 0l-7-7M3 5.5h18m-4.944 0l-.683-1.408c-.453-.936-.68-1.403-1.071-1.695a2 2 0 0 0-.275-.172C13.594 2 13.074 2 12.035 2c-1.066 0-1.599 0-2.04.234a2 2 0 0 0-.278.18c-.395.303-.616.788-1.058 1.757L8.053 5.5" color="#ffffff"/></svg></button>
+                                    </div>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                <nav class="pagination is-small" role="navigation" aria-label="pagination">
+                    <a href="#" class="pagination-previous is-disabled" title="This is the first page">Previous</a>
+                    <a href="#" class="pagination-next">Next page</a>
+                    <ul class="pagination-list">
+                        
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </div>
+    <div class="modal" id="modal-create-new-customer">
+        <div class="modal-background"></div>
+        <div class="modal-content">
+            <div class="container-main-form-table">
+
+                <div class="container-form">
+                    <form action="" id="form-customer" data-mode="create">
+                        <div class="container-title">
+                            <h1 id="title-form-message-mode">Crear nuevo proveedor</h1>
+                        </div>
+                        <div class="container-inputs-all">
+                            <div class="container-main-template-input-simple">
+                                <label for="">
+                                    <span>Nombre *</span>
+                                    <input type="text" value="" name="name" class="input-simple-main-template" required maxlength="79">
+                                </label>
+                            </div>
+                            <div class="container-main-template-input-simple">
+                                <label for="">
+                                    <span>Empresa </span>
+                                    <input type="text" value="" name="company_name" class="input-simple-main-template" maxlength="79">
+                                </label>
+                            </div>
+                            <div class="container-main-template-input-simple">
+                                <label for="">
+                                    <span>Descripción </span>
+                                    <input type="text" value="" name="description" class="input-simple-main-template" maxlength="254">
+                                </label>
+                            </div>
+                            <div class="container-main-template-input-simple">
+                                <label for="">
+                                    <span>Dirección</span>
+                                    <input type="text" value="" name="address" class="input-simple-main-template" maxlength="99">
+                                </label>
+                            </div>
+                            <div class="container-main-template-input-simple">
+                                <label for="">
+                                    <span>Ciudad</span>
+                                    <input type="text" value="" name="city" class="input-simple-main-template" maxlength="49">
+                                </label>
+                            </div>
+                            <div class="container-main-template-input-simple">
+                                <label for="">
+                                    <span>País</span>
+                                    <input type="text" value="" name="country" class="input-simple-main-template" maxlength="49">
+                                </label>
+                            </div>
+                            <div class="container-main-template-input-simple">
+                                <label for="">
+                                    <span>Email</span>
+                                    <input type="text" value="" name="email" class="input-simple-main-template" maxlength="49">
+                                </label>
+                            </div>
+                            <div class="container-main-template-input-simple">
+                                <label for="">
+                                    <span>Teléfono</span>
+                                    <input type="text" value="" name="phone" class="input-simple-main-template" maxlength="19">
+                                </label>
+                            </div>
+                            <div class="container-main-template-input-simple">
+                                <label for="">
+                                    <span>RUC/CIF/RUT/CUIT, etc</span>
+                                    <input type="text" value="" name="tax_id" class="input-simple-main-template" maxlength="20">
+                                </label>
+                            </div>
+                            <div class="container-main-template-input-simple">
+                                <label for="">
+                                    <span>N° de cuenta bancaria</span>
+                                    <input type="text" value="" name="bank_account_number"class="input-simple-main-template" maxlength="34">
+                                </label>
+                            </div>
+                        </div>
+                        <div class="container-buttons-action">
+                            <button id="btn-submit-form-return-create" type="reset">Cerrar</button>
+                            <button id="btn-submit-form">Crear</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal" id="modal-confirm-delete-customer">
+        <div class="modal-background"></div>
+        <div class="modal-content">
+            <div class="container-title">
+                <h1>Eliminar Proveedor?</h1>
+            </div>
+            <div class="container-buttons">
+                <button id="btn-cancel-delete">Cancelar</button>
+                <button id="btn-confirm-delete">Eliminar</button>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block main_link_js %}
+    <script src="{{ url_for('static', filename='js/inventorySupplier.js') }}"></script>    
+    <script>
+        createSupplier();
+        updateSupplier();
+        deleteSupplier();
+
+        BulmaPagination("tbody-for-pagination", 10);
+        const tbody = document.getElementById("tbody-for-pagination");
+        const tds = tbody.querySelectorAll(".td-special-row");
+        tds.forEach(td =>{
+            td.addEventListener("mouseover", ()=>{
+                td.style.textOverflow = "initial";
+                td.style.whiteSpace = "initial";
+            })
+            td.addEventListener("mouseleave", ()=>{
+                td.style.textOverflow = "ellipsis";
+                td.style.whiteSpace = "nowrap";
+            })
+        })
+    </script>
+{% endblock %}

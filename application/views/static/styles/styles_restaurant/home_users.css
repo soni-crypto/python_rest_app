@@ -1,0 +1,234 @@
+
+.container-main{
+    width: 100%;
+}
+.container-main .container-data-user{
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    column-gap: .7rem;
+    padding: .5rem;
+    margin-top: .6rem;
+    box-sizing: border-box;
+}
+.container-main .container-data-user .container-info-user *{
+    margin: 0;
+}
+.container-main .container-data-user .container-info-user p{
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    column-gap: .4rem;
+    font-size: .7rem;
+}
+.container-main .container-data-user .container-profile-image{
+    width: 3.5rem;
+    height: 3.5rem;
+}
+.container-main .container-data-user .container-profile-image img{
+    max-width: 100%;
+    max-height: 100%;
+    border-radius: .4rem;
+}
+.container-main .container-coworkers{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+    margin-top: 2.3rem;
+}
+.container-main .container-coworkers .block-coworkers{
+    margin-top: .8rem;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: start;
+    gap: .6rem;
+    width: 100%;
+    max-width: 42rem;
+}
+.container-details-data {
+    width: 100%;
+    margin-top: 1.6rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    column-gap: 1rem;
+    row-gap: .5rem;
+    box-sizing: border-box;
+}
+.container-details-data .container-block .container-image-admin{
+    width: auto;
+    height: auto;
+}
+.container-details-data .container-block .container-image-admin img{
+    max-width: 3rem;
+    max-height: 3rem;
+    border-radius: .4rem;
+}
+.container-details-data .container-block{
+    width: 95%;
+    max-width: 20rem;
+    min-height: 6rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(255, 255, 255);
+    border-radius: .5rem;
+    padding: .4rem;
+    color: rgb(9, 18, 58);
+    border: 1px solid rgb(210, 200, 200);
+    box-shadow: 1px 1px 10px rgb(236, 231, 231);
+}
+.container-details-data .container-block:nth-child(1){
+    border-top: 4px solid rgb(35, 150, 35);
+}
+.container-details-data .container-block:nth-child(2){
+    border-top: 4px solid rgb(35, 46, 150);
+}
+.container-details-data .container-block:nth-child(3){
+    border-top: 4px solid rgb(241, 227, 71);
+}
+.container-details-data .container-block h5{
+    font-size: .7rem;
+    margin: 0;
+    margin-top: .2rem;
+}
+.container-details-data .container-block p{
+    font-size: .8rem;
+    margin: 0;
+    color: green;
+}
+.container-details-data .container-block .p-quantity_order{
+    font-size: 1rem;
+    width: auto;
+    height: 3rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+    border-radius: 50%;
+    color: rgb(70, 52, 150);
+}
+/* styles modals */
+.modal-content{
+    width: 100%;
+    max-width: 18rem;
+    height: 100%;
+    max-height: 10rem;
+    background-color: white;
+    padding: .6rem;
+    border-radius: .4rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+.modal-content h3{
+    font-size: .9rem;
+    color: rgb(30, 3, 3);
+}
+.modal-content button{
+    padding: .4rem;
+    background-color: red;
+    color: white;
+    font-size: 1rem;
+    border: none;
+    border-radius: .3rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    column-gap: .3rem;
+    margin-top: .8rem;
+    width: 8rem;
+}
+/* end styles modal */
+
+/* waitress view */
+.container-main .container-coworkers .block-coworkers .container-main-profile-user{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    padding: .4rem;
+    min-width: 18rem;
+    border-radius: .4rem;
+    box-sizing: border-box;
+    border: 1px solid rgb(228, 230, 244);
+    box-shadow: 1px 1px 10px rgb(221, 216, 216);
+}
+.container-main .container-coworkers .block-coworkers .container-main-profile-user .block-data-info-user{
+    display: flex;
+    justify-content: start;
+    align-items: start;
+    column-gap: .3rem;
+    width: 100%;
+}
+.container-main .container-coworkers .block-coworkers .container-main-profile-user .block-data-info-user .container-img{
+    width: 3rem;
+    height: 3rem;
+    border-radius: .4rem;
+    background-color: transparent;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid rgb(235, 226, 226);
+}
+.container-main .container-coworkers .block-coworkers .container-main-profile-user .block-data-info-user .container-img img{
+    max-width: 100%;
+    max-height: 100%;
+    cursor: help;
+}
+.container-main .container-coworkers .block-coworkers .container-main-profile-user .block-data-info-user .container-info{
+    width: calc(100% - 3rem);
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: start;
+}
+.container-main .container-coworkers .block-coworkers .container-main-profile-user .block-data-info-user .container-info a,
+.container-main .container-coworkers .block-coworkers .container-main-profile-user .block-data-info-user .container-info span{
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    column-gap: .4rem;
+    color: rgb(91, 84, 84);
+    
+}
+.container-main .container-coworkers .block-coworkers .container-main-profile-user .block-data-info-user .container-info span{
+    font-size: .9rem;
+}
+.container-main .container-coworkers .block-coworkers .container-main-profile-user .block-data-info-user .container-info span:nth-child(1){
+    font-weight: 600;
+}
+.container-main .container-coworkers .block-coworkers .container-main-profile-user .block-data-info-user .container-info span:nth-child(2){
+    font-size: .8rem;
+}
+.container-main .container-coworkers .block-coworkers .container-main-profile-user .block-data-info-user .container-info a{
+    font-size: .8rem;
+}
+/* end waitrees view */
+
+@media screen and (orientation:portrait) {
+    .container-details-data {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        justify-content: center;
+        align-items: center;
+        padding: .6rem;
+        gap: .4rem;
+    }
+    .container-details-data .container-block{
+        width: 100%;
+        height: 100%;
+    }
+    .container-main .container-data-user{
+        margin-left: .8rem;
+    }
+}

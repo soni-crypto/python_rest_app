@@ -1,0 +1,82 @@
+@import url("../config.css");
+.container-main-template-input-simple{
+    width: 100%;
+    max-width: 15rem;
+}
+
+.div-container-filter-jobs{
+    padding: 1rem;
+}
+.div-container-filter-jobs form{
+    display: flex;
+    flex-wrap: wrap;
+    gap: .6rem;
+    justify-content: center;
+    align-items: end;
+}
+.div-container-filter-jobs form button{
+    height: 2.5rem;
+    width: 20rem;
+    margin-bottom: .5rem;
+    border: none;
+    background-color: var(--color-black-1);
+    color: white;
+    border-radius: 1.5rem;
+    transition: .4s;
+}
+.div-container-filter-jobs form button:hover{
+    background-color: var(--color-green-1);
+    color: var(--color-black-1);
+}
+/* CARD PUB */
+.container-title-my-publications{
+    text-align: center;
+    margin-top: 4rem;
+    margin-bottom: 2rem;
+}
+.container-title-my-publications h1{
+    font-size: 1.2rem;
+    color: rgb(56, 56, 56);
+}
+.container-main-all-jobs{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+.container-main-all-jobs .container-profile-image{
+    width: 2.5rem;
+    height: 2.5rem;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.container-main-all-jobs .container-profile-image img{
+    max-width: 100%;
+    max-height: 100%;
+    border-radius: .4rem;
+}
+.container-main-all-jobs .job-card{
+    width: 100%;
+    max-width: 30rem;
+    background-color: white;
+    border-radius: .6rem;
+    padding: .8rem;
+    box-sizing: border-box;
+    border: 1px solid var(--color-black-1);
+    /* box-shadow: 2px 2px 10px rgb(176, 176, 176); */
+}
+/* FIN CARD PUB */
+
+@media screen and (max-width:900px) {
+    .container-main-template-input-simple{
+        max-width: 30rem;
+    }   
+}
+@media (orientation: portrait) {
+    .container-main-all-jobs{
+        display: flex;
+        flex-direction: column;
+    }
+    
+}

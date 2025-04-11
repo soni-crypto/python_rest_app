@@ -1,0 +1,53 @@
+:root{
+    --color-blue-tgs: #2991d6;
+    --color-blue-dark-tgs: #1b3c7f;
+
+    --color-main-0: #fe4101;
+    --color-main-1: #fe8c01;
+    --color-main-2: #fece00;
+    --color-main-3: #fc9504;
+    
+    --color-border-1: rgb(157, 157, 157);
+    
+    --color-black-1: #190d28;
+    --color-green-1: #58f89d;
+
+    --color-blue-1: #075bf2;
+    --color-blue-2: #50acfc;
+
+    /* DARK */
+    --color-blue-dark-1: #182c4d; /* normal */
+    --color-blue-dark-2: #17273f; /* fondo vacio */
+    --color-blue-dark-3: #141f33; /* fondos */
+    --color-blue-dark-4: #328af1; /* botones */
+    --color-blue-dark-5: #530666; /*yape-center*/
+
+    /* CELESTE */ 
+    --color-skyblue-1: #4f85ee;
+    --color-skyblue-2: #4798f2;
+    --color-skyblue-3: #4c6dc8;
+}
+body{
+    background-color: white;
+}
+a{
+    user-select: none ;
+}
+.page-content{
+    height: 100%;
+    padding-top: 70px;
+    padding-left: 0;
+    padding-right: 0;
+    /* padding-bottom: 0; */
+    background-color: white;
+}
+
+label, a, button, input, select, textarea {
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    -webkit-tap-highlight-color: transparent; /* Para algunos navegadores antiguos */
+    outline: none;
+}
+button{
+    cursor: pointer;
+}
+

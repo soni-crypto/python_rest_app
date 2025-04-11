@@ -1,0 +1,465 @@
+{% extends "layouts/nav_app_honey.html" %}
+
+{% block main_link_css %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/styles_restaurant/tableDetails.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/ui/input_simple.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/ui/select_div.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/ui/btn_div_1.css') }}">
+{% endblock %}
+
+{% block main_body %}
+    <section class="section-container-all">
+        <nav class="breadcrumb p-2" aria-label="breadcrumbs">
+            <ul>
+                <li><a href="/honey/table"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"><path fill="#485fc7" d="m9.55 12l7.35 7.35q.375.375.363.875t-.388.875t-.875.375t-.875-.375l-7.7-7.675q-.3-.3-.45-.675t-.15-.75t.15-.75t.45-.675l7.7-7.7q.375-.375.888-.363t.887.388t.375.875t-.375.875z"/></svg> Mesas</a></li>
+                <li class="is-active"><a href="" aria-current="page">mesa {{ number_table }} &raquo; {{ data_table.category_name }}</a></li>
+            </ul>
+        </nav>
+        
+        <div class="container-header">
+            {% if order_table %}
+                <div class="container-more-info-orders">
+                    <div class="container-buttons-action-order">
+                        <button class="btn-process-order-with-payment" data-amount-all-orders="{{ amount_all_orders }}" data-table="{{ id_table }}" data-u="{% if user_id_search %}{{ user_id_search }}{% endif %}" data-l="{% if level_user_search %}{{ level_user_search }}{% endif %}" data-mode="2" data-identifier="" data-state="" type="button">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 2048 2048"><path fill="#ffffff" d="M1030 896v128l772 1l-289 290l90 90l445-445l-445-445l-90 90l292 292zM902 512H6v896h896zM134 896V640h256v256zm384-256h256v256H518zm256 384v256H518v-256zm-384 256H134v-256h256z"/></svg>
+                            Concluír todo
+                        </button>
+                        <button id="btn-print-voucher">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 512 512"><path fill="#ffffff" d="M420 128.1V16H92v112.1A80.1 80.1 0 0 0 16 208v192h68v-32H48V208a48.054 48.054 0 0 1 48-48h320a48.054 48.054 0 0 1 48 48v160h-44v32h76V208a80.1 80.1 0 0 0-76-79.9m-32-.1H124V48h264Z"/><path fill="#ffffff" d="M396 200h32v32h-32zm-280 64H76v32h40v200h272V296h40v-32zm240 200H148V296h208Z"/></svg>
+                            Imprimir
+                        </button>
+                        <div class="container-template-select-div-ui">
+                            <div class="container-template-select-div-ui__button-view" id="container-template-select-div-ui__button-view">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"><path fill="#ffffff" d="M12 18.88a1 1 0 0 1-.29.83a1 1 0 0 1-1.41 0l-4-4a1 1 0 0 1-.3-.84V9.75L1.21 3.62a1 1 0 0 1 .17-1.4A1 1 0 0 1 2 2h14a1 1 0 0 1 .62.22a1 1 0 0 1 .17 1.4L12 9.75zM4 4l4 5.06v5.52l2 2V9.05L14 4m-1 12l5 5l5-5Z"/></svg>
+                                <span>{{ user_name_select }}</span>
+                            </div>
+                            <div class="container-template-select-div-ui__container-options">
+                                <label for="Todos">
+                                    <a href="?table={{ id_table }}">
+                                        <span>Todos</span>
+                                    </a>
+                                </label>
+                                {% for i in users_list_data %}
+                                <label for="">
+                                    <a href="?table={{ id_table }}&u={{ i.user_id}}&l={{ i.user_level }}">
+                                        <span>{{ i.user_context_name }}</span>
+                                    </a>
+                                </label>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% else %}
+                {% if table_status_message == 1 %}
+                <div class="table_status_message-1">
+                    <span>Dispone de órdenes en cocina o por aceptar para esta mesa.</span>
+                    <div class="links-redirect">
+                        <a href="/honey/table">Volver</a>
+                    </div>
+                </div>
+                {% elif table_status_message == 2 %}
+                <div class="table_status_message-2">
+                    <h1>La mesa esta vacía, por lo que pasó a estado de <strong>LIBRE</strong>.</h1>
+                    <a href="/honey/table">Volver</a>
+                </div>
+                {% endif %}
+            {% endif %}
+        </div>
+        <div class="container-table-all">
+            {% if order_table %}            
+            <div class="container-main-actions-and-order-all">
+                <!-- <div class="container-more-actions-in-table">
+                    <div class="container-header-amount">
+                        <span>Monto a cobrar</span>
+                        <span>{{ admin_settings.currency }} {{ amount_all_orders }}</span>
+                    </div>
+                    <div class="container-inputs-calc">
+                        <div class="container-main-template-input-simple">
+                            <label for="">
+                                <span>Monto recibido</span>
+                                <input type="number" value="" id="amount-received" class="input-simple-main-template">
+                            </label>
+                        </div>
+                        <div class="container-main-template-input-simple">
+                            <label for="">
+                                <span>Monto a cobrar</span>
+                                <input type="number" value="{{ amount_all_orders }}" id="amount-to-be-deducted" class="input-simple-main-template">
+                            </label>
+                        </div>
+                        <div class="container-main-template-input-simple">
+                            <label for="">
+                                <span>Monto a devolver</span>
+                                <input type="text" readonly value="" id="amount-to-be-returned" class="input-simple-main-template">
+                            </label>
+                        </div>
+                    </div>
+                </div> -->
+                <div class="container-order-all-main">
+                    {% for order in order_table %}
+                    <div class="container-all-of-folder-block__block-main" id="container-12">
+                        <div class="container-profile-user-context">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"><path fill="#8750e8" d="M12 2a5 5 0 1 0 5 5a5 5 0 0 0-5-5m0 8a3 3 0 1 1 3-3a3 3 0 0 1-3 3m9 11v-1a7 7 0 0 0-7-7h-4a7 7 0 0 0-7 7v1h2v-1a5 5 0 0 1 5-5h4a5 5 0 0 1 5 5v1z"/></svg>
+                            <span>{{ order.user_context_name }}</span>
+                        </div>
+                        <div class="container-number-table-order">
+                            <span class="order_code_view">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 20 20"><path fill="#928aff" d="M10.32 2.013A4 4 0 0 0 6.162 7.13l-3.987 3.986a.6.6 0 0 0-.176.424v2.86a.6.6 0 0 0 .6.6h2.8a.6.6 0 0 0 .6-.6V13h1.9a.6.6 0 0 0 .6-.6v-1.693l.735-.735a5.5 5.5 0 0 1-.569-.846l-.99.991a.6.6 0 0 0-.176.424V12H5.6a.6.6 0 0 0-.6.6V14H3v-2.293l4.32-4.32l-.118-.303a3 3 0 0 1 1.96-3.965c.33-.423.72-.796 1.157-1.106M13.5 6.25a.75.75 0 1 0 0-1.5a.75.75 0 0 0 0 1.5M9 6.5a4.5 4.5 0 1 1 7 3.742v2.05l.783.784a.6.6 0 0 1 0 .848L15.707 15l1.068 1.067a.6.6 0 0 1-.05.893l-2.35 1.88a.6.6 0 0 1-.75 0l-2.4-1.92a.6.6 0 0 1-.225-.468v-6.21A4.5 4.5 0 0 1 9 6.5M13.5 3a3.5 3.5 0 0 0-1.75 6.532a.5.5 0 0 1 .25.433v6.295l2 1.6l1.751-1.401l-1.034-1.035a.6.6 0 0 1 0-.848l1.076-1.076l-.617-.617a.6.6 0 0 1-.176-.424V9.965a.5.5 0 0 1 .25-.433A3.5 3.5 0 0 0 13.5 3"/></svg>
+                                {{ order.order_code }}
+                            </span>
+                        </div>
+                        {% for food in order.data_orders %}
+                            <div class="container-main-order-primary">
+                                <h1>{{ food.category_name }}</h1>  
+                                <div class="container-main-food-row-all">
+                                    <div class="container-main-food-row">
+                                        <div class="block-main__body-icon">
+                                            <img src="{{ food.image_food }}" alt="">                       
+                                        </div>
+                                        <div class="block-main__body-text">
+                                            <div class="block-main__body-text-parts">
+                                                <strong>{{ food.food_name }}</strong>
+                                            </div>
+                                            <div class="block-main__body-text-parts d-flex gap-3">
+                                                <table class="table-more-details-food">
+                                                    <thead>
+                                                        <th>Cant.</th>
+                                                        <th>Tipo</th>
+                                                        <th>Cost.</th>
+                                                        <th>Total</th>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr>
+                                                            <td>{{ food.quantity }}</td>
+                                                            <td>
+                                                                {% if food.type_order == 1 %}                                                        
+                                                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"><path fill="#ffffff" d="M2 7h20v3h-2l1 9h-2.5l-.56-5H6.06l-.56 5H3l1-9H2zm15.5 3h-11l-.21 2h11.42z"/></svg>
+                                                                {% elif food.type_order == 2 %}
+                                                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="23.56521739130434" viewBox="0 0 23 24"><path fill="#ffffff" d="M22.596 23.997H11.545a.325.325 0 0 1-.325-.326v-.016v.001l.65-12.947a.325.325 0 0 1 .324-.306h9.752c.173 0 .314.135.324.305v.001l.647 12.882q.01.037.01.081v.001a.324.324 0 0 1-.324.324h-.001zm-9.098-10.878c.002.468.309.863.732.998l.007.002c.341 1.651 1.514 2.873 2.908 2.873s2.565-1.223 2.904-2.868a1.056 1.056 0 1 0-.955-.185l.002.002c-.248 1.198-1.029 2.077-1.955 2.077s-1.703-.874-1.953-2.067a1.052 1.052 0 1 0-1.696-.834v.003zM.325 22.72a.325.325 0 0 1-.324-.343v.001L.905 4.383a.325.325 0 0 1 .324-.306h2.204C4.124 1.677 5.968.001 8.112.001s3.986 1.677 4.677 4.074h1.995c.172 0 .314.135.323.305v.001l.261 5.209h-3.174c-.608 0-1.104.477-1.135 1.077v.003l-.605 12.051zM10.948 5.678a1.442 1.442 0 0 0 .784 2.65a1.44 1.44 0 0 0 .518-2.786l-.01-.003C12.004 2.881 10.243.81 8.113.81S4.215 2.885 3.982 5.548a1.44 1.44 0 1 0 1.299.127l-.006-.003c.168-2.002 1.376-3.56 2.838-3.56s2.673 1.563 2.838 3.569zM6.559 4.073h3.1a1.9 1.9 0 0 0-1.541-1.15l-.009-.001c-.7.077-1.28.525-1.545 1.14zm12.799 9.018a.382.382 0 1 1 .762 0a.382.382 0 0 1-.761 0zm-5.224 0a.382.382 0 1 1 .382.382a.38.38 0 0 1-.378-.382zm-2.976-6.146a.567.567 0 1 1 1.135 0a.567.567 0 0 1-1.135 0m-7.228 0a.57.57 0 1 1 1.137 0a.57.57 0 0 1-1.136 0z"/></svg>
+                                                                {% endif %}
+                                                            </td>
+                                                            <td>{{ food.price }}</td>
+                                                            <td>{{ food.price|float * food.quantity|int }}</td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                        <div class="container-cost-all-block">
+                            <span>Costo total: </span>
+                            <span>{{ admin_settings.currency }} {{ order.total_cost }}</span>
+                        </div>
+                        <div class="block-main__buttons-action">
+                            <button class="btn-del-more-data" data-identifier="{{ order.id }}">
+                                Eliminar
+                            </button>
+                            <button class="btn-process-order-with-payment" data-amount-all-orders="{{ order.total_cost }}" data-identifier="{{ order.id }}" data-state="5" data-mode="1" data-u="" data-l="" data-table="">
+                                Procesar órden
+                            </button>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="container-pdf-voucher-main">
+                <iframe src="" id="pdfViewer" frameborder="0"></iframe>
+                <div class="container-main-all-ticket-voucher" id="container-main-all-ticket-voucher">
+                    <div class="container-profile-data-image">
+                        <img src="{{ data_user_admin.company_icon }}" id="img-company_icon-voucher" alt="">
+                        <h2>{{ data_user_admin.company_name }}</h2>
+                    </div>
+                    <div class="container-data-rest">
+                        <div>
+                            <strong>ID: </strong>
+                            <span>{{ data_user_admin.id_secondary }}</span>
+                        </div>
+                        <div>
+                            <strong>Dir.:</strong>
+                            <span>{{ data_user_admin.company_location_2}}</span>
+                        </div>
+                        <div>
+                            <strong>Tel:</strong>
+                            <span>{{ data_user_admin.user_number }}</span>
+                        </div>
+                        <div>
+                            <strong>E-mail: </strong>
+                            <span>{{ data_user_admin.user_email }}</span>
+                        </div>
+                    </div>
+                    <div class="container-details-order">
+                        <div>
+                            <strong>Mesa:</strong>
+                            <span id="number_table_voucher">{{ number_table }} &raquo; {{ data_table.category_name }}</span>
+                        </div>
+                        <div>
+                            <strong>Fecha:</strong>
+                            <span id="date-order-voucher"></span>
+                        </div>
+                    </div>
+                    <div class="container-table">
+                        <table>
+                            <thead>
+                                <th>Descripción</th>
+                                <th>Unid.</th>
+                                <th>Precio</th>
+                                <th>Total</th>
+                            </thead>
+                            <tbody id="tbody-main-voucher">
+                                {% for order in order_table %}
+                                {% for food in order.data_orders %}
+                                <tr>
+                                    <td>{{ food.food_name }}</td>
+                                    <td>{{ food.quantity }}</td>
+                                    <td>{{ food.price }}</td>
+                                    <td>{{ food.price|float * food.quantity|int }}</td>
+                                </tr>
+                                {% endfor %}
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="container-total-cost">
+                        <strong>TOTAL:</strong>
+                        <span id="amount-all-main-voucher">{{ admin_settings.currency }} {{ amount_all_orders }}</span>
+                    </div>
+                    <div class="container-message-for-user">
+                        <span>Gracias por su compra!, Esperamos verle pronto nuevamente. <br>¡Que tenga un excelente día!</span>
+                    </div>
+                    <div class="container-message-neeva-scann">
+                        <div class="container-message-download-app">
+                            <span>Descarga la app Neeva y escanea el código para explorar todos nuestros productos. <br>¡Es fácil y rápido!</span>
+                        </div>
+                        <div class="container-qr-code-voucher">
+                            <img src="{{ data_user_admin.qr_code_image }}" id="id-img-qr-code-voucher" alt="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+        </div>
+    </section>
+    
+    <div class="modal" id="delete-table-modal">
+        <div class="modal-background"></div>
+        <div class="modal-content">
+            <div class="container-title">
+                <h1>Esta seguro de eliminar?</h1>
+            </div>
+            <div class="container-buttons">
+                <button onclick="closeModal(document.getElementById('delete-table-modal'))">Cerrar</button>
+                <button id="btn-submit-delete-table">Eliminar</button>
+            </div>
+        </div>
+        <button class="modal-close is-large"></button>
+    </div>
+    <div class="modal" id="conclude-all-orders">
+        <div class="modal-background"></div>
+        <div class="modal-content">
+            <h1>Confirmar</h1>
+            <div class="container-buttons">
+                <button onclick="closeModal(document.getElementById('conclude-all-orders'))">Cancelar</button>
+                <button id="btn-conclude-all-orders">Confirmar</button>
+            </div>
+        </div>
+    </div>
+    <div class="modal" id="modal-process-info-conclud-order-main">
+        <div class="modal-background"></div>
+        <div class="modal-content">
+            <div class="container-title">
+                <h2>Procesar Órden</h2>
+                <div class="notification">
+                    <div class="ctn-row-inf">
+                        <strong>Monto a cobrar:</strong>
+                        <span>{{ admin_settings.currency }} <span id="amount-to-view">Cargando...</span></span>
+                    </div>
+                </div>
+            </div>
+            <form method="post" class="form" id="form-concluded-order-main" autocomplete="off">
+                <div class="container-row-info">
+                    <div class="container-title-row">
+                        <h3>Método de pago</h3>
+                    </div>
+                    <div class="container-inputs-checkbox-payments">
+                        <div class="field has-addons has-addons-centered">
+                            <p class="control"><button class="button is-link is-dark is-small" type="button">Efectivo</button></p>
+                            <p class="control"><input class="input is-small pay-method-input-cal" name="pay-method-1" type="text" placeholder="0.0" autocomplete="off"></p>
+                        </div>
+                        <div class="field has-addons has-addons-centered">
+                            <p class="control"><button class="button is-link is-small" type="button">Tarjeta</button></p>
+                            <p class="control"><input class="input is-small pay-method-input-cal" name="pay-method-2" type="text" placeholder="0.0"></p>
+                        </div>
+                        <div class="field has-addons has-addons-centered">
+                            <p class="control"><button class="button is-link is-small" type="button">Yape</button></p>
+                            <p class="control"><input class="input is-small pay-method-input-cal" name="pay-method-3" type="text" placeholder="0.0"></p>
+                        </div>
+                        <div class="field has-addons has-addons-centered">
+                            <p class="control"><button class="button is-link is-small" type="button">Plin</button></p>
+                            <p class="control"><input class="input is-small pay-method-input-cal" name="pay-method-4" type="text" placeholder="0.0"></p>
+                        </div>
+                        <div class="field has-addons has-addons-centered">
+                            <p class="control"><button class="button is-link is-small" type="button">Paypal</button></p>
+                            <p class="control"><input class="input is-small pay-method-input-cal" name="pay-method-5" type="text" placeholder="0.0"></p>
+                        </div>
+                        <div class="field has-addons has-addons-centered">
+                            <p class="control"><button class="button is-link is-small" type="button">Otros</button></p>
+                            <p class="control"><input class="input is-small pay-method-input-cal" name="pay-method-6" type="text" placeholder="0.0"></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="container-row-info">
+                    <div class="container-title-row">
+                        <h3>Información del usuario</h3>
+                    </div>
+                    <div class="container-inputs-info-client">
+                        <div class="container-main-template-input-simple">
+                            <label for="">
+                                <span>Nombre y Apellido *</span>
+                                <input type="text" name="name" class="input is-small">
+                            </label>
+                        </div>
+                        <div class="container-main-template-input-simple">
+                            <label for="">
+                                <span>Teléfono</span>
+                                <input type="text" name="phone_number" class="input is-small">
+                            </label>
+                        </div>
+                        <div class="container-main-template-input-simple">
+                            <label for="">
+                                <span>Correo *</span>
+                                <input type="text" name="email" id="input-email-search-client" class="input is-small">
+                            </label>
+                        </div>
+                        <div class="container-main-template-input-simple">
+                            <label for="">
+                                <span>Dirección</span>
+                                <input type="text" name="address" class="input is-small">
+                            </label>
+                        </div>                                                                                                
+                    </div>
+                </div>
+                <div class="container-checkbox-conform-email">
+                    <label for="send_voucher" class="checkbox">
+                        <input type="checkbox" name="send_voucher" id="send_voucher">
+                        <span>Enviar comprobante por correo</span>
+                    </label>
+                </div>
+                <div class="container-buttons">
+                    <button class="button" type="button" onclick="closeModal(document.getElementById('modal-process-info-conclud-order-main'))">Cerrar</button>
+                    <button class="button" type="button" id="btn-conclude-order-main">Concluir</button>
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock %}
+
+{% block main_link_js %}
+    <script src="{{url_for('static', filename='js/orderController.js')}}"></script>
+    <script>
+    concludeOrder();
+    releaseOrder();
+    concludeOrderAll();
+    concludeOrderWithPayments();
+    autocompletClientByEmail();
+    </script>
+    <script>
+        const amount_received = document.getElementById("amount-received");
+        const amount_to_be_deducted = document.getElementById("amount-to-be-deducted");
+        const amount_to_be_returned = document.getElementById("amount-to-be-returned");
+        amount_received.addEventListener("input", ()=>{
+            if (amount_received.value && amount_to_be_deducted.value){
+                if (parseFloat(amount_received.value) < parseFloat(amount_to_be_deducted.value)){
+                    amount_to_be_returned.value ="Debe: " +String((parseFloat(amount_received.value) - parseFloat(amount_to_be_deducted.value))*-1);
+                }else{
+                    amount_to_be_returned.value = parseFloat(parseFloat(amount_received.value) - parseFloat(amount_to_be_deducted.value));
+                }
+            }else{
+                amount_to_be_returned.value = "";
+            }
+        })
+    </script>
+    <script>
+        function obtenerFechaHora() {
+            const now = new Date(); // Obtener la fecha y hora actuales
+            
+            // Obtener componentes de la fecha
+            const mes = String(now.getMonth() + 1).padStart(2, '0'); // Mes (0-11, por eso +1)
+            const dia = String(now.getDate()).padStart(2, '0'); // Día
+            const anio = now.getFullYear(); // Año
+
+            // Obtener componentes de la hora
+            let horas = now.getHours(); // Horas
+            const minutos = String(now.getMinutes()).padStart(2, '0'); // Minutos
+            const esPM = horas >= 12; // Verificar si es PM
+            horas = horas % 12; // Convertir a formato de 12 horas
+            horas = horas ? String(horas).padStart(2, '0') : '12'; // Ajustar a '12' si es medianoche
+            
+            // Formatear la fecha y hora
+            const fechaHora = `${mes}-${dia}-${anio} ${horas}:${minutos} ${esPM ? 'PM' : 'AM'}`;
+
+            // Mostrar la fecha y hora en el div
+            document.getElementById('date-order-voucher').textContent = fechaHora;
+        }
+
+        // Llamar a la función para mostrar la fecha y hora
+        obtenerFechaHora();
+    </script>
+    <script src="{{ url_for('static', filename='js/libraries/html2pdf.bundle.min.js') }}"></script>
+    <script>
+        function printDiv () {        
+            var element = document.getElementById('container-main-all-ticket-voucher');
+            var heightInPx = element.offsetHeight;
+            var heightInMm = heightInPx * 0.268583;
+            // Opciones para el PDF
+            var options = {
+                margin: 0.5,
+                filename: 'ticket.pdf',
+                image: { type: 'jpeg', quality: 0.98 },
+                html2canvas: { scale: 2 },
+                jsPDF: { unit: 'mm', format: [90, heightInMm], orientation: 'portrait' }
+            };
+
+            // Convertir el elemento a PDF
+            html2pdf().from(element).set(options).toPdf().get('pdf').then(function(pdf) {
+                // Crear un Blob URL para el PDF generado
+                var blob = pdf.output('blob');
+                var url = URL.createObjectURL(blob);
+                
+                // Mostrar el PDF en el iframe
+                var pdfViewer = document.getElementById('pdfViewer');
+                pdfViewer.src = url;
+                // pdfViewer.style.display = 'block'; // Mostrar el iframe
+                // element.style.display = "none";
+                document.getElementById('btnPrint').style.display = 'inline'; // Mostrar botón de impresión
+            });
+        };
+        const imagen = document.getElementById('id-img-qr-code-voucher');
+        const imagen_icon_voucher = document.getElementById('img-company_icon-voucher');
+        if (imagen.complete && imagen_icon_voucher.complete) {
+            printDiv();
+        } else {
+            let state_icons_voucher = false;
+            imagen_icon_voucher.addEventListener('load', () => {
+                if (state_icons_voucher){
+                    printDiv();
+                }else{
+                    state_icons_voucher = true;
+                }
+            });
+            imagen.addEventListener('load', () => {
+                if (state_icons_voucher){
+                    printDiv();
+                }else{
+                    state_icons_voucher = true;
+                }
+            });
+        }
+        document.getElementById('btn-print-voucher').addEventListener('click', function() {
+            var pdfViewer = document.getElementById('pdfViewer');
+            pdfViewer.contentWindow.print();
+        });
+    </script>
+{% endblock %}

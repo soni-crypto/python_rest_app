@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/ui/bulma.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/libraries/bulma.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/styles_restaurant/pages_admin/page_pay.css') }}">
+</head>
+<body>
+    <style>
+        .container-details-admin-linked{
+            background-position: center center;
+            background-size: cover;
+        }
+    </style>
+
+    <header>
+
+    </header>
+    <main>
+        <div class="modal-view-products-in-cart">
+            <div class="modal-content-cart">
+                <div class="container-details-admin-linked" id="container-details-admin-linked">
+                    <div class="container-image-admin-pay">
+                        <img src="{{ url_for('static', filename='images/images_restaurant/icons_partner/') }}2024-01-05_22_32_21ehwI4qSgmn.png" id="company_icon_pay" alt="icon">
+                    </div>
+                    <h2 id="company_name_pay">Resturant machu main</h2>
+                </div>
+                
+                <div class="container-title">
+                    <h4>Mis pedidos</h4>
+                </div>
+                <div class="container-main-products-cart">
+                    <div class="table-container">
+                        <table class="table">
+                            <thead>
+                                <th></th>
+                                <th>Categoría</th>
+                                <th>Producto</th>
+                                <th>Cant.</th>
+                                <th>Costo</th>
+                                <th></th>
+                            </thead>
+                            <tbody id="tbody-main-container">
+
+                                <!-- <tr>
+                                    <td><div class="container-imagen-icon-product-cart"><img src="/static/images/images_restaurant/images_upload/istockphoto-1152715540-612x612.jpg" alt="icon product" id="imagen-icon-product-cart" class="imagen-icon-product-cart"></div></td>
+                                    <td>Cena</td>
+                                    <td>Papas fritas</td>
+                                    <td>
+                                        <button class="btn-cantity-minus" data-identifer="">-</button>
+                                        <span id="content-cantity-product">2</span>
+                                        <button class="btn-cantity-more" data-identifer="">+</button>
+                                    </td>
+                                    <td id="content-price-product">S/ 10.00</td>
+                                    <td><button class="delete-product" data-identifer=""><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"><path fill="#ffffff" d="M7 21q-.825 0-1.412-.587T5 19V6H4V4h5V3h6v1h5v2h-1v13q0 .825-.587 1.413T17 21zm2-4h2V8H9zm4 0h2V8h-2z"/></svg></button></td>
+                                </tr> -->
+                                
+                            </tbody>
+                        </table>
+                        <span id="message-products-notifications"></span>
+                    </div>
+                    <div class="container-total-cost-all">
+                        <div class="container-row-total-cost">
+                            <h3>Costo total: </h3>
+                            <span id="container-span-total-cost">S/ 0.00</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="container-process-title">
+                    <h3>Procesar el pedido</h3>
+                </div>
+                <div class="container-main-all-form-pay">
+                    <div class="container-methods-pay-admin">
+                        <div class="container-text-details">
+                            <span>El administrador ofrece este método de pago. Por favor, proceda con el pago correspondiente para poder realizar la reserva.</span>
+                        </div>
+                        <div class="container-images-pay">
+                            <!-- <div class="block-method-pay">
+                                <img src="{{ url_for('static', filename='images/images_restaurant/images_pay-app/') }}izipayYA.jpeg" alt="icon product" class="imagen-icon-method-pay">
+                            </div> -->
+                            <div class="block-method-pay">
+                                <img src="{{ url_for('static', filename='images/images_restaurant/images_pay-app/') }}yape.jpeg" alt="icon product" class="imagen-icon-method-pay">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="container-mask-form">
+                        <div class="container-block-date-time">
+                            <div class="field">
+                                <label class="label" for="date_reservation">Fecha *</label>
+                                <div class="control">
+                                    <input class="input" type="date" id="date_reservation" placeholder="">
+                                </div>
+                            </div>
+                            <div class="field">
+                                <label class="label" for="time_reservation">Hora *</label>
+                                <div class="control">
+                                  <input class="input" type="time" id="time_reservation" placeholder="">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="container-block-type-reservation">
+                            <span>Tipo de reserva *</span>
+                            <div class="container-block-type-reservation__main">
+                                <label for="reservation-type-1">
+                                    <input type="radio" value="1" name="reservation-type" id="reservation-type-1">
+                                    <span>Para llevar</span>
+                                </label>
+                                <label for="reservation-type-2">
+                                    <input type="radio" value="2" name="reservation-type" id="reservation-type-2">
+                                    <span>Para mesa</span>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="container-inputs-form">
+                            <div class="field">
+                                <label class="label" for="message_reservation">Mensaje (opcional)</label>
+                                <div class="control">
+                                  <input class="input" type="text" id="message_reservation" placeholder="">
+                                </div>
+                            </div>
+                            <div class="field">
+                                <label class="label" for="voucher_reservation">Comprobante *</label>
+                                <span class="text-description-voucher">El comprobante es esencial para garantizar la transparencia en nuestras transacciones y asegurarnos de brindarte un servicio de calidad.</span>
+                                <div class="control">
+                                    <img src="" alt="" width="80" id="preview-image-changed-voucher">
+                                    <label for="voucher_reservation" class="container-main-input-button-voucher">
+                                        <div class="btn-upload-voucher-main">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 48 48"><g fill="none"><path fill="#ffffff" d="M44 24a2 2 0 1 0-4 0zM24 8a2 2 0 1 0 0-4zm15 32H9v4h30zM8 39V9H4v30zm32-15v15h4V24zM9 8h15V4H9zm0 32a1 1 0 0 1-1-1H4a5 5 0 0 0 5 5zm30 4a5 5 0 0 0 5-5h-4a1 1 0 0 1-1 1zM8 9a1 1 0 0 1 1-1V4a5 5 0 0 0-5 5z"/><path stroke="#ffffff" stroke-linecap="round" stroke-linejoin="round" stroke-width="4" d="m6 35l10.693-9.802a2 2 0 0 1 2.653-.044L32 36m-4-5l4.773-4.773a2 2 0 0 1 2.615-.186L42 31m-5-13V6m-5 5l5-5l5 5"/></g></svg>
+                                        </div>
+                                        <input class="input" type="file" id="voucher_reservation" accept="image/*" placeholder="">
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="field">
+                                <label class="checkbox" for="request1_reservation">
+                                    <input type="checkbox" id="request1_reservation"><span>Acepto que no hay reembolso</span>
+                                </label>
+                            </div>
+                            <div class="field">
+                                <label class="checkbox" for="request2_reservation">
+                                    <input type="checkbox" id="request2_reservation"><span>Estoy de acuerdo con los <a href="#">términos y condiciones</a></span>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="container-button-submit-pay">
+                            <button id="button_submit_reservation">Procesar pedidoooooo</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+          
+        </div>
+        
+    </main>
+    <!-- Modals -->
+    <div id="modal-message-pay" class="modal">
+        <div class="modal-background"></div>
+      
+        <div class="modal-content">
+            <div class="box">
+                <div class="btn-close-modal-container-main">
+                    <button class="button is-small is-rounded" id="btn-close-modal-message" aria-label="close"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 256 256"><path fill="#191334" d="M208.49 191.51a12 12 0 0 1-17 17L128 145l-63.51 63.49a12 12 0 0 1-17-17L111 128L47.51 64.49a12 12 0 0 1 17-17L128 111l63.51-63.52a12 12 0 0 1 17 17L145 128Z"/></svg></button>
+                </div>
+                <p id="message-content-main-modal">Modal JS example</p>
+            </div>
+        </div>
+    </div>
+    <!-- Fin modal -->
+    <script src="{{ url_for('static', filename='js/pages_admin/controll_pay.js') }}"></script>
+    <script>
+        create_profile_admin();
+        insert_table_data();
+        save_reservation();
+    </script>
+</body>
+</html>

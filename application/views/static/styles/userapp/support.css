@@ -1,0 +1,113 @@
+.container-main-all-support{
+    width: 100%;
+    height: 100%;
+    overflow-y: scroll;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+    padding: .8rem;
+    border-radius: 0rem;
+    row-gap: 1.8rem;
+}
+.container-main-all-support .container-text{
+    width: 100%;
+    text-align: center;
+    color: rgb(43, 39, 39);
+    margin-top: .8rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.container-main-all-support .container-text h1{
+    font-weight: bold;
+    font-size: 1.3rem;
+    color: var(--color-main-1);
+}
+.container-main-all-support .container-text .container-message{
+    width: 90%;
+    text-align: start;
+}
+.container-main-all-support .container-text .container-message span{
+    font-size: .8rem;
+    line-height: .9rem;
+    display: block;
+}
+.container-main-all-support form {
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    row-gap: .8rem;
+    padding: .8rem;
+    border-radius: .5rem;
+    background-color: white;
+    box-shadow: 1px 1px 15px rgb(198, 185, 185);
+}
+.container-main-all-support form label{
+    width: 100%;
+}
+.container-main-all-support form label span{
+    font-size: .8rem;
+    color: rgb(75, 69, 69);
+    font-weight: bold;
+}
+.container-main-all-support form textarea{
+    width: 100%;
+    height: 4rem;
+    background-color: white;
+    border-radius: .4rem;
+    padding: .4rem;
+    font-size: 1rem;
+    border: 1px solid rgb(219, 219, 255);
+    outline: none;
+}
+.container-main-all-support form input{
+    width: 100%;
+    background-color: white;
+    border-radius: .4rem;
+    padding: .4rem;
+    font-size: 1rem;
+    border: none;
+    outline: none;
+}
+.container-main-all-support form button{
+    padding: .8rem;
+    font-size: 1rem;
+    border: none;
+    outline: none;
+    border-radius: .4rem;
+    background-color: var(--color-blue-dark-4);
+    color: white;
+    width: 100%;
+}
+
+.frequently-asked-questions {
+    padding: 0rem;
+    width: 100%;
+}
+.frequently-asked-questions h2{
+    font-size: .9rem;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    column-gap: .2rem;
+}
+.frequently-asked-questions details{
+    border-left: 3px solid rgb(21, 201, 21);
+    margin-top: .6rem;
+    margin-left: .4rem;
+}
+.frequently-asked-questions details summary{
+    font-weight: bold;
+    color: rgb(79, 79, 237);
+    list-style: none;
+    padding-left: .4rem;
+    font-size: .9rem;
+}
+.frequently-asked-questions details p{
+    margin-left: 1.5rem;
+    font-size: .9rem;
+}

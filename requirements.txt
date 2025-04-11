@@ -1,0 +1,16 @@
+Flask>=3.0.0
+Flask-SQLAlchemy>=3.1.1
+Flask-SocketIO>=5.3.6
+Flask-Cors>=4.0.1
+cryptocode>=0.1
+cloudinary>=1.41.0
+paypalrestsdk>=1.13.3
+psycopg2>=2.9.9
+pytz
+fuzzywuzzy>=0.18.0
+flask-migrate>=4.0.5
+qrcode>=7.4.2
+levenshtein>=0.25.0
+PyMySQL>=1.1.1
+gevent>=24.2.1
+gunicorn>=23.0.0

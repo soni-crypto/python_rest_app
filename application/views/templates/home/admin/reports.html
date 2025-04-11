@@ -1,0 +1,215 @@
+
+{% extends "layouts/nav_app_honey.html" %}
+
+{% block main_link_css %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/styles_restaurant/reports.css') }}">
+    <script>
+        window.Promise ||
+          document.write(
+            '<script src="https://cdn.jsdelivr.net/npm/promise-polyfill@8/dist/polyfill.min.js"><\/script>'
+          )
+        window.Promise ||
+          document.write(
+            '<script src="https://cdn.jsdelivr.net/npm/eligrey-classlist-js-polyfill@1.2.20171210/classList.min.js"><\/script>'
+          )
+        window.Promise ||
+          document.write(
+            '<script src="https://cdn.jsdelivr.net/npm/findindex_polyfill_mdn"><\/script>'
+          )
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+      
+{% endblock %}
+
+{% block main_body %}
+
+    <div class="container-main-reports">
+        <div class="container-form">
+            <form action="" class="">
+                <label for="mode_filter">
+                    <span>Modo</span>
+                    <select name="mode_filter" id="mode_filter">
+                        <option value="1" {% if data_get.mode_filter == "1" %} selected {% endif %}>Ordenes</option>
+                        <option value="2" {% if data_get.mode_filter == "2" %} selected {% endif %}>Reservaciones</option>
+                    </select>
+                </label>
+                <!-- <label for="user">
+                    <span>Usuario</span>
+                    <select name="user" id="user">
+                        <option value="" selected disabled>Seleccione usuario</option>
+                        {% for user in user_all %}
+                        <option value="{{ user.id }}">{{ user.user_first_name }}, {{ user.user_last_name }}</option>
+                        {% endfor %}
+                    </select>
+                </label> -->
+                <!-- <label for="category">
+                    <span>Categorías</span>
+                    <select name="category" id="category">
+                        <option value="" selected disabled>Seleccione categoría</option>
+                        {% for category in type_all %}
+                        <option value="{{ category.id }}">{{ category.name_type }}</option>
+                        {% endfor %}
+                    </select>
+                </label> -->
+                <label for="date_start">
+                    <span>Fecha inicial</span>
+                    <input type="date" name="date_start" id="date_start">
+                </label>
+                <label for="date_end">
+                    <span>Fecha final</span>
+                    <input type="date" name="date_end" id="date_end">
+                </label>
+                <div class="container-button-submit">
+                    <button type="submit">Filtrar</button>
+                </div>
+            </form>
+        </div>
+        <div class="container-reports-apexchart-all">
+            <div id="chart-1"></div>
+            <div id="chart-2"></div>
+        </div>
+        <div class="container-table-in-record-main">
+            <div class="div-container-table-1 table-container">
+                <div class="container-description-table">
+                    <span>Reporte por platos</span>
+                </div>
+                <!-- platos -->
+                <table class="table">
+                    <thead>
+                        <th class="row-free"></th>
+                        <th>Cantidad</th>
+                        <th>Precio unitario</th>
+                        <th>Saldo obtenido</th>
+                    </thead>
+                    <tbody>
+                        {% for value in data_table_1 %}
+                        <tr>
+                            <td>{{ value.food_name }}</td>
+                            <td>{{ value.quantity_food }}</td>
+                            <td>{{ value.price }}</td>
+                            <td>{{ value.total_price }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            <div class="div-container-table-2 table-container">
+                <div class="container-description-table">
+                    <span>Reporte por categoria</span>
+                </div>
+                <!-- categorias -->
+                <table class="table">
+                    <thead>
+                        <th class="row-free"></th>
+                        <th>Cantidad</th>
+                        <th>Más vendido</th>
+                        <th>Menos vendido</th>
+                        <th>Saldo total</th>
+                    </thead>
+                    <tbody>
+                        {% for value in data_table_2 %}
+                        <tr>
+                            <td>{{ value.category_name }}</td>
+                            <td>{{ value.quantity_category }}</td>
+                            <td>{{ value.most_sold }}</td>
+                            <td>{{ value.least_sold }}</td>
+                            <td>{{ value.amount_all }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            {% if data_table_3 %}
+            <div class="div-container-table-3 table-container">
+                <div class="container-description-table">
+                    <span>Reporte por usuario</span>
+                </div>
+                <!-- meseras -->
+                <table class="table">
+                    <thead>
+                        <th class="row-free"></th>
+                        <th>Categoría más vendida</th>
+                        <th>Cantidad de categoría</th>
+                        <th>Plato más vendida</th>
+                        <th>Platos vendidos</th>
+                        <th>Saldo total</th>
+                        <th>link</th>
+                    </thead>
+                    <tbody>
+                        {% for key, value in data_table_3.items() %}
+                        <tr>
+                            <td>{{ value.user_context_name }}</td>
+                            <td>{{ value.most_sold_category }}</td>
+                            <td>{{ value.number_of_categories }}</td>
+                            <td>{{ value.most_sold_food }}</td>
+                            <td>{{ value.number_of_foods }}</td>
+                            <td>{{ "%.2f" | format(value.amount_all) }}</td>
+                            <td><a href="">Ir</a></td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            {% endif %}
+        </div>        
+    </div>
+{% endblock %}
+
+{% block main_link_js %}
+    <!-- script EXCEL -->
+    <script src="{{ url_for('static', filename='js/libraries/xlsx.full.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/libraries/FileSaver.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/libraries/tableexport.min.js') }}"></script>
+
+    <script>
+        const $btnExportar = document.querySelector("#export-to-excel");
+        const $tabla = document.querySelector("#table_main");
+    
+        $btnExportar.addEventListener("click", function() {
+            let tableExport = new TableExport($tabla, {
+                exportButtons: false, // No queremos botones
+                filename: "Reporte de prueba", //Nombre del archivo de Excel
+                sheetname: "Reporte de prueba", //Título de la hoja
+            });
+            let datos = tableExport.getExportData();
+            let preferenciasDocumento = datos.table_main.xlsx;
+            tableExport.export2file(preferenciasDocumento.data, preferenciasDocumento.mimeType, preferenciasDocumento.filename, preferenciasDocumento.fileExtension, preferenciasDocumento.merges, preferenciasDocumento.RTL, preferenciasDocumento.sheetname);
+        });
+    </script>
+    <!-- EXPORT PDF -->
+
+    <script src="{{ url_for('static', filename='js/libraries/html2pdf.bundle.min.js') }}"></script>
+    <script>
+        const doc_pdf = document.getElementById("container-main-all-document");
+        const pdf_button = document.getElementById("export-to-pdf");
+        const options = {
+            filename: 'my-document.pdf',
+            margin: [0.2, 0.2, 0.2, 0.2 ],
+            image: { type: 'jpeg', quality: 0.98 },
+            html2canvas: { scale: 2 },
+            jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' },
+        };
+        pdf_button.addEventListener("click", ()=>{
+            html2pdf().set(options).from(doc_pdf).save();
+        })
+    </script>
+    <script src="{{ url_for('static', filename='js/reports.js') }}"></script>
+    <script>
+        config();
+        const imprimir = () => {
+            // Selecciona la sección que deseas imprimir
+            const seccionParaImprimir = document.getElementById('container-main-all-document');
+
+            // Abre una ventana de impresión y muestra el contenido de la sección
+            const ventanaImpresion = window.open('', '_blank');
+            ventanaImpresion.document.write('<html><head><title>Imprimir</title></head><body>');
+            ventanaImpresion.document.write(seccionParaImprimir.innerHTML);
+            ventanaImpresion.document.write('</body></html>');
+
+            // Imprime la ventana
+            ventanaImpresion.print();
+        }
+    </script>
+    <script src="{{ url_for('static', filename='js/libraries/apexcharts-distributed-columns.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/libraries/apexcharts-basic-bar.js') }}"></script>
+{% endblock %}

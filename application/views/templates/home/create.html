@@ -1,0 +1,796 @@
+{% extends "layouts/nav_app_honey.html" %}
+
+{% block main_link_css %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/ui/loader-loading.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/ui/input_radio_square.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/ui/select_div.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/ui/input_icon.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/styles_restaurant/create_order.css') }}">
+{% endblock %}
+
+{% block main_body %}
+    <section class="section-main-create-order">
+        <div class="container-options-header-create">
+            <div class="container-block-1">
+                <button class="btn-open-modal-table" onclick="openModal(document.getElementById('view-tables-for-order'))">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 1664 1472"><path fill="#2d2f3c" d="M64 606L0 576V448L832 64l832 384v128l-64 30v534q0 38-26.5 57t-69.5 19t-69.5-19t-26.5-57V694L928 916v480q0 38-26.5 57t-69.5 19t-69.5-19t-26.5-57V916L256 694v446q0 38-26.5 57t-69.5 19t-69.5-19t-26.5-57zm768 226l768-352l-768-352L64 480z"></path></svg>
+                    <span>Seleccione n° mesa</span>
+                </button>
+                <input type="text" class="input-search-all-page" id="input-search-all-page" placeholder="Buscar plato">
+            </div>
+            <span class="message-number-table"><span class="text-mesa-span">Mesa</span><span class="reflection-of-table-number">😎</span></span>
+        </div>
+        <div class="container-form-create-order-main">
+            <form action="" method="post" id="form-create-order-main-tag">
+                <div class="container-block-parts-order-create">
+                    <label for="type_food" class="description-block-main-label-of-slider form-label">Categoría</label>
+                    <div class="container-main-flex-order-all-min">
+                        {% for data_type in data_type_food %}
+                            {% if data_type.state == 1 %}
+                            <label for="type_food_{{ loop.index }}" class="label-container-block-model-main-all-create-food">
+                                <input type="radio" value="{{ data_type.id }}" data-name_type_food="{{ data_type.name_type }}" name="type_food" id="type_food_{{ loop.index }}" class="input_radio_type_food" required>
+                                <div class="container-image-icon">
+                                    <img src="{{ data_type.image }}" alt="">
+                                </div>
+                                <div class="container-name-category">
+                                    <span class="name_food_span_main">{{ data_type.name_type }}</span>
+                                </div>
+                            </label>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                    
+                </div>
+                <div class="container-block-parts-order-create">
+                    <label for="name_food" class="description-block-main-label-of-slider form-label">Plato</label>
+                    <div class="container-main-flex-order-all-min" id="container-main-insert-food__data">
+                        <!-- 
+                        <label for="name_food_1" class="label-container-block-model-main-all-create-food_2">
+                            <input type="radio" name="name" required="" id="name_food_1" class="input_radio_name_food" value="3" data-name="Hamburguesa" data-price="6">
+                            <div class="div-container-image-logo-name-food">
+                                <img src="/static/images/images_restaurant/onlyadmin/icon_food/2024-08-22_10_15_37ACzUd8LImJ.png">
+                            </div>
+                            <div class="div-container-info-food">
+                                <span class="price_food_span_main">6</span>
+                                <span class="name_food_span_main">Hamburguesa</span>
+                            </div>
+                        </label> -->
+                    </div>
+                </div>
+            </form>
+            <div class="container-buttons-controll-return-and-advance">
+                <button class="" id="return-order">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-arrow-left" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"/></svg>
+                    Regresar
+                </button>
+                <button class="" id="continue-order">
+                    Siguiente
+                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-arrow-right" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"/></svg>
+                </button>
+            </div>
+            <button class="button-show-all-order-current">
+                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 64 64"><path fill="#666666" d="M61.063 2H58.25v.896c-3.916.876-4.479 4.511-4.7 5.9c-.105.657-.318 1.942-.582 3.516H3.988c-1.938 0-2.155 1.811-1.902 2.813l5.746 25.367c.252 1.002 1.313 1.82 2.353 1.82h42.944c1.034 0 1.877.841 1.877 1.875s-.843 1.875-1.877 1.875H6.255a1.874 1.874 0 1 0 0 3.75h2.43a7.5 7.5 0 0 0-3.872 6.563h1.875c0 3.105 2.52 5.625 5.625 5.625s5.625-2.52 5.625-5.625h1.875a7.5 7.5 0 0 0-3.873-6.563h26.494a7.5 7.5 0 0 0-3.873 6.563h1.875a5.627 5.627 0 0 0 11.252 0h1.875a7.5 7.5 0 0 0-3.872-6.563h3.44a5.63 5.63 0 0 0 5.625-5.625a5.626 5.626 0 0 0-5.627-5.625h-.697l2.398-14.91c.668-3.938 2.108-12.445 2.446-14.561c.17-1.069.335-1.82.974-2.241v.774h2.813A.94.94 0 0 0 62 6.688v-3.75A.94.94 0 0 0 61.063 2m-48.75 57.188A2.816 2.816 0 0 1 9.5 56.375h5.625a2.816 2.816 0 0 1-2.812 2.813m33.75 0a2.816 2.816 0 0 1-2.814-2.813h5.627a2.82 2.82 0 0 1-2.813 2.813m-2.307-42.194a1.07 1.07 0 0 1 1.04-.932h5.937c.516 0 .875.416.794.927l-.588 3.771c-.078.51-.567.927-1.084.927h-5.663a.826.826 0 0 1-.841-.932zm-1.009 9.375a1.07 1.07 0 0 1 1.04-.932h5.483c.517 0 .875.416.797.927l-.443 2.834c-.079.51-.567.927-1.084.927h-5.257a.828.828 0 0 1-.841-.932zM6.866 20.777l-.95-3.805c-.124-.502.198-.91.715-.91h7.059c.518 0 .985.419 1.04.932l.404 3.762a.828.828 0 0 1-.84.932H8.033c-.516 0-1.042-.411-1.167-.911m3.271 9.348c-.516 0-1.042-.41-1.166-.91l-.716-2.867c-.125-.502.195-.91.712-.91h5.729c.517 0 .985.419 1.04.932l.304 2.824a.827.827 0 0 1-.84.932zm5.969 8.438h-3.865c-.519 0-1.042-.41-1.167-.91l-.716-2.867c-.124-.502.196-.91.714-.91h4.53c.517 0 .985.419 1.042.932l.302 2.824a.826.826 0 0 1-.84.931m11.492-.938a.94.94 0 0 1-.94.938h-4.891a1.07 1.07 0 0 1-1.039-.932l-.304-2.824a.825.825 0 0 1 .839-.932h5.395a.94.94 0 0 1 .94.938zm0-8.437a.94.94 0 0 1-.94.938H20.86c-.516 0-.982-.419-1.04-.932l-.302-2.824a.826.826 0 0 1 .839-.932h6.301a.94.94 0 0 1 .94.938zm0-8.438a.94.94 0 0 1-.94.938h-6.702a1.07 1.07 0 0 1-1.04-.932l-.404-3.762a.827.827 0 0 1 .84-.932h7.307a.94.94 0 0 1 .94.938v3.75zm10.159 16.881a1.07 1.07 0 0 1-1.04.932h-4.42a.94.94 0 0 1-.939-.938v-2.813a.94.94 0 0 1 .939-.938h4.924c.516 0 .896.419.84.932zm.906-8.438a1.07 1.07 0 0 1-1.04.932h-5.326a.94.94 0 0 1-.939-.938v-2.813a.94.94 0 0 1 .939-.938h5.83c.517 0 .896.419.839.932zm.906-8.437a1.07 1.07 0 0 1-1.04.932h-6.232a.94.94 0 0 1-.939-.938V17a.94.94 0 0 1 .939-.938h6.837c.517 0 .896.419.841.932zm7.232 17.807v-.007l-.008.007h-4.416c-.029 0-.054-.014-.083-.018c-.005-.034-.005-.068-.011-.104l-.044.092l.037.008c-.461-.053-.791-.434-.738-.91l.302-2.824a1.07 1.07 0 0 1 1.04-.932h5.076c.517 0 .873.416.795.927l-.443 2.834c-.077.51-.565.927-1.082.927z"/></svg>
+            </button>
+            <button class="button-show-all-order-state-info" onclick="openModal(document.getElementById('modal-view-state-info-orders'))">
+                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 2048 2048"><path fill="#666666" d="M1487 768q-59 20-111 52t-97 76h-255V768zm-367 512q0 32 4 64t13 64h-113v-128zm928-768v383q-28-28-60-50t-68-42V640h-128v113q-32-8-64-12t-64-5V384H128v1031q0 25 9 47t26 38t39 26t47 10h842l-128 128H249q-51 0-96-19t-80-54t-53-79t-20-97V256h1792v256zm-512 128H256V512h1280zM256 768h640v640H256zm128 512h384V896H384zm640-256h128v79q-9 25-15 49h-113zm640-128q79 0 149 30t122 82t83 123t30 149q0 80-30 149t-82 122t-123 83t-149 30q-60 0-116-18t-106-54l-437 437q-19 19-45 19t-45-19t-19-45t19-45l437-437q-35-49-53-105t-19-117q0-79 30-149t82-122t122-83t150-30m0 640q53 0 99-20t82-55t55-81t20-100q0-53-20-99t-55-82t-81-55t-100-20q-53 0-99 20t-82 55t-55 81t-20 100q0 53 20 99t55 82t81 55t100 20"/></svg>
+            </button>
+        </div>
+    </section>
+    <!-- message send order -->
+    <div class="order-sent-to-back-message" id="order-sent-to-back-message">
+        <span>
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 2048 2048"><path fill="#ffffff" d="m1491 595l90 90l-749 749l-365-365l90-90l275 275zM1024 0q141 0 272 36t245 103t207 160t160 208t103 245t37 272q0 141-36 272t-103 245t-160 207t-208 160t-245 103t-272 37q-141 0-272-36t-245-103t-207-160t-160-208t-103-244t-37-273q0-141 36-272t103-245t160-207t208-160T751 37t273-37m0 1920q123 0 237-32t214-90t182-141t140-181t91-214t32-238q0-123-32-237t-90-214t-141-182t-181-140t-214-91t-238-32q-123 0-237 32t-214 90t-182 141t-140 181t-91 214t-32 238q0 123 32 237t90 214t141 182t181 140t214 91t238 32"/></svg>
+            Orden enviado
+        </span>
+     </div>
+    <!-- MESSAGE ALERTS AND INFO -->
+    <div class="modal" id="modal-config-order-data">
+        <div class="modal-background"></div>
+        <div class="modal-content">
+            <div class="block-1-row">
+                <div class="modal-header">
+                    <h5 class="" id="modal-title-type-food">Cargando...</h5>
+                </div>
+                <div class="container-all-modal-config">
+                    <div class="container-title">
+                        <span id="modal-title-name-food">Cargando...</span>
+                        <div class="container-image-icon">
+                            <img src="/static/images/images_restaurant/images_inventory/box.png" id="modal-title-icon-food" alt="">
+                        </div>
+                    </div>
+                    <div class="container-block-cantity-table">
+                        <div class="block-c-t">
+                            <div class="container-title-row">
+                                <span>Cantidad</span>
+                            </div>
+                            <div class="container-button-input">
+                                <button  class="btn-subtract">-</button>
+                                <input type="tel" name="m-cantity" id="m-cantity" value="1" readonly>
+                                <button class="btn-add increment">+</button>
+                            </div>
+                        </div>
+                        <div class="block-c-t">
+                            <div class="container-title-row">
+                                <span>T. de preparación</span>
+                            </div>
+                            <div class="container-button-input">
+                                <span class="preparation_time"></span>
+                                <span>minutos</span>
+                            </div>
+                        </div>
+                        <div class="block-c-t">
+                            <div class="container-title-row">
+                                <span>Mesa</span>
+                            </div>
+                            <div class="container-button-input">
+                                <span class="reflection-of-table-number">😎</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="container-block-type-payment">
+                        <div class="container-block-type-category">
+                            <div class="container-title-row">
+                                <span>Para:</span>
+                            </div>
+                            <div class="radio-inputs">
+                                <label>
+                                    <input class="radio-input" value="1" checked type="radio" name="m-category-order">
+                                    <span class="radio-tile">
+                                        <span class="radio-icon">
+                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="" d="m21.96 9.73l-1.43-5a.996.996 0 0 0-.96-.73H4.43c-.45 0-.84.3-.96.73l-1.43 5c-.18.63.3 1.27.96 1.27h2.2L4 20h2l.67-5h10.67l.66 5h2l-1.2-9H21c.66 0 1.14-.64.96-1.27M6.93 13l.27-2h9.6l.27 2z"/></svg>
+                                        </span>
+                                        <span class="radio-label">Mesa</span>
+                                    </span>
+                                </label>
+                                <label>
+                                    <input class="radio-input" value="2" type="radio" name="m-category-order">
+                                    <span class="radio-tile">
+                                        <span class="radio-icon">
+                                            <svg xmlns="http://www.w3.org/2000/svg"viewBox="0 0 23 24"><path fill="" d="M22.596 23.997H11.545a.325.325 0 0 1-.325-.326v-.016v.001l.65-12.947a.325.325 0 0 1 .324-.306h9.752c.173 0 .314.135.324.305v.001l.647 12.882q.01.037.01.081v.001a.324.324 0 0 1-.324.324h-.001zm-9.098-10.878c.002.468.309.863.732.998l.007.002c.341 1.651 1.514 2.873 2.908 2.873s2.565-1.223 2.904-2.868a1.056 1.056 0 1 0-.955-.185l.002.002c-.248 1.198-1.029 2.077-1.955 2.077s-1.703-.874-1.953-2.067a1.052 1.052 0 1 0-1.696-.834v.003zM.325 22.72a.325.325 0 0 1-.324-.343v.001L.905 4.383a.325.325 0 0 1 .324-.306h2.204C4.124 1.677 5.968.001 8.112.001s3.986 1.677 4.677 4.074h1.995c.172 0 .314.135.323.305v.001l.261 5.209h-3.174c-.608 0-1.104.477-1.135 1.077v.003l-.605 12.051zM10.948 5.678a1.442 1.442 0 0 0 .784 2.65a1.44 1.44 0 0 0 .518-2.786l-.01-.003C12.004 2.881 10.243.81 8.113.81S4.215 2.885 3.982 5.548a1.44 1.44 0 1 0 1.299.127l-.006-.003c.168-2.002 1.376-3.56 2.838-3.56s2.673 1.563 2.838 3.569zM6.559 4.073h3.1a1.9 1.9 0 0 0-1.541-1.15l-.009-.001c-.7.077-1.28.525-1.545 1.14zm12.799 9.018a.382.382 0 1 1 .762 0a.382.382 0 0 1-.761 0zm-5.224 0a.382.382 0 1 1 .382.382a.38.38 0 0 1-.378-.382zm-2.976-6.146a.567.567 0 1 1 1.135 0a.567.567 0 0 1-1.135 0m-7.228 0a.57.57 0 1 1 1.137 0a.57.57 0 0 1-1.136 0z"/></svg>
+                                            <!-- <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 36 36"><path fill="" d="m32.43 8.35l-13-6.21a1 1 0 0 0-.87 0l-15 7.24a1 1 0 0 0-.57.9v16.55a1 1 0 0 0 .6.92l13 6.19a1 1 0 0 0 .87 0l15-7.24a1 1 0 0 0 .57-.9V9.25a1 1 0 0 0-.6-.9M19 4.15l10.93 5.22l-5.05 2.44l-10.67-5.35Zm-2 11.49L6 10.41l5.9-2.85l10.7 5.35Zm1 15.8V17.36l13-6.29v14.1Z" class="clr-i-solid clr-i-solid-path-1"/><path fill="none" d="M0 0h36v36H0z"/></svg> -->
+                                        </span>
+                                        <span class="radio-label">Llevar</span>
+                                    </span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="container-block-observations">
+                        <div class="container-title-row">
+                            <span>Observaciones:</span>
+                        </div>
+                        <div class="block-container-labels-observations" id="block-container-labels-observations">
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="block-2-row">
+                <div class="container-block-cash">
+                    <span>TOTAL:</span>
+                    <span>{{ admin_settings.currency }} <span id="amount-view-food">00.00</span></span>
+                </div>
+                <div class="container-buttos-config-order">
+                    <button onclick="closeModal(document.getElementById('modal-config-order-data'))">Cerrar</button>
+                    <button type="button" class="btn btn-primary" id="save-order-unique">Guardar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- warning -->
+    <div class="modal" id="messages-modal-view">
+        <div class="modal-background"></div>
+        <div class="modal-content">
+            <h4 class="" id="text-message-to-modal-warning">Este plato ya ha sido agregado. </h4>
+            <span></span>
+            <div class="container-buttons-actions">
+                <button type="button" class="" onclick="closeModal(document.getElementById('messages-modal-view'))">Cerrar</button>
+                <button type="button" class="" id="btn-delete-order-new-data">Eliminar</button>
+                <button type="button" class="" id="btn-update-order-new-data">Actualizar</button>
+            </div>
+        </div>
+        <button class="modal-close is-large"></button>
+    </div>
+    <!-- canasta -->
+    <div class="modal" id="all-order-modal-view">
+        <div class="modal-background"></div>
+        <div class="modal-content">
+            <div class="container-details-all-order">
+                <div class="titulo-general-canastilla-virtual">
+                    <h1>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18.13" height="18" viewBox="0 0 1025 1024"><path fill="currentColor" d="M896.428 1024h-768q-53 0-90.5-37.5T.428 896V128q0-53 37.5-90.5t90.5-37.5h768q53 0 90.5 37.5t37.5 90.5v768q0 53-37.5 90.5t-90.5 37.5m64-768q0-26-19-45t-45-19h-768q-26 0-45 19t-19 45v640q0 27 19 45.5t45 18.5h768q26 0 45-18.5t19-45.5zm-96 640h-512q-13 0-22.5-9.5t-9.5-22.5t9.5-22.5t22.5-9.5h512q13 0 22.5 9.5t9.5 22.5t-9.5 22.5t-22.5 9.5m0-256h-512q-13 0-22.5-9.5t-9.5-22.5t9.5-22.5t22.5-9.5h512q13 0 22.5 9.5t9.5 22.5t-9.5 22.5t-22.5 9.5m0-256h-512q-13 0-22.5-9.5t-9.5-22.5t9.5-22.5t22.5-9.5h512q13 0 22.5 9.5t9.5 22.5t-9.5 22.5t-22.5 9.5m-640 512h-64q-13 0-22.5-9.5t-9.5-22.5v-64q0-13 9.5-22.5t22.5-9.5h64q13 0 22.5 9.5t9.5 22.5v64q0 13-9.5 22.5t-22.5 9.5m0-256h-64q-13 0-22.5-9.5t-9.5-22.5v-64q0-13 9.5-22.5t22.5-9.5h64q13 0 22.5 9.5t9.5 22.5v64q0 13-9.5 22.5t-22.5 9.5m0-256h-64q-13 0-22.5-9.5t-9.5-22.5v-64q0-13 9.5-22.5t22.5-9.5h64q13 0 22.5 9.5t9.5 22.5v64q0 13-9.5 22.5t-22.5 9.5"/></svg>
+                        Resumen del orden a enviar
+                    </h1>
+                    <span>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 1024 1024"><path fill="currentColor" d="M1015.66 284a31.82 31.82 0 0 0-25.998-13.502H310.526l-51.408-177.28c-20.16-69.808-68.065-77.344-87.713-77.344H34.333c-17.569 0-31.777 14.224-31.777 31.776S16.78 79.425 34.332 79.425h137.056c4.336 0 17.568 0 26.593 31.184l176.848 649.936c3.84 13.712 16.336 23.183 30.591 23.183h431.968c13.409 0 25.376-8.4 29.905-21.024l152.256-449.68c3.504-9.744 2.048-20.592-3.888-29.024zM815.026 720.194H429.539L328.387 334.066h616.096zM752.003 848.13c-44.192 0-80 35.808-80 80s35.808 80 80 80s80-35.808 80-80s-35.808-80-80-80m-288 0c-44.192 0-80 35.808-80 80s35.808 80 80 80s80-35.808 80-80s-35.808-80-80-80"/></svg>
+                        canastilla virtual 
+                        &raquo;
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 1664 1472"><path fill="currentColor" d="M64 606L0 576V448L832 64l832 384v128l-64 30v534q0 38-26.5 57t-69.5 19t-69.5-19t-26.5-57V694L928 916v480q0 38-26.5 57t-69.5 19t-69.5-19t-26.5-57V916L256 694v446q0 38-26.5 57t-69.5 19t-69.5-19t-26.5-57zm768 226l768-352l-768-352L64 480z"></path></svg>
+                        <span class="reflection-of-table-number">😎</span>
+                    </span>
+                </div>
+                <div class="omv-all-container" id="omv-all-container">
+                    <div class="omv-all-container-block-type">
+                        
+                    </div>
+                </div>
+                <div class="total-cost-basket-result">
+                    <span>Total:</span>
+                    <span>{{ admin_settings.currency }} <span id="amount-basket-result">00.00</span></span>
+                </div>
+            </div>
+            <div class="container-button-close">
+                <button onclick="closeModal(document.getElementById('all-order-modal-view'))">Cerrar</button>
+            </div>
+        </div>
+        <button class="modal-close is-large"></button>
+    </div>
+    <div class="container-main-loader-proccess-order" id="container-main-loader-proccess-order">
+        <div class="loading">
+            <span class="l">L</span>
+            <span class="o">o</span>
+            <span class="a">a</span>
+            <span class="d">d</span>
+            <span class="i">i</span>
+            <span class="n">n</span>
+            <span class="g">g</span>
+            <span class="d1">.</span>
+            <span class="d2">.</span>
+            <div class="load">
+                <div class="progress"></div>
+                <div class="progress"></div>
+                <div class="progress"></div>
+                <div class="progress"></div>
+            </div>
+        </div>
+    </div>
+    <!-- modal table -->
+    <div class="modal" id="view-tables-for-order">
+        <div class="modal-background"></div>
+        <div class="modal-content">
+            <div class="container-title">
+                <h1>Seleccionar mesa</h1>
+            </div>
+            <div class="container-select-filter-ui">
+                <div class="container-template-select-div-ui">
+                    <div class="container-template-select-div-ui__button-view" id="container-template-select-div-ui__button-view">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"><path fill="#ffffff" d="M12 18.88a1 1 0 0 1-.29.83a1 1 0 0 1-1.41 0l-4-4a1 1 0 0 1-.3-.84V9.75L1.21 3.62a1 1 0 0 1 .17-1.4A1 1 0 0 1 2 2h14a1 1 0 0 1 .62.22a1 1 0 0 1 .17 1.4L12 9.75zM4 4l4 5.06v5.52l2 2V9.05L14 4m-1 12l5 5l5-5Z"/></svg>
+                        <span id="text-value-select-ui">Categoria</span>
+                    </div>
+                    <div class="container-template-select-div-ui__container-options">
+                        {% for c in data_categories_table %}
+                        <label>
+                            <a href="#" data-category-id="{{ c.id }}" class="category-table-select">
+                                <span>{{ c.name }}</span>
+                            </a>
+                        </label>
+                        {% endfor %}
+                    </div>
+                </div>
+                <div class="container-ui-input-with-icon">
+                    <label for=""></label>
+                    <div class="container-ui-input-with-icon__input-c">
+                        <div class="container-ui-input-with-icon__svg">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 12"><path fill="#666666" fill-rule="evenodd" d="M8.5 5.5a3 3 0 1 1-6 0a3 3 0 0 1 6 0m-.393 3.668a4.5 4.5 0 1 1 1.06-1.06l2.613 2.612a.75.75 0 1 1-1.06 1.06z" clip-rule="evenodd"/></svg>
+                        </div>
+                        <input type="text" id="input-search-table-modal" placeholder="Buscar">
+                    </div>
+                </div>
+            </div>
+            <div class="container-table-number">
+                {% for table in data_table %}
+                <div class="block-table-option {% if table.state == 1 %} block-free {% elif table.state == 2 %} block-busy {% elif table.state == 3 %} block-reserved {% endif %}" data-category-id="{{ table.category_id}}" data-table-id="{{ table.id}}" data-number-table="{{ table.number_table}}" >
+                    <span>{{ table.number_table }}</span>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    <!-- end modal table -->
+    <!-- modal  -->
+    <div class="modal" id="modal-view-state-info-orders">
+        <div class="modal-background"></div>
+        <div class="modal-content">
+            <div class="container-title">
+                <h2>Vista general de los órdenes</h2>
+            </div>
+            <div class="container-details-rows">
+                <div class="container-row">
+                    <strong>Órdenes en preparación:</strong>
+                    <span>{{ data_order_process.orders_in_preparation }}</span>
+                </div>
+                <div class="container-row">
+                    <strong>Órdenes en cola:</strong>
+                    <span>{{ data_order_process.orders_in_queue }}</span>
+                </div>
+            </div>
+            <div class="time-stimed-prepared-order">
+                <h2>Tiempo estimado para nuevo orden</h2>
+                <div class="container-row">
+                    <span>El nuevo órden se despachará dentro de:</span>
+                    <div class="container-result-time">
+                        <img src="{{ url_for('static', filename='images/images_restaurant/images_default/time-flies-cuate.png') }}" alt="img">
+                        <span>{{ data_order_process.estimated_time }} minutos</span>
+                    </div>
+                </div>
+            </div>
+            <!-- <div class="container-buttons-actions">
+                <button onclick="closeModal(document.getElementById('modal-view-state-info-orders'))">Cerrar</button>
+            </div> -->
+        </div>
+        <button class="modal-close is-large"></button>
+    </div>
+    <!--  -->
+{% endblock %}
+
+{% block main_link_js %}
+    <script>
+        const btn_delete_order_new_data = document.getElementById("btn-delete-order-new-data");
+        const btn_update_order_new_data = document.getElementById("btn-update-order-new-data");
+        const loader_change = document.getElementById("container-main-loader-proccess-order");
+        let contador = 0;
+        const continue_ = document.querySelector("#continue-order");
+        const return_ = document.querySelector("#return-order")
+        const block_container_order = document.querySelectorAll(".container-block-parts-order-create");
+        const input_radio_type_food = document.querySelectorAll(".input_radio_type_food");
+        const container_observations = document.getElementById("block-container-labels-observations");
+        const input_search_table_modal = document.getElementById("input-search-table-modal");
+
+        btn_delete_order_new_data.addEventListener("click", ()=>{
+            let id = btn_delete_order_new_data.dataset.id;
+            let category_id = btn_delete_order_new_data.dataset.category_id;
+            order_data_main.forEach(c =>{
+                if (c.id_type_food === category_id){
+                    c.data.forEach((f, index) =>{
+                        if (f.food_id === id){
+                            c.data.splice(index, 1);
+                        }
+                    })
+                }
+            })
+            closeModal(document.getElementById('messages-modal-view'));
+        })
+        btn_update_order_new_data.addEventListener("click", ()=>{
+            openModal(document.getElementById('modal-config-order-data'));
+            closeModal(document.getElementById('messages-modal-view'));
+        })
+        input_radio_type_food.forEach((input_radio) => {
+            input_radio.addEventListener("click", ()=>{
+                let label_ctn = input_radio.parentNode;
+                input_radio_type_food.forEach((el)=>{ el.parentNode.classList.remove("option-selected-decoration-buttons") })
+                label_ctn.classList.add("option-selected-decoration-buttons");
+                
+            })
+        })
+        function pagination_order_main(){
+            let contador_temp = 0;
+            block_container_order.forEach((block)=>{
+                if (contador_temp === contador){
+                    block.style.zIndex = "1"
+                }else{
+                    block.style.zIndex = "0"
+                }
+                contador_temp++
+            })
+        }
+        continue_.addEventListener("click", async()=>{
+            if (contador < 2 && contador >= 0){
+                contador++;
+                pagination_order_main();
+            }
+            if (contador === 1){
+                continue_.style.backgroundColor = "#fe8c01";
+                continue_.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 15 15"><path fill="#ffffff" d="M14.954.71a.5.5 0 0 1-.1.144L5.4 10.306l2.67 4.451a.5.5 0 0 0 .889-.06L14.954.71ZM4.694 9.6L.243 6.928a.5.5 0 0 1 .06-.889L14.293.045a.5.5 0 0 0-.146.101L4.694 9.6Z"/></svg>Enviar orden';
+            }else if(contador === 2){
+                continue_.classList.add("btn-send-dorder-to-chef-main");
+                continue_.style.backgroundColor = "#fe8c01";
+                continue_.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 15 15"><path fill="#ffffff" d="M14.954.71a.5.5 0 0 1-.1.144L5.4 10.306l2.67 4.451a.5.5 0 0 0 .889-.06L14.954.71ZM4.694 9.6L.243 6.928a.5.5 0 0 1 .06-.889L14.293.045a.5.5 0 0 0-.146.101L4.694 9.6Z"/></svg>Enviar orden';
+            }else{}
+        })
+
+        return_.addEventListener("click", ()=>{
+            if (contador > 0){
+                contador=0;
+                pagination_order_main();
+                continue_.classList.remove("btn-send-dorder-to-chef-main");
+                continue_.removeAttribute("style");
+                continue_.innerHTML = 'Siguiente<svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-arrow-right" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"/></svg>';
+            }
+            
+        })
+    </script>
+
+    <script>
+        const order_data_main = Array();
+        const order_data_table = {"number_table":0}
+        let cost_temp = 0;
+        let id_food_temp = null;
+        let name_food_temp = null;
+        let price_food_temp = null;
+        let id_type_food_temp = null;
+        const m_cantity = document.getElementsByName("m-cantity");
+        const m_category_order = document.getElementsByName("m-category-order");
+        // const m_type_payment = document.getElementsByName("m-type-payment");
+        const modal_title_type_food = document.getElementById("modal-title-type-food");
+        const modal_title_name_food = document.getElementById("modal-title-name-food");
+        const modal_title_icon_food = document.getElementById("modal-title-icon-food");
+        const type_food_all = document.getElementsByName("type_food");
+        const name_food = document.getElementById("name_food");
+        const amount_view_food = document.getElementById("amount-view-food");
+        var myModal_config = document.getElementById('modal-config-order-data');
+        var myModal_messages = document.getElementById('messages-modal-view');
+        var myModal_order_view = document.getElementById('all-order-modal-view');
+        const block_table_option = document.querySelectorAll(".block-table-option");
+        const category_table_select = document.querySelectorAll(".category-table-select");
+        const input_search_all_page = document.getElementById("input-search-all-page");
+        const container_template_select_div_ui = document.querySelector(".container-template-select-div-ui")
+        container_template_select_div_ui.addEventListener("mouseenter", ()=>{
+            container_template_select_div_ui.querySelector(".container-template-select-div-ui__container-options").style.display = "flex";
+        })
+        container_template_select_div_ui.addEventListener("mouseleave", ()=>{
+            container_template_select_div_ui.querySelector(".container-template-select-div-ui__container-options").style.display = "none";
+        })
+        input_search_table_modal.addEventListener("input", ()=>{
+            block_table_option.forEach(b =>{
+                if (b.querySelector("span").textContent.startsWith(input_search_table_modal.value)){
+                    b.removeAttribute("style");
+                }else{
+                    b.style.display = "none";
+                }
+            })
+        })
+        input_search_all_page.addEventListener("input", ()=>{
+            if (true){
+                const input_radio_food_all = document.querySelectorAll(".input_radio_name_food");
+                input_radio_food_all.forEach(i=>{
+                    let data_name = i.dataset.name;
+                    let parent = i.parentElement;
+                    if (data_name.toLowerCase().startsWith(input_search_all_page.value.toLowerCase())){
+                        parent.removeAttribute("style");
+                    }else{
+                        parent.style.display = "none";
+                    };
+                });
+            };
+        })
+        category_table_select.forEach(c =>{
+            c.addEventListener("click" , ()=>{
+                let ppnode = c.parentElement.parentElement;
+                ppnode.style.display = "none";
+                let category_a = c.dataset.categoryId;
+                document.getElementById("text-value-select-ui").textContent = c.querySelector("span").textContent;
+                block_table_option.forEach(b =>{
+                    let category_b = b.dataset.categoryId;
+                    if (category_a === category_b){
+                        b.removeAttribute("style");
+                    }else{
+                        // b.classList.remove("block-table-selected");
+                        b.style.display = "none";
+                    };
+                });
+            });
+        });
+        block_table_option.forEach(table =>{
+            table.addEventListener("click", ()=>{
+                const number_table = table.dataset.numberTable;
+                const table_id = table.dataset.tableId;
+                table.classList.add("block-table-selected");
+                block_table_option.forEach((t)=>{
+                    if (t.dataset.tableId != table_id){
+                        t.classList.remove("block-table-selected");
+                    };   
+                })
+                setTimeout(()=>{
+                    document.querySelectorAll(".reflection-of-table-number").forEach(s=>{
+                        s.textContent = number_table;
+                    });
+                    order_data_table.number_table = number_table;
+                    closeModal(document.getElementById("view-tables-for-order"));
+                }, 400)
+            })
+        });
+        type_food_all.forEach((type_food) => {
+            type_food.addEventListener("click", async()=>{
+                
+                loader_change.style.display = "flex";
+                let sel_type_food = type_food.value;
+                let name_type_food = type_food.dataset.name_type_food;
+                id_type_food_temp = sel_type_food;
+
+                order_data_main.forEach((arr, index)=>{
+                    if (arr.data.length === 0){
+                        order_data_main.splice(index, 1);
+                    }
+                }) 
+                if(Array.from(order_data_main).map((t)=> parseInt(t.id_type_food)).includes(parseInt(sel_type_food))){
+                }else{
+                    order_data_main.push({"id_type_food":sel_type_food, "name_type_food": name_type_food, "data":[]});
+                };
+
+                modal_title_type_food.textContent = name_type_food;
+                const new_data = {"type_food_id":sel_type_food}; 
+                localStorage.setItem("new_order", JSON.stringify(new_data));
+                
+                
+                const container__main = document.getElementById("container-main-insert-food__data");
+                container__main.innerHTML="";
+                
+                await fetch(`/honey/datafoodmain/${sel_type_food}`).then(res=>res.json()).then(data=>{
+                    let contador_temp_food = 0;
+                    console.log("==> ",data);
+                    data["data"].forEach((food)=>{
+                        if (parseInt(food.state) === 1){
+                            const label_main = document.createElement("label");
+                            label_main.setAttribute("for", "name_food_"+String(contador_temp_food));
+                            label_main.classList.add("label-container-block-model-main-all-create-food_2");
+                            
+                            const input_radio = document.createElement("input");
+                            input_radio.type = "radio";
+                            input_radio.name = "name";
+                            input_radio.required = "true";
+                            input_radio.id = "name_food_"+String(contador_temp_food);
+                            input_radio.classList.add("input_radio_name_food");
+                            input_radio.value = food.id;
+                            input_radio.dataset.id = food.id;
+                            input_radio.dataset.category_id = food.type_food;
+                            input_radio.dataset.name = food.name;
+                            input_radio.dataset.price = food.price;
+                            input_radio.dataset.image = food.image;
+                            input_radio.dataset.preparationTime = food.preparation_time;
+    
+                            const div_ctn_img = document.createElement("div");
+                            div_ctn_img.classList.add("div-container-image-logo-name-food")
+                            const image_main_food = document.createElement("img");
+                            image_main_food.src = food.image;  
+                            image_main_food.alt = "";
+                            div_ctn_img.appendChild(image_main_food);
+    
+                            const div_ctn_text = document.createElement("div");
+                            div_ctn_text.classList.add("div-container-info-food")
+                            const price_food_view = document.createElement("span");
+                            price_food_view.textContent = food.currency + " "+ String(food.price);
+                            price_food_view.classList.add("price_food_span_main")
+                            const name_food = document.createElement("span");
+                            name_food.textContent = food.name;
+                            name_food.classList.add("name_food_span_main")
+                            div_ctn_text.appendChild(price_food_view);
+                            div_ctn_text.appendChild(name_food);
+    
+    
+                            label_main.appendChild(input_radio);
+                            label_main.appendChild(div_ctn_img);
+                            label_main.appendChild(div_ctn_text);
+    
+                            container__main.appendChild(label_main)
+    
+                            contador_temp_food ++;
+                            
+                        }
+                    })  ;
+                    // FOOD SELECT ANIMATE
+                    const input_radio_name_food = document.querySelectorAll(".input_radio_name_food");
+                    let view_modal_state = false;
+                    input_radio_name_food.forEach((input_radio) => {
+                        input_radio.addEventListener("click", ()=>{
+                            btn_delete_order_new_data.dataset.id = input_radio.dataset.id;
+                            btn_delete_order_new_data.dataset.category_id = input_radio.dataset.category_id;
+                            document.querySelector(".preparation_time").textContent = input_radio.dataset.preparationTime;
+                            m_cantity[0].value = 1;
+                            let name_food = input_radio.dataset.name;
+                            let price_food = input_radio.dataset.price;
+                            modal_title_icon_food.src = input_radio.dataset.image;
+                            modal_title_name_food.textContent = name_food;
+                            amount_view_food.textContent = parseFloat(price_food).toFixed(2).padStart(5, "0");
+                            id_food_temp = input_radio.value;
+                            name_food_temp = name_food;
+                            price_food_temp = price_food;
+                            cost_temp = price_food;
+                            let resp_do = [];
+                            order_data_main.forEach(fj =>{
+                                fj.data.forEach((f)=>{
+                                    resp_do.push(f.food_id);
+                                })
+                            })
+
+                            if (!resp_do.includes(input_radio.value)){
+                                view_modal_state = true;
+                            }else{
+                                view_modal_state = false;
+                                openModal(myModal_messages);
+                            }
+                            if(view_modal_state){
+                                let label_ctn = input_radio.parentNode;
+                                input_radio_name_food.forEach((el)=>{ el.parentNode.classList.remove("option-selected-decoration-buttons") })
+                                label_ctn.classList.add("option-selected-decoration-buttons");
+                                openModal(myModal_config);
+                            }
+                        })
+                    })
+                    loader_change.style.display = "none";
+                })
+                container_observations.innerHTML="Cargando....";
+                await fetch("/honey/observations_foods_get?row="+String(sel_type_food)).then(res => res.json()).then(data =>{    
+                    container_observations.innerHTML="";
+                    data.forEach(el =>{
+                        const label_observation = document.createElement("label");
+                        label_observation.for = "obs-"+String(el.id);
+                        const input_observations = document.createElement("input");
+                        input_observations.type = "checkbox";
+                        input_observations.value = el.comment_text;
+                        input_observations.name = "m-observations";
+                        input_observations.id = "obs-"+String(el.id);
+                        const span_observation = document.createElement("span");
+                        span_observation.textContent = el.comment_text;
+                        label_observation.appendChild(input_observations);
+                        label_observation.appendChild(span_observation);
+
+                        container_observations.insertAdjacentElement("beforeend", label_observation);
+                    })
+                    
+                })
+                continue_.click();
+            })
+        })
+        const btn_subtract_ct = document.querySelectorAll(".btn-subtract, .btn-add");
+        btn_subtract_ct.forEach((btn)=>{
+            btn.addEventListener("click", ()=>{
+                if (btn.classList.contains("btn-subtract")){
+                    if (parseInt(btn.nextElementSibling.value) > 0){
+                        btn.nextElementSibling.value = parseInt(btn.nextElementSibling.value) - 1;
+                    } 
+                }else if(btn.classList.contains("btn-add")){
+                    btn.previousElementSibling.value = parseInt(btn.previousElementSibling.value) + 1;
+                }
+                amount_view_food.textContent = (parseFloat(cost_temp) * parseInt(m_cantity[0].value)).toFixed(2).padStart(5, "0");
+            })
+        })
+        
+
+        const save_order_unique = document.getElementById("save-order-unique");
+        save_order_unique.addEventListener("click", () =>{
+            order_data_main.forEach((order_data)=>{
+                if (parseInt(order_data.id_type_food) === parseInt(id_type_food_temp)){
+                    const current_order = order_data.data;
+                    let not_exist_food = true;
+                    current_order.forEach((f)=>{
+                        if (f.food_id === id_food_temp){
+                            f.food_id = id_food_temp;
+                            f.food_name = name_food_temp;
+                            f.price_food = price_food_temp;
+                            f.cantity=m_cantity[0].value;
+                            f.category_order = Array.from(m_category_order).filter(c => c.checked)[0].value;
+                            f.observations = [];
+                            const m_observations = container_observations.querySelectorAll('input[name="m-observations"]');
+                            m_observations.forEach(input => {
+                                if(input.checked){
+                                    f.observations.push(input.value);
+                                }
+                            });
+                            not_exist_food = false;
+                        }
+                    })
+                    if (not_exist_food){
+                        const new_data = {};
+                        new_data.food_id=id_food_temp;
+                        new_data.food_name = name_food_temp;
+                        new_data.price_food = price_food_temp;
+                        new_data.cantity=m_cantity[0].value;
+                        new_data.category_order = Array.from(m_category_order).filter(c => c.checked)[0].value;
+                        new_data.observations = [];
+                        const m_observations = container_observations.querySelectorAll('input[name="m-observations"]');
+                        m_observations.forEach(input => {
+                            if(input.checked){
+                                new_data.observations.push(input.value);
+                            }
+                        });
+                        current_order.push(new_data);
+                    }
+                    closeModal(myModal_config);
+                }
+            })
+            closeModal(myModal_config);
+            m_cantity[0].value = 1;
+            
+            Array.from(m_category_order).map((m)=> m.checked = false);
+            m_category_order[0].checked=true;
+            Array.from(container_observations.querySelectorAll('input[name="m-observations"]')).map(a=>a.checked=false);
+
+        })
+
+        const button_view_current_orders = document.querySelector(".button-show-all-order-current");
+        button_view_current_orders.addEventListener("click", () =>{
+            let amount_all = 0;
+            const main_ctn = document.getElementById("omv-all-container");
+            const amount_basket_result = document.getElementById("amount-basket-result");
+            main_ctn.innerHTML = "";
+            order_data_main.forEach((element) =>{
+                const d1 = document.createElement("div");
+                const d2 = document.createElement("div");
+                const d3 = document.createElement("div");
+                const h1 = document.createElement("h1");
+                d1.classList.add("omv-all-container-block-type");            
+                d2.classList.add("omv-all-container-title-type");
+                d3.classList.add("omv-all-container-food");
+                h1.textContent = element.name_type_food;
+                d2.appendChild(h1);
+                
+                const foods_ = element.data;
+                foods_.forEach(f=>{
+                    let temp_mode = "";
+                    if (parseInt(f.category_order) === 1){
+                        temp_mode = "para mesa";
+                    }else if (parseInt(f.category_order) === 2){
+                        temp_mode = "para llevar";
+                    }
+                    const d4 = document.createElement("div");
+                    const h2 = document.createElement("h2");
+                    const s1 = document.createElement("span");
+                    const ss = document.createElement("span");
+                    d4.classList.add("omv-food-descr");
+                    ss.classList.add("center-styles");
+                    h2.textContent = f.cantity+" - "+f.food_name + " - [" + temp_mode+"]";
+                    s1.textContent = "" + (parseFloat(f.price_food)*parseInt(f.cantity)).toFixed(2).padStart(5, "0");
+
+                    d4.appendChild(h2);
+                    d4.appendChild(ss);
+                    d4.appendChild(s1);
+                    d3.appendChild(d4);
+
+                    amount_all = amount_all + (parseFloat(f.price_food)*parseInt(f.cantity));
+                })
+    
+                d1.appendChild(d2);
+                d1.appendChild(d3);
+                if (element.data.length > 0){
+                    main_ctn.appendChild(d1);
+                }
+            });
+            amount_basket_result.textContent = (amount_all).toFixed(2).padStart(5, "0");
+            openModal(myModal_order_view);
+        })
+    </script>
+    <script src="{{ url_for('static', filename='js/libraries/socket.io.js') }}"></script>
+    <script>
+        var socket = io({transports: ['websocket']});
+        socket.on('connect', function() {
+            socket.emit('join_group_res_personalized', {room_app: 'main_group'});
+        });
+
+        const btn_create_order = document.querySelector("#continue-order");
+        btn_create_order.addEventListener("click", async()=>{
+            if(parseInt(order_data_table.number_table) != 0){
+                if (btn_create_order.classList.contains("btn-send-dorder-to-chef-main")){
+                    if (order_data_main.length > 0){
+                        if (order_data_main[0].data.length > 0){
+                            loader_change.style.display = "flex";
+                            await fetch("/honey/order/create_order", {
+                                method:"POST",
+                                headers : {
+                                    "Content-Type":"application/json",
+                                },
+                                body: JSON.stringify([order_data_main, order_data_table]),
+                            }).then(res => res.text()).then(data =>{
+                                if (data != "err"){
+                                    loader_change.style.display = "none";
+                                    document.getElementById("order-sent-to-back-message").style.display="block";
+                                    socket.emit("order_state_1", {"id":data}, (response)=>{
+                                        location.reload();
+                                    });
+                                }else{
+                                    location.reload();
+                                }
+                            })
+                        }else{
+                            openModal(myModal_order_view);
+                        }
+                    }else{
+                        openModal(myModal_order_view);
+                    }
+                }
+            }else{
+                openModal(document.getElementById("view-tables-for-order"));
+            }
+        })
+    </script>
+
+{% endblock %}

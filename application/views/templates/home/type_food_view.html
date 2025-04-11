@@ -1,0 +1,206 @@
+{% extends "layouts/nav_app_honey.html" %}
+
+{% block main_link_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='styles/styles_restaurant/folder_app.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='styles/ui/button-create.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='styles/styles_restaurant/type_food_view.css') }}">
+{% endblock %}
+
+{% block main_body %}
+    <section class="container-all-section">
+        <div class="title-page">
+            <h1>
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 512 512"><path fill="#333333" d="M178.446 401.425c-12.178-3.105-24.257-7.747-36.04-14.079l-59.414 34.709l-35.357-35.358l32.122-60.013a157 157 0 0 1-14.572-34.737L0 274.24v-50.09l64.837-19.044c3.328-12.087 8.09-23.835 14.3-34.948l-32.976-58.956L81.52 75.845l59.428 33.382c11.337-6.24 22.964-10.917 34.692-14.143l18.337-66.874h50.09l18.87 68.276a162 162 0 0 1 31.678 13.54l62.4-35.655l35.358 35.358l-35.475 62.993c9.101 16.73 15.3 35.462 17.736 55.72H312.06c-12.596-62.378-84.627-97.801-143.03-64.131c-64.234 37.031-64.234 130.112 0 167.143c17.563 10.125 36.358 13.993 54.4 12.767v79.481h-38.57zm322.852 43.39H203.05c0 23.467 19.14 38.975 42.607 38.975H458.69c23.467 0 42.607-15.508 42.607-38.975m-63.91-69.239c1.77 25.206-16.312 41.605-37.281 41.605h-117.17c-20.47 0-37.28-15.808-37.28-36.279V258.407c0-5.826 4.826-10.652 10.652-10.652h191.73c88.312 4.435 85.558 133.367-10.651 127.821m0-95.866v63.911c60.99 5.25 52.838-72.388 0-63.91"/></svg>
+                Categoría de platos
+            </h1>
+        </div>
+        <div class="btn-create-ui-main-template__ui-div-ctn">
+            <button class="btn-create-ui-main-template" data-bs-toggle="modal" data-bs-target="#modal-create">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 11h-6V5a1 1 0 0 0-2 0v6H5a1 1 0 0 0 0 2h6v6a1 1 0 0 0 2 0v-6h6a1 1 0 0 0 0-2Z"/></svg>
+                <span>
+                    Nueva categoría
+                </span>
+            </button> 
+        </div>
+        {% if typeFoodData %}
+        <div class="container-all-of-folder-block__one">
+            {% for typeFood in typeFoodData %}
+                <div class="container-all-of-folder-block__block-main" data-identifier="{{ typeFood.id }}">
+                    <div class="block-main__header">
+                        <div class="block-main__header-text">
+                            {% if typeFood.state == 1 %}
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"><path fill="#585b74" d="M12 9a3 3 0 0 0-3 3a3 3 0 0 0 3 3a3 3 0 0 0 3-3a3 3 0 0 0-3-3m0 8a5 5 0 0 1-5-5a5 5 0 0 1 5-5a5 5 0 0 1 5 5a5 5 0 0 1-5 5m0-12.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5Z"/></svg>
+                                <span>Activo</span>
+                            {% else %}
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 256 256"><path fill="#585b74" d="M53.92 34.62a8 8 0 1 0-11.84 10.76l19.24 21.17C25 88.84 9.38 123.2 8.69 124.76a8 8 0 0 0 0 6.5c.35.79 8.82 19.57 27.65 38.4C61.43 194.74 93.12 208 128 208a127.11 127.11 0 0 0 52.07-10.83l22 24.21a8 8 0 1 0 11.84-10.76Zm89 121.69a32 32 0 0 1-41.67-45.85Zm104.39-25.05c-.42.94-10.55 23.37-33.36 43.8a8 8 0 0 1-11.26-.57L101.4 63.07a8 8 0 0 1 4.6-13.28A134 134 0 0 1 128 48c34.88 0 66.57 13.26 91.66 38.35c18.83 18.83 27.3 37.62 27.65 38.41a8 8 0 0 1 0 6.5Z"/></svg>
+                                <span>Inactivo</span>
+                            {% endif %}
+                        </div>
+                        <div class="block-main__header-more">
+                            <button>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"><path fill="none" stroke="#585b74" stroke-linejoin="round" stroke-width="3.75" d="M12 12h.01v.01H12zm0-7h.01v.01H12zm0 14h.01v.01H12z"/></svg>
+                            </button>
+                            <div class="block-main__header-more-data">
+                                <button class="btn-edit-more-data" data-identifier="{{ typeFood.id }}" data-state="{{ typeFood.state }}">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"><g fill="none" stroke="#322447" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="m16.474 5.408l2.118 2.117m-.756-3.982L12.109 9.27a2.118 2.118 0 0 0-.58 1.082L11 13l2.648-.53c.41-.082.786-.283 1.082-.579l5.727-5.727a1.853 1.853 0 1 0-2.621-2.621Z"/><path d="M19 15v3a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2h3"/></g></svg>
+                                </button>
+                                <button class="btn-del-more-data" data-identifier="{{ typeFood.id }}" data-state="{{ typeFood.state }}">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#190d28" class="bi bi-trash3-fill" viewBox="0 0 16 16"><path d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5Zm-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5ZM4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06Zm6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528ZM8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5Z"/></svg>
+                                </button>
+                                <button class="btn-lock-more-data" data-identifier="{{ typeFood.id }}" data-state="{{ typeFood.state }}">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"><path fill="#585b74" d="M12 9a3 3 0 0 0-3 3a3 3 0 0 0 3 3a3 3 0 0 0 3-3a3 3 0 0 0-3-3m0 8a5 5 0 0 1-5-5a5 5 0 0 1 5-5a5 5 0 0 1 5 5a5 5 0 0 1-5 5m0-12.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5Z"/></svg>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <a href="/honey/viewfoods?s={{ typeFood.id }}">
+                        <div class="block-main__body">
+                            <div class="block-main__body-icon">
+                                <img src="{{ typeFood.image }}" alt="">                       
+                            </div>
+                            <div class="block-main__body-text">
+                                <div class="block-main__body-text-parts-name">
+                                    <span>{{ typeFood.name_type }}</span>
+                                </div>
+                                <div class="block-main__body-text-parts">
+                                    <div class="block-main-description-food"><span>{{ typeFood.description }}</span></div>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            
+            {% endfor %}
+        </div>
+        {% else %}
+        <div class="container-not-found-empty">
+            <span>Categorías de platos vacío</span>
+        </div>
+        {% endif %}
+
+        <!-- Route delete post -->
+        <!-- <form action="{{ url_for('restaurant.dbTypeFoodDelete') }}" method="POST">
+            <input type="hidden" value="" name="row">
+            <button type="submit" class="btn btn-danger">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash3-fill" viewBox="0 0 16 16"><path d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5Zm-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5ZM4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06Zm6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528ZM8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5Z"/></svg>
+            </button>
+        </form> -->
+
+        
+    </section>
+        <!-- MODALS FOR CRUD -->
+    <!-- modal delete -->
+    <div class="modal" id="modal-delete">
+        <div class="modal-background"></div>
+        <div class="modal-content">
+            <div class="modal-title">
+                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 24 24"><path fill="#ce2222" d="M17 4v2H3V4h3.5l1-1h5l1 1H17M4 19V7h12v12c0 1.1-.9 2-2 2H6c-1.1 0-2-.9-2-2m15-4h2v2h-2v-2m0-8h2v6h-2V7Z"/></svg>
+                <h5 class=""> Confirmar para eliminar</h5>
+            </div>
+            <div class="btn-confim-action-container">
+                <button class="" id="btn-delete-type-food">
+                    Eliminar
+                </button>
+            </div>
+        </div>
+        <button class="modal-close is-large" aria-label="close"></button>
+    </div>
+    <!-- Modal lock -->
+    <div class="modal" id="modal-lock">
+        <div class="modal-background"></div>
+        <div class="modal-content">
+            <div class="modal-title">
+                <h5>Confirmar para bloquear</h5>
+            </div>
+            <div class="btn-confim-action-container">
+                <button type="button" class="" id="btn-lock-update-save">Desactivar</button>
+            </div>
+        </div>
+        <button class="modal-close is-large" aria-label="close"></button>
+    </div>
+    <!-- modal create -->
+    <div class="modal" id="modal-create">
+        <div class="modal-background"></div>
+        <div class="modal-content">
+            <div class="modal-title">
+                Crear categoría
+            </div>
+            <form action="typefoodabs" method="post" enctype="multipart/form-data">
+                <div class="block-modal">
+                    <label for="name_type" class="form-label">Nombre de la categoría <span class="text-danger"> *</span></label>
+                    <input type="text" name="name_type" class="form-control" id="name_type" placeholder="" required>
+                </div>
+                <div class="block-modal">
+                    <label for="description" class="form-label">Descripción</label>
+                    <input type="text" name="description" class="form-control" id="description" placeholder="" required>
+                </div>
+                <div class="block-modal">
+                    <label for="image" class="form-label">Imagen</label>
+                    <input type="hidden" name="image" id="image" required>
+                    <input type="text" name="input-search" class="image_name_search_input form-control" required autocomplete="off">
+                    <div class="container-all-image-renderer-search-user"></div>
+                </div>
+                <div class="block-modal-btn-submit">
+                    <button class="btn-submit btn btn-success" id="btn-create-type-food" type="button">Guardar</button>
+                </div>
+            </form>          
+        </div>
+        <button class="modal-close is-large" aria-label="close"></button>
+    </div>
+    
+    <!-- modal edit -->
+    <div class="modal" id="modal-edit">
+        <div class="modal-background"></div>
+        <div class="modal-content">
+            <div class="modal-title">
+                Actualizar categoría
+            </div>
+            <form action="typefoodroute_update" method="post" enctype="multipart/form-data">
+                <div class="block-modal">
+                    <label for="name_type-edit" class="form-label">Tipo de plato <span class="text-danger"> *</span></label>
+                    <input type="text" name="name_type-edit" class="form-control" id="name_type-edit" placeholder="" required>
+                </div>
+                <div class="block-modal">
+                    <label for="description-edit" class="form-label">Descripción</label>
+                    <input type="text" name="description-edit" class="form-control" id="description-edit" placeholder="" required>
+                </div>
+                <div class="block-modal">
+                    <label for="image-edit" class="form-label">Imagen</label>
+                    <input type="hidden" name="image-edit" id="image-edit" required>
+                    <input type="text" name="input-search" class="image_name_search_input form-control" required autocomplete="off">
+                    <div class="container-all-image-renderer-search-user"></div>
+                </div>
+                <div class="block-modal-btn-submit">
+                    <button class="btn-submit btn btn-primary" id="btn-edit-type-food" type="button">Actualizar</button>
+                </div>
+            </form>
+        </div>
+        <button class="modal-close is-large" aria-label="close"></button>
+    </div>
+    
+        <!-- FIN MODALS -->
+{% endblock %}
+{% block main_link_js %}
+    <script src="{{ url_for('static', filename='js/TypeFoodController.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/controller_images_input.js') }}"></script>
+    <script>
+        const typeFoodController = new TypeFoodController();
+        typeFoodController.createTypeFood();
+        typeFoodController.deleteTypeFood();
+        typeFoodController.updateStateTypeFood();
+        typeFoodController.editTypeFood();
+        
+        image_input_controll();
+        const folders_all = document.querySelectorAll(".container-all-of-folder-block__block-main");
+        folders_all.forEach((folder)=>{
+            folder.addEventListener("dblclick", ()=>{
+                let identifier_folder = folder.dataset.identifier;
+                window.location.href = "/honey/viewfoods?s="+String(identifier_folder);
+            });
+        });
+        const btn_open_create_type_food = document.querySelector(".btn-create-ui-main-template");
+        btn_open_create_type_food.addEventListener("click", ()=>{
+            openModal(document.getElementById("modal-create"));
+        });
+    </script>
+{% endblock %}

@@ -1,0 +1,507 @@
+<!doctype html>
+<html lang="en">
+<head>
+        
+        <meta charset="utf-8" />
+        <title>emTorch ADM</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta content="Panel de administración" name="description" />
+        <meta content="Over Rimachi" name="author" />
+        <meta name="theme-color" content="#4f85ee">
+        <!-- App favicon -->
+        <link rel="shortcut icon" href="{{ url_for('static', filename='images/') }}30-transparente.min.png">
+
+        <!-- Bootstrap Css -->
+        <link href="{{ url_for('static', filename='styles/crm_css/bootstrap.min.css') }}" id="bootstrap-style" rel="stylesheet" type="text/css" />
+        
+        <!-- <link rel="stylesheet" href="{{ url_for('static', filename='styles/bootstrap.min.css') }}"> -->
+        <!-- Icons Css -->
+        <link href="{{ url_for('static', filename='styles/crm_css/icons.min.css') }}" rel="stylesheet" type="text/css" />
+        <!-- App Css-->
+        <link href="{{ url_for('static', filename='styles/crm_css/app.min.css') }}" id="app-style" rel="stylesheet" type="text/css" />
+
+        <link rel="stylesheet" href="{{ url_for('static', filename='styles/styles_restaurant/navigation.css') }}">
+        <!-- BULMA -->
+        <!-- <link rel="stylesheet" href="{{ url_for('static', filename='styles/libraries/bulma.min.css') }}"> -->
+
+        {% block main_link_css %}
+        {% endblock %}
+    </head>
+
+    <body data-sidebar="dark" data-layout-mode="light">
+        <!-- <body data-sidebar="dark" data-layout-mode="dark"> -->
+
+    <!-- <body data-layout="horizontal" data-topbar="light"> -->
+
+        <!-- Begin page -->
+        <div id="layout-wrapper">
+
+            
+            <header id="page-topbar">
+                <div class="navbar-header" style="background-color: #4f85ee;color: white;">
+                    <div class="container-special-dark-mode  d-flex">
+                        
+                        <!-- LOGO -->
+                        <div class="navbar-brand-box">
+                            <!-- <a href="#" class="logo logo-dark">
+                                <span class="logo-sm">
+                                    <img src="{{ url_for('static', filename='images/images_restaurant/images_profiles/') }}{{ image_profile }}" alt="" height="22">
+                                </span>
+                                <span class="logo-lg">
+                                    <img src="{{ url_for('static', filename='images/images_restaurant/images_profiles/') }}{{ image_profile }}" alt="" height="50">
+                                </span>
+                            </a> -->
+
+                            <a href="#" class="logo_image_profile_navigation_main_div logo logo-light">
+                                <span class="logo-sm">
+                                    <img src="{{ url_for('static', filename='images/') }}emtorch-500.png" alt="">
+                                </span>
+                                <span class="logo-lg">
+                                    <img src="{{ url_for('static', filename='images/') }}emtorch-500.png" alt="">
+                                </span>
+                            </a>
+                        </div>
+
+                        <button type="button" class="btn btn-sm px-3 font-size-16 header-item waves-effect" id="vertical-menu-btn">
+                            <i class="fa fa-fw fa-bars" style="color: white;"></i>
+                        </button>
+
+                        <!-- App Search-->
+                        <!-- <form class="app-search d-none d-lg-block">
+                            <div class="position-relative">
+                                <input type="text" class="form-control" placeholder="Search...">
+                                <span class="bx bx-search-alt"></span>
+                            </div>
+                        </form> -->
+
+                        <!-- <div class="dropdown dropdown-mega d-none d-lg-block ms-2">
+                            <button type="button" class="btn header-item waves-effect" data-bs-toggle="dropdown" aria-haspopup="false" aria-expanded="false">
+                                <span key="t-megamenu">Modo administrador</span>
+                            </button>
+                        </div> -->
+                    </div>
+
+                    <div class="d-flex">
+
+                        <!-- <div class="dropdown d-inline-block d-lg-none ms-2">
+                            <button type="button" class="btn header-item noti-icon waves-effect" id="page-header-search-dropdown"
+                            data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="mdi mdi-magnify" style="color: white;"></i>
+                            </button>
+                            <div class="dropdown-menu dropdown-menu-lg dropdown-menu-end p-0"
+                                aria-labelledby="page-header-search-dropdown">
+        
+                                <form class="p-3">
+                                    <div class="form-group m-0">
+                                        <div class="input-group">
+                                            <input type="text" class="form-control" placeholder="Search ..." aria-label="Recipient's username">
+                                            <div class="input-group-append">
+                                                <button class="btn btn-primary" type="submit"><i class="mdi mdi-magnify"></i></button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div> -->
+
+                        <div class="dropdown d-inline-block">
+                            <button type="button" class="btn header-item waves-effect" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <img id="header-lang-img" src="{{ url_for('static', filename='images/images_restaurant/images_icons/spain.jpg') }}" alt="Header Language" height="16">
+                            </button>
+                            <div class="dropdown-menu dropdown-menu-end">
+
+                                <!-- item-->
+                                <a href="javascript:void(0);" class="dropdown-item notify-item language" data-lang="en">
+                                    <img src="{{ url_for('static', filename='images/images_restaurant/images_icons/us.jpg') }}" alt="user-image" class="me-1" height="12"> <span class="align-middle">Ingles</span>
+                                </a>
+                                <!-- item-->
+                                <a href="javascript:void(0);" class="dropdown-item notify-item language" data-lang="sp">
+                                    <img src="{{ url_for('static', filename='images/images_restaurant/images_icons/spain.jpg') }}" alt="user-image" class="me-1" height="12"> <span class="align-middle">Español</span>
+                                </a>
+
+                            </div>
+                        </div>
+
+                        <div class="dropdown d-none d-lg-inline-block ms-1">
+                            <button type="button" class="btn header-item noti-icon waves-effect" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="bx bx-customize" style="color: white;"></i>
+                            </button>
+                            <div class="dropdown-menu dropdown-menu-lg dropdown-menu-end">
+                                <div class="px-lg-2">
+                                    <div class="row g-0">
+                                        <div class="col">
+                                            <a class="dropdown-icon-item" href="#">
+                                                <img src="{{ url_for('static', filename='images/images_restaurant/images_icons/') }}github.png" alt="Github">
+                                                <span>GitHub</span>
+                                            </a>
+                                        </div>
+                                        <div class="col">
+                                            <a class="dropdown-icon-item" href="#">
+                                                <img src="{{ url_for('static', filename='images/images_restaurant/images_icons/') }}bitbucket.png" alt="bitbucket">
+                                                <span>Bitbucket</span>
+                                            </a>
+                                        </div>
+                                        <div class="col">
+                                            <a class="dropdown-icon-item" href="#">
+                                                <img src="{{ url_for('static', filename='images/images_restaurant/images_icons/') }}dribbble.png" alt="dribbble">
+                                                <span>Dribbble</span>
+                                            </a>
+                                        </div>
+                                    </div>
+
+                                    <div class="row g-0">
+                                        <div class="col">
+                                            <a class="dropdown-icon-item" href="#">
+                                                <img src="{{ url_for('static', filename='images/images_restaurant/images_icons/') }}dropbox.png" alt="dropbox">
+                                                <span>Dropbox</span>
+                                            </a>
+                                        </div>
+                                        <div class="col">
+                                            <a class="dropdown-icon-item" href="#">
+                                                <img src="{{ url_for('static', filename='images/images_restaurant/images_icons/') }}mail_chimp.png" alt="mail_chimp">
+                                                <span>Mail Chimp</span>
+                                            </a>
+                                        </div>
+                                        <div class="col">
+                                            <a class="dropdown-icon-item" href="#">
+                                                <img src="{{ url_for('static', filename='images/images_restaurant/images_icons/') }}slack.png" alt="slack">
+                                                <span>Slack</span>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="dropdown d-none d-lg-inline-block ms-1">
+                            <button type="button" class="btn header-item noti-icon waves-effect" data-bs-toggle="fullscreen">
+                                <i class="bx bx-fullscreen" style="color: white;"></i>
+                            </button>
+                        </div>
+
+                        <div class="dropdown d-inline-block">
+                            <button type="button" class="btn header-item noti-icon waves-effect" id="page-header-notifications-dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="bx bx-bell bx-tada" style="color: white;"></i>
+                                <span class="badge bg-danger rounded-pill">3</span>
+                            </button>
+                            <div class="dropdown-menu dropdown-menu-lg dropdown-menu-end p-0" aria-labelledby="page-header-notifications-dropdown">
+                                <div class="p-3">
+                                    <div class="row align-items-center">
+                                        <div class="col">
+                                            <h6 class="m-0" key="t-notifications"> Notificaciones </h6>
+                                        </div>
+                                        <div class="col-auto">
+                                            <a href="#!" class="small" key="t-view-all"> Ver todo</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div data-simplebar style="max-height: 230px;">
+                                    <a href="javascript: void(0);" class="text-reset notification-item">
+                                        <div class="d-flex">
+                                            <div class="avatar-xs me-3">
+                                                <span class="avatar-title bg-primary rounded-circle font-size-16">
+                                                    <i class="bx bx-cart"></i>
+                                                </span>
+                                            </div>
+                                            <div class="flex-grow-1">
+                                                <h6 class="mb-1" key="t-your-order">Tu pedido está hecho</h6>
+                                                <div class="font-size-12 text-muted">
+                                                    <p class="mb-1" key="t-grammer">Si varios idiomas se unen la gramática</p>
+                                                    <p class="mb-0"><i class="mdi mdi-clock-outline"></i> <span key="t-min-ago">hace 3 minutos</span></p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                    <a href="javascript: void(0);" class="text-reset notification-item">
+                                        <div class="d-flex">
+                                            <img src="{{ url_for('static', filename='images/images_restaurant/images_profiles/') }}avatar-4.jpg"
+                                                class="me-3 rounded-circle avatar-xs" alt="user-pic">
+                                            <div class="flex-grow-1">
+                                                <h6 class="mb-1">James Lemire</h6>
+                                                <div class="font-size-12 text-muted">
+                                                    <p class="mb-1" key="t-simplified">Parecerá un inglés simplificado.</p>
+                                                    <p class="mb-0"><i class="mdi mdi-clock-outline"></i> <span key="t-hours-ago">hace 1 hora</span></p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                    <a href="javascript: void(0);" class="text-reset notification-item">
+                                        <div class="d-flex">
+                                            <div class="avatar-xs me-3">
+                                                <span class="avatar-title bg-success rounded-circle font-size-16">
+                                                    <i class="bx bx-badge-check"></i>
+                                                </span>
+                                            </div>
+                                            <div class="flex-grow-1">
+                                                <h6 class="mb-1" key="t-shipped">Su artículo es enviado</h6>
+                                                <div class="font-size-12 text-muted">
+                                                    <p class="mb-1" key="t-grammer">Si varios idiomas se unen la gramática</p>
+                                                    <p class="mb-0"><i class="mdi mdi-clock-outline"></i> <span key="t-min-ago">hace 3 minutos</span></p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>
+
+                                    <a href="javascript: void(0);" class="text-reset notification-item">
+                                        <div class="d-flex">
+                                            <img src="{{ url_for('static', filename='images/images_restaurant/images_profiles/') }}avatar-4.jpg"
+                                                class="me-3 rounded-circle avatar-xs" alt="user-pic">
+                                            <div class="flex-grow-1">
+                                                <h6 class="mb-1">Salena Layfield</h6>
+                                                <div class="font-size-12 text-muted">
+                                                    <p class="mb-1" key="t-occidental">Como un escéptico amigo mío de Cambridge occidental.</p>
+                                                    <p class="mb-0"><i class="mdi mdi-clock-outline"></i> <span key="t-hours-ago">hace 1 hora</span></p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                                <div class="p-2 border-top d-grid">
+                                    <a class="btn btn-sm btn-link font-size-14 text-center" href="javascript:void(0)">
+                                        <i class="mdi mdi-arrow-right-circle me-1"></i> <span key="t-view-more">Ver más..</span> 
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="dropdown d-inline-block">
+                            <button type="button" class="btn header-item waves-effect" id="page-header-user-dropdown"
+                            data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <img class="rounded-circle header-profile-user" src="{{ url_for('static', filename='images/images_restaurant/images_profiles/') }}{{ image_profile }}"
+                                    alt="Header Avatar">
+                                <!-- <span class="d-none d-xl-inline-block ms-1" key="t-henry">Marco</span> -->
+                                <!-- <i class="mdi mdi-chevron-down d-none d-xl-inline-block"></i> -->
+                            </button>
+                            <div class="dropdown-menu dropdown-menu-end">
+                                <!-- item-->
+                                {% if level_user_context == "2" %}
+                                    <a class="dropdown-item" href="/honey/edit_user_admin"><i class="bx bx-user font-size-16 align-middle me-1"></i> <span key="t-profile">Perfil</span></a>
+                                {% elif level_user_context == "4" %}
+                                    <a class="dropdown-item" href="/honey/edit_user_w"><i class="bx bx-user font-size-16 align-middle me-1"></i> <span key="t-profile">Perfil</span></a>
+                                {% endif %}
+                                <!-- <a class="dropdown-item" href="#"><i class="bx bx-wallet font-size-16 align-middle me-1"></i> <span key="t-my-wallet">Mi billetera</span></a> -->
+                                <!-- <a class="dropdown-item d-block" href="#"><span class="badge bg-success float-end">11</span><i class="bx bx-wrench font-size-16 align-middle me-1"></i> <span key="t-settings">Ajustes</span></a> -->
+                                <!-- <a class="dropdown-item" href="#"><i class="bx bx-lock-open font-size-16 align-middle me-1"></i> <span key="t-lock-screen">Bloquear pantalla</span></a> -->
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item text-danger" href="{{ url_for('restaurant.destroySession') }}"><i class="bx bx-power-off font-size-16 align-middle me-1 text-danger"></i> <span key="t-logout">Cerrar sesión</span></a>
+                            </div>
+                        </div>
+
+                        <!-- <div class="dropdown d-inline-block">
+                            <button type="button" class="btn header-item noti-icon right-bar-toggle waves-effect">
+                                <i class="bx bx-cog bx-spin"></i>
+                            </button>
+                        </div> -->
+
+                    </div>
+                </div>
+            </header>
+
+            <!-- ========== Left Sidebar Start ========== -->
+            <div class="vertical-menu">
+
+                <div data-simplebar class="h-100">
+
+                    <!--- Sidemenu -->
+                    <div id="sidebar-menu" class="sidebar-menu-css-pure">
+                        <!-- Left Menu Start -->
+                        <ul class="metismenu list-unstyled" id="side-menu">
+                            {% if level_user_context == "2" %}
+                            <li class="menu-title" key="t-menu">Menu</li>
+
+                            <li>
+                                <a href="/honey/panel" class="waves-effect">
+                                    <i class="bx bx-home-circle"></i>
+                                    <span key="t-dashboards">Dashboards</span>
+                                </a>
+                            </li>
+
+                            <li>
+                                <a href="/honey/waitress_view" class="waves-effect">
+                                    <i class="bx bx-user"></i>
+                                    <span key="t-layouts">Meser@s</span>
+                                </a>
+                            </li>
+
+                            <li>
+                                <a href="javascript: void(0);" class="has-arrow waves-effect">
+                                    <i class='bx bx-food-menu'></i>
+                                    <span key="t-ecommerce">Platos</span>
+                                </a>
+                                <ul class="sub-menu" aria-expanded="false">
+                                    <!-- <li><a href="/honey/viewfoods" key="t-default">Platos</a></li> -->
+                                    <li><a href="/honey/typefoodroute" key="t-saas">Tipos de platos</a></li>                
+                                    <li><a href="/honey/observations_foods" key="t-comments">Observaciones</a></li>                
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="/honey/reservations" class="waves-effect">
+                                    <i class='bx bx-bookmark-plus'></i>
+                                    <span key="t-invoices">Reservaciones</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/honey/record_movements" class="waves-effect">
+                                    <i class="bx bx-heading"></i>
+                                    <span key="t-layouts">Historial</span>
+                                </a>
+                            </li>
+
+                            <li>
+                                <a href="javascript: void(0);" class="has-arrow waves-effect">
+                                    <i class="bx bx-bell-plus"></i>
+                                    <span key="t-notifications">Notificaciones</span>
+                                </a>
+                                <ul class="sub-menu" aria-expanded="false">
+                                    <li><a href="/honey/create-notifications" key="create-notifications">Crear notificación</a></li>
+                                    <li><a href="/honey/notifications" key="t-jobs">Notificaciones</a></li>
+                                </ul>
+                            </li>
+
+                            <li>
+                                <a href="/honey/reports-admin" class="waves-effect">
+                                    <i class="bx bx-receipt"></i>
+                                    <span key="t-invoices">Reportes</span>
+                                </a>
+                            </li>
+                            <!-- <li>
+                                <a href="javascript: void(0);" class="has-arrow waves-effect">
+                                    <i class="bx bx-briefcase-alt"></i>
+                                    <span key="t-jobs">Trabajos</span>
+                                </a>
+                                <ul class="sub-menu" aria-expanded="false">
+                                    <li><a href="/honey/jobs/create_job" key="t-jobs">Publicar trabajo</a></li>
+                                    <li><a href="createfood" key="t-jobs">Postulaciones</a></li>
+                                </ul>
+                            </li> -->
+                            <li>
+                                <a href="/payments/app_payments" class="waves-effect">
+                                    <i class='bx bx-credit-card' ></i>
+                                    <span key="t-invoices">Pagos</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="javascript: void(0);" class="waves-effect">
+                                    <i class='bx bx-help-circle' ></i>
+                                    <span key="t-invoices">Ayuda</span>
+                                </a>
+                            </li>
+
+                            {% elif level_user_context == "4" %}
+                            <li class="menu-title" key="t-apps">Apps</li>
+                            
+                            <li>
+                                <a href="/honey/panel" class="waves-effect">
+                                    <i class="bx bx-home-circle"></i>
+                                    <span key="t-dashboards">Dashboards</span>
+                                </a>
+                            </li>
+
+                            <li>
+                                <a href="/honey/ordenes" class="waves-effect">
+                                    <i class="bx bx-layout"></i>
+                                    <span key="t-layouts">Ordenes</span>
+                                </a>
+                            </li>
+
+                            <li>
+                                <a href="/honey/reservations" class="waves-effect">
+                                    <i class='bx bx-bookmark-plus'></i>
+                                    <span key="t-invoices">Reservaciones</span>
+                                </a>
+                            </li>
+
+                            <li>
+                                <a href="/honey/create" class="waves-effect">
+                                    <i class='bx bx-dish'></i>
+                                    <span key="t-dashboards">Agregar orden</span>
+                                </a>
+                            </li>
+
+                            <li>
+                                <a href="javascript: void(0);" class="has-arrow waves-effect">
+                                    <i class='bx bx-food-menu'></i>
+                                    <span key="t-ecommerce">Platos</span>
+                                </a>
+                                <ul class="sub-menu" aria-expanded="false">
+                                    <!-- <li><a href="/honey/viewfoods" key="t-default">Platos</a></li> -->
+                                    <li><a href="/honey/typefoodroute" key="t-saas">Tipo de platos</a></li>
+                                    <li><a href="/honey/observations_foods" key="t-comments">Observaciones</a></li>       
+                                </ul>
+                            </li>
+
+                            <li>
+                                <a href="/honey/notifications_users" class="waves-effect">
+                                    <i class="bx bx-bell-plus"></i>
+                                    <span key="t-chat">Notificaciones</span>
+                                </a>
+                            </li>
+                            <!-- <li>
+                                <a href="/honey/jobs/home" class="waves-effect">
+                                    <span class="badge rounded-pill bg-success float-end" key="t-new">Nuevo</span>
+                                    <i class="bx bx-briefcase-alt"></i>
+                                    <span key="t-jobs">trabajos</span>
+                                </a>
+                            </li>       -->
+                            <!-- <li>
+                                <a href="javascript: void(0);" class="has-arrow waves-effect">
+                                    <i class="bx bx-briefcase-alt"></i>
+                                    <span key="t-jobs">Trabajos</span>
+                                </a>
+                                <ul class="sub-menu" aria-expanded="false">
+                                    <li><a href="jobs/home" key="t-jobs">Trabajos</a></li>
+                                    <li><a href="createfood" key="t-jobs">Postulaciones</a></li>
+                                </ul>
+                            </li> -->
+
+                            {% endif %}
+                        </ul>
+                    </div>
+                    <!-- Sidebar -->
+                </div>
+            </div>
+            <!-- Left Sidebar End -->
+
+            
+
+            <!-- ============================================================== -->
+            <!-- Start right Content here -->
+            <!-- ============================================================== -->
+            <div class="main-content">
+                <div class="page-content">
+                    
+                    {% block main_body %}            
+
+                    {% endblock %}
+                
+                </div>
+            </div>
+            <!-- end main content-->
+
+        </div>
+        
+
+        <!-- Right bar overlay-->
+        <!-- <div class="rightbar-overlay"></div> -->
+
+        <!-- JAVASCRIPT -->
+        <script src="{{ url_for('static', filename='js/crm_js/jquery.min.js') }}"></script>
+        <script src="{{ url_for('static', filename='js/crm_js/bootstrap.bundle.min.js') }}"></script>
+        <script src="{{ url_for('static', filename='js/crm_js/metisMenu.min.js') }}"></script>
+        <script src="{{ url_for('static', filename='js/crm_js/simplebar.min.js') }}"></script>
+        <!-- <script src="{{ url_for('static', filename='js/crm_js/waves.min.js') }}"></script> -->
+
+        <!-- apexcharts -->
+        <!-- <script src="{{ url_for('static', filename='js/crm_js/apexcharts.min.js') }}"></script> -->
+
+        <!-- dashboard init -->
+        <!-- <script src="{{ url_for('static', filename='js/crm_js/dashboard.init.js') }}"></script> -->
+
+        <!-- App js -->
+        <script src="{{ url_for('static', filename='js/crm_js/app.js') }}"></script>
+        {% block main_link_js %}
+
+        {% endblock %}
+    </body>
+
+</html>

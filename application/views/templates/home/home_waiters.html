@@ -1,0 +1,103 @@
+{% extends "layouts/nav_app_honey.html" %}
+
+{% block main_link_css %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/styles_restaurant/home_users.css') }}">
+{% endblock %}
+
+{% block main_body %}
+    <div class="container-main">
+        <div class="container-data-user">
+            <div class="container-profile-image">
+                <img src="{{ image_profile }}" alt="">
+            </div>
+            <div class="container-info-user">
+                <h5>{{ user_first_name }}, {{ user_last_name }}</h5>
+                <p class=""><svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24"><path fill="#2f2650" d="M22 6c0-1.1-.9-2-2-2H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2zm-2 0l-8 5l-8-5zm0 12H4V8l8 5l8-5z"/></svg>{{ user_email }}</p>
+                <p class=""><svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24"><path fill="#2f2650" d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21c5.46 0 9.91-4.45 9.91-9.91c0-2.65-1.03-5.14-2.9-7.01A9.816 9.816 0 0 0 12.04 2m.01 1.67c2.2 0 4.26.86 5.82 2.42a8.225 8.225 0 0 1 2.41 5.83c0 4.54-3.7 8.23-8.24 8.23c-1.48 0-2.93-.39-4.19-1.15l-.3-.17l-3.12.82l.83-3.04l-.2-.32a8.188 8.188 0 0 1-1.26-4.38c.01-4.54 3.7-8.24 8.25-8.24M8.53 7.33c-.16 0-.43.06-.66.31c-.22.25-.87.86-.87 2.07c0 1.22.89 2.39 1 2.56c.14.17 1.76 2.67 4.25 3.73c.59.27 1.05.42 1.41.53c.59.19 1.13.16 1.56.1c.48-.07 1.46-.6 1.67-1.18c.21-.58.21-1.07.15-1.18c-.07-.1-.23-.16-.48-.27c-.25-.14-1.47-.74-1.69-.82c-.23-.08-.37-.12-.56.12c-.16.25-.64.81-.78.97c-.15.17-.29.19-.53.07c-.26-.13-1.06-.39-2-1.23c-.74-.66-1.23-1.47-1.38-1.72c-.12-.24-.01-.39.11-.5c.11-.11.27-.29.37-.44c.13-.14.17-.25.25-.41c.08-.17.04-.31-.02-.43c-.06-.11-.56-1.35-.77-1.84c-.2-.48-.4-.42-.56-.43c-.14 0-.3-.01-.47-.01"/></svg>{{ user_phone_number }}</p>
+            </div>
+        </div>
+        <!-- end row -->
+        <div class="container-details-data">
+            <div class="container-block">
+                <h5>Rol de usuario</h5>
+                <p class="p-quantity_order">{% if user_role == 1 %} Mesero {% elif user_role == 2 %}Cocinero {%endif%}</p>
+            </div>
+            {% if admin_data|length <= 0 %}
+                <div class="container-block">
+                    <h5>Administrador</h5>
+                    <p>No conectado</p>
+                </div>
+            {% else %}
+                <div class="container-block btn-open-modal-disconnect">
+                    <div class="container-image-admin">
+                        <img src="{{ admin_data.user_image }}" alt="">
+                    </div>
+                    <h5>Administrador</h5>
+                    <p>{{ admin_data.user_surnames }}, {{ admin_data.user_name }}</p>
+                </div>
+            {% endif %}
+            <div class="container-block">
+                <h5>Órdenes concluídas</h5>
+                <p class="p-quantity_order">{{ quantity_order }}</p>
+            </div>
+        </div>
+        <div class="container-coworkers">
+            <h2>Listado de meser@s</h2>
+            <div class="block-coworkers">
+                {% for w in coworkers %}
+                <div class="container-main-profile-user">
+                    <div class="block-data-info-user">
+                        <div class="container-img container-img-for-open">
+                            <img src="{{ w.user_image }}" alt="">
+                        </div>
+                        <div class="container-info">
+                            <span>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"><g fill="none" stroke="#666666" stroke-linecap="round" stroke-width="2"><path d="M19.727 20.447c-.455-1.276-1.46-2.403-2.857-3.207C15.473 16.436 13.761 16 12 16c-1.761 0-3.473.436-4.87 1.24c-1.397.804-2.402 1.931-2.857 3.207"/><circle cx="12" cy="8" r="4"/></g></svg>
+                                {{ w.user_first_name }}, {{ w.user_last_name }}
+                            </span>
+                            <span>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 16 16"><path fill="#666666" d="M11.5 0h-7C3.675 0 3 .675 3 1.5v13c0 .825.675 1.5 1.5 1.5h7c.825 0 1.5-.675 1.5-1.5v-13c0-.825-.675-1.5-1.5-1.5M6 .75h4v.5H6zM8 15a1 1 0 1 1 0-2a1 1 0 0 1 0 2m4-3H4V2h8z"/></svg>
+                                {{ w.user_phone_number }}
+                            </span>
+                            <a href="mailto:">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 16 14"><path fill="#666666" d="M14.5 13h-13C.67 13 0 12.33 0 11.5v-9C0 1.67.67 1 1.5 1h13c.83 0 1.5.67 1.5 1.5v9c0 .83-.67 1.5-1.5 1.5M1.5 2c-.28 0-.5.22-.5.5v9c0 .28.22.5.5.5h13c.28 0 .5-.22.5-.5v-9c0-.28-.22-.5-.5-.5z"/><path fill="#666666" d="M8 8.96c-.7 0-1.34-.28-1.82-.79L.93 2.59c-.19-.2-.18-.52.02-.71s.52-.18.71.02l5.25 5.58c.57.61 1.61.61 2.18 0l5.25-5.57c.19-.2.51-.21.71-.02s.21.51.02.71L9.82 8.18c-.48.51-1.12.79-1.82.79Z"/></svg>
+                                {{ w.user_email }}
+                            </a>
+                        </div>
+                    </div>
+                </div>  
+                {% endfor %}
+            </div>
+        </div>
+        <!-- end row -->
+    </div>
+    <!-- Modal -->
+    <div class="modal" id="modal-disconnect-admin">
+        <div class="modal-background"></div>
+        <div class="modal-content">
+            <h3>¿Está seguro de desconectarse del administrador?</h3>
+            <button id="btn-confirm-disconnect-admin" data-row="{{ id }}">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 26 26"><path fill="#ffffff" d="M24.875 0a1 1 0 0 0-.594.281l-1.656 1.656c-2.204-1.59-5.261-1.305-7.313.657c0 .076-.855.91-1.624 1.656l-.97-.969a1 1 0 0 0-.812-.312a1 1 0 0 0-.125.031a1 1 0 0 0-.5 1.719L13.562 7l-3.28 3.281a1.016 1.016 0 1 0 1.437 1.438L15 8.438L17.563 11l-3.282 3.281a1.016 1.016 0 1 0 1.438 1.438L19 12.438l2.281 2.28a1.016 1.016 0 1 0 1.438-1.437l-.969-.969l1.656-1.624c1.96-1.96 2.159-5.008.625-7.282L25.72 1.72A1 1 0 0 0 24.875 0M3.906 10.969a1 1 0 0 0-.125.031a1 1 0 0 0-.5 1.719l.969.969l-1.656 1.624c-1.96 1.96-2.159 5.008-.625 7.282L.28 24.28a1.016 1.016 0 1 0 1.44 1.44l1.656-1.657c2.204 1.592 5.261 1.306 7.313-.656c0-.076.855-.91 1.624-1.656l.97.969a1.016 1.016 0 1 0 1.437-1.438l-10-10a1 1 0 0 0-.813-.312z"/></svg>
+                Aceptar
+            </button>
+        </div>
+        <button class="modal-close is-large"></button>
+    </div>        
+            
+{% endblock %}
+
+{% block main_link_js %}
+    <script>
+        // const btn_disconnect = document.querySelector(".btn-open-modal-disconnect");
+        // btn_disconnect.addEventListener("click", ()=>{
+        //     openModal(document.getElementById("modal-disconnect-admin"));
+        // });
+        // const btn_confirm_disc = document.getElementById("btn-confirm-disconnect-admin");
+        // btn_confirm_disc.addEventListener("click", async() => {
+        //     let row = btn_confirm_disc.dataset.row;
+        //     await fetch("/honey/waitress_delete?row="+String(row)).then(res => res.text()).then(data => {
+        //         location.reload();
+        //     })
+        // });
+    </script>
+{% endblock %}

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/libraries/bulma.min.css') }}">
+    <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='styles/page_client/cart.css') }}"/>
+    <title>Cart</title>
+</head>
+<body>
+    <div class="container-main-all">
+        <div class="box">
+            <div class="title">
+                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24"><path fill="none" stroke="#333333" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17a2 2 0 1 0 0 4a2 2 0 0 0 0-4m0 0H9.294c-.461 0-.692 0-.882-.082a1 1 0 0 1-.418-.337c-.12-.167-.167-.39-.261-.83L5.27 4.265c-.096-.451-.145-.677-.265-.845a1 1 0 0 0-.419-.338C4.397 3 4.167 3 3.707 3H3m3 3h12.873c.722 0 1.082 0 1.325.15a1 1 0 0 1 .435.579c.077.274-.022.621-.222 1.314l-1.385 4.8c-.12.415-.18.622-.3.776a1 1 0 0 1-.409.307c-.18.074-.396.074-.825.074H7.73M8 21a2 2 0 1 1 0-4a2 2 0 0 1 0 4"/></svg>
+                <h3>Mi carrito</h3>
+            </div>
+            <div class="table-container">
+                <table class="table">
+                    <thead>
+                        
+                        <th>Producto</th>
+                        <th>Cantidad</th>
+                        <th>Costo</th>
+                        <th></th>
+                    </thead>
+                    <tbody id="tbody-main-cart">
+                        <!-- <tr>
+                            <td>1</td>
+                            <td class="text-nowrap">Arroz con pollo</td>
+                            <td>
+                                <div class="container-btn-control-quantity">
+                                    <button class="button btn-subtract" data-id="" data-price="">-</button>
+                                    <span class="span-quantity">5</span>
+                                    <button class="button btn-add" data-id="" data-price="">+</button>
+                                </div>
+                            </td>
+                            <td class="text-nowrap">S/. 12.00</td>
+                            <td><button class="button is-danger btn-delete" data-id="" data-price="">x</button></td>
+                        </tr> -->
+                    </tbody>
+                </table>
+            </div>
+            <div class="container-footer">
+                <div class="box">
+                    <span>Costo Total: </span>
+                    <span>{{ data_admin_session.currency }} <span id="span-total-amount-container">00.00</span></span>
+                </div>
+                <div class="container-category">
+                    <label for="category_1" class="container-category-label">
+                        <input type="radio" value="1" class="radio-category" name="category" id="category_1" checked>
+                        <span>Órden</span>
+                    </label>
+                    <label for="category_2" class="container-category-label">
+                        <input type="radio" value="2" class="radio-category" name="category" id="category_2">
+                        <span>Reserva</span>
+                    </label>
+                    <label for="category_3" class="container-category-label">
+                        <input type="radio" value="3" class="radio-category" name="category" id="category_3">
+                        <span>Delivery</span>
+                    </label>
+                </div>
+                <label for="">
+                    <span>Observación:</span>
+                    <input type="text" placeholder="Observación" id="input-note-message" class="input">
+                </label>
+                <div class="container-buttons-nav-return-continue">
+                    <a href="/p/{{ data_admin_session.id_secondary }}">
+                        <button class="button is-primary is-rounded">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"><path fill="#ffffff" d="m3.55 12l7.35 7.35q.375.375.363.875t-.388.875t-.875.375t-.875-.375l-7.7-7.675q-.3-.3-.45-.675T.825 12t.15-.75t.45-.675l7.7-7.7q.375-.375.888-.363t.887.388t.375.875t-.375.875z"/></svg>
+                            Volver
+                        </button>
+                    </a>
+                    <button class="button is-link is-rounded" id="button_continue" onclick="location.href = 'table' ">
+                        Continuar
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"><path fill="#ffffff" d="m14.475 12l-7.35-7.35q-.375-.375-.363-.888t.388-.887t.888-.375t.887.375l7.675 7.7q.3.3.45.675t.15.75t-.15.75t-.45.675l-7.7 7.7q-.375.375-.875.363T7.15 21.1t-.375-.888t.375-.887z"/></svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="{{ url_for('static', filename='js/page_client/cart_shop.js') }}"></script>
+    <script>
+        
+    </script>
+</body>
+</html>

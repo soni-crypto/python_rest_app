@@ -1,0 +1,301 @@
+{% extends "layouts/nav_app_honey.html" %}
+
+{% block main_link_css %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/styles_restaurant/home_admin.css') }}">
+{% endblock %}
+
+{% block main_body %}
+<div class="container-main">
+    <div class="container-data-user">
+        <div class="container-info">
+            <h5>Hola, {{ user_name }} <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 32 32"><g fill="none"><path fill="#FFB02E" d="M18.297 30c8.002 0 12-5.373 12-12s-3.998-12-12-12c-8.001 0-12 5.373-12 12s3.999 12 12 12"/><path fill="#fff" d="M13.514 18.194a3.605 3.605 0 1 0 0-7.211a3.605 3.605 0 0 0 0 7.21m9.557.067a3.638 3.638 0 1 0 0-7.277a3.638 3.638 0 0 0 0 7.276"/><path fill="#402A32" d="M16.584 14.573a2.572 2.572 0 1 1-5.144 0a2.572 2.572 0 0 1 5.144 0m8.572 0a2.572 2.572 0 1 1-5.143 0a2.572 2.572 0 0 1 5.143 0M14.9 20.178a.75.75 0 0 0-1.213.883c.548.751 2.147 2.152 4.45 2.152c2.282 0 4.093-1.38 4.741-2.087a.75.75 0 0 0-1.107-1.013c-.477.522-1.916 1.6-3.634 1.6c-1.697 0-2.889-1.057-3.237-1.535"/><path fill="#FF822D" d="M14.785 2.637c.115-.07.232-.14.359-.183l.555.242l.222.959a1.048 1.048 0 0 1 .6 1.953l-3.9 2.252a1.062 1.062 0 0 1 .912 1.9l-2.415 1.344a6.341 6.341 0 0 1-3.415.999H4.795l2.978-4.839c-.435-.773-.82-1.483-.82-1.483l4.55-2.67l.455-.263l2.728-.152z"/><path fill="#FFB02E" d="M10.235 2.943a1.05 1.05 0 0 1 1.267.168l1.674-.966a1.048 1.048 0 0 1 1.51.55l.27-.156a1.048 1.048 0 0 1 1.05 1.815L9.367 8.186c.088-.3.146-.611.173-.928l4.94-2.852c.688-.397.96-1.238.663-1.952c-.064.022-.127.05-.187.085l-.271.156a1.049 1.049 0 0 1-.462 1.265L9.558 6.654V6.35l1.983-1.145a1.563 1.563 0 0 0 .417-2.357l-.456.263a1.048 1.048 0 0 1-.218 1.648L8.989 6.084v.079c0 .177-.008.354-.024.529l-.003.039a5.982 5.982 0 0 1-.485 1.857a5.999 5.999 0 0 1-2.323 2.672l-1.359.843A2.795 2.795 0 0 1 2 9.308v-.072c0-1.058.583-2.03 1.517-2.529l2.36-1.26l-.003.014z"/></g></svg></h5>
+            <p class=""><svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24"><path fill="#2f2650" d="M22 6c0-1.1-.9-2-2-2H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2zm-2 0l-8 5l-8-5zm0 12H4V8l8 5l8-5z"/></svg>{{ user_email }}</p>
+            <p class=""><svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24"><path fill="#2f2650" d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21c5.46 0 9.91-4.45 9.91-9.91c0-2.65-1.03-5.14-2.9-7.01A9.816 9.816 0 0 0 12.04 2m.01 1.67c2.2 0 4.26.86 5.82 2.42a8.225 8.225 0 0 1 2.41 5.83c0 4.54-3.7 8.23-8.24 8.23c-1.48 0-2.93-.39-4.19-1.15l-.3-.17l-3.12.82l.83-3.04l-.2-.32a8.188 8.188 0 0 1-1.26-4.38c.01-4.54 3.7-8.24 8.25-8.24M8.53 7.33c-.16 0-.43.06-.66.31c-.22.25-.87.86-.87 2.07c0 1.22.89 2.39 1 2.56c.14.17 1.76 2.67 4.25 3.73c.59.27 1.05.42 1.41.53c.59.19 1.13.16 1.56.1c.48-.07 1.46-.6 1.67-1.18c.21-.58.21-1.07.15-1.18c-.07-.1-.23-.16-.48-.27c-.25-.14-1.47-.74-1.69-.82c-.23-.08-.37-.12-.56.12c-.16.25-.64.81-.78.97c-.15.17-.29.19-.53.07c-.26-.13-1.06-.39-2-1.23c-.74-.66-1.23-1.47-1.38-1.72c-.12-.24-.01-.39.11-.5c.11-.11.27-.29.37-.44c.13-.14.17-.25.25-.41c.08-.17.04-.31-.02-.43c-.06-.11-.56-1.35-.77-1.84c-.2-.48-.4-.42-.56-.43c-.14 0-.3-.01-.47-.01"/></svg>{{ user_number }} <span>@: {{ id_secondary }}</span></p>
+        </div>
+    </div>
+    <div class="container-main-blocks-home">
+        <div class="container-block-center">
+            <div class="container-data-amount">
+                <div class="block-row-details">
+                    <div class="block">
+                        <p class="">Saldo general</p>
+                        <h5>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24"><path fill="none" stroke="#453965" stroke-width="2" d="M3 6.5A2.5 2.5 0 0 1 5.5 4h13.786c.2 0 .299 0 .38.028a.5.5 0 0 1 .306.307c.028.08.028.18.028.38c0 1.196 0 1.795-.168 2.276a3 3 0 0 1-1.841 1.84C17.51 9 16.91 9 15.714 9H15M3 6.5A2.5 2.5 0 0 0 5.5 9H19c.943 0 1.414 0 1.707.293C21 9.586 21 10.057 21 11v2M3 6.5V17c0 1.886 0 2.828.586 3.414C4.172 21 5.114 21 7 21h12c.943 0 1.414 0 1.707-.293C21 20.414 21 19.943 21 19v-2m0 0h-4c-.943 0-1.414 0-1.707-.293C15 16.414 15 15.943 15 15c0-.943 0-1.414.293-1.707C15.586 13 16.057 13 17 13h4m0 4v-4"/></svg>
+                            {{ admin_settings.currency }} {{ data_box.total_amount_order }}
+                        </h5>
+                    </div>
+                    <div class="block">
+                        <p class="">N° de ordenes</p>
+                        <h5>{{ data_box.total_quantity_order }}</h5>
+                    </div>
+                </div>
+                <button class="btn-open-modal-update-box-app" data-type="1"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18.4 10.73q-.252-1.14-.838-2.091t-1.985-2.223v3.007h-1v-4.77h4.77v1h-3.091q1.594 1.413 2.253 2.61q.658 1.199.897 2.468zm-5.208 7.5v-5.114H21v5.115zm-8.538 1.116v-1h3.09q-1.794-1.561-2.519-3.073T4.5 12.077q0-2.454 1.402-4.409T9.5 4.942v1.062q-1.789.74-2.894 2.403T5.5 12.077q0 1.522.643 2.804q.644 1.282 2.28 2.723v-3.027h1v4.77zM12.192 21v-1H22v1z"/></svg>Editar</button>
+                <div class="block-row-details">
+                    <div class="block">
+                        <p class="">Saldo diario</p>
+                        <h5>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24"><path fill="none" stroke="#453965" stroke-width="2" d="M16 16c0-1.105-3.134-2-7-2s-7 .895-7 2s3.134 2 7 2s7-.895 7-2ZM2 16v4.937C2 22.077 5.134 23 9 23s7-.924 7-2.063V16M9 5c-4.418 0-8 .895-8 2s3.582 2 8 2M1 7v5c0 1.013 3.582 2 8 2M23 4c0-1.105-3.1-2-6.923-2s-6.923.895-6.923 2s3.1 2 6.923 2S23 5.105 23 4Zm-7 12c3.824 0 7-.987 7-2V4M9.154 4v10.166M9 9c0 1.013 3.253 2 7.077 2S23 10.013 23 9"/></svg>
+                            {{ admin_settings.currency }} {{ data_box.daily_amount_order }}
+                        </h5>
+                    </div>
+                    <div class="block">
+                        <p class="">N° de órdenes</p>
+                        <h5>{{ data_box.daily_quantity_order }}</h5>
+                    </div>
+                </div>
+            </div>
+            <div class="container-data-amount">
+                <div class="block-row-details">
+                    <div class="block">
+                        <p class="">Saldo general</p>
+                        <h5>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24"><path fill="none" stroke="#453965" stroke-width="2" d="M3 6.5A2.5 2.5 0 0 1 5.5 4h13.786c.2 0 .299 0 .38.028a.5.5 0 0 1 .306.307c.028.08.028.18.028.38c0 1.196 0 1.795-.168 2.276a3 3 0 0 1-1.841 1.84C17.51 9 16.91 9 15.714 9H15M3 6.5A2.5 2.5 0 0 0 5.5 9H19c.943 0 1.414 0 1.707.293C21 9.586 21 10.057 21 11v2M3 6.5V17c0 1.886 0 2.828.586 3.414C4.172 21 5.114 21 7 21h12c.943 0 1.414 0 1.707-.293C21 20.414 21 19.943 21 19v-2m0 0h-4c-.943 0-1.414 0-1.707-.293C15 16.414 15 15.943 15 15c0-.943 0-1.414.293-1.707C15.586 13 16.057 13 17 13h4m0 4v-4"/></svg>
+                            {{ admin_settings.currency }} {{ data_box.total_amount_reservation }}
+                        </h5>
+                    </div>
+                    <div class="block">
+                        <p class="">N° de reservas</p>
+                        <h5>{{ data_box.total_quantity_reservation }}</h5>
+                    </div>
+                </div>
+                <button class="btn-open-modal-update-box-app" data-type="2"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18.4 10.73q-.252-1.14-.838-2.091t-1.985-2.223v3.007h-1v-4.77h4.77v1h-3.091q1.594 1.413 2.253 2.61q.658 1.199.897 2.468zm-5.208 7.5v-5.114H21v5.115zm-8.538 1.116v-1h3.09q-1.794-1.561-2.519-3.073T4.5 12.077q0-2.454 1.402-4.409T9.5 4.942v1.062q-1.789.74-2.894 2.403T5.5 12.077q0 1.522.643 2.804q.644 1.282 2.28 2.723v-3.027h1v4.77zM12.192 21v-1H22v1z"/></svg>Editar</button>
+                <div class="block-row-details">
+                    <div class="block">
+                        <p class="">Saldo diario</p>
+                        <h5>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24"><path fill="none" stroke="#453965" stroke-width="2" d="M16 16c0-1.105-3.134-2-7-2s-7 .895-7 2s3.134 2 7 2s7-.895 7-2ZM2 16v4.937C2 22.077 5.134 23 9 23s7-.924 7-2.063V16M9 5c-4.418 0-8 .895-8 2s3.582 2 8 2M1 7v5c0 1.013 3.582 2 8 2M23 4c0-1.105-3.1-2-6.923-2s-6.923.895-6.923 2s3.1 2 6.923 2S23 5.105 23 4Zm-7 12c3.824 0 7-.987 7-2V4M9.154 4v10.166M9 9c0 1.013 3.253 2 7.077 2S23 10.013 23 9"/></svg>
+                            {{ admin_settings.currency }} {{ data_box.daily_amount_reservation }}
+                        </h5>
+                    </div>
+                    <div class="block">
+                        <p class="">N° de reservas</p>
+                        <h5>{{ data_box.daily_quantity_reservation }}</h5>
+                    </div>
+                </div>
+            </div>
+            <div class="container-details-payments">
+                <div class="container-cap-frame">
+                    <div class="message-subscription">
+                        <span>VÁLIDO</span>
+                    </div>
+                    <div class="container-details-valid-pay">
+                        <span>Desde: </span>
+                        <span>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"><path fill="#453965" d="M9 10v2H7v-2zm4 0v2h-2v-2zm4 0v2h-2v-2zm2-7a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h1V1h2v2h8V1h2v2zm0 16V8H5v11zM9 14v2H7v-2zm4 0v2h-2v-2zm4 0v2h-2v-2z"/></svg>
+                            {{ subscription_start_date }}
+                        </span>
+                    </div>
+                    <div class="container-details-valid-pay">
+                        <span>Hasta: </span>
+                        <span>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"><path fill="#453965" d="M9 10v2H7v-2zm4 0v2h-2v-2zm4 0v2h-2v-2zm2-7a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h1V1h2v2h8V1h2v2zm0 16V8H5v11zM9 14v2H7v-2zm4 0v2h-2v-2zm4 0v2h-2v-2z"/></svg>
+                            {{ subscription_end_date }}
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="container-web-redirect">
+                <div class="container-web-redirect__mask">
+                    <button class="btn-open-modal-qr-code">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"><path fill="#ffffff" d="M13 21v-2h2v2zm-2-2v-5h2v5zm8-3v-4h2v4zm-2-4v-2h2v2zM5 14v-2h2v2zm-2-2v-2h2v2zm9-7V3h2v2zM4.5 7.5h3v-3h-3zM3 9V3h6v6zm1.5 10.5h3v-3h-3zM3 21v-6h6v6zM16.5 7.5h3v-3h-3zM15 9V3h6v6zm2 12v-3h-2v-2h4v3h2v2zm-4-7v-2h4v2zm-4 0v-2H7v-2h6v2h-2v2zm1-5V5h2v2h2v2zM5.25 6.75v-1.5h1.5v1.5zm0 12v-1.5h1.5v1.5zm12-12v-1.5h1.5v1.5z"/></svg>
+                        Ver mi QR
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="container-main-right-data">
+            <div class="block-user-info-view">
+                <div class="block-user-info-view__amounts-all">
+                    <div class="container-block-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24"><g fill="none" stroke="#666666" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" color="#666666"><path d="M10.999 8c4.418 0 8-1.344 8-3c0-1.657-3.582-3-8-3s-8 1.343-8 3c0 1.656 3.581 3 8 3m-5 2.841c.601.181 1.274.33 2 .44m3 3.719c-4.419 0-8-1.344-8-3m3 5.841c.601.181 1.274.33 2 .44"/><path d="M10.999 22c-4.419 0-8-1.344-8-3V5m16 0v5.5m-3.257 5.878c0-.06.009-.825.01-1.26c.001-.396-.034-.78.156-1.13c.71-1.412 2.75-1.268 3.254.171c.088.237.093.613.09.96c-.003.443.006 1.26.006 1.26m-3.516 0c-1.08 0-1.523.779-1.643 1.258c-.12.48-.12 2.22-.048 2.94c.24.899.84 1.27 1.427 1.39c.54.049 2.82.03 3.48.03c.96.019 1.68-.341 1.98-1.42c.06-.36.12-2.34-.03-2.94c-.319-.96-1.05-1.259-1.65-1.259m-3.516 0h3.516"/></g></svg>
+                    </div>
+                    <div class="container-block-row">
+                        <h3>{{ admin_settings.currency }} {{ data_box.total_amount_order + data_box.total_amount_reservation }}</h3>
+                        <span>{{ data_box.total_quantity_order + data_box.total_quantity_reservation }}</span>
+                    </div>
+                    <p>Monto total general de la caja</p>
+                </div>
+            </div>
+            <div class="block-user-info-view">
+                <div class="block-user-info-view__amounts-all">
+                    <div class="container-block-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24"><path fill="#666666" d="M20 3h-1V1h-2v2H7V1H5v2H4c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2m0 18H4V8h16z"/></svg>
+                    </div>
+                    <div class="container-block-row">
+                        <h3>{{ admin_settings.currency }} {{ data_box.daily_amount_order + data_box.daily_amount_reservation }}</h3>
+                        <span>{{ data_box.daily_quantity_order + data_box.daily_quantity_reservation }}</span>
+                    </div>
+                    <p>Monto diario general de la caja</p>
+                </div>
+            </div>
+            <div class="block-user-info-view">
+                <div class="container-counter-all">
+                    <div class="counter-block">
+                        <span>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 14 14"><path fill="none" stroke="#666666" stroke-linecap="round" stroke-linejoin="round" d="M.5 10.25a6.5 6.5 0 0 1 13 0Zm0 2.5h13m-6.5-9v-2.5m-1.5 0h3"/></svg>
+                            N° camareros/as
+                        </span>
+                        <span>{{ quantity_users }}</span>
+                    </div>
+                    <div class="counter-block">
+                        <span>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 32 32"><path fill="#666666" d="M27 22.141V18a2 2 0 0 0-2-2h-8v-4h2a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2h-6a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h2v4H7a2 2 0 0 0-2 2v4.142a4 4 0 1 0 2 0V18h8v4.142a4 4 0 1 0 2 0V18h8v4.141a4 4 0 1 0 2 0M13 4h6l.001 6H13ZM8 26a2 2 0 1 1-2-2a2 2 0 0 1 2 2m10 0a2 2 0 1 1-2-2a2.003 2.003 0 0 1 2 2m8 2a2 2 0 1 1 2-2a2 2 0 0 1-2 2"/></svg>
+                            N° Categorias
+                        </span>
+                        <span>{{ quantity_categories }}</span>
+                    </div>
+                    <div class="counter-block">
+                        <span>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"><path fill="#666666" d="M5.029 20.462q-.241 0-.472-.099t-.391-.255l-.489-.489q-.192-.192-.095-.444t.368-.252h16.062q.271 0 .368.252t-.095.444l-.489.489q-.16.157-.391.255t-.472.098zM4 17.73q.17-.373.429-.697q.26-.322.571-.595v-7.9h-.558q-.191 0-.317-.125Q4 8.288 4 8.097t.125-.317t.317-.126H5V6.71h-.558q-.191 0-.317-.125Q4 6.461 4 6.27t.125-.317t.317-.126H5v-.943h-.558q-.191 0-.317-.125Q4 4.634 4 4.443t.125-.317T4.442 4h5.75q.667 0 1.141.474t.475 1.141v.212h7.75q.191 0 .317.125q.125.125.125.316t-.125.317t-.317.126h-7.75v.206q0 .677-.475 1.15q-.474.471-1.14.471h-1.81v6.831q.581.089 1.133.295q.552.205 1.025.578q.246-1.51 1.44-2.462q1.195-.953 2.747-.953q1.771 0 3.021 1.22T19 17.03v.7zm7.504-1h6.415q-.098-1.247-1.01-2.075q-.911-.829-2.18-.829q-1.281 0-2.204.823t-1.021 2.08M8.384 5.828h2.424V5.5q0-.27-.173-.442q-.173-.173-.443-.173H8.385zm0 1.827h1.808q.27 0 .443-.173t.173-.442v-.327H8.385zm-2.5-1.827H7.5v-.943H5.884zm0 1.827H7.5V6.71H5.884zm0 8.177q.385-.202.786-.313t.83-.166V8.539H5.884zm8.828.9"/></svg>
+                            N° Platos
+                        </span>
+                        <span>{{ quantity_foods }}</span>
+                    </div>
+                </div>
+            </div>
+            <div class="block-user-info-view">
+                <div class="redirect-to-web-site">
+                    <a href="/p/{{ id_secondary }}" target="_blank">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"><path fill="#ffffff" d="M2 12v-2h3v2zm3.4 5.55L4 16.1L6.1 14l1.45 1.4zM6.1 8L4 5.9l1.4-1.45L7.55 6.6zM18 20l-4.75-4.75L12 19L9 9l10 3l-3.7 1.3L20 18zM10 6V3h2v3zm5.9 2l-1.45-1.4l2.15-2.15l1.4 1.4z"/></svg>
+                        Ir WEB
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- end row -->
+
+    <div class="container-activity">
+        <h4 class="title-section">Actividades recientes</h4>
+        <div class="table-container container-table">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Fecha</th>
+                        <th>Código de órden</th>
+                        <th>Usuario</th>
+                        <th>Saldo</th>
+                        <th>Movimiento</th>
+                        <th>Descripción</th>
+                    </tr>
+                </thead>
+
+                <tbody id="tbody-history-orders">
+                    {% for history in current_history %}
+                    <tr>
+                        <td>{{ loop.index }}</td>  
+                        <td>{{ history.created_at.strftime('%Y-%m-%d %H:%M') }}</td>
+                        <td>{{ history.order_code }}</td>
+                        <td>{{ history.user_name }}</td>
+                        <td>{{ history.added_amount }}</td>
+                        <td>{{ history.movement_created }}</td>
+                        <td>{{ history.description_action }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            <nav class="pagination is-small" role="navigation" aria-label="pagination">
+                <a href="#" class="pagination-previous is-disabled" title="This is the first page">Previous</a>
+                <a href="#" class="pagination-next">Next page</a>
+                <ul class="pagination-list">
+                    
+                </ul>
+            </nav>
+        </div>
+    </div>
+<!-- end row -->
+    <div class="modal" id="modal-view-qr-code">
+        <div class="modal-background"></div>
+        <div class="modal-content">
+        <!-- Any other Bulma elements you want -->
+            <div class="modal-content-main">
+                <div class="modal-body">
+                    <div class="container-image-qr-code-decorated-app" id="container-image-qr-code-decorated-app">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#fe8c01" fill-opacity="1" d="M0,256L26.7,234.7C53.3,213,107,171,160,165.3C213.3,160,267,192,320,218.7C373.3,245,427,267,480,245.3C533.3,224,587,160,640,122.7C693.3,85,747,75,800,101.3C853.3,128,907,192,960,181.3C1013.3,171,1067,85,1120,48C1173.3,11,1227,21,1280,48C1333.3,75,1387,117,1413,138.7L1440,160L1440,0L1413.3,0C1386.7,0,1333,0,1280,0C1226.7,0,1173,0,1120,0C1066.7,0,1013,0,960,0C906.7,0,853,0,800,0C746.7,0,693,0,640,0C586.7,0,533,0,480,0C426.7,0,373,0,320,0C266.7,0,213,0,160,0C106.7,0,53,0,27,0L0,0Z"></path></svg>
+                        <div class="container-main-icon-emtorch">
+                            <img src="{{ url_for('static', filename='images/emTorch-nuevo-256px-256px.transparent.min.png') }}" alt="">
+                            <span>Foodie Admin</span>
+                        </div>
+                        <div class="container-main-qr">
+                            <img src="{{ url_for('static', filename='images/images_restaurant/images_default/robot-show-qr-admin.min.webp') }}" alt="">
+                            <img src="{{ qr_code_image }}" alt="">
+                        </div>
+                        <div class="more-details-qr-info">
+                            <h1>{{ company_name }}</h1>
+                        </div>
+                        <!-- <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#fe8c01" fill-opacity="1" d="M0,96L26.7,128C53.3,160,107,224,160,256C213.3,288,267,288,320,256C373.3,224,427,160,480,133.3C533.3,107,587,117,640,154.7C693.3,192,747,256,800,266.7C853.3,277,907,235,960,218.7C1013.3,203,1067,213,1120,229.3C1173.3,245,1227,267,1280,234.7C1333.3,203,1387,117,1413,74.7L1440,32L1440,320L1413.3,320C1386.7,320,1333,320,1280,320C1226.7,320,1173,320,1120,320C1066.7,320,1013,320,960,320C906.7,320,853,320,800,320C746.7,320,693,320,640,320C586.7,320,533,320,480,320C426.7,320,373,320,320,320C266.7,320,213,320,160,320C106.7,320,53,320,27,320L0,320Z"></path></svg> -->
+                    </div>
+                </div>
+                <div class="modal-footer p-2">
+                    <button type="button" onclick="convertirDivEnImagen()">Descargar</button>
+                </div>
+            </div>
+        </div>
+        <button class="modal-close is-large" aria-label="close"></button>
+    </div>
+</div>
+<div class="modal" id="modal-config-all-main-box-app">
+    <div class="modal-background"></div>
+    <div class="modal-content">
+        <div class="container-title">
+            <h2>Actualizar &laquo;<span id="message-order-or-reservation">Datos</span>&raquo; :</h2>
+        </div>
+        <div class="container-body-box">
+            <div class="container-inputs">
+                <label for="">
+                    <span>Saldo general </span>
+                    <input type="text" value="0" id="modal_input_saldo_general">
+                </label>
+                <label for="">
+                    <span>Cantidad general </span>
+                    <input type="text" value="0" id="modal_input_cantidad_general">
+                </label>
+                <label for="">
+                    <span>Saldo diario </span>
+                    <input type="text" value="0" id="modal_input_saldo_diario">
+                </label>
+                <label for="">
+                    <span>Cantidad diaria </span>
+                    <input type="text" value="0" id="modal_input_cantidad_diario">
+                </label>
+            </div>
+            <div class="container-btn-info-box-close">
+                <!-- <button id="modal-btn-close-box-main">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 14 14"><g fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round"><path d="M6.5 11h1M10 5V3m2-1.25A1.25 1.25 0 0 1 10.75 3h-1.5a1.25 1.25 0 0 1 0-2.5h1.5A1.25 1.25 0 0 1 12 1.75ZM5.5 5V1.5h-3V5"/><rect width="13" height="5" x=".5" y="8.5" rx="1"/><path d="M12.5 8.5V6a1 1 0 0 0-1-1h-9a1 1 0 0 0-1 1v2.5"/></g></svg>
+                    <span>Cerrar caja</span>
+                </button> -->
+                <p>La caja es automática, una vez cerrada la caja, este se abrirá inmediatamente para poder recibir datos entrantes.</p>
+            </div>
+        </div>
+        <div class="container-control">
+            <button onclick="closeModal(document.getElementById('modal-config-all-main-box-app'))">Salir</button>
+            <button id="modal-btn-upgrade-box-main">Guardar cambios</button>
+        </div>
+    </div>
+    <button class="modal-close is-large"></button>
+</div>
+{% endblock %}
+
+{% block main_link_js %}
+    <script>
+        BulmaPagination("tbody-history-orders", 10);
+    </script>
+    <script src="{{ url_for('static', filename='js/libraries/html2canvas.min.js') }}"></script>
+    <script>
+        function convertirDivEnImagen() {
+            const div = document.getElementById('container-image-qr-code-decorated-app');
+            html2canvas(div).then(canvas => {
+                const enlaceTemporal = document.createElement('a');
+                enlaceTemporal.href = canvas.toDataURL('image/png');
+                enlaceTemporal.download = 'qr-code-foodie-admin.png';
+                enlaceTemporal.click();
+            });
+        }
+        const btn_open_modal_qr_code = document.querySelector(".btn-open-modal-qr-code");
+        btn_open_modal_qr_code.addEventListener("click", ()=>{
+            openModal(document.getElementById("modal-view-qr-code"));
+        })
+    </script>
+    <script src="{{ url_for('static', filename='js/boxController.js') }}"></script>
+{% endblock %}

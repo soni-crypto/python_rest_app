@@ -1,0 +1,139 @@
+{% extends "layouts/navigation_0.0.1.html" %}
+
+{% block main_link_css %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/styles_restaurant/reservations.css') }}">
+{% endblock %}
+
+{% block main_body %}
+    <div class="container-main-all-reservations">
+        <div class="container-title">
+            <div class="container-menu-actions">
+                <a href="/honey/reservations">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 1024 1024"><path fill="#7c3aed" d="M224 480h640a32 32 0 1 1 0 64H224a32 32 0 0 1 0-64"/><path fill="#7c3aed" d="m237.248 512l265.408 265.344a32 32 0 0 1-45.312 45.312l-288-288a32 32 0 0 1 0-45.312l288-288a32 32 0 1 1 45.312 45.312z"/></svg>
+                    Volver
+                </a>
+                <a href="">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"><g fill="none" stroke="#7c3aed" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M12 3a9 9 0 1 1-5.657 2"/><path d="M3 4.5h4v4"/></g></svg>
+                    <span>Actualizar</span>
+                </a>
+            </div>
+            <!-- <h1>Reservaciones</h1> -->
+        </div>
+        <div class="container-main-block-all">
+
+            
+            {% for data in reservations_data %}
+            <div class="block-reservation-main" data-state-reservation="{{ data.state_reservation }}">
+                <div class="container-profile-user-app-all">
+                    <div class="container-info-user">
+                        <div class="name-user-container">
+                            <span>{{ data.user_app_name }}</span>
+                        </div>
+                        <div class="contacts-user-container">
+                            <div class="container-block-contacts">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"><path fill="#2e264a" d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21c5.46 0 9.91-4.45 9.91-9.91c0-2.65-1.03-5.14-2.9-7.01A9.816 9.816 0 0 0 12.04 2m.01 1.67c2.2 0 4.26.86 5.82 2.42a8.225 8.225 0 0 1 2.41 5.83c0 4.54-3.7 8.23-8.24 8.23c-1.48 0-2.93-.39-4.19-1.15l-.3-.17l-3.12.82l.83-3.04l-.2-.32a8.188 8.188 0 0 1-1.26-4.38c.01-4.54 3.7-8.24 8.25-8.24M8.53 7.33c-.16 0-.43.06-.66.31c-.22.25-.87.86-.87 2.07c0 1.22.89 2.39 1 2.56c.14.17 1.76 2.67 4.25 3.73c.59.27 1.05.42 1.41.53c.59.19 1.13.16 1.56.1c.48-.07 1.46-.6 1.67-1.18c.21-.58.21-1.07.15-1.18c-.07-.1-.23-.16-.48-.27c-.25-.14-1.47-.74-1.69-.82c-.23-.08-.37-.12-.56.12c-.16.25-.64.81-.78.97c-.15.17-.29.19-.53.07c-.26-.13-1.06-.39-2-1.23c-.74-.66-1.23-1.47-1.38-1.72c-.12-.24-.01-.39.11-.5c.11-.11.27-.29.37-.44c.13-.14.17-.25.25-.41c.08-.17.04-.31-.02-.43c-.06-.11-.56-1.35-.77-1.84c-.2-.48-.4-.42-.56-.43c-.14 0-.3-.01-.47-.01"/></svg>
+                                {{ data.user_app_number }}
+                            </div>
+                            <div class="container-block-contacts">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"><path fill="#2e264a" d="M22 6c0-1.1-.9-2-2-2H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2zm-2 0l-8 5l-8-5zm0 12H4V8l8 5l8-5z"/></svg>
+                                {{ data.user_app_email }}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="container-image-icon">
+                        <img src="{{ data.user_app_profile }}" alt="icon">
+                    </div>
+                </div>
+                <div class="container-date-created-start">
+                    <h3>Creado en:</h3>
+                    <span>{{ data.created_at }}</span>  
+                </div>
+                <div class="container-date-reservation-main">
+                    <div class="container-block-date">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"><path fill="" d="M12 14q-.425 0-.712-.288T11 13q0-.425.288-.712T12 12q.425 0 .713.288T13 13q0 .425-.288.713T12 14m-4 0q-.425 0-.712-.288T7 13q0-.425.288-.712T8 12q.425 0 .713.288T9 13q0 .425-.288.713T8 14m8 0q-.425 0-.712-.288T15 13q0-.425.288-.712T16 12q.425 0 .713.288T17 13q0 .425-.288.713T16 14m-4 4q-.425 0-.712-.288T11 17q0-.425.288-.712T12 16q.425 0 .713.288T13 17q0 .425-.288.713T12 18m-4 0q-.425 0-.712-.288T7 17q0-.425.288-.712T8 16q.425 0 .713.288T9 17q0 .425-.288.713T8 18m8 0q-.425 0-.712-.288T15 17q0-.425.288-.712T16 16q.425 0 .713.288T17 17q0 .425-.288.713T16 18M5 22q-.825 0-1.412-.587T3 20V6q0-.825.588-1.412T5 4h1V2h2v2h8V2h2v2h1q.825 0 1.413.588T21 6v14q0 .825-.587 1.413T19 22zm0-2h14V10H5z"/></svg>
+                        <span>{{ data.date_reservation }}</span>
+                    </div>
+                    <div class="container-block-date">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"><path fill="" d="M9 3V1h6v2zm2 11h2V8h-2zm1 8q-1.85 0-3.488-.712T5.65 19.35q-1.225-1.225-1.937-2.863T3 13q0-1.85.713-3.488T5.65 6.65q1.225-1.225 2.863-1.937T12 4q1.55 0 2.975.5t2.675 1.45l1.4-1.4l1.4 1.4l-1.4 1.4Q20 8.6 20.5 10.025T21 13q0 1.85-.713 3.488T18.35 19.35q-1.225 1.225-2.863 1.938T12 22m0-2q2.9 0 4.95-2.05T19 13q0-2.9-2.05-4.95T12 6Q9.1 6 7.05 8.05T5 13q0 2.9 2.05 4.95T12 20m0-7"/></svg>
+                        <span>{{ data.time_reservation }}</span>
+                    </div>
+                    <div class="container-block-date">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"><path fill="" d="M1 22c0 .54.45 1 1 1h13c.56 0 1-.46 1-1v-1H1zM8.5 9C4.75 9 1 11 1 15h15c0-4-3.75-6-7.5-6m-4.88 4c1.11-1.55 3.47-2 4.88-2s3.77.45 4.88 2zM1 17h15v2H1zM18 5V1h-2v4h-5l.23 2h9.56l-1.4 14H18v2h1.72c.84 0 1.53-.65 1.63-1.47L23 5z"/></svg>
+                        <span>
+                            {% if data.type_reservation == 1 %}
+                                Para llevar
+                            {% else %}
+                                Para mesa
+                            {% endif %}
+                        </span>
+                    </div>
+                </div>
+                <div class="container-all-reservations-foods">
+                    {% for food in data.foods_reservation %}
+                    <div class="block-row-details-food">
+                        <div class="container-image-food">
+                            <img src="{{ food.image }}" alt="icon">
+                        </div>
+                        <div class="container-details-food-info">
+                            <div class="block-info-food-1">
+                                <span>{{ food.type_food }}</span>
+                                <span>{{ food.name }}</span>
+                            </div>
+                            <div class="block-info-food-2">
+                                <span>{{ food.cantity }}</span>
+                                <span>S/. {{ food.price }}</span>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+                <div class="container-details-pay-amount">
+                    <div class="container-image-voucher" data-bs-toggle="modal" data-bs-target="#modal_view_voucher">
+                        <img src="{{ data.vouchers_reservations }}" alt="voucher">
+                    </div>
+                    <div class="container-more-info-pay">
+                        <div class="container-message-pay">
+                            <span>{{ data.message_reservation }}</span>
+                        </div>
+                        <div class="container-amount-all">
+                            <h4>Total: </h4>
+                            <span>S/. {{ data.total_price }}</span>
+                        </div>
+                    </div>
+                </div>
+               
+            </div>
+            {% endfor %}
+
+
+        </div>
+    </div>
+    <!-- Modal -->
+    <!-- Modal -->
+    <div class="modal fade" id="modal_view_voucher" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">VOUCHER</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body d-flex justify-content-center align-items-center">
+                    <!-- <div class="spinner-border text-primary" role="status"><span class="visually-hidden">Loading...</span></div> -->
+                    <img src="" class="image-voucher-zoom-in-modal">
+                </div>
+            </div>
+        </div>
+    </div>
+    
+
+{% endblock %}
+
+{% block main_link_js %}
+    <script src="{{ url_for('static', filename='js/pages_admin/reservationsController.js') }}"></script>
+    <script>
+        
+        voucher_preview();
+        
+        
+    </script>
+{% endblock %}

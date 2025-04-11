@@ -1,0 +1,55 @@
+{% extends "layouts/nav_app_honey.html" %}
+
+{% block main_link_css %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/styles_restaurant/support_page.css') }}">
+{% endblock %}
+
+{% block main_body %}
+    <div class="container-main-support">
+        <div class="container-block-support">
+            <div class="container-text-title">
+                <h1>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 48 48"><g fill="#328af1"><path fill-rule="evenodd" d="M41.708 23.794L24.058 6.086L6.294 23.792a1 1 0 0 0 1.412 1.416L10 22.922V41a1 1 0 0 0 1 1h26a1 1 0 0 0 1-1V22.907l2.292 2.299a1 1 0 0 0 1.416-1.412M24.053 8.914L36 20.9V40H12V20.928z" clip-rule="evenodd"/><path d="M16 25.517C16 22.655 17.794 20 20.25 20c1.704 0 2.97 1.191 3.75 2.88c.78-1.689 2.045-2.88 3.75-2.88c2.456 0 4.25 2.655 4.25 5.517C32 31.644 24 36 24 36s-5.389-2.756-7.32-7.278a9 9 0 0 1-.36-1a8 8 0 0 1-.32-2.205"/></g></svg>
+                    Soporte Técnico 24/7</h1>
+                <div class="container-text">
+                    <p>En Foodie Admin, entendemos lo importante que es mantener tus sistemas funcionando sin interrupciones. Por eso, nuestro equipo de soporte técnico está disponible para ti las 24 horas del día, los 7 días de la semana. No importa la hora ni el día, siempre estaremos aquí para ayudarte a resolver cualquier problema o consulta que tengas.</p>
+                </div>
+                <div class="container-img-descr">
+                    <img src="{{ url_for('static', filename='images/images_restaurant/images_default/undraw_programmer_re_owql.svg') }}" alt="">
+                </div>
+            </div>
+            <div class="container-section-form">
+                <div class="form-title">
+                    <h2>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24"><path fill="#328af1" d="M12 2C6.486 2 2 6.486 2 12v4.143C2 17.167 2.897 18 4 18h1a1 1 0 0 0 1-1v-5.143a1 1 0 0 0-1-1h-.908C4.648 6.987 7.978 4 12 4s7.352 2.987 7.908 6.857H19a1 1 0 0 0-1 1V18c0 1.103-.897 2-2 2h-2v-1h-4v3h6c2.206 0 4-1.794 4-4c1.103 0 2-.833 2-1.857V12c0-5.514-4.486-10-10-10"/></svg>
+                        Soporte
+                    </h2>
+                </div>
+                <form action="" method="POST" enctype="multipart/form-data">
+                    <label for="email">
+                        <span>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"><g fill="none" stroke="#7c3aed" stroke-width="1.5"><rect width="18.5" height="17" x="2.682" y="3.5" rx="4"/><path stroke-linecap="round" stroke-linejoin="round" d="m2.729 7.59l7.205 4.13a3.956 3.956 0 0 0 3.975 0l7.225-4.13"/></g></svg>
+                            Correo:</span>
+                        <input type="email" name="email_for_support" id="email">
+                    </label>
+                    <label for="text">
+                        <span>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"><g fill="none" stroke="#7c3aed" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"><path d="M21.25 7.506v6.607a3.963 3.963 0 0 1-3.964 3.965h-2.643l-2.18 2.18a.636.636 0 0 1-.925 0l-2.18-2.18H6.713a3.964 3.964 0 0 1-3.964-3.965V7.506a3.964 3.964 0 0 1 3.964-3.964h10.572a3.964 3.964 0 0 1 3.964 3.964"/><path d="M12 11.338a.66.66 0 1 0 0-1.321a.66.66 0 0 0 0 1.321m4.625 0a.66.66 0 1 0 0-1.321a.66.66 0 0 0 0 1.321m-9.25 0a.66.66 0 1 0 0-1.321a.66.66 0 0 0 0 1.321"/></g></svg>
+                            Mensage: *</span>
+                        <textarea name="text_for_support" id="text" required></textarea>
+                    </label>
+                    <label for="files">
+                        <span>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 15 15"><path fill="#7c3aed" d="m10.5.5l.277-.416L10.651 0H10.5zm3 2h.5v-.268l-.223-.148zm-1 9.5h-8v1h8zM4 11.5v-10H3v10zM4.5 1h6V0h-6zM13 2.5v9h1v-9zM10.223.916l3 2l.554-.832l-3-2zM4.5 12a.5.5 0 0 1-.5-.5H3A1.5 1.5 0 0 0 4.5 13zm8 1a1.5 1.5 0 0 0 1.5-1.5h-1a.5.5 0 0 1-.5.5zM4 1.5a.5.5 0 0 1 .5-.5V0A1.5 1.5 0 0 0 3 1.5zm-3 2v10h1v-10zM2.5 15h8v-1h-8zm0-12h1V2h-1zM12 13.5v-1h-1v1zM10.5 15a1.5 1.5 0 0 0 1.5-1.5h-1a.5.5 0 0 1-.5.5zM1 13.5A1.5 1.5 0 0 0 2.5 15v-1a.5.5 0 0 1-.5-.5zm1-10a.5.5 0 0 1 .5-.5V2A1.5 1.5 0 0 0 1 3.5z"/></svg>
+                            Imágenes, capturas de pantalla:</span>
+                        <input type="file" name="files_for_support" multiple id="files">
+                    </label>
+                    <button type="submit">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 16 16"><path fill="#ffffff" d="M15.854.146a.5.5 0 0 1 .11.54l-5.819 14.547a.75.75 0 0 1-1.329.124l-3.178-4.995L.643 7.184a.75.75 0 0 1 .124-1.33L15.314.037a.5.5 0 0 1 .54.11ZM6.636 10.07l2.761 4.338L14.13 2.576zm6.787-8.201L1.591 6.602l4.339 2.76z"/></svg>
+                        Enviar
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}

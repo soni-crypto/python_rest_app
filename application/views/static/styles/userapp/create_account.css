@@ -1,0 +1,265 @@
+@import url("../config.css");
+@font-face {
+    font-family: "open-sans";
+    src: url("../fonts/Open_Sans/OpenSans-Regular.ttf") format("truetype");
+}
+body{
+    font-family: "open-sans", sans-serif;
+    user-select: none;
+}
+.container-main-login{
+    width: 100vw;
+    height: 100vh;
+    overflow-y: scroll;
+    background-color: var(--color-main-3);
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+}
+.container-main-login .container-header{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 2rem;
+}
+.container-main-login .container-header .container-logo{
+    width: 5rem;
+    height: 5rem;
+    background-color: white;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.container-main-login .container-header .container-logo img{
+    max-width: 85%;
+    max-height: 85%;
+}
+.container-main-login .container-header h1{
+    font-weight: 600;
+    margin-top: 1.2rem;
+    font-size: 1.9rem;
+    color: white;
+}
+
+
+.container-main-login .container-inputs-main-all{
+    width: 100%;
+    min-height: 438px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    padding: .8rem;
+    padding-top: 1.2rem;
+    padding-bottom: 1.2rem;
+    margin-top: 1.2rem;
+    border-radius: 0 20% 0 20%;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+.container-main-login .container-inputs-main-all .block-inputs{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    row-gap: 1rem;
+}
+.container-main-login .container-inputs-main-all .block-inputs .user-label-ui-style{
+    color: rgb(106, 106, 106);
+}
+.container-main-login .container-inputs-main-all .block-buttons{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    row-gap: .5rem;
+    margin-top: 1.5rem;
+}
+.container-main-login .container-inputs-main-all .block-buttons button{
+    width: 90%;
+    padding: .9rem 0 ;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    color: white;
+    border-radius: 1.5rem;
+    font-size: 1.1rem;
+    font-weight: 600;
+    background-color: var(--color-main-3);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    column-gap: .6rem;
+}
+
+.container-main-login .container-inputs-main-all .block-links{
+    margin-top: 1.2rem;
+    text-align: center;
+}
+
+
+/* MODAL verification */
+.modal-content{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.content-modal-all-main{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 90%;
+    background-color: white;
+    border-radius: .8rem;
+    padding: 1rem .8rem;
+    box-sizing: border-box;
+}
+.content-modal-all-main .div-modal-verification-close{
+    width: 100%;
+    display: flex;
+    justify-content: end;
+    align-items: end;
+    position: relative;
+}
+.content-modal-all-main .div-modal-verification-close .modal-verification-close{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 2rem;
+    height: 2rem;
+    background-color: rgb(255, 244, 244);
+    color: #954d4d;
+    border-radius: 50%;
+    border: none;
+    outline: none;
+    position: absolute;
+}
+.content-modal-all-main .block-header{
+    text-align: center;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.content-modal-all-main .block-header .container-icon-app-main{
+    width: 4rem;
+    height: 4rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    border-radius: 50%;
+    margin-bottom: 1rem;
+    background-color: white;
+}
+.content-modal-all-main .block-header .container-icon-app-main img{
+    max-width: 100%;
+    max-height: 100%;
+}
+.content-modal-all-main .block-header h1{
+    font-weight: 600;
+    font-size: 1.1rem;
+    text-transform: capitalize;
+    color: rgb(27, 27, 100);
+}
+.content-modal-all-main .block-header h2{
+    font-weight: 500;
+    font-size: 1rem;
+    color: rgb(42, 42, 49)50, 50, 66);
+}
+.content-modal-all-main .block-body-inputs{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: .6rem;
+    margin-top: 1rem;
+}
+.content-modal-all-main .block-body-inputs input{
+    text-align: center;
+    font-size: 1.2rem;
+    font-weight: 500;
+    width: 2.5rem;
+    height: 3.5rem;
+    border: 2px solid rgba(0, 0, 255, 0.586);
+    border-radius: .5rem;
+    outline: none;
+    background-color: white;
+}
+.content-modal-all-main .block-buttons{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin-top: .4rem;
+    gap: .6rem;
+}
+.content-modal-all-main .block-buttons .continue-btn{
+    width: 80%;
+    padding: .7rem;
+    text-align: center;
+    background-color: var(--color-main-3);
+    color: white;
+    border-radius: 1.5rem;
+    outline: none;
+    border: none;
+    font-size: 1.1rem;
+}
+.content-modal-all-main .block-buttons .resend-btn{
+    width: 80%;
+    padding: .7rem;
+    text-align: center;
+    background-color: var(--color-blue-dark-2);
+    color: white;
+    border-radius: 1.5rem;
+    outline: none;
+    border: none;
+    font-size: 1.1rem;
+}
+.container-message-code-incorrect{
+    width: 100%;
+    text-align: center;
+    height: auto;
+    margin-top: .5rem;
+}
+.container-message-code-incorrect span{
+    color: red;
+    font-size: .9rem;
+    display: none;
+}
+
+.container-main-login .container-inputs-main-all .block-inputs{
+    width: 90%;
+}
+.container-main-login .container-inputs-main-all .block-inputs .input-group-ui-style .input-ui-style{
+    border: 1px solid rgb(220, 220, 235);
+}
+.container-main-login .btn-view-password{
+    position: absolute;
+    top: .4rem;
+    right: .3rem;
+    background-color: rgb(236, 244, 230);
+    width: 2rem;
+    height: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    border: none;
+    outline: none;
+    color: blue;
+}
+.container-main-login .btn-view-password svg:nth-child(1){
+    display: none;
+}

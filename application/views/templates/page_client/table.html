@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/libraries/bulma.min.css') }}">
+    <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='styles/page_client/table.css') }}"/>
+    <!-- <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='styles/ui/input_radio_square.css') }}"/> -->
+    <title>Cart</title>
+</head>
+<body>
+    <div class="container-main-all">
+        <div class="box">
+            <div class="title">
+                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24"><path fill="#333333" d="M4.325 9h15.35l-.85-3H5.2zM16.8 11H7.225l-.275 2h10.1zM4.15 18.875L5.225 11H3q-.5 0-.787-.4t-.163-.875l1.425-5q.1-.325.35-.525t.6-.2h15.15q.35 0 .6.2t.35.525l1.425 5q.125.475-.162.875T21 11h-2.2l1.05 7.875q.05.45-.238.788t-.737.337q-.375 0-.663-.238t-.337-.612l-.55-4.15H6.675l-.55 4.15q-.05.375-.337.613T5.125 20q-.45 0-.737-.337t-.238-.788"/></svg>
+                <h3>Seleccionar mesa</h3>
+            </div>
+            <div class="select-container-table">
+                <div class="select">
+                    <select name="" id="category_table" class="">
+                        <option value="all" selected disabled>Seleccione categoría</option>
+                        {% for c in table_category %}
+                        <option value="{{ c.id }}">{{ c.name }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+            </div>
+            <div class="container-footer">
+                <div class="radio-inputs">
+                    <div class="ctn-label">
+                        {% for t in table %}
+                        <label data-category="{{ t.category_id }}" data-table="{{ t.id }}" data-table-name="{{ t.number_table }}" class="label-table-u" style="display: none;">
+                            <input class="radio-input" type="radio" name="engine">
+                            <span class="radio-tile">{{ t.number_table }}</span>
+                        </label>
+                        {% endfor %}
+                    </div>
+                </div>
+            
+                <div class="container-buttons-nav-return-continue">
+                    <a href="/p/{{ data_admin_session.id_secondary }}/cart">
+                        <button class="button is-primary is-rounded">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"><path fill="#ffffff" d="m3.55 12l7.35 7.35q.375.375.363.875t-.388.875t-.875.375t-.875-.375l-7.7-7.675q-.3-.3-.45-.675T.825 12t.15-.75t.45-.675l7.7-7.7q.375-.375.888-.363t.887.388t.375.875t-.375.875z"/></svg>
+                            Volver
+                        </button>
+                    </a>
+                    <button class="button is-link is-rounded" id="btn-save-continue">
+                        Continuar
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"><path fill="#ffffff" d="m14.475 12l-7.35-7.35q-.375-.375-.363-.888t.388-.887t.888-.375t.887.375l7.675 7.7q.3.3.45.675t.15.75t-.15.75t-.45.675l-7.7 7.7q-.375.375-.875.363T7.15 21.1t-.375-.888t.375-.887z"/></svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- <script src="{{ url_for('static', filename='js/page_client/cart_shop.js') }}"></script> -->
+    <script>
+        const select_el = document.getElementById("category_table");
+        const labels = document.querySelectorAll(".label-table-u");
+        const button_continue = document.getElementById("btn-save-continue");
+        const jdapp = localStorage.getItem("jdapp");
+        const jdapp_json = JSON.parse(jdapp);
+        let table = null;
+        let table_name = null;
+        select_el.addEventListener("change", ()=>{
+            labels.forEach((label)=>{
+                label.addEventListener("click", ()=>{
+                    table = label.dataset.table;
+                    table_name = label.dataset.tableName;
+                })
+                if (label.dataset.category === select_el.value){
+                    label.removeAttribute("style");
+                }else{
+                    label.style.display = "none";
+                }
+            })
+        })
+        button_continue.addEventListener("click", ()=>{
+            if (table){
+                jdapp_json.data.table = table;
+                jdapp_json.data.table_name = table_name;
+                localStorage.setItem("jdapp", JSON.stringify(jdapp_json));
+                if (jdapp_json.data.category === 1){
+                    location.href = "checkout";
+                }else{
+                    location.href = "calendar";
+                }
+            }else{
+                alert("Seleccione su mesa");
+            }
+        })
+    </script>
+</body>
+</html>

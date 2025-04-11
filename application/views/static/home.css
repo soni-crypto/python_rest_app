@@ -1,0 +1,608 @@
+@import url("./styles/config.css");
+:root{
+    --openSans: 'Open Sans', sans-serif;
+    --poppins: "Poppins",sans-serif;
+}
+/* ESTILO GENERAL  */
+.page-content{
+    height: 100%;
+    padding-top: 70px;
+    padding-left: 0;
+    padding-right: 0;
+    padding-bottom: 0;
+    /* background-color: #affd3a; */
+}
+/* SPINNER START */
+.spinner-border-1{
+    width: 1.1rem;
+    height: 1.1rem;
+
+}
+/* SPINNER FIN */
+body{
+    height: 100vh;
+}
+table td{
+    white-space:nowrap;
+}
+.button-amburguesa-clear{
+    border: none;
+    outline: none;
+}
+.title-page-details{
+    text-align: center;
+    width: 100%;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    box-sizing: border-box;
+}
+.title-page-details h1{
+    font-size: 1.1rem;
+}
+.title-page-details img{
+    width: 2.1rem;
+}
+.container-form-create-user{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: .6rem;
+    padding-bottom: 1rem;
+    box-sizing: border-box;
+}
+.container-form-create-user form{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.container-form-create-user form div,
+.container-form-create-user form input{
+    width: 100%;
+}
+.btn-submit{
+    width: 90%;
+}
+.td-container-buttons-delete-edit{
+    /* typefoodroute */
+    display: flex;
+    column-gap: .5rem;
+    justify-content: center;
+    align-items: center;
+    /* margin-top: 2rem; */
+}
+.icon-nav-main-app{
+    width: 2rem;
+}
+.icon-title-body-main{
+    width: 4rem;
+}
+.image-icon-food-in-list-all{
+    height: 2.4rem;
+}
+.tbody-main-of-view-food tr th,
+.tbody-main-of-view-food tr td{
+    padding: 0;
+    margin: 0;
+    min-height: 3rem;
+    text-align: left;
+}
+
+.thead-main-of-view-food tr th{
+    text-align: center;
+}
+.table-view-orders-food-main tbody td{
+    padding: 0;
+    min-height: 2.3rem;
+}
+.table-view-orders-food-main .td-container-table-number span{
+    width: 1.3rem;
+    height: 1.3rem;
+    border-radius: 50%;
+    background-color: rgba(99, 197, 24, 0.926);
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+}
+.table-view-orders-food-main .td-container-table-number img{
+    width: 2rem;
+}
+.td__container-main-table-number-div{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+.container-main-body-all{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: .4rem;
+    position: relative;
+    background-color: white;
+}
+.main-container-all-login{
+    height: 100vh;
+    width: 100%;
+    margin-top: 0;
+    /* background-image: url("../static/images/images_restaurant/images-fondo-1.jpg");
+    background-size: cover; */
+}
+.container-main-all-messages-and-notifications-in-app{
+    max-width: 20rem;
+    width: 95%;
+    position: fixed;
+    right: .5rem;
+    bottom: .6rem;
+    z-index: 4;
+}
+.container-main-all-messages-and-notifications-in-app > div{
+    animation-name: animateAlert;
+    animation-duration: 1s;
+    animation-fill-mode: forwards;
+}
+@keyframes animateAlert {
+    0%{
+        margin-bottom: 15rem;
+    }
+    50%{
+        margin-bottom: 0rem;
+    }
+    75%{
+        margin-bottom: 4rem;
+    }
+    100%{
+        margin-bottom: 0rem;
+    }
+}
+
+.container-main-section-flex-row{
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    height: 100%;
+    position: relative;
+}
+
+.section-main-of-panel{
+    height: calc( 100% - 60px);
+    box-sizing: border-box;
+}
+
+.container-main-body-all .title-main-panel-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    column-gap: 1rem;
+}
+.container-main-body-all .title-main-panel-container img{
+    width: 3rem;
+}
+.container-main-body-all .title-main-panel-container h1{
+    font-size: 1.5rem;
+}
+.container-main-body-all .table-view-orders-food-main{
+    width: 40rem;
+    margin-top: 2.5rem;
+}
+.container-main-body-all .form-main-control-for-user-view{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    column-gap: 1rem;
+    margin-top: 2rem;
+    width: 100%;
+    box-sizing: border-box;
+    /* padding: 0 1rem 0 1rem; */
+}
+.form-main-control-for-user-view-record{
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    column-gap: 1rem;
+    row-gap: 1rem;
+    margin-top: 2rem;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 0 1rem 0 1rem;
+    flex-wrap: wrap;
+}
+.container-main-body-all .form-main-control-for-user-view-record form{
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-end;
+    column-gap: .6rem;
+    flex-wrap: wrap;
+}
+.container-main-body-all .form-main-control-for-user-view-record form .container-inputs-search-record{
+    display: flex;
+    /* flex-direction: column; */
+    justify-content: center;
+    align-items: center;
+    column-gap: .6rem;
+    height: 100%;
+    flex-wrap: wrap;
+}
+.container-inputs-search-record .container-inputs-date-for-filter{
+    display: flex;
+    column-gap: .5rem;
+}
+.form-main-control-for-user-view-record .search-record-movements-letter{
+    display: none;
+}
+.container-block-div-nowrap-table-scroll-main{
+    margin-top: 0rem;
+    width:96%;
+    overflow-y: scroll;
+}
+.container-table-in-record-main{
+    margin-top: 2rem;
+    width:95%;
+}
+.container-table-in-record-main .table{
+    border-radius: .6rem;
+    overflow: hidden;
+    box-shadow: 1px 1px 10px rgb(213, 209, 209);
+}
+.container-table-in-record-main .table thead{
+    background-color: var(--color-blue-dark-1);
+    color: white;
+}
+.label-input-descr-forms{
+    font-size: .8rem;
+    margin: 0;
+}
+.table-view-waitress-crud{
+    width: 95%;
+    margin-top: 2rem;
+    border-radius: .6rem;
+    overflow: hidden;
+    box-shadow: 1px 1px 10px rgb(198, 196, 196);
+}
+.table-view-waitress-crud .td__container-main-image-profile-waitress-div{
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    overflow: hidden;
+    cursor: pointer;
+}
+.table-view-waitress-crud .td__container-main-image-profile-waitress-div img{
+    width: 100%;
+}
+.table-view-waitress-crud td{
+    height: auto;
+    padding: .3rem .6rem;   
+    margin: 0;
+    text-align: start;
+    vertical-align: middle;
+}
+.table-view-waitress-crud thead tr{
+    background-color: var(--color-blue-dark-1);
+    color: white;
+    border-radius: .5rem .5rem 0 0;
+}
+.table-view-waitress-crud .td-container-buttons-delete-edit-waitress .container-form-td{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    column-gap: .8rem;
+
+}
+.container-div-redirect-to-create-waitress{
+    margin-top: 1rem;
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    box-sizing: border-box;
+    padding-left: 1rem;
+}
+.container-div-redirect-to-create-waitress button img{
+    width: 2.5rem;
+}
+.container-div-form-create-update-waitress{
+    width: 95%;
+    max-width: 22rem;
+}
+.container-div-form-create-update-waitress form{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.container-div-form-create-update-waitress form div{
+    width: 100%;
+}
+.container-div-form-create-update-waitress button{
+    width: 95%;
+}
+.container-table-div-scroll-view-perfect{
+    width: 100%;
+    /* overflow-x: scroll; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: .8rem;
+    column-gap: .8rem;
+    row-gap: .7rem;
+    flex-wrap: wrap;
+    box-sizing: border-box;
+}
+.container-table-div-scroll-view-perfect .table-view-orders-food-main{
+    width: 95%;
+}
+.container-title-list-order-main {
+    padding: .1rem;
+    width: 100%;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    column-gap: 1rem;
+}
+.container-title-list-order-main img{
+    width: 2.8rem;
+}
+.container-title-list-order-main h1{
+    font-size: 1.2rem;
+}
+.container-table-div-scroll-view-perfect .block-list-order-main-container{
+    max-width: 24rem;
+    width: 100%;
+    height: auto;
+    border-radius: .6rem;
+    padding: .4rem;
+    box-sizing: border-box;
+    position: relative;
+    /* color: rgb(22, 18, 74); */
+    /* color: white; */
+    cursor: pointer;
+    font-family: var(--poppins);
+    user-select: none;
+    /* background-color: white; */
+    /* background-image: url("../static/images/images_restaurant/textura_1.jpg");
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover; */
+
+    box-shadow: 1px 1px 5px rgb(221, 221, 221);
+    border: none;
+    background-color: white;
+    color: rgb(68, 68, 68);    
+}
+.block-list-order-main-container .block-list-order-main-container__body-order{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.block-list-order-main-container .block-list-order-main-container__controll-order{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    column-gap: .4rem;
+    /* background-color: rgb(91, 50, 216); */
+    padding: 0rem;
+    box-sizing: border-box;
+    padding-top: .2rem;
+    width: 100%;
+    left: 0;
+    border-radius: 0 0 .5rem .5rem;
+    border-top: 1px solid rgb(189, 189, 189);
+}
+.block-list-order-main-container .block-list-order-main-container__controll-order a button,
+.block-list-order-main-container .block-list-order-main-container__controll-order button{
+    padding: 0rem;
+    background-color: rgba(0, 0, 0, 0.002);
+    border: none;
+}
+.block-list-order-main-container .block-list-order-main-container__controll-order a button svg,
+.block-list-order-main-container .block-list-order-main-container__controll-order button svg{
+    fill: rgb(58, 58, 58);
+}
+
+.block-list-order-main-container .block-list-order-main-container__body-order .body-order__name{
+    width: 100%;
+    padding: 0rem;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    font-size: .8rem;
+    column-gap: 1rem;
+    /* color: rgb(34, 34, 34); */
+    /* color: white; */
+    /* white-space: nowrap; */
+}
+.block-list-order-main-container .block-list-order-main-container__body-order .body-order__name_with-break{
+    width: 100%;
+    padding: 0rem;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    font-size: .8rem;
+    column-gap: 1rem;
+    /* color: rgb(77, 77, 77); */
+    /* white-space: nowrap; */
+}
+/* CHEVRONS */
+.chevron-left-container-main-all-app{
+    
+    width: 100%;
+    margin-top: 0;
+}
+.chevron-left-container-main-all-app .chevron-left-a{
+    background-color: rgb(242, 242, 242);
+    width: 2.4rem;
+    height: 2.4rem;
+    border-radius: 50%;
+    position: relative;
+    left: 1rem;
+    top: 0rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+    margin: 0;
+    fill: rgb(132, 132, 132);
+}
+.chevron-left-container-main-all-app .chevron-left-a svg{
+    width: 1.8rem;
+    height: 1.8rem;
+}
+.chevron-left-container-main-all-app .chevron-left-a:hover{
+    background-color: rgb(35, 33, 73);
+    fill: white;
+}
+.amount-view-analitics-food-main{
+    width: 100%;
+    max-width: 20rem;
+}
+.amount-view-analitics-food-main .container-amount-data-value-admin .container-amount-data-value-admin-text{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+}
+.div-block-between{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.container-all-main-view-data-admin{
+    width: auto;
+    height: 100%;
+    position: relative;
+    box-sizing: border-box;
+}
+.container-all-form-main-scroll-x{
+    width: 100%;
+    overflow-x: scroll;
+    padding: 0 1rem 0 1rem;
+    box-sizing: border-box;
+}
+.container-all-image-renderer-search-user{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    justify-content: center;
+    align-items: center;
+    margin-top: .6rem;
+}
+.container-all-image-renderer-search-user .container-block-renderer-icon{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.container-all-image-renderer-search-user .container-block-renderer-icon img{
+    max-width: 100%;
+    max-height: 100%;
+}
+
+
+
+
+
+
+@media screen and (max-width:1000px) {
+    .container-main-body-all .table-view-orders-food-main{
+        width: 95%;
+        max-width: 40rem;
+    }
+    .chevron-left-container-main-all-app{
+        /* display: none; */
+    }
+    .container-table-in-record-main{
+        overflow-x: scroll;
+    }
+    .container-main-body-all .title-main-panel-container h1{
+        font-size: 1.1rem;
+    }
+    .container-main-body-all .title-main-panel-container img{
+        width: 2rem;
+    }
+    .container-inputs-search-record .container-inputs-date-for-filter{
+        /* flex-wrap: wrap; */
+    }
+}
+@media screen and (max-width:800px) {
+    .container-table-div-scroll-view-perfect{
+        align-items: flex-start;
+    }   
+    .delete-record-movements-letter{
+        display: none;
+    }
+    .container-main-body-all .form-main-control-for-user-view-record form{
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+    }
+    .container-main-body-all .form-main-control-for-user-view-record form .container-inputs-search-record{
+        flex-direction: column;
+        width: 97%;
+        max-width: 20rem;
+    }
+
+    /* .container-main-body-all .form-main-control-for-user-view-record form .container-inputs-search-record .container-inputs-date-for-filter{
+        flex-direction: column;
+    } */
+    .container-inputs-search-record .container-waitress-data-info-select{
+        width: 100%;
+    }
+    .container-inputs-search-record .container-inputs-date-for-filter{
+        width: 100%;
+    }
+    .container-inputs-search-record .container-inputs-date-for-filter > div{
+        width: 50%;
+    }
+    .container-inputs-search-record .container-inputs-date-for-filter input{
+        width: 100%;
+        box-sizing: border-box;
+    }
+    .btn-filter-submit-record{
+        margin-top: 1rem;
+        width: 90%;
+        max-width: 18rem;
+    }
+    .form-main-control-for-user-view-record .search-record-movements-letter{
+        display:inline;
+    }
+}
+
+@media screen and (max-width:720px) {
+    .container-table-div-scroll-view-perfect{
+        align-items: flex-start;
+    }   
+
+    /* BUTTONS */
+    .container-main-body-all .form-main-control-for-user-view{
+        flex-direction: column;
+        row-gap: .6rem;
+    }
+    .container-main-body-all .form-main-control-for-user-view a, 
+    .container-main-body-all .form-main-control-for-user-view form {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .container-main-body-all .form-main-control-for-user-view a button, 
+    .container-main-body-all .form-main-control-for-user-view form button{
+        width: 60%;
+        max-width: 20rem;
+        height: 3.1rem;
+    }
+}

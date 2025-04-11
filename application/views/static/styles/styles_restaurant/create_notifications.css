@@ -1,0 +1,74 @@
+.container-all-seccion{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: start;
+    gap: 1rem;
+}
+.container-all-seccion .container-fluid-block-create{
+    width: 100%;
+    /* max-width: 22rem; */
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.container-all-seccion .container-fluid-block-create .title-page{
+    width: 100%;
+    text-align: center;
+}
+.container-all-seccion .container-fluid-block-create .title-page h1{
+    font-size: .9rem;
+    font-weight: 600;
+    margin-top: 1.2rem;
+}
+.container-all-seccion .container-fluid-block-create form{
+    /* width: 100%; */
+
+    width: 20rem;
+    /* background-color: black; */
+}
+.container-all-seccion .container-fluid-block-create .coolinput-main-template .text-main-template{
+    color: rgb(53, 53, 58);
+    font-size: .8rem;
+    font-weight: normal;
+}
+.coolinput-main-template select.input-main-template ,
+.coolinput-main-template input.input-main-template {
+    border: 1px solid rgba(154, 154, 154, 0.963);
+}
+.container-btn-create{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 2rem;
+}
+.container-btn-create button{
+    width: 90%;
+    height: 3rem;
+    border: none;
+    border-radius: 1.5rem;
+    background-color: var(--color-blue-dark-2);
+    color: white;
+    font-size: 1.1rem;
+}
+.container-btn-create button:hover{
+    background-color: var(--color-blue-dark-3);
+}
+.container-message-not-edit-delete{
+    display: flex;
+    flex-direction: column;
+}
+.container-message-not-edit-delete > span{
+    margin-top: .3rem;
+    font-size: .7rem;
+    color: red;
+}
+@media (orientation: portrait){
+    
+}
+@media screen and (max-width: 900px) {
+    
+}

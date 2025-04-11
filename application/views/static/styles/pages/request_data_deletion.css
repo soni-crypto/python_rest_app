@@ -1,0 +1,30 @@
+.container-main-all{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+}
+.container-main-all .container-all{
+    width: 100%;
+    max-width: 35rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+}
+.container-main-all .container-all .container-steps{
+    width: 100%;
+    max-width: 40rem;
+}
+.container-main-all .container-all .container-logo{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    column-gap: .8rem;
+}
+.container-main-all .container-all .container-logo img{
+    width: 5rem;
+}

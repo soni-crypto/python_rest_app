@@ -1,0 +1,127 @@
+{% extends "layouts/nav_app_honey.html" %}
+
+{% block main_link_css %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/ui/loader_ping.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/ui/input_simple.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/ui/input.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/styles_restaurant/edit_profile_admin.css') }}">
+    
+{% endblock %}
+
+{% block main_body %}
+    <section class="section-container-all">
+        <!-- BULMA -->
+        <div class="tabs is-boxed">
+            <ul>
+                <li>
+                    <a href="/honey/edit_user_admin">
+                        <span>Usuario</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/honey/edit_user_admin/2">
+                        <span>Negocio</span>
+                    </a>
+                </li>
+                <li class="is-active">
+                    <a href="/honey/edit_user_admin/3">
+                        <span>Pagos</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/honey/edit_user_admin/4">
+                        <span>Otros</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <!-- BULMA END -->
+        <!-- OLD -->
+        <div class="">
+            <!-- formulario -->
+            <div class="container-div-form">
+                <form action="" method="post" enctype="multipart/form-data">
+                    <div class="container-btn-update-save" style="max-width: 38rem;">
+                        <button type="submit" class="btn-update-save">
+                            Guardar cambios
+                        </button>
+                        <div class="title-main-panel-container">
+                            <h5>Métodos de pago</h5>
+                        </div>
+                    </div>
+                    <div class="block-container-forms-div-main-payments">
+                        <div class="container-content-methods-pay">
+                            <!-- <div class="block-row-pay-method">
+                                <label for="activate_cash">
+                                    <input type="checkbox" {% if data_user.cash_payment_status == 1 %} checked {% endif %}  value="1" name="cash_payment_status" id="activate_cash">
+                                    <span>Activar pago en efectivo</span>
+                                </label>
+                            </div> -->
+                            <div class="block-row-pay-method">
+                                <label for="activate_yape">
+                                    <input type="checkbox"{% if data_user.yape_payment_status == 1 %} checked {% endif %} value="1" name="yape_payment_status" id="activate_yape">
+                                    <span>Activar pago con yape</span>
+                                </label>
+                                <div class="container-block-image-input-preview">
+                                    <img src="{{ data_user.yape_payment_image }}" alt="" id="preview_image_pay_qr_yape">
+                                    <label for="image_pay_qr_yape">
+                                        <div class="btn-upload-image">
+                                            Subir imagen
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 48 48"><g fill="none"><path fill="#ffffff" d="M44 24a2 2 0 1 0-4 0zM24 8a2 2 0 1 0 0-4zm15 32H9v4h30zM8 39V9H4v30zm32-15v15h4V24zM9 8h15V4H9zm0 32a1 1 0 0 1-1-1H4a5 5 0 0 0 5 5zm30 4a5 5 0 0 0 5-5h-4a1 1 0 0 1-1 1zM8 9a1 1 0 0 1 1-1V4a5 5 0 0 0-5 5z"/><path stroke="#ffffff" stroke-linecap="round" stroke-linejoin="round" stroke-width="4" d="m6 35l10.693-9.802a2 2 0 0 1 2.653-.044L32 36m-4-5l4.773-4.773a2 2 0 0 1 2.615-.186L42 31m-5-13V6m-5 5l5-5l5 5"/></g></svg>
+                                        </div>
+                                        <input type="file" name="yape_payment_image" id="image_pay_qr_yape">
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="block-row-pay-method">
+                                <label for="activate_izipayya">
+                                    <input type="checkbox" {% if data_user.izipayya_payment_status %} checked {% endif %} value="1" name="izipayya_payment_status" id="activate_izipayya">
+                                    <span>Activar pago con izipayYA</span>
+                                </label>
+                                <div class="container-block-image-input-preview">
+                                    <img src="{{ data_user.izipayya_payment_image }}" alt="" id="preview_image_pay_qr_izipayya">
+                                    <label for="image_pay_qr_izipayya">
+                                        <div class="btn-upload-image">
+                                            Subir imagen
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 48 48"><g fill="none"><path fill="#ffffff" d="M44 24a2 2 0 1 0-4 0zM24 8a2 2 0 1 0 0-4zm15 32H9v4h30zM8 39V9H4v30zm32-15v15h4V24zM9 8h15V4H9zm0 32a1 1 0 0 1-1-1H4a5 5 0 0 0 5 5zm30 4a5 5 0 0 0 5-5h-4a1 1 0 0 1-1 1zM8 9a1 1 0 0 1 1-1V4a5 5 0 0 0-5 5z"/><path stroke="#ffffff" stroke-linecap="round" stroke-linejoin="round" stroke-width="4" d="m6 35l10.693-9.802a2 2 0 0 1 2.653-.044L32 36m-4-5l4.773-4.773a2 2 0 0 1 2.615-.186L42 31m-5-13V6m-5 5l5-5l5 5"/></g></svg>
+                                        </div>
+                                        <input type="file" name="izipayya_payment_image" id="image_pay_qr_izipayya">
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="block-row-pay-method">
+                                <label for="activate_bizum">
+                                    <input type="checkbox" {% if data_user.bizum_payment_status %} checked {% endif %} value="1" name="bizum_payment_status" id="activate_bizum">
+                                    <span>Activar pago con bizum</span>
+                                </label>
+                                <div class="container-block-image-input-preview">
+                                    <img src="{{ data_user.bizum_payment_image }}" alt="" id="preview_image_pay_qr_bizum">
+                                    <label for="image_pay_qr_bizum">
+                                        <div class="btn-upload-image">
+                                            Subir imagen
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 48 48"><g fill="none"><path fill="#ffffff" d="M44 24a2 2 0 1 0-4 0zM24 8a2 2 0 1 0 0-4zm15 32H9v4h30zM8 39V9H4v30zm32-15v15h4V24zM9 8h15V4H9zm0 32a1 1 0 0 1-1-1H4a5 5 0 0 0 5 5zm30 4a5 5 0 0 0 5-5h-4a1 1 0 0 1-1 1zM8 9a1 1 0 0 1 1-1V4a5 5 0 0 0-5 5z"/><path stroke="#ffffff" stroke-linecap="round" stroke-linejoin="round" stroke-width="4" d="m6 35l10.693-9.802a2 2 0 0 1 2.653-.044L32 36m-4-5l4.773-4.773a2 2 0 0 1 2.615-.186L42 31m-5-13V6m-5 5l5-5l5 5"/></g></svg>
+                                        </div>
+                                        <input type="file" name="bizum_payment_image" id="image_pay_qr_bizum">
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <br><br><br><br><br>
+    </section>
+    <!-- MODALS OF APPEND AND QUIT MONEY -->
+    
+{% endblock %}
+
+{% block main_link_js %}
+<script src="{{ url_for('static', filename='js/preview_image.js') }}"></script>
+<script>
+    preview_image("image_pay_qr_yape", "preview_image_pay_qr_yape");
+    preview_image("image_pay_qr_izipayya", "preview_image_pay_qr_izipayya");
+    preview_image("image_pay_qr_bizum", "preview_image_pay_qr_bizum");
+</script>
+    
+{% endblock %}

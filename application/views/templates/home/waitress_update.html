@@ -1,0 +1,67 @@
+{% extends "layouts/navigation_0.0.1.html" %}
+
+{% block main_link_css %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='home.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/styles_restaurant/restaurant_profile.css') }}">
+{% endblock %}
+
+{% block main_body %}
+    <section class="section-main-of-panel">
+        <div class="container-main-section-flex-row">
+
+            <div class="container-main-body-all">
+                <div class="chevron-left-container-main-all-app">
+                    <a href="{{ url_for('restaurant.waitressViewAccion') }}" class="chevron-left-a">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="bi bi-chevron-compact-left" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M9.224 1.553a.5.5 0 0 1 .223.67L6.56 8l2.888 5.776a.5.5 0 1 1-.894.448l-3-6a.5.5 0 0 1 0-.448l3-6a.5.5 0 0 1 .67-.223z"/></svg>
+                    </a>
+                </div>
+                <div class="title-main-panel-container">
+                    <h5>Actualizar permisos</h5>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 32 32"><path fill="currentColor" d="M30 24v-2h-2.101a4.968 4.968 0 0 0-.732-1.753l1.49-1.49l-1.414-1.414l-1.49 1.49A4.968 4.968 0 0 0 24 18.101V16h-2v2.101a4.968 4.968 0 0 0-1.753.732l-1.49-1.49l-1.414 1.414l1.49 1.49A4.968 4.968 0 0 0 18.101 22H16v2h2.101a4.968 4.968 0 0 0 .732 1.753l-1.49 1.49l1.414 1.414l1.49-1.49a4.968 4.968 0 0 0 1.753.732V30h2v-2.101a4.968 4.968 0 0 0 1.753-.732l1.49 1.49l1.414-1.414l-1.49-1.49A4.968 4.968 0 0 0 27.899 24Zm-7 2a3 3 0 1 1 3-3a3.003 3.003 0 0 1-3 3Z"/><path fill="currentColor" d="m14 26.667l-3.234-1.725A8.986 8.986 0 0 1 6 17V4h20v10h2V4a2.002 2.002 0 0 0-2-2H6a2.002 2.002 0 0 0-2 2v13a10.981 10.981 0 0 0 5.824 9.707L14 28.934Z"/></svg>
+                </div>
+                <!-- formulario -->
+                <div class="container-div-form-create-update-waitress">
+                    <form action="" method="post">
+                        <div class="mb-3">
+                            <span>Permitir crear *</span>
+                            <div class="d-flex justify-content-start align-items-center gap-3">
+                                <label for="p_c-s" class="d-flex justify-content-start align-items-center gap-1"><input type="radio" name="p_c" id="p_c-s" value="1" {% if data_waitress.p_c == 1 %} checked {% endif %}><span>Si</span></label>
+                                <label for="p_c-n" class="d-flex justify-content-start align-items-center gap-1"><input type="radio" name="p_c" id="p_c-n" value="0" {% if data_waitress.p_c == 0 %} checked {% endif %}><span>No</span></label>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <span>Permitir actualizar *</span>
+                            <div class="d-flex justify-content-start align-items-center gap-3">
+                                <label for="p_u-s" class="d-flex justify-content-start align-items-center gap-1"><input type="radio" name="p_u" id="p_u-s" value="1" {% if data_waitress.p_u == 1 %} checked {% endif %}><span>Si</span></label>
+                                <label for="p_u-n" class="d-flex justify-content-start align-items-center gap-1"><input type="radio" name="p_u" id="p_u-n" value="0" {% if data_waitress.p_u == 0 %} checked {% endif %}><span>No</span></label>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <span>Permitir eliminar *</span>
+                            <div class="d-flex justify-content-start align-items-center gap-3">
+                                <label for="p_d-s" class="d-flex justify-content-start align-items-center gap-1"><input type="radio" name="p_d" id="p_d-s" value="1" {% if data_waitress.p_d == 1 %} checked {% endif %}><span>Si</span></label>
+                                <label for="p_d-n" class="d-flex justify-content-start align-items-center gap-1"><input type="radio" name="p_d" id="p_d-n" value="0" {% if data_waitress.p_d == 0 %} checked {% endif %}><span>No</span></label>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <span>Permitir confirmar *</span>
+                            <div class="d-flex justify-content-start align-items-center gap-3">
+                                <label for="p_s-s" class="d-flex justify-content-start align-items-center gap-1"><input type="radio" name="p_s" id="p_s-s" value="1" {% if data_waitress.p_s == 1 %} checked {% endif %}><span>Si</span></label>
+                                <label for="p_s-n" class="d-flex justify-content-start align-items-center gap-1"><input type="radio" name="p_s" id="p_s-n" value="0" {% if data_waitress.p_s == 0 %} checked {% endif %}><span>No</span></label>
+                            </div>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-success">
+                            Guardar
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+{% endblock %}
+
+{% block main_link_js %}
+    <!-- <script src="{{ url_for('static', filename='js/control_nav_left.js') }}"></script> -->
+{% endblock %}

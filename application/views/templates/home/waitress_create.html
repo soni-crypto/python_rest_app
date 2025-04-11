@@ -1,0 +1,99 @@
+{% extends "layouts/navigation_0.0.1.html" %}
+
+{% block main_link_css %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='home.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/styles_restaurant/restaurant_profile.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/styles_restaurant/waitress_create.css') }}">
+{% endblock %}
+
+{% block main_body %}
+    <section class="section-main-of-panel">
+        <div class="container-main-section-flex-row">
+            
+
+        <div class="container-main-body-all">
+           
+            <div class="title-main-panel-container">
+                <h1>Agregar de meseras</h1>
+                <img src="{{ url_for('static', filename='images/images_restaurant/logo_food_11.png') }}" alt="">
+            </div>
+            
+            <!-- <div class="form-main-control-for-user-view">
+                <a href="">
+                <button class="btn btn-primary">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-people" viewBox="0 0 16 16"><path d="M15 14s1 0 1-1-1-4-5-4-5 3-5 4 1 1 1 1h8Zm-7.978-1A.261.261 0 0 1 7 12.996c.001-.264.167-1.03.76-1.72C8.312 10.629 9.282 10 11 10c1.717 0 2.687.63 3.24 1.276.593.69.758 1.457.76 1.72l-.008.002a.274.274 0 0 1-.014.002H7.022ZM11 7a2 2 0 1 0 0-4 2 2 0 0 0 0 4Zm3-2a3 3 0 1 1-6 0 3 3 0 0 1 6 0ZM6.936 9.28a5.88 5.88 0 0 0-1.23-.247A7.35 7.35 0 0 0 5 9c-4 0-5 3-5 4 0 .667.333 1 1 1h4.216A2.238 2.238 0 0 1 5 13c0-1.01.377-2.042 1.09-2.904.243-.294.526-.569.846-.816ZM4.92 10A5.493 5.493 0 0 0 4 13H1c0-.26.164-1.03.76-1.724.545-.636 1.492-1.256 3.16-1.275ZM1.5 5.5a3 3 0 1 1 6 0 3 3 0 0 1-6 0Zm3-2a2 2 0 1 0 0 4 2 2 0 0 0 0-4Z"/></svg>
+                    Agregar meseras
+                </button>
+                </a>
+            </div> -->
+            <!-- formulario -->
+
+            <div class="container-div-form-create-update-waitress">
+                <!-- <form action=""> -->
+                    <div class="container-search-waitress-form">
+                        <label for="user_search" class="label-text">
+                            <span>@ Email</span>
+                        </label>
+                        <div class="container-input-button">
+                            <input type="email" name="" id="user_search" autofocus placeholder="email@email.com" autocomplete="false">
+                            <button id="btn-search-user">  
+                                <svg xmlns="http://www.w3.org/2000/svg" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16"><path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/></svg>
+                            </button>
+                        </div>
+                    </div>
+                <!-- </form> -->
+                <div class="cotainer-result-search-users" id="cotainer-result-search-users">
+                    <!-- <div class="text-not-found-users">
+                        <span>No encontrado</span>
+                    </div>
+                    <div class="container-block">
+                        <div class="container-image-profile">
+                            <img src="/static/images/images_restaurant/images_profiles/2023-09-30_18_34_26pCXi2rA1W.jpg" alt="profile user">
+                        </div>
+                        <div class="container-info-user">
+                            <div class="row-details-user">
+                                <strong>Nombre: </strong>
+                                <span>Over</span>
+                            </div>
+                            <div class="row-details-user">
+                                <strong>Apellido: </strong>
+                                <span>Rimachi Nuñez</span>
+                            </div>
+                            <div class="row-details-user">
+                                <strong>Estado: </strong>
+                                <span>Ocupado</span>
+                            </div>
+                            <div class="container-button-append-user">
+                                <button class="button-append-user" data-m="">Agregar</button>
+                            </div>
+                        </div>
+                    </div> -->
+                    
+                </div>
+                
+            </div>
+        </div>
+        </div>
+    </section>
+    <!-- MESSAGE ALERTS AND INFO -->
+    </section>
+        <div class="container-main-all-messages-and-notifications-in-app">
+            {% if message|string == "200" %}
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    <strong>Meser@ agregado!</strong><br> Un meser@ ha sido agregado correctamente.
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            {% endif %}
+        </div>
+    <section>
+    
+{% endblock %}
+
+{% block main_link_js %}
+    <script src="{{ url_for('static', filename='js/WaitressController.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/control_nav_left.js') }}"></script>
+    <script>
+        const waitressController = new WaitressController();
+        waitressController.searchWaitressCreate();
+    </script>
+{% endblock %}

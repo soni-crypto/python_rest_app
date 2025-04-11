@@ -1,0 +1,176 @@
+{% extends "layouts/nav_app_honey.html" %}
+
+{% block main_link_css %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/styles_restaurant/waitress_view.css') }}">
+{% endblock %}
+
+{% block main_body %}
+    <div class="container-main-body-all">
+            
+        <div class="title-main-panel-container">
+            <h1>
+                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24"><path fill="#333333" d="M19.9 12.66a1 1 0 0 1 0-1.32l1.28-1.44a1 1 0 0 0 .12-1.17l-2-3.46a1 1 0 0 0-1.07-.48l-1.88.38a1 1 0 0 1-1.15-.66l-.61-1.83a1 1 0 0 0-.95-.68h-4a1 1 0 0 0-1 .68l-.56 1.83a1 1 0 0 1-1.15.66L5 4.79a1 1 0 0 0-1 .48L2 8.73a1 1 0 0 0 .1 1.17l1.27 1.44a1 1 0 0 1 0 1.32L2.1 14.1a1 1 0 0 0-.1 1.17l2 3.46a1 1 0 0 0 1.07.48l1.88-.38a1 1 0 0 1 1.15.66l.61 1.83a1 1 0 0 0 1 .68h4a1 1 0 0 0 .95-.68l.61-1.83a1 1 0 0 1 1.15-.66l1.88.38a1 1 0 0 0 1.07-.48l2-3.46a1 1 0 0 0-.12-1.17ZM18.41 14l.8.9l-1.28 2.22l-1.18-.24a3 3 0 0 0-3.45 2L12.92 20h-2.56L10 18.86a3 3 0 0 0-3.45-2l-1.18.24l-1.3-2.21l.8-.9a3 3 0 0 0 0-4l-.8-.9l1.28-2.2l1.18.24a3 3 0 0 0 3.45-2L10.36 4h2.56l.38 1.14a3 3 0 0 0 3.45 2l1.18-.24l1.28 2.22l-.8.9a3 3 0 0 0 0 3.98m-6.77-6a4 4 0 1 0 4 4a4 4 0 0 0-4-4m0 6a2 2 0 1 1 2-2a2 2 0 0 1-2 2"/></svg>
+                Administración de meser@s
+            </h1>
+        </div>
+        
+        
+        <div class="container-div-create-waitress">
+            <div class="container-search-waitress-form">
+                <label for="user_search" class="label-text">
+                    <span>Ingrese email del usuario:</span>
+                </label>
+                <div class="container-input-button">
+                    <input type="email" name="" id="user_search" autofocus placeholder="email@email.com" autocomplete="false">
+                    <button id="btn-search-user">  
+                        <svg xmlns="http://www.w3.org/2000/svg" height="15" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16"><path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/></svg>
+                    </button>
+                </div>
+                <ul>
+                    <li>Ingrese el correo a buscar.</li>
+                    <li>Envia solictud al usuario buscado.</li>
+                    <li>Administra los permisos del usuarios.</li>
+                    <li>Desconecta a los usuarios.</li>
+                </ul>
+            </div>
+            <div class="cotainer-result-search-users" id="cotainer-result-search-users">
+                <!-- <div class="container-block">
+                    <div class="container-image-profile">
+                        <img src="/static/images/images_restaurant/images_profiles/2024-06-19_16_34_10Ke4WGmDewQ.jpg" alt="profile user">
+                    </div>
+                    <div class="container-info-user">
+                        <div class="row-details-user">
+                            <strong>Nombre: </strong>
+                            <span>Over</span>
+                        </div>
+                        <div class="row-details-user">
+                            <strong>Apellido: </strong>
+                            <span>Rimachi Nuñez</span>
+                        </div>
+                        <div class="row-details-user">
+                            <strong>Estado: </strong>
+                            <span>Ocupado</span>
+                        </div>
+                        <div class="container-button-append-user">
+                            <button class="button-append-user" data-m="">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"><path fill="#ffffff" d="M19.49 5.57a6 6 0 0 1-1.893 8.962c-.649.351-1.43.135-1.952-.386l-5.79-5.791c-.522-.522-.738-1.303-.388-1.952A6 6 0 0 1 18.43 4.51l2.29-2.29a.75.75 0 1 1 1.061 1.06zm-2.017 7.263a4.5 4.5 0 1 0-6.306-6.306c-.266.349-.186.833.125 1.143l5.038 5.038c.31.31.794.391 1.143.125M3.28 21.78l2.29-2.29a6 6 0 0 0 8.962-1.893c.351-.649.135-1.43-.387-1.952l-5.79-5.79c-.522-.522-1.303-.738-1.952-.388A6 6 0 0 0 4.51 18.43l-2.29 2.29a.75.75 0 1 0 1.06 1.061m4.39-10.488l5.038 5.038c.31.31.39.794.125 1.143a4.5 4.5 0 1 1-6.306-6.306c.349-.266.833-.186 1.143.125"/></svg>
+                                Agregar
+                            </button>
+                        </div>
+                    </div>
+                </div> -->
+            </div>            
+        </div>
+
+        <div class="container-main-block-div-all-users">
+            {% if wData %}
+                {% for w in wData %}
+            <div class="container-main-profile-user">
+                <div class="block-data-info-user">
+                    <div class="container-img container-img-for-open">
+                        <img src="{{ w.user_image }}" alt="">
+                    </div>
+                    <div class="container-info">
+                        <span>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"><g fill="none" stroke="#666666" stroke-linecap="round" stroke-width="2"><path d="M19.727 20.447c-.455-1.276-1.46-2.403-2.857-3.207C15.473 16.436 13.761 16 12 16c-1.761 0-3.473.436-4.87 1.24c-1.397.804-2.402 1.931-2.857 3.207"/><circle cx="12" cy="8" r="4"/></g></svg>
+                            {{ w.user_first_name }}, {{ w.user_last_name }}
+                        </span>
+                        <span>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 16 16"><path fill="#666666" d="M11.5 0h-7C3.675 0 3 .675 3 1.5v13c0 .825.675 1.5 1.5 1.5h7c.825 0 1.5-.675 1.5-1.5v-13c0-.825-.675-1.5-1.5-1.5M6 .75h4v.5H6zM8 15a1 1 0 1 1 0-2a1 1 0 0 1 0 2m4-3H4V2h8z"/></svg>
+                            {{ w.user_phone_number }}
+                        </span>
+                        <a href="mailto:">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 16 14"><path fill="#666666" d="M14.5 13h-13C.67 13 0 12.33 0 11.5v-9C0 1.67.67 1 1.5 1h13c.83 0 1.5.67 1.5 1.5v9c0 .83-.67 1.5-1.5 1.5M1.5 2c-.28 0-.5.22-.5.5v9c0 .28.22.5.5.5h13c.28 0 .5-.22.5-.5v-9c0-.28-.22-.5-.5-.5z"/><path fill="#666666" d="M8 8.96c-.7 0-1.34-.28-1.82-.79L.93 2.59c-.19-.2-.18-.52.02-.71s.52-.18.71.02l5.25 5.58c.57.61 1.61.61 2.18 0l5.25-5.57c.19-.2.51-.21.71-.02s.21.51.02.71L9.82 8.18c-.48.51-1.12.79-1.82.79Z"/></svg>
+                            {{ w.user_email }}
+                        </a>
+                    </div>
+                </div>
+                <div class="block-options-user">
+                    <button data-row="{{ w.id }}" class="btn-delete-user-conected">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24"><path fill="#2b3055" d="M7.615 20q-.67 0-1.143-.472Q6 19.056 6 18.385V6H5V5h4v-.77h6V5h4v1h-1v12.385q0 .69-.462 1.152q-.463.463-1.153.463h-8.77ZM17 6H7v12.385q0 .269.173.442t.442.173h8.77q.23 0 .423-.192q.192-.193.192-.423V6ZM9.808 17h1V8h-1v9Zm3.384 0h1V8h-1v9ZM7 6v13V6Z"/></svg>
+                        Eliminar
+                    </button>
+                    <button>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 48 48"><path fill="none" stroke="#2b3055" stroke-linecap="round" stroke-linejoin="round" d="M39.23 26a16.52 16.52 0 0 0 .14-2a16.52 16.52 0 0 0-.14-2l4.33-3.39a1 1 0 0 0 .25-1.31l-4.1-7.11a1 1 0 0 0-1.25-.44l-5.11 2.06a15.68 15.68 0 0 0-3.46-2l-.77-5.43a1.05 1.05 0 0 0-1-.86h-8.2a1 1 0 0 0-1 .86l-.77 5.43a15.36 15.36 0 0 0-3.46 2L9.54 9.75a1 1 0 0 0-1.25.44l-4.1 7.11a1 1 0 0 0 .25 1.31L8.76 22a16.66 16.66 0 0 0-.14 2a16.52 16.52 0 0 0 .14 2l-4.32 3.39a1 1 0 0 0-.25 1.31l4.1 7.11a1 1 0 0 0 1.25.44l5.11-2.06a15.68 15.68 0 0 0 3.46 2l.77 5.43a1 1 0 0 0 1 .86h8.2a1 1 0 0 0 1-.86l.77-5.43a15.36 15.36 0 0 0 3.46-2l5.11 2.06a1 1 0 0 0 1.25-.44l4.1-7.11a1 1 0 0 0-.25-1.31Z"/><path fill="none" stroke="#2b3055" stroke-linecap="round" stroke-linejoin="round" d="m23.12 14.67l-7.55 3.12v7.66c0 4.12 8.43 8.05 8.43 8.05s8.43-3.93 8.43-8v-7.71l-7.55-3.12a2.33 2.33 0 0 0-1.76 0ZM24 33.5v-19M15.57 24h16.86"/></svg>
+                        Configurar
+                    </button>
+                </div>
+            </div>
+            <!-- <form action=" url_for('restaurant.waitressUpdateAccion') " method="get">
+                    <input type="hidden" value=" w.id " name="row">
+                    <button type="submit" class="btn btn-link p-1">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 48 48"><path fill="none" stroke="#2b3055" stroke-linecap="round" stroke-linejoin="round" d="M39.23 26a16.52 16.52 0 0 0 .14-2a16.52 16.52 0 0 0-.14-2l4.33-3.39a1 1 0 0 0 .25-1.31l-4.1-7.11a1 1 0 0 0-1.25-.44l-5.11 2.06a15.68 15.68 0 0 0-3.46-2l-.77-5.43a1.05 1.05 0 0 0-1-.86h-8.2a1 1 0 0 0-1 .86l-.77 5.43a15.36 15.36 0 0 0-3.46 2L9.54 9.75a1 1 0 0 0-1.25.44l-4.1 7.11a1 1 0 0 0 .25 1.31L8.76 22a16.66 16.66 0 0 0-.14 2a16.52 16.52 0 0 0 .14 2l-4.32 3.39a1 1 0 0 0-.25 1.31l4.1 7.11a1 1 0 0 0 1.25.44l5.11-2.06a15.68 15.68 0 0 0 3.46 2l.77 5.43a1 1 0 0 0 1 .86h8.2a1 1 0 0 0 1-.86l.77-5.43a15.36 15.36 0 0 0 3.46-2l5.11 2.06a1 1 0 0 0 1.25-.44l4.1-7.11a1 1 0 0 0-.25-1.31Z"/><path fill="none" stroke="#2b3055" stroke-linecap="round" stroke-linejoin="round" d="m23.12 14.67l-7.55 3.12v7.66c0 4.12 8.43 8.05 8.43 8.05s8.43-3.93 8.43-8v-7.71l-7.55-3.12a2.33 2.33 0 0 0-1.76 0ZM24 33.5v-19M15.57 24h16.86"/></svg>
+                    </button>
+                </form> -->
+            {% endfor %}
+            {% else %}
+            <div class="user-not-found-in-db">
+                <span>😏</span>
+                <span>Lista de usuarios está vacía</span>
+            </div>
+            {% endif%}
+        </div>
+    </div>
+    <!-- Modals all -->
+    <section>
+        <div class="modal" id="modal-view-profile">
+            <div class="modal-background"></div>
+            <div class="modal-content">
+                <div class="modal-content-image-preview-profile">
+                    <img src="" alt="profile" class="image-view-profile-modal" style="max-width: 90%;max-height: 90%;border-radius: .5rem;">                      
+                </div>    
+            </div>
+            <button class="modal-close is-large" aria-label="close"></button>
+        </div>    
+        <div class="modal" id="modal-acept-delete">
+            <div class="modal-background"></div>
+            <div class="modal-content">
+                <div class="modal-content-delete">
+                    <h5>¿Eliminar?</h5>
+                    <button class="btn btn-danger" id="btn-confirm-delete-user">Confirmar</button>
+                </div>
+            </div>
+            <button class="modal-close is-large" aria-label="close"></button>
+        </div>    
+    </section>
+{% endblock %}
+
+{% block main_link_js %}
+    <script src="{{ url_for('static', filename='js/WaitressController.js') }}"></script>
+    <script>
+        const waitressController = new WaitressController();
+        waitressController.searchWaitressCreate();
+    </script>
+    <script>
+        const modal_image = document.querySelector(".image-view-profile-modal");
+        const imgs_btn = document.querySelectorAll(".container-img-for-open");
+        imgs_btn.forEach(img => {
+            img.addEventListener("click", ()=>{
+                openModal(document.getElementById("modal-view-profile"));
+                let img_element = img.querySelector("img");
+                modal_image.src = img_element.src;
+            })
+        })
+
+        const btn_delete_user = document.querySelectorAll(".btn-delete-user-conected");
+        const btn_confirm_delete_user = document.getElementById("btn-confirm-delete-user");
+        let row = null;
+        btn_delete_user.forEach(element => {
+            element.addEventListener("click", () => {
+                openModal(document.getElementById("modal-acept-delete"));
+                row = element.dataset.row;
+            })
+        })
+        btn_confirm_delete_user.addEventListener("click", async() => {
+            if (row){
+                await fetch("/honey/waitress_delete?row="+String(row)).then(res => res.text()).then(data => {
+                    if (data === "ok"){
+                        location.reload();
+                    }else{
+                        alert("Error al eliminar");
+                    }
+                })
+            }
+        })
+    </script>
+{% endblock %}

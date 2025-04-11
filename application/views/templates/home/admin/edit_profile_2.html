@@ -1,0 +1,177 @@
+{% extends "layouts/nav_app_honey.html" %}
+
+{% block main_link_css %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/ui/loader_ping.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/ui/input_simple.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/ui/input.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/styles_restaurant/edit_profile_admin.css') }}">
+    
+{% endblock %}
+
+{% block main_body %}
+    <section class="section-container-all">
+        <!-- BULMA -->
+        <div class="tabs is-boxed">
+            <ul>
+                <li>
+                    <a href="/honey/edit_user_admin">
+                        <span>Usuario</span>
+                    </a>
+                </li>
+                <li class="is-active">
+                    <a href="/honey/edit_user_admin/2">
+                        <span>Negocio</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/honey/edit_user_admin/3">
+                        <span>Pagos</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/honey/edit_user_admin/4">
+                        <span>Otros</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <!-- BULMA END -->
+        <!-- OLD -->
+        <div class="">
+            <!-- formulario -->
+            <div class="container-div-form">
+                <form action="" method="post" enctype="multipart/form-data">
+                    <div class="container-btn-update-save">
+                        <button type="submit" class="btn-update-save">
+                            Guardar cambios
+                        </button>
+                        <div class="title-main-panel-container">
+                            <h5>Métodos de pago</h5>
+                        </div>
+                    </div>
+                    <div class="block-container-forms-div-main">
+                        <!-- COMPANY DATA -->
+                        <div class="coolinput-main-template">
+                            <label for="company_name" class="text-main-template">Nombre empresa</label>
+                            <input type="text" value="{{ data_user.company_name }}" name="company_name" id="company_name" class="input-main-template">
+                            <input type="hidden" value="{{ data_user.company_name }}" name="current_company_name">
+                        </div> 
+                        
+                        <div class="coolinput-main-template">
+                            <label for="company_description" class="text-main-template">Descripción empresa</label>
+                            <input type="text" value="{{ data_user.company_description }}" name="company_description" id="company_description" class="input-main-template">
+                        </div> 
+
+                        <div class="coolinput-main-template">
+                            <label for="id_secondary" class="text-main-template">ID de página</label>
+                            <input type="text" value="{{ data_user.id_secondary }}" name="id_secondary" id="id_secondary" class="input-main-template" minlength="5">
+                            <input type="hidden" value="{{ data_user.id_secondary }}" name="current_id_secondary">
+                            <div class="container-state-id-secondary" id="container-state-id-secondary">
+                                <div class="loader-ping"></div>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 56 56"><path fill="#79d657" d="M28 4c13.255 0 24 10.745 24 24S41.255 52 28 52S4 41.255 4 28S14.745 4 28 4m0 4C16.954 8 8 16.954 8 28s8.954 20 20 20s20-8.954 20-20S39.046 8 28 8m10.788 11.93c.67.67.67 1.756 0 2.425l-13.36 13.36a1.715 1.715 0 0 1-2.424 0l-5.645-5.646a1.714 1.714 0 0 1 2.425-2.424l3.22 3.22c.67.67 1.755.67 2.425 0l10.934-10.934c.67-.67 1.755-.67 2.425 0"/></svg>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 256 256"><path fill="#f53838" d="M165.66 101.66L139.31 128l26.35 26.34a8 8 0 0 1-11.32 11.32L128 139.31l-26.34 26.35a8 8 0 0 1-11.32-11.32L116.69 128l-26.35-26.34a8 8 0 0 1 11.32-11.32L128 116.69l26.34-26.35a8 8 0 0 1 11.32 11.32M232 128A104 104 0 1 1 128 24a104.11 104.11 0 0 1 104 104m-16 0a88 88 0 1 0-88 88a88.1 88.1 0 0 0 88-88"/></svg>
+                            </div>
+                        </div> 
+                    
+                        <div class="dropdown dropdown-container-location">
+                            <button class="btn-select-location-1" id="button-select-country-open" type="button">
+                                {% if data_user.company_location_1 %}
+                                    {% for country in countries %}
+                                        {% if country.id|int == data_user.company_location_1|int %}
+                                            {{ country.country_name }}
+                                        {% endif %}
+                                    {% endfor %}
+                                {% else %}
+                                    País
+                                {% endif %}
+                            </button>
+                            <div class="dropdown-menu div-container-location-1">
+                                {% for country in countries %}
+                                <label for="country-id-{{ loop.index }}">
+                                    <img src="{{ country.country_image }}" alt="">
+                                    {{ country.country_name }}
+                                    <input type="radio" value="{{ country.id }}" {% if country.id|int == data_user.company_location_1|int %} checked {% endif %} data-name_country="{{ country.country_name }}" name="company_location_1" id="country-id-{{ loop.index }}">
+                                </label>
+                                {% endfor %}
+                            </div>
+                        </div>
+                        <div class="container-main-map-marker-app">
+                            <div class="map map_view_location_main" id="gmp-map"></div>
+                            <img src="{{ url_for('static', filename='images/userapp/images_default/3d-location-pin-icon.min.png') }}" alt="">
+                        </div>
+                        <div class="coolinput-main-template">
+                            <label for="location-input" class="text-main-template">Ubicacion 2</label>
+                            <input type="text" value="{{ data_user.company_location_2 }}" name="company_location_2" id="location-input" class="input-main-template">
+                            <input type="hidden" value="{{ data_user.company_location_coord }}" name="company_location_coord" id="company_location_coord">
+                            <input type="hidden" name="postal_code" placeholder="Código postal" id="postal_code-input">
+                        </div> 
+
+                        <!-- IMAGENES -->
+                    </div>
+                    <div class="block-container-forms-div-main">
+                        <div class="container-main-template-input-simple">
+                            <span>Imagen de portada *</span>
+                            <img src="{{ data_user.company_image }}" alt="" width="100" id="preview_company_image">
+                            <label for="company_image">
+                                <div class="btn-upload-image">
+                                    Subir imagen
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 48 48"><g fill="none"><path fill="#ffffff" d="M44 24a2 2 0 1 0-4 0zM24 8a2 2 0 1 0 0-4zm15 32H9v4h30zM8 39V9H4v30zm32-15v15h4V24zM9 8h15V4H9zm0 32a1 1 0 0 1-1-1H4a5 5 0 0 0 5 5zm30 4a5 5 0 0 0 5-5h-4a1 1 0 0 1-1 1zM8 9a1 1 0 0 1 1-1V4a5 5 0 0 0-5 5z"/><path stroke="#ffffff" stroke-linecap="round" stroke-linejoin="round" stroke-width="4" d="m6 35l10.693-9.802a2 2 0 0 1 2.653-.044L32 36m-4-5l4.773-4.773a2 2 0 0 1 2.615-.186L42 31m-5-13V6m-5 5l5-5l5 5"/></g></svg>
+                                </div>
+                                <input type="file" name="company_image" id="company_image" class="input-simple-main-template" accept="image/*">
+                            </label>
+                        </div>
+                        <div class="container-main-template-input-simple">
+                            <span>Icono (Logo, etc)*</span>
+                            <img src="{{ data_user.company_icon }}" alt="" width="100" id="preview_company_icon">
+                            <label for="company_icon">
+                                <div class="btn-upload-image">
+                                    Subir imagen
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 48 48"><g fill="none"><path fill="#ffffff" d="M44 24a2 2 0 1 0-4 0zM24 8a2 2 0 1 0 0-4zm15 32H9v4h30zM8 39V9H4v30zm32-15v15h4V24zM9 8h15V4H9zm0 32a1 1 0 0 1-1-1H4a5 5 0 0 0 5 5zm30 4a5 5 0 0 0 5-5h-4a1 1 0 0 1-1 1zM8 9a1 1 0 0 1 1-1V4a5 5 0 0 0-5 5z"/><path stroke="#ffffff" stroke-linecap="round" stroke-linejoin="round" stroke-width="4" d="m6 35l10.693-9.802a2 2 0 0 1 2.653-.044L32 36m-4-5l4.773-4.773a2 2 0 0 1 2.615-.186L42 31m-5-13V6m-5 5l5-5l5 5"/></g></svg>
+                                </div>
+                                <input type="file" name="company_icon" id="company_icon" class="input-simple-main-template" accept="image/*">
+                            </label>
+                        </div>
+                    </div>
+                    <input type="hidden" name="current_company_icon" value="{{ data_user.company_icon }}">
+                </form>
+            </div>
+        </div>
+        <br><br><br><br><br>
+    </section>
+    <!-- MODALS OF APPEND AND QUIT MONEY -->
+    
+{% endblock %}
+
+{% block main_link_js %}
+<script>
+    const countries = document.getElementsByName("company_location_1");
+    const button_open_countries = document.getElementById("button-select-country-open");
+    const ctn_countries = document.querySelector(".div-container-location-1");
+    const all_ctn_countries = document.querySelector(".dropdown-container-location");
+    all_ctn_countries.addEventListener("mouseover", ()=>{
+        ctn_countries.style.display = "block";
+    })
+    all_ctn_countries.addEventListener("mouseout", ()=>{
+        ctn_countries.style.display = "none";
+    })
+    
+    countries.forEach((country) =>{
+        country.addEventListener("click", ()=>{
+            let name_country = country.dataset.name_country;
+            button_open_countries.textContent = name_country;
+        })
+    })
+</script>
+<script src="{{ url_for('static', filename='js/preview_image.js') }}"></script>
+<script src="{{ url_for('static', filename='js/id_secondary.js') }}"></script>
+<script src="{{ url_for('static', filename='js/google_/googleAutoComplet.js') }}"></script>
+<script>
+
+    update_id_secondary();
+
+    preview_image("company_image", "preview_company_image");
+    preview_image("company_icon", "preview_company_icon");
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA_ddX0DZ2PhoqwRoHaoHVD9JZI8PcW9yc&libraries=places&callback=initProgram" async defer></script>
+    
+{% endblock %}

@@ -1,0 +1,385 @@
+{% extends "layouts/nav_app_honey.html" %}
+
+{% block main_link_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='styles/ui/input_simple.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='styles/ui/select_div.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='styles/ui/btn_div_1.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='styles/ui/input_icon.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='styles/styles_restaurant/inventoryReport.css') }}">
+{% endblock %}
+
+{% block main_body %}
+    <section class="section-container-all">
+        <div class="container-title-secction">
+            <h1>Reporte de Ventas</h1>
+            <div class="container-ui-input-with-icon">
+                <label for=""></label>
+                <div class="container-ui-input-with-icon__input-c">
+                    <div class="container-ui-input-with-icon__svg">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 512 512"><path fill="#333333" d="m479.6 399.716l-81.084-81.084l-62.368-25.767A175 175 0 0 0 368 192c0-97.047-78.953-176-176-176S16 94.953 16 192s78.953 176 176 176a175.03 175.03 0 0 0 101.619-32.377l25.7 62.2l81.081 81.088a56 56 0 1 0 79.2-79.195M48 192c0-79.4 64.6-144 144-144s144 64.6 144 144s-64.6 144-144 144S48 271.4 48 192m408.971 264.284a24.03 24.03 0 0 1-33.942 0l-76.572-76.572l-23.894-57.835l57.837 23.894l76.573 76.572a24.03 24.03 0 0 1-.002 33.941"/></svg>
+                    </div>
+                    <input type="text" placeholder="Buscar" id="input_search_in_table">
+                </div>
+            </div>
+        </div>
+        
+        <div class="container-header">
+            <div class="container-more-info-orders">
+                <div class="container-buttons-action-order">
+                    <form action="" method="get">
+                        <div class="container-inputs-filter">
+                            <div class="container-main-template-input-simple">
+                                <label for="">
+                                    <span>Codigo del producto</span>
+                                    <input type="text" value="" name="product_code" class="input-simple-main-template">
+                                </label>
+                            </div>  
+                            <div class="container-main-template-input-simple">
+                                <label for="">
+                                    <span>Producto</span>
+                                    <select name="product" id="" class="input-simple-main-template">
+                                        <option value="">Todos</option>
+                                        {% for p in products %}
+                                        <option value="{{ p.id }}">{{ p.name }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </label>
+                            </div>                        
+                            <div class="container-main-template-input-simple">
+                                <label for="">
+                                    <span>Cliente</span>
+                                    <select name="customer" id="" class="input-simple-main-template">
+                                        <option value="">Todos</option>
+                                        {% for c in customers %}
+                                        <option value="{{ c.id }}">{{ c.name }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </label>
+                            </div>                                              
+                            <div class="container-main-template-input-simple">
+                                <label for="">
+                                    <span>Estado</span>
+                                    <select name="state" id="" class="input-simple-main-template">
+                                        <option value="">Todos</option>
+                                        <option value="1">Completado</option>
+                                        <option value="2">Pendiente(por cobrar)</option>
+                                        <option value="3">Pendiente(por abonar)</option>
+                                    </select>
+                                </label>
+                            </div>                       
+                            <div class="container-main-template-input-simple">
+                                <label for="">
+                                    <span>Fecha inicial</span>
+                                    <input type="date" value="" name="date_start" class="input-simple-main-template">
+                                </label>
+                            </div>                         
+                            <div class="container-main-template-input-simple">
+                                <label for="">
+                                    <span>Fecha final</span>
+                                    <input type="date" value="" name="date_end" class="input-simple-main-template">
+                                </label>
+                            </div>                        
+                            <button type="submit" class="btn-filter-report">Filtrar</button>
+                            <!-- <button type="button" id="btn-print-voucher">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 512 512"><path fill="#ffffff" d="M420 128.1V16H92v112.1A80.1 80.1 0 0 0 16 208v192h68v-32H48V208a48.054 48.054 0 0 1 48-48h320a48.054 48.054 0 0 1 48 48v160h-44v32h76V208a80.1 80.1 0 0 0-76-79.9m-32-.1H124V48h264Z"/><path fill="#ffffff" d="M396 200h32v32h-32zm-280 64H76v32h40v200h272V296h40v-32zm240 200H148V296h208Z"/></svg>
+                                Imprimir todo
+                            </button> -->
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="container-table-all">
+            <div class="container-pdf-voucher-main">
+                <iframe src="" id="pdfViewer" frameborder="0"></iframe>
+                <div class="container-main-all-ticket-voucher" id="container-main-all-ticket-voucher">
+                    <div class="container-profile-data-image">
+                        <img src="{{ data_user_admin.company_icon }}" id="img-company_icon-voucher" alt="">
+                        <h2>{{ data_user_admin.company_name }}</h2>
+                    </div>
+                    <div class="container-data-rest">
+                        <div>
+                            <strong>ID: </strong>
+                            <span>{{ data_user_admin.id_secondary }}</span>
+                        </div>
+                        <div>
+                            <strong>Dir.:</strong>
+                            <span>{{ data_user_admin.company_location_2}}</span>
+                        </div>
+                        <div>
+                            <strong>Tel:</strong>
+                            <span>{{ data_user_admin.user_number }}</span>
+                        </div>
+                        <div>
+                            <strong>E-mail: </strong>
+                            <span>{{ data_user_admin.user_email }}</span>
+                        </div>
+                    </div>
+                    <div class="container-details-order">
+                        <div>
+                            <strong>Mesa:</strong>
+                            <span id="number_table_voucher">12 &raquo; categoria</span>
+                        </div>
+                        <div>
+                            <strong>Fecha:</strong>
+                            <span id="date-order-voucher"></span>
+                        </div>
+                    </div>
+                    <div class="container-table">
+                        <table>
+                            <thead>
+                                <th>Descripción</th>
+                                <th>Unid.</th>
+                                <th>Precio</th>
+                                <th>Total</th>
+                            </thead>
+                            <tbody id="tbody-main-voucher">
+                                {% for order in order_table %}
+                                {% for food in order.data_orders %}
+                                <tr>
+                                    <td>{{ food.food_name }}</td>
+                                    <td>{{ food.quantity }}</td>
+                                    <td>{{ food.price }}</td>
+                                    <td>{{ food.price|float * food.quantity|int }}</td>
+                                </tr>
+                                {% endfor %}
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="container-total-cost">
+                        <strong>TOTAL:</strong>
+                        <span id="amount-all-main-voucher">{{ admin_settings.currency }} {{ amount_all_orders }}</span>
+                    </div>
+                    <div class="container-message-for-user">
+                        <span>Gracias por su compra!, Esperamos verle pronto nuevamente. <br>¡Que tenga un excelente día!</span>
+                    </div>
+                    <div class="container-message-neeva-scann">
+                        <div class="container-message-download-app">
+                            <span>Descarga la app Neeva y escanea el código para explorar todos nuestros productos. <br>¡Es fácil y rápido!</span>
+                        </div>
+                        <div class="container-qr-code-voucher">
+                            <img src="{{ data_user_admin.qr_code_image }}" id="id-img-qr-code-voucher" alt="">
+                        </div>
+                    </div>
+                </div>
+            
+            </div>            
+            
+            <div class="container-main-actions-and-order-all">
+                <div class="table-container container-order-all-main">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Fecha</th>
+                                <th>Codigo</th>
+                                <th>Producto</th>
+                                <th>Cliente</th>
+                                <th>Empresa</th>
+                                <th>Estado</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tbody-for-pagination">
+                            {% for s in sales_data %}
+                            <tr>
+                                <td><strong>{{ loop.index }}</strong></td>
+                                <td>{{ s.created_at.strftime("%d-%m-%Y") }}</td>
+                                <td>{{ s.product_code }}</td>
+                                <td>{{ s.product_name }}</td>
+                                <td>{{ s.customer_name }}</td>
+                                <td>{{ s.customer_company_name }}</td>
+                                <td>{% if s.state == 1 %}Completado{% elif s.state == 2 %}Pendiente por cobrar{% elif s.state == 3 %}Pendiente por abonar{% else %}Error{% endif %}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                <div class="container-view-details-report-data">
+                    <div class="container-title">
+                        <h2>Resultado</h2>
+                    </div>
+                    <div class="container-info-data-report">
+                        <div class="container-block-row">
+                            <strong>Cantidad vendida:</strong>
+                            <span>{{ data_report_result.quantity_sold }}</span>
+                        </div>
+                        <div class="container-block-row">
+                            <strong>Monto abonado:</strong>
+                            <span>{{ data_report_result.amount_paid }}</span>
+                        </div>
+                        <div class="container-block-row">
+                            <strong>Monto por cobrar</strong>
+                            <span>{{ data_report_result.amount_unsettled }}</span>
+                        </div>
+                        <div class="container-block-row">
+                            <strong>Monto por abonar</strong>
+                            <span>{{ data_report_result.amount_due }}</span>
+                        </div>
+                        <br>
+                        <div class="container-block-row">
+                            <strong>Monto total a precio de venta:</strong>
+                            <span>{{ data_report_result.total_amount_at_sale_price }}</span>
+                        </div>
+                        <div class="container-block-row">
+                            <strong>Monto total a precio de compra:</strong>
+                            <span>{{ data_report_result.total_amount_at_purchase_price }}</span>
+                        </div>
+                        <div class="container-block-row">
+                            <strong>Monto de descuento total:</strong>
+                            <span>{{ data_report_result.total_discount }}</span>
+                        </div>
+                        <br>
+                        <div class="container-block-row">
+                            <strong>Ganancia general sin descuento:</strong>
+                            <span>{{ data_report_result.overall_profit_no_discount }}</span>
+                        </div>
+                        <div class="container-block-row">
+                            <strong>Ganancia general con descuento:</strong>
+                            <span>{{ data_report_result.overall_profit_with_discount }}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <nav class="pagination is-small" role="navigation" aria-label="pagination">
+                <a href="#" class="pagination-previous is-disabled" title="This is the first page">Previous</a>
+                <a href="#" class="pagination-next">Next page</a>
+                <ul class="pagination-list">
+                    
+                </ul>
+            </nav>
+        </div>
+    </section>
+    
+    <div class="modal" id="delete-table-modal">
+        <div class="modal-background"></div>
+        <div class="modal-content">
+            <div class="container-title">
+                <h1>Esta seguro de eliminar?</h1>
+            </div>
+            <div class="container-buttons">
+                <button onclick="closeModal(document.getElementById('delete-table-modal'))">Cerrar</button>
+                <button id="btn-submit-delete-table">Eliminar</button>
+            </div>
+        </div>
+        <button class="modal-close is-large"></button>
+    </div>
+    <div class="modal" id="conclude-all-orders">
+        <div class="modal-background"></div>
+        <div class="modal-content">
+            <h1>Confirmar</h1>
+            <div class="container-buttons">
+                <button onclick="closeModal(document.getElementById('conclude-all-orders'))">Cancelar</button>
+                <button id="btn-conclude-all-orders" data-identifier-table="{{ id_table }}" data-u="{{ user_id_search }}" data-l="{{ level_user_search }}">Confirmar</button>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block main_link_js %}
+    <script src="{{url_for('static', filename='js/orderController.js')}}"></script>
+    <script>
+    concludeOrder();
+    releaseOrder();
+    concludeOrderAll();
+    BulmaPagination("tbody-for-pagination", 15);
+    BulmaTableSearch("tbody-for-pagination", "input_search_in_table", "all");
+    </script>
+    <script>
+        const amount_received = document.getElementById("amount-received");
+        const amount_to_be_deducted = document.getElementById("amount-to-be-deducted");
+        const amount_to_be_returned = document.getElementById("amount-to-be-returned");
+        amount_received.addEventListener("input", ()=>{
+            if (amount_received.value && amount_to_be_deducted.value){
+                if (parseFloat(amount_received.value) < parseFloat(amount_to_be_deducted.value)){
+                    amount_to_be_returned.value ="Debe: " +String((parseFloat(amount_received.value) - parseFloat(amount_to_be_deducted.value))*-1);
+                }else{
+                    amount_to_be_returned.value = parseFloat(parseFloat(amount_received.value) - parseFloat(amount_to_be_deducted.value));
+                }
+            }else{
+                amount_to_be_returned.value = "";
+            }
+        })
+    </script>
+    <script>
+        function obtenerFechaHora() {
+            const now = new Date(); // Obtener la fecha y hora actuales
+            
+            // Obtener componentes de la fecha
+            const mes = String(now.getMonth() + 1).padStart(2, '0'); // Mes (0-11, por eso +1)
+            const dia = String(now.getDate()).padStart(2, '0'); // Día
+            const anio = now.getFullYear(); // Año
+
+            // Obtener componentes de la hora
+            let horas = now.getHours(); // Horas
+            const minutos = String(now.getMinutes()).padStart(2, '0'); // Minutos
+            const esPM = horas >= 12; // Verificar si es PM
+            horas = horas % 12; // Convertir a formato de 12 horas
+            horas = horas ? String(horas).padStart(2, '0') : '12'; // Ajustar a '12' si es medianoche
+            
+            // Formatear la fecha y hora
+            const fechaHora = `${mes}-${dia}-${anio} ${horas}:${minutos} ${esPM ? 'PM' : 'AM'}`;
+
+            // Mostrar la fecha y hora en el div
+            document.getElementById('date-order-voucher').textContent = fechaHora;
+        }
+
+        // Llamar a la función para mostrar la fecha y hora
+        obtenerFechaHora();
+    </script>
+    <script src="{{ url_for('static', filename='js/libraries/html2pdf.bundle.min.js') }}"></script>
+    <script>
+        function printDiv () {        
+            var element = document.getElementById('container-main-all-ticket-voucher');
+            var heightInPx = element.offsetHeight;
+            var heightInMm = heightInPx * 0.268583;
+            // Opciones para el PDF
+            var options = {
+                margin: 0.5,
+                filename: 'ticket.pdf',
+                image: { type: 'jpeg', quality: 0.98 },
+                html2canvas: { scale: 2 },
+                jsPDF: { unit: 'mm', format: [90, heightInMm], orientation: 'portrait' }
+            };
+
+            // Convertir el elemento a PDF
+            html2pdf().from(element).set(options).toPdf().get('pdf').then(function(pdf) {
+                // Crear un Blob URL para el PDF generado
+                var blob = pdf.output('blob');
+                var url = URL.createObjectURL(blob);
+                
+                // Mostrar el PDF en el iframe
+                var pdfViewer = document.getElementById('pdfViewer');
+                pdfViewer.src = url;
+                pdfViewer.style.display = 'block'; // Mostrar el iframe
+                element.style.display = "none";
+                document.getElementById('btnPrint').style.display = 'inline'; // Mostrar botón de impresión
+            });
+        };
+        const imagen = document.getElementById('id-img-qr-code-voucher');
+        const imagen_icon_voucher = document.getElementById('img-company_icon-voucher');
+        if (imagen.complete && imagen_icon_voucher.complete) {
+            printDiv();
+        } else {
+            let state_icons_voucher = false;
+            imagen_icon_voucher.addEventListener('load', () => {
+                if (state_icons_voucher){
+                    printDiv();
+                }else{
+                    state_icons_voucher = true;
+                }
+            });
+            imagen.addEventListener('load', () => {
+                if (state_icons_voucher){
+                    printDiv();
+                }else{
+                    state_icons_voucher = true;
+                }
+            });
+        }
+        document.getElementById('btn-print-voucher').addEventListener('click', function() {
+            var pdfViewer = document.getElementById('pdfViewer');
+            pdfViewer.contentWindow.print();
+        });
+    </script>
+{% endblock %}

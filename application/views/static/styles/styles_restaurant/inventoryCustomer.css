@@ -1,0 +1,227 @@
+.container-main-body-all{
+    padding: .6rem;
+    box-sizing: border-box;
+    width: 100%;
+    height: 100%;
+}
+.container-main-form-table{
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: start;
+    margin-top: 0rem;
+    width: 100%;
+    height: calc(100% - 1.3rem);
+    column-gap: .6rem;
+    box-sizing: border-box;
+}
+.container-main-form-table .container-button-open{
+    width: 100%;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    margin-top: .4rem;
+    margin-bottom: .8rem;
+}
+.container-main-form-table .container-button-open button{
+    padding: .5rem;
+    border: none;
+    outline: none;
+    background-color: var(--color-blue-dark-4);
+    color: white;
+    border-radius: .4rem;
+}
+.container-main-form-table .container-form{
+    width: 100%;
+    height: 100%;
+}
+
+.container-main-form-table .container-form form{
+    width: 100%;
+    height: auto;
+    background-color: white;
+    padding: .6rem;
+    border-radius: .4rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+    row-gap: 1rem;
+    border-top: 3px solid rgb(74, 163, 74);
+}
+
+.container-main-form-table .container-form form.form-update{
+    /* outline: 1px solid rgb(69, 69, 246); */
+    border-top-color: blue;
+}
+.container-main-form-table .container-form form .container-inputs-all{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    justify-content: center;
+    align-items: center;
+    row-gap: .8rem;
+    column-gap: .8rem;
+    width: 100%;
+}
+.container-main-form-table .container-form form .container-buttons-action{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    column-gap: .6rem;
+}
+.container-main-form-table .container-form form .container-buttons-action button{
+    width: 90%;
+    padding: .5rem;
+    font-size: .9rem;
+    border: none;
+    outline: none;
+    background-color: var(--color-blue-dark-1);
+    color: white;
+    border-radius: .4rem;
+}
+.container-main-form-table .container-form form .container-buttons-action  #btn-submit-form-return-create{
+    background-color: var(--color-blue-dark-4);
+}
+.container-main-form-table .container-table-container{
+    /* width: calc(100% - 24rem); */
+    width: 100%;
+    height: calc(100% - 3.4rem);
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: start;
+    box-sizing: border-box;
+}
+.container-main-form-table .container-table-container .pagination.is-small{
+    width: 100%;
+}
+.container-main-form-table .container-main-table{
+    width: 100%;
+    height: 100%;
+    overflow-y: auto;
+    box-sizing: border-box;
+    background-color: white;
+    border: 1px solid rgb(228, 218, 218);
+    border-radius: .4rem;
+}
+.container-main-form-table .container-main-table::-webkit-scrollbar{
+    width: 3px;
+    height: 3px;
+    background-color: transparent;
+}
+.container-main-form-table .container-main-table::-webkit-scrollbar-thumb{
+    background-color: rgb(156, 156, 255);
+    border-radius: .4rem;
+}
+.container-main-form-table .container-main-table table{
+    width: 100%;
+    border-radius: .4rem 0;
+    overflow: hidden;
+}
+.container-main-form-table .container-main-table table thead{
+    background-color: var(--color-blue-dark-1);
+}
+
+.container-main-form-table .container-main-table table thead tr th{
+    color: white;
+    font-size: .8rem;
+    white-space: nowrap;
+    padding: .5rem;
+}
+.container-main-form-table .container-main-table table tbody tr td{
+    font-size: .8rem;
+    white-space: nowrap;
+}
+.container-main-form-table .container-main-table table tbody tr:hover{
+    background-color: #dcdfe8;
+}
+/* INICIO */
+.container-main-form-table .container-main-table table tbody tr td.td-special-row{
+    max-width: 12rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+/* FIN  */
+.container-main-form-table .container-main-table table tbody tr td .container-btn-action{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    column-gap: .3rem;
+}
+.container-main-form-table .container-main-table table tbody tr td .container-btn-action button{
+    border: none;
+    outline: none;
+    border-radius: .3rem;
+    width: 2.1rem;
+    height: 2.1rem;
+    display: flex;
+    padding: .1rem;
+    justify-content: center;
+    align-items: center;
+}
+.container-main-form-table .container-main-table table tbody tr td .container-btn-action button:nth-child(1){
+    background-color: rgb(222, 222, 248);
+}
+.container-main-form-table .container-main-table table tbody tr td .container-btn-action button:nth-child(2){
+    background-color: rgb(248, 222, 222);
+}
+/* modal confirm delete */
+#modal-confirm-delete-customer .modal-content{
+    width: 16rem;
+    height: auto;
+    padding: .6rem;
+    background-color: white;
+    border-radius: .4rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+    row-gap: .6rem;
+}
+#modal-confirm-delete-customer .modal-content .container-title{
+    text-align: center;
+    width: 100%;
+} 
+#modal-confirm-delete-customer .modal-content .container-title h1{
+    font-size: 1rem;
+    color: rgb(35, 34, 34);
+    font-weight: bold;
+}
+#modal-confirm-delete-customer .modal-content .container-buttons{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    column-gap: .4rem;
+    margin-top: .8rem;
+}
+#modal-confirm-delete-customer .modal-content .container-buttons button{
+    width: 50%;
+    padding: .4rem;
+    border: none;
+    outline: none;
+    font-size: 1rem;
+    color: white;
+    border-radius: .4rem;
+}
+#modal-confirm-delete-customer .modal-content .container-buttons button:nth-child(1){
+    background-color: var(--color-blue-dark-1);
+}
+#modal-confirm-delete-customer .modal-content .container-buttons button:nth-child(2){
+    background-color: rgb(234, 55, 55);
+}
+/* modal end confirm delete */
+/* modal create new customer */
+#modal-create-new-customer .modal-content{
+    background-color: transparent;
+    border-radius: .4rem;
+    padding: .6rem;
+    width: 100%;
+    max-width: 30rem;
+    height: auto;
+}
+/* end modal create new customer */

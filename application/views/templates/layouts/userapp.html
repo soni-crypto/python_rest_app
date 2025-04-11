@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/libraries/bulma.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/userapp/userapp.css') }}">
+    <meta name="theme-color" content="#fe8c01">
+    {% block styles %}
+    {% endblock %}
+
+    <title>app</title>
+</head>
+<body>
+    <script src="{{ url_for('static', filename='js/user_app/user-agent-detection.js') }}"></script>
+    <div class="container-main-all-app">
+        <div class="page-without-internet-connection" id="page-without-internet-connection">
+            <svg xmlns="http://www.w3.org/2000/svg" width="88" height="88" viewBox="0 0 36 36"><circle cx="18" cy="29.54" r="3" fill="#ffffff" class="clr-i-solid clr-i-solid-path-1"/><path fill="#ffffff" d="m29.18 17.71l.11-.17a1.51 1.51 0 0 0-.47-2.1A20.57 20.57 0 0 0 18 12.37c-.56 0-1.11 0-1.65.07l3.21 3.21a17.4 17.4 0 0 1 7.6 2.52a1.49 1.49 0 0 0 2.02-.46" class="clr-i-solid clr-i-solid-path-2"/><path fill="#ffffff" d="M32.76 9.38a27.9 27.9 0 0 0-22.58-3.11l2.63 2.63a24.68 24.68 0 0 1 18.29 3.22a1.49 1.49 0 0 0 2-.46l.11-.17a1.51 1.51 0 0 0-.45-2.11" class="clr-i-solid clr-i-solid-path-3"/><path fill="#ffffff" d="m3 4.75l3.1 3.1a27 27 0 0 0-2.92 1.57a1.51 1.51 0 0 0-.48 2.11l.11.17a1.49 1.49 0 0 0 2 .46a24.7 24.7 0 0 1 3.67-1.9l3.14 3.14a20.6 20.6 0 0 0-4.53 2.09a1.51 1.51 0 0 0-.46 2.1l.11.17a1.49 1.49 0 0 0 2 .46A17.5 17.5 0 0 1 14.25 16l3.6 3.6a13.4 13.4 0 0 0-6.79 1.93a1.5 1.5 0 0 0-.46 2.09l.1.16a1.52 1.52 0 0 0 2.06.44a10.2 10.2 0 0 1 9-.7L29 30.75l1.41-1.41l-26-26Z" class="clr-i-solid clr-i-solid-path-4"/><path fill="none" d="M0 0h36v36H0z"/></svg>
+            <h2>Sin conexión a internet</h2>
+            <p>Se ha perdido la conexión a Internet. Por favor, verifica tu estado de conexión.</p>
+        </div>
+        <div class="container-main-loader-mobile-all" id="container-main-loader-mobile-all">
+            <div class="container-main-loader-mobile-all__box">
+                <svg viewBox="25 25 50 50" class="container"><circle cx="50" cy="50" r="20" class="loader"></circle></svg>
+                <span>neeva</span>
+            </div>
+        </div>
+        <div class="modal" id="modal-main-app-all-message-little">
+            <div class="modal-background"></div>
+            <div class="modal-content">
+                <div class="modal-content-body"></div>
+                <div class="container-btn-acpt-cls"><button onclick="closeModal(document.getElementById('modal-main-app-all-message-little'))">Aceptar</button></div>
+            </div>
+        </div>
+        <div class="container-main-body">
+            {% block main_body %}
+            {% endblock %}
+        </div> 
+        <div class="container-main-nav" id="container-main-nav">
+            <div class="block-nav-circle-now {% block selected_route_1 %}{% endblock %}">
+                <a href="/userapp/scan_qr">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 16 16"><g ><path d="M0 .5A.5.5 0 0 1 .5 0h3a.5.5 0 0 1 0 1H1v2.5a.5.5 0 0 1-1 0zm12 0a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 .5.5v3a.5.5 0 0 1-1 0V1h-2.5a.5.5 0 0 1-.5-.5M.5 12a.5.5 0 0 1 .5.5V15h2.5a.5.5 0 0 1 0 1h-3a.5.5 0 0 1-.5-.5v-3a.5.5 0 0 1 .5-.5m15 0a.5.5 0 0 1 .5.5v3a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1 0-1H15v-2.5a.5.5 0 0 1 .5-.5M4 4h1v1H4z"/><path d="M7 2H2v5h5zM3 3h3v3H3zm2 8H4v1h1z"/><path d="M7 9H2v5h5zm-4 1h3v3H3zm8-6h1v1h-1z"/><path d="M9 2h5v5H9zm1 1v3h3V3zM8 8v2h1v1H8v1h2v-2h1v2h1v-1h2v-1h-3V8zm2 2H9V9h1zm4 2h-1v1h-2v1h3zm-4 2v-1H8v1z"/><path d="M12 9h2V8h-2z"/></g></svg>
+                </a>
+            </div>
+            <div class="block-nav-circle-now {% block selected_route_2 %}{% endblock %}">
+                <a href="/userapp/search_on_maps">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24"><path  d="M12 19.35q3.05-2.8 4.525-5.087T18 10.2q0-2.725-1.737-4.462T12 4Q9.475 4 7.738 5.738T6 10.2q0 1.775 1.475 4.063T12 19.35m0 1.975q-.35 0-.7-.125t-.625-.375Q9.05 19.325 7.8 17.9t-2.087-2.762q-.838-1.338-1.275-2.575T4 10.2q0-3.75 2.413-5.975T12 2q3.175 0 5.588 2.225T20 10.2q0 1.125-.437 2.363t-1.275 2.575Q17.45 16.475 16.2 17.9t-2.875 2.925q-.275.25-.625.375t-.7.125M12 12q.825 0 1.413-.587T14 10q0-.825-.587-1.412T12 8q-.825 0-1.412.588T10 10q0 .825.588 1.413T12 12"/></svg>
+                </a>
+            </div>
+            <div class="block-nav-circle-now {% block selected_route_3 %}{% endblock %}">
+                <a href="/userapp/home">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24"><path  d="M16.025 23.35q-.5.3-1.037.475T13.875 24q-1.6 0-2.725-1.137T10.025 20.1q0-.575.163-1.1t.487-1q-.325-.475-.488-1.025t-.162-1.125q0-1.6 1.125-2.725T13.875 12q.575 0 1.125.163t1.025.487q.475-.325 1.025-.487T18.175 12q1.6 0 2.725 1.113t1.125 2.687q0 .575-.162 1.125t-.488 1.025q.325.5.488 1.063t.162 1.137q0 1.6-1.137 2.725T18.125 24q-.575 0-1.1-.175t-1-.475m3.35-4.575l-.9-.8l1-.85q.275-.225.413-.563t.137-.712q0-.775-.537-1.312T18.175 14q-.4 0-.737.138t-.563.412l-.875 1l-.85-1q-.225-.275-.562-.413T13.85 14q-.75 0-1.287.55t-.538 1.35q0 .375.163.713t.462.612l.9.75l-1 .85q-.25.225-.387.55t-.138.725q0 .8.538 1.35t1.287.55q.375 0 .738-.175t.662-.525l.75-.85l.875 1q.225.275.563.413t.737.137q.775 0 1.313-.55t.537-1.35q0-.35-.162-.7t-.488-.625m-3.35.625q.575 0 .988-.412t.412-.988q0-.575-.413-.987t-.987-.413q-.575 0-.987.413t-.413.987q0 .575.413.988t.987.412M6 20q-.825 0-1.412-.587T4 18V9.95h-.9q-.525 0-.712-.487t.237-.838l8.125-6.6q.55-.45 1.25-.45t1.25.45l8.125 6.6q.425.35.238.838t-.713.487H20V11h-2V8.45l-6-4.9l-6 4.9V18h3v2zm10.025-2"/></svg>
+                </a>
+            </div>
+            <div class="block-nav-circle-now {% block selected_route_4 %}{% endblock %}">
+                <a href="/userapp/reservations">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 16 16"><path d="M8.186 1.113a.5.5 0 0 0-.372 0L1.846 3.5L8 5.961L14.154 3.5zM15 4.239l-6.5 2.6v7.922l6.5-2.6V4.24zM7.5 14.762V6.838L1 4.239v7.923zM7.443.184a1.5 1.5 0 0 1 1.114 0l7.129 2.852A.5.5 0 0 1 16 3.5v8.662a1 1 0 0 1-.629.928l-7.185 2.874a.5.5 0 0 1-.372 0L.63 13.09a1 1 0 0 1-.63-.928V3.5a.5.5 0 0 1 .314-.464z"/></svg>
+                </a>
+            </div>
+            <div class="block-nav-circle-now {% block selected_route_5 %}{% endblock %}">
+                <a href="/userapp/profile">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24"><path d="M12 12q-1.65 0-2.825-1.175T8 8q0-1.65 1.175-2.825T12 4q1.65 0 2.825 1.175T16 8q0 1.65-1.175 2.825T12 12m-8 8v-2.8q0-.85.438-1.562T5.6 14.55q1.55-.775 3.15-1.162T12 13q1.65 0 3.25.388t3.15 1.162q.725.375 1.163 1.088T20 17.2V20zm2-2h12v-.8q0-.275-.137-.5t-.363-.35q-1.35-.675-2.725-1.012T12 15q-1.4 0-2.775.338T6.5 16.35q-.225.125-.363.35T6 17.2zm6-8q.825 0 1.413-.587T14 8q0-.825-.587-1.412T12 6q-.825 0-1.412.588T10 8q0 .825.588 1.413T12 10m0 8"/></svg>
+                </a>
+            </div>
+        </div>
+    </div>
+    <script src="{{ url_for('static', filename='js/libraries/bulma.modal.min.js') }}"></script>
+    <script>
+        // loader mobile controll
+        const main_loader_mobile = document.getElementById('container-main-loader-mobile-all');
+        document.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', function(event) {
+                event.preventDefault();
+                main_loader_mobile.style.display = 'flex';
+                window.location.href = link.href;
+                
+            });
+        });
+        document.querySelectorAll('form').forEach(form => {
+            form.addEventListener('submit', function(event) {
+                main_loader_mobile.style.display = 'flex';
+                form.submit();
+                
+            });
+        });
+        window.addEventListener('popstate', function(event) {
+            main_loader_mobile.style.display = 'none';
+        });
+        window.addEventListener('load', function() {
+            main_loader_mobile.style.display = 'none';
+        });
+        window.addEventListener('pageshow', function(event) {
+            main_loader_mobile.style.display = 'none';
+        });
+    </script>
+    <script>
+        const without_internet_connection = document.querySelector(".page-without-internet-connection");
+        window.addEventListener("offline", ()=>{
+            without_internet_connection.style.display = "flex";
+        })
+        window.addEventListener("online", ()=>{
+            without_internet_connection.style.display = "none";
+        })
+    </script>
+    {% block scripts %}
+
+    {% endblock %}
+</body>
+</html>

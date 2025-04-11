@@ -1,0 +1,216 @@
+{% extends "layouts/nav_app_honey.html" %}
+
+{% block main_link_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='styles/styles_restaurant/schedule.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='styles/libraries/fullcalendar.main.min.css') }}">
+<script src="{{ url_for('static', filename='js/libraries/fullcalendar.main.min.js') }}"></script>
+{% endblock %}
+
+{% block main_body %}
+    <script>
+        function replaceTime(isoDate, newHour) {
+            const [hour, minute] = newHour.split(":"); 
+            const formattedHour = String(hour).padStart(2, '0');
+            const formattedMinute = String(minute).padStart(2, '0');
+            const result = isoDate.replace(
+                /T\d{2}:\d{2}:\d{2}/, 
+                `T${formattedHour}:${formattedMinute}:00` 
+            );
+            return result;
+        }
+        const obtenerFechaActual = () => {
+            const fecha = new Date();
+            const anio = fecha.getFullYear();
+            const mes = String(fecha.getMonth() + 1).padStart(2, '0'); // Mes comienza en 0, se suma 1
+            const dia = String(fecha.getDate()).padStart(2, '0'); // Día del mes
+
+            return `${anio}-${mes}-${dia}`;
+        };
+        document.addEventListener('DOMContentLoaded', async function() {
+            const btn_delete_event_value = document.getElementById("btn-delete-event-value");
+            const modal_delete_event = document.getElementById("modal-delete-event");
+
+            const btn_create_new_event = document.getElementById("btn-create-new-event");
+            const modal_day_app = document.getElementById("config-disp-day-app");
+            const eventDispInputId = document.getElementById("eventDisp");
+            const input_state = document.getElementById("state");
+            const input_title = document.getElementById("title");
+            const input_date_start = document.getElementById("date-start");
+            const input_date_end = document.getElementById("date-end");
+            const input_backgroundColor = document.getElementById("backgroundColor");
+            const input_textColor = document.getElementById("textColor");
+            const input_url = document.getElementById("url");
+
+            // fin 
+            var calendarEl = document.getElementById('calendar');
+
+            const dataDay = {};
+            await fetch("/honey/schedule/read").then(res => res.json()).then(data =>{
+                var calendar = new FullCalendar.Calendar(calendarEl, {
+                    headerToolbar: {
+                        left: 'prev,next today',
+                        center: 'title',
+                        right: 'dayGridMonth,timeGridDay,listWeek', //'dayGridMonth,timeGridWeek,timeGridDay,listWeek'
+                    },
+                    initialDate: obtenerFechaActual(),
+                    navLinks: true, // can click day/week names to navigate views
+                    nowIndicator: true,
+        
+                    weekNumbers: false,
+                    weekNumberCalculation: 'ISO',
+        
+                    editable: true,
+                    selectable: true,
+                    dayMaxEvents: true, // allow "more" link when too many events
+                    events: data,
+                    
+                    locale : "es",
+                    validRange: {
+                        start: obtenerFechaActual(), // Las fechas anteriores a hoy no estarán habilitadas
+                    },
+                    dateClick: function(info) {
+                        dataDay.start = info.dateStr;
+                        if (dataDay.start.includes("T")){
+                            input_date_end.type = "time";
+                        }else{
+                            input_date_end.type = "date";
+                        }
+                        openModal(modal_day_app);
+                    },
+                    eventClick: (info)=>{
+                        const el = document.getElementById("title-for-delete-view")
+                        el.textContent = info.event.title;
+                        el.style.backgroundColor = info.event.backgroundColor;
+                        el.style.color = info.event.textColor;
+                        btn_delete_event_value.dataset.id = info.event.id;
+                        openModal(modal_delete_event);
+                        // btn_create_new_event.textContent = "Actualizar";
+                        // eventDispInputId.value = info.event.id;
+                        // if (info.event.groupId === "1"){
+                        //     input_state.querySelectorAll("option")[0].selected = true;
+                        //     input_state.querySelectorAll("option")[1].removeAttribute("selected");
+                        // }else if(info.event.groupId === "0"){
+                        //     input_state.querySelectorAll("option")[1].selected = true;
+                        //     input_state.querySelectorAll("option")[0].removeAttribute("selected");
+                        // }
+                        // input_title.value = info.event.title;
+                        // input_date_start.value = info.event.startStr;
+                        // input_date_end.value = info.event.endStr;
+                        // input_backgroundColor.value = info.event.backgroundColor;
+                        // input_textColor.value = info.event.textColor;
+                        // input_url.value = info.event.url;
+                        // openModal(modal_day_app);
+                    }
+                });
+                calendar.render();
+            });
+            btn_create_new_event.addEventListener("click", async()=>{
+                btn_create_new_event.disabled = true;
+                let route_ = "";
+                if (eventDispInputId.value){
+                    route_ = "/honey/schedule/update";
+                    dataDay.id = eventDispInputId.value;
+                    dataDay.start = input_date_start.value;
+                }else{
+                    route_ = "/honey/schedule/create";
+                }
+                if (dataDay.start.includes("T")){
+                    dataDay.end = replaceTime(dataDay.start, input_date_end.value);
+                }else{
+                    dataDay.end = input_date_end.value; 
+                }
+                dataDay.title = input_title.value; 
+                dataDay.url = input_url.value,
+                dataDay.state = input_state.value;
+                dataDay.display = ""; // background para descativar cuadro
+                dataDay.color = "";
+                dataDay.backgroundColor = input_backgroundColor.value;
+                dataDay.textColor = input_textColor.value;
+                dataDay.borderColor = input_backgroundColor.value;
+                dataDay.overlap = false;
+                dataDay.groupId = input_state.value;
+                dataDay.constraint = "";
+                
+                await fetch(route_, {
+                    method: "post",
+                    headers: {
+                        "Content-Type" : "application/json",
+                    },
+                    body: JSON.stringify(dataDay),
+                }).then(res => res.json()).then(data =>{
+                    location.reload();
+                })
+            })
+            btn_delete_event_value.addEventListener("click",async()=>{
+                const id = btn_delete_event_value.dataset.id;
+                if (id){
+                    await fetch("/honey/schedule/delete?id="+String(id)).then(res => res.json()).then(data =>{
+                        location.reload()                        
+                    })
+                }
+            })
+        });
+    </script>
+    <section class="section-container-all">
+        <div id='calendar'></div>
+    </section>
+
+    <div class="modal" id="config-disp-day-app">
+        <div class="modal-background"></div>
+        <div class="modal-content box">
+            <h1>Configurar Disponibilidad</h1>
+            <div class="container-inputs-btn">
+                <input type="hidden" id="eventDisp">
+                <input type="hidden" id="date-start">
+                <label for="state">
+                    <span>Estado</span>
+                    <select name="" class="input" id="state">
+                        <option value="1">Disponible</option>
+                        <option value="0">No disponible</option>
+                    </select>
+                </label>
+                <label for="title">
+                    <span>Título</span>
+                    <input type="text" value="" class="input" id="title" placeholder="Título">
+                </label>
+                <label for="date-end">
+                    <span>Fecha final</span>
+                    <input type="date" value="" class="input" id="date-end">
+                </label>
+                <label for="url">
+                    <span>URL</span>
+                    <input type="url" value="" class="input" id="url" placeholder="https://">
+                </label>
+                <label for="backgroundColor">
+                    <span>Color de fondo</span>
+                    <input type="color" class="input" id="backgroundColor" value="#3788d8">
+                </label>
+                <label for="textColor">
+                    <span>Color de texto</span>
+                    <input type="color" class="input" id="textColor" value="#ffffff">
+                </label>
+                <div class="container-button">
+                    <button class="button is-link" id="btn-create-new-event">Guardar</button>
+                </div>
+            </div>
+        </div>
+    </div> 
+    <div class="modal" id="modal-delete-event">
+        <div class="modal-background"></div>
+        <div class="modal-content box">
+            <div class="title">
+                <h5>Eliminar</h5>
+                <span class="tag is-success is-light" id="title-for-delete-view"></span>
+            </div>
+            <input type="hidden" value="" id="id-delete-event-value">
+            <div class="is-flex is-justify-content-center container-button">
+                <button class="button">Cerrar</button>
+                <button class="button is-danger" id="btn-delete-event-value">Eliminar</button>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block main_link_js %}
+    <script src="{{ url_for('static', filename='js/scheduleController.js') }}"></script>
+{% endblock %}

@@ -1,0 +1,150 @@
+.container-main-all{
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: start;
+    padding: .6rem .3rem;
+    background-color: rgb(236, 236, 236);
+}
+.fc .fc-daygrid-day-frame {
+    height: 2rem !important;
+    min-height: 2rem !important;
+}
+.container-main-all .fc .fc-daygrid-day-frame{
+    /* display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center; */
+    width: 100%;
+}
+.container-main-all .fc .fc-daygrid-day-number{
+    font-size: 1.6rem;
+}
+.container-main-all .container-div-calendar{
+    width: 100%;
+    height:calc(100vh - 11.6rem);
+}
+.container-main-all #calendar{
+    width: 100%;
+    height: 100%;
+}
+.container-main-all .container-main-calendar{
+    width: 100%;
+    max-width: 45rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+    row-gap: .4rem;
+}
+.container-date-selected{
+    width: 100%;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    column-gap: 1.2rem;
+}
+.container-date-selected .tagg{
+    font-size: 1rem;
+    background-color: rgb(243, 243, 255);
+    color: rgb(55, 55, 226);
+    padding: .4rem;
+    border-radius: .4rem;
+    width: fit-content;
+    margin-top: .8rem;
+    margin-bottom: 1rem;
+    display: block;
+}
+
+.container-buttons-nav-return-continue {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    column-gap: .6rem;
+}
+.container-buttons-nav-return-continue a button{
+    width: 100%;
+}
+.container-buttons-nav-return-continue > a,
+.container-buttons-nav-return-continue > button{
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    column-gap: .6rem;
+}
+.container-datetime-selected{
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+    row-gap: 1.2rem;
+}
+.container-datetime-selected .container-buttons{
+    width: 100%;
+    max-width: 20rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    column-gap: .6rem;
+    margin-top: .8rem;
+}
+.container-datetime-selected .container-buttons button{
+    width: 50%;
+}
+.container-datetime-selected .row-ctn-date-time{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    max-width: 20rem;
+}
+.container-datetime-selected .row-ctn-date-time input[type="range"]{
+    width: 100%;
+}
+.container-datetime-selected .row-ctn-date-time .datetime-selected-span-minute{
+    font-size: 1.2rem;
+    color: rgb(98, 98, 187);
+    margin-left: .1rem;
+}
+.container-datetime-selected .row-ctn-date-time span:nth-child(1){
+    font-size: 1rem;
+}
+/*  */
+@media screen and (orientation:portrait) {
+    .container-main-all .container-main-calendar .fc-toolbar-title{
+        font-size: 1.5rem;
+    }
+    .container-main-all .container-main-calendar .fc .fc-toolbar.fc-header-toolbar{
+        display: flex;
+        flex-direction: column;
+        justify-content: start;
+        align-items: center;
+        width: 100%;
+    }
+    .container-main-all > .box {
+        height: fit-content;
+        height: 96dvh;
+    }
+    .container-main-all .container-main-all{
+        height: 75dvh;
+    }
+    /* control header */
+    .fc-header-toolbar .fc-toolbar-chunk:nth-child(1){
+        position: absolute;
+        right: .8rem;
+    }
+    .fc-header-toolbar .fc-toolbar-chunk:nth-child(2){
+        margin-top: 2.6rem;
+    }
+    .fc-header-toolbar .fc-toolbar-chunk:nth-child(3){
+        position: absolute;
+        left: .8rem;
+    }
+    /* end */
+    .container-main-all .fc .fc-daygrid-day-number{
+        font-size: 1.3rem;
+    }
+}

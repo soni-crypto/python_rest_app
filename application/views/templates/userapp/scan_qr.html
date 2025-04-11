@@ -1,0 +1,84 @@
+{% extends "layouts/userapp.html" %}
+
+{% block styles %}
+<link rel="stylesheet" href="{{ url_for('static', filename='styles/userapp/scan_qr.css') }}">
+{% endblock %}
+
+{% block main_body %}
+    <div class="container-main-scan-qr">
+        <div class="container-video">
+            <video id="preview" class="video-scan-main"></video>
+        </div>
+        <div class="container-main-btn-redirect">
+            <div class="container-details-searched">
+                <div class="block-image">
+                    <img src="" alt="" id="company_icon">
+                </div>
+                <div class="block-searched">
+                    <span id="company_name">Error</span>
+                </div>
+                <div class="block-searched">
+                    <span>ID: </span>
+                    <span id="company_is">Error</span>
+                </div>
+            </div>
+            <a href="/userapp/home?search=" id="a-redirect-to-home">
+                <button>
+                    Continuar
+                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 48 48"><path fill="none" stroke="#ffffff" stroke-linecap="round" stroke-linejoin="round" stroke-width="4" d="M36 24.008H12M24 12l12 12l-12 12"/></svg>
+                </button>
+            </a>
+        </div>
+    </div>
+{% endblock %}
+
+{% block selected_route_1 %}
+    block-nav-circle-now__select
+{% endblock %}
+
+{% block scripts %}
+    <script src="{{ url_for('static', filename='js/libraries/instascan.min.js') }}"></script>
+    <script>
+        const company_is = document.getElementById("company_is");
+        const company_name = document.getElementById("company_name");
+        const company_icon = document.getElementById("company_icon");
+        const container_response = document.querySelector(".container-main-btn-redirect");
+        const a_redirect = document.getElementById("a-redirect-to-home");
+        document.addEventListener('DOMContentLoaded', function () {
+        let scanner = new Instascan.Scanner({ video: document.getElementById('preview') });
+
+        scanner.addListener('scan', function (content) {
+            const value_scan = JSON.parse(content.replace(/'/g, '"'));
+            if (value_scan.is){
+                company_icon.src = value_scan.company_icon;
+                company_is.textContent = value_scan.is;
+                company_name.textContent = value_scan.company_name;
+                a_redirect.href = "/userapp/home?search=" + value_scan.is;
+                container_response.style.display = "flex";
+            }
+            
+        });
+
+        function startScan() {
+            Instascan.Camera.getCameras().then(function (cameras) {
+                if (cameras.length > 0) {
+                    if (cameras.length === 1){
+                        scanner.start(cameras[0]);
+                    }else if (cameras.length > 1){
+                        document.getElementById("preview").style.transform = "scaleX(1)";
+                        scanner.start(cameras[1]);
+                    }
+                } else {
+                    alert('No se encontraron cámaras en el dispositivo.');
+                }
+            }).catch(function (e) {
+                console.error(e);
+                alert(e);
+            });
+        }
+
+        // Iniciar el escaneo cuando se carga la página (puedes manejarlo según tus necesidades)
+        startScan();
+    });
+    </script>
+{% endblock %}

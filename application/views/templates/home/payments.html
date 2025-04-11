@@ -1,0 +1,153 @@
+{% extends "layouts/nav_app_honey.html" %}
+
+{% block main_link_css %}
+    <!-- <link rel="stylesheet" href="{{ url_for('static', filename='home.css') }}"> -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/styles_restaurant/payments.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/ui/input_simple.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/ui/btn_div_1.css') }}">
+{% endblock %}
+
+{% block main_body %}
+    <section class="section-container-all">
+        <div class="container-details-info">
+            <div class="container-categories-payments">
+                <div class="container-category">
+                    <svg id="wave" style="transform:rotate(180deg); transition: 0.3s" viewBox="0 0 1440 380" version="1.1" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="sw-gradient-0" x1="0" x2="0" y1="1" y2="0"><stop stop-color="rgba(243, 106, 62, 1)" offset="0%"></stop><stop stop-color="rgba(255, 179, 11, 1)" offset="100%"></stop></linearGradient></defs><path style="transform:translate(0, 0px); opacity:1" fill="url(#sw-gradient-0)" d="M0,38L80,82.3C160,127,320,215,480,234.3C640,253,800,203,960,158.3C1120,114,1280,76,1440,82.3C1600,89,1760,139,1920,183.7C2080,228,2240,266,2400,253.3C2560,241,2720,177,2880,164.7C3040,152,3200,190,3360,183.7C3520,177,3680,127,3840,95C4000,63,4160,51,4320,88.7C4480,127,4640,215,4800,215.3C4960,215,5120,127,5280,133C5440,139,5600,241,5760,285C5920,329,6080,317,6240,272.3C6400,228,6560,152,6720,145.7C6880,139,7040,203,7200,190C7360,177,7520,89,7680,95C7840,101,8000,203,8160,253.3C8320,304,8480,304,8640,253.3C8800,203,8960,101,9120,101.3C9280,101,9440,203,9600,221.7C9760,241,9920,177,10080,145.7C10240,114,10400,114,10560,152C10720,190,10880,266,11040,253.3C11200,241,11360,139,11440,88.7L11520,38L11520,380L11440,380C11360,380,11200,380,11040,380C10880,380,10720,380,10560,380C10400,380,10240,380,10080,380C9920,380,9760,380,9600,380C9440,380,9280,380,9120,380C8960,380,8800,380,8640,380C8480,380,8320,380,8160,380C8000,380,7840,380,7680,380C7520,380,7360,380,7200,380C7040,380,6880,380,6720,380C6560,380,6400,380,6240,380C6080,380,5920,380,5760,380C5600,380,5440,380,5280,380C5120,380,4960,380,4800,380C4640,380,4480,380,4320,380C4160,380,4000,380,3840,380C3680,380,3520,380,3360,380C3200,380,3040,380,2880,380C2720,380,2560,380,2400,380C2240,380,2080,380,1920,380C1760,380,1600,380,1440,380C1280,380,1120,380,960,380C800,380,640,380,480,380C320,380,160,380,80,380L0,380Z"></path><defs><linearGradient id="sw-gradient-1" x1="0" x2="0" y1="1" y2="0"><stop stop-color="rgba(243, 106, 62, 1)" offset="0%"></stop><stop stop-color="rgba(255, 179, 11, 1)" offset="100%"></stop></linearGradient></defs><path style="transform:translate(0, 50px); opacity:0.9" fill="url(#sw-gradient-1)" d="M0,190L80,196.3C160,203,320,215,480,196.3C640,177,800,127,960,88.7C1120,51,1280,25,1440,63.3C1600,101,1760,203,1920,259.7C2080,317,2240,329,2400,304C2560,279,2720,215,2880,177.3C3040,139,3200,127,3360,152C3520,177,3680,241,3840,272.3C4000,304,4160,304,4320,285C4480,266,4640,228,4800,228C4960,228,5120,266,5280,291.3C5440,317,5600,329,5760,297.7C5920,266,6080,190,6240,164.7C6400,139,6560,165,6720,183.7C6880,203,7040,215,7200,221.7C7360,228,7520,228,7680,247C7840,266,8000,304,8160,278.7C8320,253,8480,165,8640,133C8800,101,8960,127,9120,139.3C9280,152,9440,152,9600,164.7C9760,177,9920,203,10080,228C10240,253,10400,279,10560,259.7C10720,241,10880,177,11040,171C11200,165,11360,215,11440,240.7L11520,266L11520,380L11440,380C11360,380,11200,380,11040,380C10880,380,10720,380,10560,380C10400,380,10240,380,10080,380C9920,380,9760,380,9600,380C9440,380,9280,380,9120,380C8960,380,8800,380,8640,380C8480,380,8320,380,8160,380C8000,380,7840,380,7680,380C7520,380,7360,380,7200,380C7040,380,6880,380,6720,380C6560,380,6400,380,6240,380C6080,380,5920,380,5760,380C5600,380,5440,380,5280,380C5120,380,4960,380,4800,380C4640,380,4480,380,4320,380C4160,380,4000,380,3840,380C3680,380,3520,380,3360,380C3200,380,3040,380,2880,380C2720,380,2560,380,2400,380C2240,380,2080,380,1920,380C1760,380,1600,380,1440,380C1280,380,1120,380,960,380C800,380,640,380,480,380C320,380,160,380,80,380L0,380Z"></path><defs><linearGradient id="sw-gradient-2" x1="0" x2="0" y1="1" y2="0"><stop stop-color="rgba(243, 106, 62, 1)" offset="0%"></stop><stop stop-color="rgba(255, 179, 11, 1)" offset="100%"></stop></linearGradient></defs><path style="transform:translate(0, 100px); opacity:0.8" fill="url(#sw-gradient-2)" d="M0,266L80,240.7C160,215,320,165,480,145.7C640,127,800,139,960,177.3C1120,215,1280,279,1440,291.3C1600,304,1760,266,1920,259.7C2080,253,2240,279,2400,266C2560,253,2720,203,2880,183.7C3040,165,3200,177,3360,164.7C3520,152,3680,114,3840,88.7C4000,63,4160,51,4320,38C4480,25,4640,13,4800,38C4960,63,5120,127,5280,145.7C5440,165,5600,139,5760,120.3C5920,101,6080,89,6240,82.3C6400,76,6560,76,6720,82.3C6880,89,7040,101,7200,101.3C7360,101,7520,89,7680,101.3C7840,114,8000,152,8160,158.3C8320,165,8480,139,8640,158.3C8800,177,8960,241,9120,253.3C9280,266,9440,228,9600,221.7C9760,215,9920,241,10080,221.7C10240,203,10400,139,10560,95C10720,51,10880,25,11040,19C11200,13,11360,25,11440,31.7L11520,38L11520,380L11440,380C11360,380,11200,380,11040,380C10880,380,10720,380,10560,380C10400,380,10240,380,10080,380C9920,380,9760,380,9600,380C9440,380,9280,380,9120,380C8960,380,8800,380,8640,380C8480,380,8320,380,8160,380C8000,380,7840,380,7680,380C7520,380,7360,380,7200,380C7040,380,6880,380,6720,380C6560,380,6400,380,6240,380C6080,380,5920,380,5760,380C5600,380,5440,380,5280,380C5120,380,4960,380,4800,380C4640,380,4480,380,4320,380C4160,380,4000,380,3840,380C3680,380,3520,380,3360,380C3200,380,3040,380,2880,380C2720,380,2560,380,2400,380C2240,380,2080,380,1920,380C1760,380,1600,380,1440,380C1280,380,1120,380,960,380C800,380,640,380,480,380C320,380,160,380,80,380L0,380Z"></path></svg>
+                    <div class="container-price">  
+                        <span>S/.</span>
+                        <span>--</span>
+                    </div>
+                    <ul>
+                        <li>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 1000 1000"><path fill="#eab308" d="M500 0q136 0 251 67t182 182t67 251t-67 251t-182 182t-251 67t-251-67T67 751T0 500t67-251T249 67T500 0M260 447l-54 53q71 71 129 133.5t81 89.5l22 26q8-13 22-35.5t56.5-85.5T600 509.5T695 390t99-104q-18-35-36-35q-10 6-32 22t-113.5 97.5T402 571z"/></svg>
+                            Soporte 24/7
+                        </li>
+                        <li>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 1000 1000"><path fill="#eab308" d="M500 0q136 0 251 67t182 182t67 251t-67 251t-182 182t-251 67t-251-67T67 751T0 500t67-251T249 67T500 0M260 447l-54 53q71 71 129 133.5t81 89.5l22 26q8-13 22-35.5t56.5-85.5T600 509.5T695 390t99-104q-18-35-36-35q-10 6-32 22t-113.5 97.5T402 571z"/></svg>
+                            Meseras o meseros / <span>&infin;</span>
+                        </li>
+                        <li>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 1000 1000"><path fill="#eab308" d="M500 0q136 0 251 67t182 182t67 251t-67 251t-182 182t-251 67t-251-67T67 751T0 500t67-251T249 67T500 0M260 447l-54 53q71 71 129 133.5t81 89.5l22 26q8-13 22-35.5t56.5-85.5T600 509.5T695 390t99-104q-18-35-36-35q-10 6-32 22t-113.5 97.5T402 571z"/></svg>
+                            Reservaciones como maximo/Día / <span>&infin;</span>
+                        </li>
+                        <li>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 1000 1000"><path fill="#eab308" d="M500 0q136 0 251 67t182 182t67 251t-67 251t-182 182t-251 67t-251-67T67 751T0 500t67-251T249 67T500 0M260 447l-54 53q71 71 129 133.5t81 89.5l22 26q8-13 22-35.5t56.5-85.5T600 509.5T695 390t99-104q-18-35-36-35q-10 6-32 22t-113.5 97.5T402 571z"/></svg>
+                            Categorías de platos / <span>&infin;</span>
+                        </li>
+                        <li>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 1000 1000"><path fill="#eab308" d="M500 0q136 0 251 67t182 182t67 251t-67 251t-182 182t-251 67t-251-67T67 751T0 500t67-251T249 67T500 0M260 447l-54 53q71 71 129 133.5t81 89.5l22 26q8-13 22-35.5t56.5-85.5T600 509.5T695 390t99-104q-18-35-36-35q-10 6-32 22t-113.5 97.5T402 571z"/></svg>
+                            Platos por cada categoría / <span>&infin;</span>
+                        </li>
+                        <li>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 1000 1000"><path fill="#eab308" d="M500 0q136 0 251 67t182 182t67 251t-67 251t-182 182t-251 67t-251-67T67 751T0 500t67-251T249 67T500 0M260 447l-54 53q71 71 129 133.5t81 89.5l22 26q8-13 22-35.5t56.5-85.5T600 509.5T695 390t99-104q-18-35-36-35q-10 6-32 22t-113.5 97.5T402 571z"/></svg>
+                            Observaciones por categoría / <span>&infin;</span>
+                        </li>
+                        <li>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 1000 1000"><path fill="#eab308" d="M500 0q136 0 251 67t182 182t67 251t-67 251t-182 182t-251 67t-251-67T67 751T0 500t67-251T249 67T500 0M260 447l-54 53q71 71 129 133.5t81 89.5l22 26q8-13 22-35.5t56.5-85.5T600 509.5T695 390t99-104q-18-35-36-35q-10 6-32 22t-113.5 97.5T402 571z"/></svg>
+                            Órdenes por día / <span>&infin;</span>
+                        </li>
+                        <li class="ctn-corte">EXTRAS (SIN COSTO ADICIONAL)</li>
+                        <li class="opt-extra">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 1000 1000"><path fill="#7c3aed" d="M500 0q136 0 251 67t182 182t67 251t-67 251t-182 182t-251 67t-251-67T67 751T0 500t67-251T249 67T500 0M260 447l-54 53q71 71 129 133.5t81 89.5l22 26q8-13 22-35.5t56.5-85.5T600 509.5T695 390t99-104q-18-35-36-35q-10 6-32 22t-113.5 97.5T402 571z"/></svg>
+                            Ideas a desarrollar (Se implementarán los módulos que el usuario necesite, previa evaluación de su viabilidad). 
+                        </li>
+                        <li class="opt-extra">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 1000 1000"><path fill="#7c3aed" d="M500 0q136 0 251 67t182 182t67 251t-67 251t-182 182t-251 67t-251-67T67 751T0 500t67-251T249 67T500 0M260 447l-54 53q71 71 129 133.5t81 89.5l22 26q8-13 22-35.5t56.5-85.5T600 509.5T695 390t99-104q-18-35-36-35q-10 6-32 22t-113.5 97.5T402 571z"/></svg>
+                            Sugerencias de cambio (Se realizarán las modificaciones solicitadas por el usuario, siempre y cuando sean viables y cuenten con la aprobación de los demás usuarios).
+                        </li>
+                    </ul>
+                    <div class="footer-block">
+                        <span>FOODIE ADMIN</span>
+                        <span>2020 &copy; FOODIE ADMIN</span>
+                    </div>
+                </div>
+            </div>
+            <div class="container-info">
+                <div class="container-link-methods-pay">
+                    <a href="#yape-method-section">
+                        <img src="{{ url_for('static', filename='images/images_restaurant/images_default/yape.min.jpg') }}" alt="">
+                        YAPE
+                    </a>
+                    <a href="#paypal-method-section">
+                        <img src="{{ url_for('static', filename='images/images_restaurant/images_default/logo-paypal-icon-100x100.png') }}" alt="">
+                        PAYPAL
+                    </a>
+                </div>
+                <h2>Precio mensual: <span>S/. --</span> PEN </h2>
+                <span class="message-details">Estimado usuario, le recordamos que el pago mensual de S/ 35 es necesario para continuar con el servicio. El pago se realiza cada mes y no es automático. Puede efectuarlo a través del aplicativo YAPE. Por favor, asegúrese de realizar el pago en el plazo establecido.</span>
+                <div class="container-form-pay">
+                    <div class="container-main-template-input-simple">
+                        <label for="message">
+                            <span>Mensaje (opcional)</span>
+                            <input type="text" value="" name="message" id="message" class="input-simple-main-template">
+                        </label>
+                    </div>                    
+                    <div class="container-main-template-input-simple">
+                        <label for="voucher">
+                            <span>Comprobante(voucher) *</span>
+                            <div class="container-image-preview-main">
+                                <img src="" alt="" id="voucher-preview-img">
+                            </div>
+                            <input type="file" value="" name="voucher" id="voucher" class="input-simple-main-template" accept="image/*">
+                            <div class="btn-upload-image-ui-label">
+                                Subir imagen
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 48 48"><g fill="none"><path fill="#ffffff" d="M44 24a2 2 0 1 0-4 0zM24 8a2 2 0 1 0 0-4zm15 32H9v4h30zM8 39V9H4v30zm32-15v15h4V24zM9 8h15V4H9zm0 32a1 1 0 0 1-1-1H4a5 5 0 0 0 5 5zm30 4a5 5 0 0 0 5-5h-4a1 1 0 0 1-1 1zM8 9a1 1 0 0 1 1-1V4a5 5 0 0 0-5 5z"/><path stroke="#ffffff" stroke-linecap="round" stroke-linejoin="round" stroke-width="4" d="m6 35l10.693-9.802a2 2 0 0 1 2.653-.044L32 36m-4-5l4.773-4.773a2 2 0 0 1 2.615-.186L42 31m-5-13V6m-5 5l5-5l5 5"/></g></svg>
+                            </div>
+                        </label>
+                    </div>                    
+                    <div class="container-btn-send-data" id="btn-go-action-payments">
+                        <button>Enviar</button>
+                    </div>
+                    <span class="message-voucher">Es muy importante que una vez realizado el pago, suba una captura del comprobante a nuestro sistema para validar su transacción. De esta manera, podremos confirmar que su pago se ha efectuado correctamente y garantizar la continuidad del servicio. ¡Gracias por su colaboración!</span>
+                </div>
+            </div>
+        </div>
+        <div class="container-method-payments">
+            <div class="methods-pay" id="yape-method-section">
+                <span>Paga con yape a: 927106331</span>
+                <!-- <ul>
+                    <li>927106331</li>
+                </ul> -->
+                <div class="container-icon">
+                    <img src="{{ url_for('static', filename='images/images_restaurant/images_icons/yape.jpeg') }}" alt="Yape icono">
+                </div>
+            </div>
+            <!-- PARA ACTIVAR ESTO DEBES HACER CAMBIOS EN routes/payments.py -->
+            <!-- <div class="methods-pay" id="paypal-method-section">
+                <span>Paga con PAYPAL</span>
+                <div class="container-icon">
+                    <img src="{{ url_for('static', filename='images/images_restaurant/images_icons/paypal_1.png') }}" alt="PAYPAL icono">
+                    <a href="/payments/pay_with_paypal" target="_blank">
+                        Pagar
+                    </a>
+                </div>
+            </div> -->
+        </div>
+    </section>
+    
+{% endblock %}
+
+{% block main_link_js %}
+    <script src="{{ url_for('static', filename='js/preview_image.js') }}"></script>
+    <script>
+        preview_image("voucher", "voucher-preview-img");
+        const message = document.getElementById("message");
+        const voucher = document.getElementById("voucher");
+        const btn_go = document.getElementById("btn-go-action-payments");
+        btn_go.addEventListener("click", async() => {
+            if (voucher.files[0]){
+                const form_data = new FormData();
+                form_data.append("message", message.value);
+                form_data.append("voucher", voucher.files[0]);
+                await fetch("/payments/payment_send_save", {
+                    method: "POST", 
+                    body: form_data,
+                }).then(res => res.text()).then(data => {
+                    if (data === "ok"){
+                        location.reload();
+                    }
+                })
+            }
+        });
+    </script>
+{% endblock %}

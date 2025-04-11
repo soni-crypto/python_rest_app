@@ -1,0 +1,32 @@
+{% extends "layouts/nav_admin.html" %}
+
+{% block container_css %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/ui/input.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/admin_main/countries.css') }}">
+{% endblock %}
+
+{% block main_body %}
+    <div class="container-main-country">
+        <div>
+            <h1>Paises</h1>
+        </div>
+        <div class="container-form-create-country">
+            <form action="/onlyadmin/country/create" method="post" enctype="multipart/form-data">
+
+                <div class="coolinput-main-template">
+                    <label for="input" class="text-main-template">Nombre:</label>
+                    <input type="text" placeholder="" name="country_name" class="input-main-template" autofocus required>
+                </div> 
+                <div class="coolinput-main-template">
+                    <label for="input" class="text-main-template">Imagen:</label>
+                    <input type="file" name="country_image" class="input-main-template" accept="image/*" required>
+                </div> 
+                <div class="coolinput-main-template">
+                    <label for="input" class="text-main-template">Código:</label>
+                    <input type="text" placeholder="" name="country_code" class="input-main-template" required>
+                </div> 
+                <button type="submit">Crear</button>
+            </form>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,329 @@
+{% extends "layouts/nav_app_honey.html" %}
+
+{% block main_link_css %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/ui/input_icon.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/styles_restaurant/waitress_view.css') }}">
+{% endblock %}
+
+{% block main_body %}
+    <div class="container-main-body-all">
+        <div class="title-main-panel-container">
+            <h1>Administración de usuarios</h1>
+        </div>
+        <div class="container-div-create">
+            <button class="button is-small is-link" onclick="openModal(document.getElementById('modal-create-new-user'))">Crear nuevo usuario</button>
+            <div class="container-ui-input-with-icon">
+                <label for=""></label>
+                <div class="container-ui-input-with-icon__input-c">
+                    <div class="container-ui-input-with-icon__svg">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 512 512"><path fill="#333333" d="m479.6 399.716l-81.084-81.084l-62.368-25.767A175 175 0 0 0 368 192c0-97.047-78.953-176-176-176S16 94.953 16 192s78.953 176 176 176a175.03 175.03 0 0 0 101.619-32.377l25.7 62.2l81.081 81.088a56 56 0 1 0 79.2-79.195M48 192c0-79.4 64.6-144 144-144s144 64.6 144 144s-64.6 144-144 144S48 271.4 48 192m408.971 264.284a24.03 24.03 0 0 1-33.942 0l-76.572-76.572l-23.894-57.835l57.837 23.894l76.573 76.572a24.03 24.03 0 0 1-.002 33.941"/></svg>
+                    </div>
+                    <input type="text" placeholder="Buscar" id="input_search_in_table">
+                </div>
+            </div>
+        </div>
+        <div class="table-container container-main-block-div-all-users">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Nombre</th>
+                        <th>Apellido</th>
+                        <th>Rol</th>
+                        <th>Telefono</th>
+                        <th>Email</th>
+                        <th>Contraseña</th>
+                        <th>Imagen</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody id="tbody-users">
+                    {% for w in data_waitress %}
+                    <tr>
+                        <td><strong>{{ loop.index }}</strong></td>
+                        <td>{{ w.user_first_name }}</td>
+                        <td>{{ w.user_last_name }}</td>
+                        <td>{% if w.user_role == 1 %}Mesero{% elif w.user_role == 2 %}Cocinero{% elif w.user_role == 3 %}Repartidor{% endif %}</td>
+                        <td>{{ w.user_phone_number }}</td>
+                        <td>{{ w.user_email }}</td>
+                        <td>{{ w.user_password }}</td>
+                        <td><img src="{{ w.user_image }}" alt="icon"></td>
+                        <td>
+                            <div class="container-buttons">
+                                <button class="btn-update-user button is-small is-primary" data-i="{{ w.id }}">Actualizar</button>
+                                <button class="btn-delete-user button is-small is-danger" data-i="{{ w.id }}">Eliminar</button>
+                            </div>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <nav class="pagination is-small" role="navigation" aria-label="pagination">
+            <a href="#" class="pagination-previous is-disabled" title="This is the first page">Previous</a>
+            <a href="#" class="pagination-next">Next page</a>
+            <ul class="pagination-list">
+                
+            </ul>
+        </nav>
+    </div>
+    <!-- Modals all -->
+    
+    <div class="modal" id="modal-create-new-user">
+        <div class="modal-background"></div>
+        <div class="modal-content">
+            <div class="container-title">
+                <h1>Crear nuevo usuario</h1>
+            </div>
+            <form action="/honey/user/create" method="post">
+                <div class="container-main-inputs-create">
+                    <div class="container-ui-input-with-icon">
+                        <label for="">Nombre *</label>
+                        <div class="container-ui-input-with-icon__input-c">
+                            <div class="container-ui-input-with-icon__svg">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"><path fill="none" stroke="#333333" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M6.578 15.482c-1.415.842-5.125 2.562-2.865 4.715C4.816 21.248 6.045 22 7.59 22h8.818c1.546 0 2.775-.752 3.878-1.803c2.26-2.153-1.45-3.873-2.865-4.715a10.66 10.66 0 0 0-10.844 0M16.5 6.5a4.5 4.5 0 1 1-9 0a4.5 4.5 0 0 1 9 0" color="#333333"/></svg>
+                            </div>
+                            <input type="text" name="names" placeholder="Nombre" required>
+                        </div>
+                    </div>
+                    <div class="container-ui-input-with-icon">
+                        <label for="">Apellido *</label>
+                        <div class="container-ui-input-with-icon__input-c">
+                            <div class="container-ui-input-with-icon__svg">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"><path fill="none" stroke="#333333" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0-8 0M6 21v-2a4 4 0 0 1 4-4h3.5m3.5 2v5m4-5v5"/></svg>
+                            </div>
+                            <input type="text" name="surnames" placeholder="Apellido" required>
+                        </div>
+                    </div>
+                    <!-- <div class="container-ui-input-with-icon">
+                        <label for="">Caja *</label>
+                        <div class="container-ui-input-with-icon__input-c">
+                            <div class="container-ui-input-with-icon__svg">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 14 14"><g fill="none" stroke="#333333" stroke-linecap="round" stroke-linejoin="round"><path d="M6.5 11h1M10 5V3m2-1.25A1.25 1.25 0 0 1 10.75 3h-1.5a1.25 1.25 0 0 1 0-2.5h1.5A1.25 1.25 0 0 1 12 1.75ZM5.5 5V1.5h-3V5"></path><rect width="13" height="5" x=".5" y="8.5" rx="1"></rect><path d="M12.5 8.5V6a1 1 0 0 0-1-1h-9a1 1 0 0 0-1 1v2.5"></path></g></svg>
+                            </div>
+                            <select name="box" id="" required>
+                                <option value="" selected disabled>Seleccione caja</option>
+                            </select>
+                        </div>
+                    </div> -->
+                    <div class="container-ui-input-with-icon">
+                        <label for="">Rol *</label>
+                        <div class="container-ui-input-with-icon__input-c">
+                            <div class="container-ui-input-with-icon__svg">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"><path fill="#333333" d="M23 19a4 4 0 0 1-4 4h-2v-2h2a2 2 0 0 0 0-4h-2v-2h2a4 4 0 0 1 4 4M9 19a4 4 0 0 1 4-4h2v2h-2a2 2 0 0 0 0 4h2v2h-2a4 4 0 0 1-4-4"/><path fill="#333333" d="M14 18h4v2h-4zM9 5a3 3 0 1 0 3 3a3.01 3.01 0 0 0-3-3m0 4a1 1 0 1 1 1-1a1.003 1.003 0 0 1-1 1m-3.69 6A7 7 0 0 1 9 13.88a6 6 0 0 1 .778.064A5.97 5.97 0 0 1 13 13h.254A9.4 9.4 0 0 0 9 11.89c-2.03 0-6 1.07-6 3.58V17h4.349a6 6 0 0 1 1.188-2Z"/><path fill="#333333" d="M16 2h-4.18a2.988 2.988 0 0 0-5.64 0H2a2.006 2.006 0 0 0-2 2v14a2.006 2.006 0 0 0 2 2h5.141a3.6 3.6 0 0 1 0-2H2V4h14v9h2V4a2.006 2.006 0 0 0-2-2M9 3.25a.756.756 0 0 1-.75-.75a.75.75 0 0 1 1.5 0a.756.756 0 0 1-.75.75"/></svg>
+                            </div>
+                            <select name="user_role" id="" required>
+                                <option value="" selected disabled>Seleccione rol</option>
+                                <option value="1">Mesero</option>
+                                <option value="2">Cocinero</option>
+                                <option value="3" disabled>Repartidor</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="container-ui-input-with-icon">
+                        <label for="">Teléfono *</label>
+                        <div class="container-ui-input-with-icon__input-c">
+                            <div class="container-ui-input-with-icon__svg">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 16 16"><path fill="#333333" d="M3.654 1.328a.678.678 0 0 0-1.015-.063L1.605 2.3c-.483.484-.661 1.169-.45 1.77a17.6 17.6 0 0 0 4.168 6.608a17.6 17.6 0 0 0 6.608 4.168c.601.211 1.286.033 1.77-.45l1.034-1.034a.678.678 0 0 0-.063-1.015l-2.307-1.794a.68.68 0 0 0-.58-.122l-2.19.547a1.75 1.75 0 0 1-1.657-.459L5.482 8.062a1.75 1.75 0 0 1-.46-1.657l.548-2.19a.68.68 0 0 0-.122-.58zM1.884.511a1.745 1.745 0 0 1 2.612.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.68.68 0 0 0 .178.643l2.457 2.457a.68.68 0 0 0 .644.178l2.189-.547a1.75 1.75 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.6 18.6 0 0 1-7.01-4.42a18.6 18.6 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877z"/></svg>
+                            </div>
+                            <input type="telephone" name="telephone" placeholder="Teléfono" required>
+                        </div>
+                    </div>
+                    <div class="container-ui-input-with-icon">
+                        <label for="">Email *</label>
+                        <div class="container-ui-input-with-icon__input-c">
+                            <div class="container-ui-input-with-icon__svg">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 16 16"><path fill="#333333" fill-rule="evenodd" d="M14.95 3.684L8.637 8.912a1 1 0 0 1-1.276 0l-6.31-5.228A1 1 0 0 0 1 4v8a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4a1 1 0 0 0-.05-.316M2 2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2m-.21 1l5.576 4.603a1 1 0 0 0 1.27.003L14.268 3z"/></svg>
+                            </div>
+                            <input type="email" name="email" placeholder="Email" required>
+                        </div>
+                    </div>
+                    <div class="container-ui-input-with-icon">
+                        <label for="">Contraseña *</label>
+                        <div class="container-ui-input-with-icon__input-c">
+                            <div class="container-ui-input-with-icon__svg">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"><g fill="none" stroke="#333333" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M17 8c.788 1 1 2 1 3v1m-9-1c0-1.578 1.343-3 3-3s3 1.422 3 3v2m-3-2v2"/><path d="M6 12v-1.397c-.006-1.999 1.136-3.849 2.993-4.85A6.39 6.39 0 0 1 15 5.748M12 17v4m-2-1l4-2m-4 0l4 2m-9-3v4m-2-1l4-2m-4 0l4 2m12-3v4m-2-1l4-2m-4 0l4 2"/></g></svg>
+                            </div>
+                            <input type="password" name="password" placeholder="Contraseña" required>
+                        </div>
+                    </div>
+                    <div class="container-ui-input-with-icon container-ui-input-with-icon__image">
+                        <label for="">Imagen</label>
+                        <div class="container-ui-input-with-icon__input-c">
+                            <div class="container-ui-input-with-icon__svg">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path fill="#333333" d="M5 3h13a3 3 0 0 1 3 3v13a3 3 0 0 1-3 3H5a3 3 0 0 1-3-3V6a3 3 0 0 1 3-3m0 1a2 2 0 0 0-2 2v11.59l4.29-4.3l2.5 2.5l5-5L20 16V6a2 2 0 0 0-2-2zm4.79 13.21l-2.5-2.5L3 19a2 2 0 0 0 2 2h13a2 2 0 0 0 2-2v-1.59l-5.21-5.2zM7.5 6A2.5 2.5 0 0 1 10 8.5A2.5 2.5 0 0 1 7.5 11A2.5 2.5 0 0 1 5 8.5A2.5 2.5 0 0 1 7.5 6m0 1A1.5 1.5 0 0 0 6 8.5A1.5 1.5 0 0 0 7.5 10A1.5 1.5 0 0 0 9 8.5A1.5 1.5 0 0 0 7.5 7"/></svg>
+                            </div>
+                            <input type="file" name="user_image" placeholder="Imagen">
+                        </div>
+                    </div>
+                </div>
+                <div class="container-buttons">
+                    <button class="button" type="button" onclick="closeModal(document.getElementById('modal-create-new-user'))">Cerrar</button>
+                    <button class="button is-info" type="submit">Guardar</button>
+                </div>
+            </form>
+        </div>
+        <button class="modal-close is-large" aria-label="close"></button>
+    </div>    
+    <!-- update user -->
+    <div class="modal" id="modal-update-user">
+        <div class="modal-background"></div>
+        <div class="modal-content">
+            <div class="container-title">
+                <h1>Actualizar usuario</h1>
+            </div>
+            <form action="/honey/user/update" method="post" id="form-update-user">
+                <input type="hidden" value="" name="id" required>
+                <div class="container-main-inputs-create">
+                    <div class="container-ui-input-with-icon">
+                        <label for="">Nombre *</label>
+                        <div class="container-ui-input-with-icon__input-c">
+                            <div class="container-ui-input-with-icon__svg">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"><path fill="none" stroke="#333333" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M6.578 15.482c-1.415.842-5.125 2.562-2.865 4.715C4.816 21.248 6.045 22 7.59 22h8.818c1.546 0 2.775-.752 3.878-1.803c2.26-2.153-1.45-3.873-2.865-4.715a10.66 10.66 0 0 0-10.844 0M16.5 6.5a4.5 4.5 0 1 1-9 0a4.5 4.5 0 0 1 9 0" color="#333333"/></svg>
+                            </div>
+                            <input type="text" name="user_first_name" placeholder="Nombre" required>
+                        </div>
+                    </div>
+                    <div class="container-ui-input-with-icon">
+                        <label for="">Apellido *</label>
+                        <div class="container-ui-input-with-icon__input-c">
+                            <div class="container-ui-input-with-icon__svg">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"><path fill="none" stroke="#333333" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0-8 0M6 21v-2a4 4 0 0 1 4-4h3.5m3.5 2v5m4-5v5"/></svg>
+                            </div>
+                            <input type="text" name="user_last_name" placeholder="Apellido" required>
+                        </div>
+                    </div>
+                    <!-- <div class="container-ui-input-with-icon">
+                        <label for="">Caja *</label>
+                        <div class="container-ui-input-with-icon__input-c">
+                            <div class="container-ui-input-with-icon__svg">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 14 14"><g fill="none" stroke="#333333" stroke-linecap="round" stroke-linejoin="round"><path d="M6.5 11h1M10 5V3m2-1.25A1.25 1.25 0 0 1 10.75 3h-1.5a1.25 1.25 0 0 1 0-2.5h1.5A1.25 1.25 0 0 1 12 1.75ZM5.5 5V1.5h-3V5"></path><rect width="13" height="5" x=".5" y="8.5" rx="1"></rect><path d="M12.5 8.5V6a1 1 0 0 0-1-1h-9a1 1 0 0 0-1 1v2.5"></path></g></svg>
+                            </div>
+                            <select name="box" id="" required>
+                                <option value="" selected disabled>Seleccione caja</option>
+                            </select>
+                        </div>
+                    </div> -->
+                    <div class="container-ui-input-with-icon">
+                        <label for="">Rol *</label>
+                        <div class="container-ui-input-with-icon__input-c">
+                            <div class="container-ui-input-with-icon__svg">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"><path fill="#333333" d="M23 19a4 4 0 0 1-4 4h-2v-2h2a2 2 0 0 0 0-4h-2v-2h2a4 4 0 0 1 4 4M9 19a4 4 0 0 1 4-4h2v2h-2a2 2 0 0 0 0 4h2v2h-2a4 4 0 0 1-4-4"/><path fill="#333333" d="M14 18h4v2h-4zM9 5a3 3 0 1 0 3 3a3.01 3.01 0 0 0-3-3m0 4a1 1 0 1 1 1-1a1.003 1.003 0 0 1-1 1m-3.69 6A7 7 0 0 1 9 13.88a6 6 0 0 1 .778.064A5.97 5.97 0 0 1 13 13h.254A9.4 9.4 0 0 0 9 11.89c-2.03 0-6 1.07-6 3.58V17h4.349a6 6 0 0 1 1.188-2Z"/><path fill="#333333" d="M16 2h-4.18a2.988 2.988 0 0 0-5.64 0H2a2.006 2.006 0 0 0-2 2v14a2.006 2.006 0 0 0 2 2h5.141a3.6 3.6 0 0 1 0-2H2V4h14v9h2V4a2.006 2.006 0 0 0-2-2M9 3.25a.756.756 0 0 1-.75-.75a.75.75 0 0 1 1.5 0a.756.756 0 0 1-.75.75"/></svg>
+                            </div>
+                            <select name="user_role" id="" required>
+                                <option value="" selected disabled>Seleccione rol</option>
+                                <option value="1">Mesero</option>
+                                <option value="2">Cocinero</option>
+                                <option value="3" disabled>Repartidor</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="container-ui-input-with-icon">
+                        <label for="">Teléfono *</label>
+                        <div class="container-ui-input-with-icon__input-c">
+                            <div class="container-ui-input-with-icon__svg">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 16 16"><path fill="#333333" d="M3.654 1.328a.678.678 0 0 0-1.015-.063L1.605 2.3c-.483.484-.661 1.169-.45 1.77a17.6 17.6 0 0 0 4.168 6.608a17.6 17.6 0 0 0 6.608 4.168c.601.211 1.286.033 1.77-.45l1.034-1.034a.678.678 0 0 0-.063-1.015l-2.307-1.794a.68.68 0 0 0-.58-.122l-2.19.547a1.75 1.75 0 0 1-1.657-.459L5.482 8.062a1.75 1.75 0 0 1-.46-1.657l.548-2.19a.68.68 0 0 0-.122-.58zM1.884.511a1.745 1.745 0 0 1 2.612.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.68.68 0 0 0 .178.643l2.457 2.457a.68.68 0 0 0 .644.178l2.189-.547a1.75 1.75 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.6 18.6 0 0 1-7.01-4.42a18.6 18.6 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877z"/></svg>
+                            </div>
+                            <input type="telephone" name="user_phone_number" placeholder="Teléfono" required>
+                        </div>
+                    </div>
+                    <div class="container-ui-input-with-icon">
+                        <label for="">Email *</label>
+                        <div class="container-ui-input-with-icon__input-c">
+                            <div class="container-ui-input-with-icon__svg">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 16 16"><path fill="#333333" fill-rule="evenodd" d="M14.95 3.684L8.637 8.912a1 1 0 0 1-1.276 0l-6.31-5.228A1 1 0 0 0 1 4v8a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4a1 1 0 0 0-.05-.316M2 2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2m-.21 1l5.576 4.603a1 1 0 0 0 1.27.003L14.268 3z"/></svg>
+                            </div>
+                            <input type="email" name="user_email" placeholder="Email" required>
+                        </div>
+                    </div>
+                    <div class="container-ui-input-with-icon">
+                        <label for="">Contraseña *</label>
+                        <div class="container-ui-input-with-icon__input-c">
+                            <div class="container-ui-input-with-icon__svg">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"><g fill="none" stroke="#333333" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M17 8c.788 1 1 2 1 3v1m-9-1c0-1.578 1.343-3 3-3s3 1.422 3 3v2m-3-2v2"/><path d="M6 12v-1.397c-.006-1.999 1.136-3.849 2.993-4.85A6.39 6.39 0 0 1 15 5.748M12 17v4m-2-1l4-2m-4 0l4 2m-9-3v4m-2-1l4-2m-4 0l4 2m12-3v4m-2-1l4-2m-4 0l4 2"/></g></svg>
+                            </div>
+                            <input type="password" name="user_password" placeholder="Contraseña" required>
+                        </div>
+                    </div>
+                    <div class="container-ui-input-with-icon container-ui-input-with-icon__image">
+                        <label for="">Imagen</label>
+                        <div class="container-ui-input-with-icon__input-c">
+                            <div class="container-ui-input-with-icon__svg">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path fill="#333333" d="M5 3h13a3 3 0 0 1 3 3v13a3 3 0 0 1-3 3H5a3 3 0 0 1-3-3V6a3 3 0 0 1 3-3m0 1a2 2 0 0 0-2 2v11.59l4.29-4.3l2.5 2.5l5-5L20 16V6a2 2 0 0 0-2-2zm4.79 13.21l-2.5-2.5L3 19a2 2 0 0 0 2 2h13a2 2 0 0 0 2-2v-1.59l-5.21-5.2zM7.5 6A2.5 2.5 0 0 1 10 8.5A2.5 2.5 0 0 1 7.5 11A2.5 2.5 0 0 1 5 8.5A2.5 2.5 0 0 1 7.5 6m0 1A1.5 1.5 0 0 0 6 8.5A1.5 1.5 0 0 0 7.5 10A1.5 1.5 0 0 0 9 8.5A1.5 1.5 0 0 0 7.5 7"/></svg>
+                            </div>
+                            <input type="file" name="user_image_update" placeholder="Imagen">
+                        </div>
+                    </div>
+                </div>
+                <div class="container-buttons">
+                    <button class="button" type="button" onclick="closeModal(document.getElementById('modal-update-user'))">Cerrar</button>
+                    <button class="button is-info" id="btn-update-confirm" type="submit">Actualizar</button>
+                </div>
+            </form>
+        </div>
+        <button class="modal-close is-large" aria-label="close"></button>
+    </div>    
+
+    <div class="modal" id="modal-view-profile">
+        <div class="modal-background"></div>
+        <div class="modal-content">
+            <div class="modal-content-image-preview-profile">
+                <img src="" alt="profile" class="image-view-profile-modal" style="max-width: 90%;max-height: 90%;border-radius: .5rem;">                      
+            </div>    
+        </div>
+        <button class="modal-close is-large" aria-label="close"></button>
+    </div>    
+    <div class="modal" id="modal-confirm-delete">
+        <div class="modal-background"></div>
+        <div class="modal-content">
+            <h5>¿Eliminar?</h5>
+            <div class="container-buttons">
+                <button class="button" type="button" onclick="closeModal(document.getElementById('modal-confirm-delete'))">Cerrar</button>
+                <button class="button is-danger" type="button" id="btn-delete-confirm">Confirmar</button>
+            </div>
+        </div>
+        <button class="modal-close is-large" aria-label="close"></button>
+    </div>    
+{% endblock %}
+
+{% block main_link_js %}
+    <script src="{{ url_for('static', filename='js/userController.js') }}"></script>
+    <script>
+        userUpdate();
+        userDelete();
+        BulmaPagination("tbody-users", 10);
+        BulmaTableSearch("tbody-users", "input_search_in_table", "all")
+    </script>
+    <script>
+        const modal_image = document.querySelector(".image-view-profile-modal");
+        const imgs_btn = document.querySelectorAll(".container-img-for-open");
+        imgs_btn.forEach(img => {
+            img.addEventListener("click", ()=>{
+                openModal(document.getElementById("modal-view-profile"));
+                let img_element = img.querySelector("img");
+                modal_image.src = img_element.src;
+            });
+        });
+
+        // const btn_delete_user = document.querySelectorAll(".btn-delete-user-conected");
+        // const btn_confirm_delete_user = document.getElementById("btn-confirm-delete-user");
+        // let row = null;
+        // btn_delete_user.forEach(element => {
+        //     element.addEventListener("click", () => {
+        //         openModal(document.getElementById("modal-acept-delete"));
+        //         row = element.dataset.row;
+        //     })
+        // })
+        // btn_confirm_delete_user.addEventListener("click", async() => {
+        //     if (row){
+        //         await fetch("/honey/waitress_delete?row="+String(row)).then(res => res.text()).then(data => {
+        //             if (data === "ok"){
+        //                 location.reload();
+        //             }else{
+        //                 alert("Error al eliminar");
+        //             }
+        //         })
+        //     }
+        // })
+    </script>
+{% endblock %}

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Error</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/pages/errors.css') }}">
+</head>
+<body>
+    <div class="container-main">
+        <img src="" alt="imagen" id="img-error-view">
+        
+        <p>Algo salió mal, intenta actualizar la applicación o vuelva más tarde.</p>
+        <a href="">Actualizar</a>
+    </div>
+    <script>
+        function obtenerNumeroAleatorio() {
+            return Math.floor(Math.random() * 5) + 1;
+        }
+        let name_img = "/static/images/userapp/images_default/page-error-wait-"+String(obtenerNumeroAleatorio())+".png";
+        document.getElementById("img-error-view").src = name_img;
+    </script>
+</body>
+</html>

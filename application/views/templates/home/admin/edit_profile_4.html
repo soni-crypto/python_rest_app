@@ -1,0 +1,149 @@
+{% extends "layouts/nav_app_honey.html" %}
+
+{% block main_link_css %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/ui/loader_ping.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/ui/input_simple.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/ui/input.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/styles_restaurant/edit_profile_admin.css') }}">
+    
+{% endblock %}
+
+{% block main_body %}
+    <section class="section-container-all">
+        <!-- BULMA -->
+        <div class="tabs is-boxed">
+            <ul>
+                <li>
+                    <a href="/honey/edit_user_admin">
+                        <span>Usuario</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/honey/edit_user_admin/2">
+                        <span>Negocio</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/honey/edit_user_admin/3">
+                        <span>Pagos</span>
+                    </a>
+                </li>
+                <li class="is-active">
+                    <a href="/honey/edit_user_admin/4">
+                        <span>Otros</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <!-- BULMA END -->
+        <!-- OLD -->
+        <div class="">
+            <!-- formulario -->
+            <div class="container-div-form">
+                <form action="" method="post" enctype="multipart/form-data">
+                    <div class="container-btn-update-save">
+                        <button type="submit" class="btn-update-save">
+                            Guardar cambios
+                        </button>
+                        <div class="title-main-panel-container">
+                            <h5>Actualizar datos</h5>
+                        </div>
+                    </div>
+                    <div class="block-container-forms-div-main">
+                        <div class="coolinput-main-template">
+                            <label for="email" class="text-main-template">Correo</label>
+                            <input type="email" value="{{ data_config.email }}" name="email" id="email" class="input-main-template">
+                        </div> 
+                        <div class="coolinput-main-template">
+                            <label for="password_email" class="text-main-template">Contraseña</label>
+                            <input type="text" value="{{ data_config.password_email }}" name="password_email" id="password_email" class="input-main-template">
+                        </div> 
+                        <div class="coolinput-main-template">
+                            <label for="language" class="text-main-template">Idioma</label>
+                            <select name="language" id="language" class="input-main-template">
+                                <option value="">Seleccione idioma</option>
+                                <option value="1" {% if data_config.language == "1" %} selected {% endif %}>Español</option>
+                                <option value="2" {% if data_config.language == "2" %} selected {% endif %}>Ingles</option>
+                            </select>
+                        </div> 
+                        <div class="coolinput-main-template">
+                            <label for="currency" class="text-main-template">Moneda</label>
+                            <select name="currency" id="currency" class="input-main-template">
+                                <option value="">Seleccione moneda</option>
+                                <option value="$" {% if data_config.currency == "$" %} selected {% endif %}>Dólar estadounidense (USD) &raquo; $</option>
+                                <option value="€" {% if data_config.currency == "€" %} selected {% endif %}>Euro (EUR) &raquo; €</option>
+                                <option value="S/." {% if data_config.currency == "S/." %} selected {% endif %}>Soles peruanos (PEN) &raquo; S/.</option>
+                            </select>
+                        </div> 
+                        <div class="coolinput-main-template">
+                            <label for="time_zone" class="text-main-template">Zona horaria</label>
+                            <select name="time_zone" id="time_zone" class="input-main-template">
+                                <option value="">Seleccione zona horaria</option>
+                                <option value="America/Lima" {% if data_config.time_zone == "America/Lima" %} selected {% endif %}>Perú &raquo; America/Lima</option>
+                                <option value="Europe/Madrid" {% if data_config.time_zone == "Europe/Madrid" %} selected {% endif %}>España &raquo; Europe/Madrid</option>
+                                <option value="Atlantic/Canary" {% if data_config.time_zone == "Atlantic/Canary" %} selected {% endif %}>España &raquo; Atlantic/Canary</option>
+                            </select>
+                        </div> 
+                        <div class="coolinput-main-template">
+                            <label for="order_now" class="text-main-template">Ordenar ahora</label>
+                            <select name="order_now" id="order_now" class="input-main-template">
+                                <option value="0" {% if data_config.order_now == 0 %} selected {% endif %}>NO</option>
+                                <option value="1" {% if data_config.order_now == 1 %} selected {% endif %}>SI</option>
+                            </select>
+                        </div> 
+                        <div class="coolinput-main-template">
+                            <label for="reservations_accept" class="text-main-template">Aceptar reservas desde NEEVA</label>
+                            <select name="reservations_accept" id="reservations_accept" class="input-main-template">
+                                <option value="0" {% if data_config.reservations_accept == 0 %} selected {% endif %}>NO</option>
+                                <option value="1" {% if data_config.reservations_accept == 1 %} selected {% endif %}>SI</option>
+                            </select>
+                        </div> 
+                        <div class="coolinput-main-template">
+                            <label for="delivery_accept" class="text-main-template">Aceptar delivery</label>
+                            <select name="delivery_accept" id="delivery_accept" class="input-main-template">
+                                <option value="0" {% if data_config.delivery_accept == 0 %} selected {% endif %}>NO</option>
+                                <option value="1" {% if data_config.delivery_accept == 1 %} selected {% endif %}>SI</option>
+                            </select>
+                        </div> 
+                        <div class="coolinput-main-template">
+                            <label for="visibility_in_app" class="text-main-template">Visibilidad en app neeva</label>
+                            <select name="visibility_in_app" id="visibility_in_app" class="input-main-template">
+                                <option value="0" {% if data_config.visibility_in_app == 0 %} selected {% endif %}>NO</option>
+                                <option value="1" {% if data_config.visibility_in_app == 1 %} selected {% endif %}>SI</option>
+                            </select>
+                        </div> 
+                        <div class="coolinput-main-template">
+                            <label for="send_email_1" class="text-main-template">Notificar el cambio de estado</label>
+                            <select name="send_email_1" id="send_email_1" class="input-main-template">
+                                <option value="0" {% if data_config.send_email_1 == 0 %} selected {% endif %}>NO</option>
+                                <option value="1" {% if data_config.send_email_1 == 1 %} selected {% endif %}>SI</option>
+                            </select>
+                        </div> 
+                        <div class="coolinput-main-template">
+                            <label for="send_email_2" class="text-main-template">Enviar voucher automático</label>
+                            <select name="send_email_2" id="send_email_2" class="input-main-template">
+                                <option value="0" {% if data_config.send_email_2 == 0 %} selected {% endif %}>NO</option>
+                                <option value="1" {% if data_config.send_email_2 == 1 %} selected {% endif %}>SI</option>
+                            </select>
+                        </div>
+                        <div class="coolinput-main-template">
+                            <label for="maximum_distance_range" class="text-main-template">Rango de distancia max. para delivery (km)</label>
+                            <input type="text" name="maximum_distance_range" value="{{ data_config.maximum_distance_range }}" id="maximum_distance_range" class="input-main-template">
+                        </div> 
+                        <div class="coolinput-main-template">
+                            <label for="price_per_delivery" class="text-main-template">Precio por envío de delivery</label>
+                            <input type="text" name="price_per_delivery" value="{{ data_config.price_per_delivery }}" id="price_per_delivery" class="input-main-template">
+                        </div> 
+                    </div>
+                </form>
+            </div>
+        </div>
+        <br><br><br><br><br>
+    </section>
+    <!-- MODALS OF APPEND AND QUIT MONEY -->
+    
+{% endblock %}
+
+{% block main_link_js %}
+
+{% endblock %}

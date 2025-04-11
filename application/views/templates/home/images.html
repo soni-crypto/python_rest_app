@@ -1,0 +1,126 @@
+{% extends "layouts/nav_app_honey.html" %}
+
+{% block main_link_css %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/styles_restaurant/images.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/ui/input_simple.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/ui/btn_div_1.css') }}">
+
+{% endblock %}
+
+{% block main_body %}
+    
+
+    <section class="section-page">
+        <h1 class="title is-4"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24"><path fill="none" stroke="#666666" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M2.25 12.75V12A2.25 2.25 0 0 1 4.5 9.75h15A2.25 2.25 0 0 1 21.75 12v.75m-8.69-6.44l-2.12-2.12a1.5 1.5 0 0 0-1.061-.44H4.5A2.25 2.25 0 0 0 2.25 6v12a2.25 2.25 0 0 0 2.25 2.25h15A2.25 2.25 0 0 0 21.75 18V9a2.25 2.25 0 0 0-2.25-2.25h-5.379a1.5 1.5 0 0 1-1.06-.44"/></svg>  Explorador de Imágenes</h1>
+        <div class="container file-explorer">
+            <div class="top-bar">
+                <button class="button button-open-modal-create"> 
+                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24"><path fill="none" stroke="#666666" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12v7a2 2 0 0 1-2 2h-3m5-9c-6.442 0-10.105 1.985-12.055 4.243M21 12v-1.5M3 16v3a2 2 0 0 0 2 2v0h11M3 16V5a2 2 0 0 1 2-2h8M3 16c1.403-.234 3.637-.293 5.945.243M16 21c-1.704-2.768-4.427-4.148-7.055-4.757M8.5 7C8 7 7 7.3 7 8.5S8 10 8.5 10S10 9.7 10 8.5S9 7 8.5 7M19 2v3m0 3V5m0 0h3m-3 0h-3"/></svg>
+                    Subir imagen
+                </button>
+                <div class="field has-addons">
+                    <div class="control">
+                        <input class="input" type="text" placeholder="Filtrar imágenes..." id="filterInput">
+                    </div>
+                    <div class="control">
+                        <button class="button is-info"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24"><g fill="none" stroke="#ffffff" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path stroke-dasharray="40" stroke-dashoffset="40" d="M10.76 13.24c-2.34 -2.34 -2.34 -6.14 0 -8.49c2.34 -2.34 6.14 -2.34 8.49 0c2.34 2.34 2.34 6.14 0 8.49c-2.34 2.34 -6.14 2.34 -8.49 0Z"><animate fill="freeze" attributeName="stroke-dashoffset" dur="0.5s" values="40;0"/></path><path stroke-dasharray="12" stroke-dashoffset="12" d="M10.5 13.5l-7.5 7.5"><animate fill="freeze" attributeName="stroke-dashoffset" begin="0.5s" dur="0.2s" values="12;0"/></path></g></svg></button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="image-grid" id="imageContainer">
+                {% for i in food_icons %}
+                <div class="image-card">
+                    <div class="container-main-name-image">
+                        <span class="tag">{{ i["name"] }}</span>
+                    </div>
+                    <div class="container-image-card">
+                        <img src="{{ i['url_name'] }}" alt="Imagen 1">
+                    </div>
+                    <div class="buttons">
+                        <button class="button" data-url="{{ i['url_name'] }}"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><g fill="none" stroke="#666666" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M21.257 10.962c.474.62.474 1.457 0 2.076C19.764 14.987 16.182 19 12 19s-7.764-4.013-9.257-5.962a1.69 1.69 0 0 1 0-2.076C4.236 9.013 7.818 5 12 5s7.764 4.013 9.257 5.962"/><circle cx="12" cy="12" r="3"/></g></svg></button>
+                        <button class="button button-edit-open-modal" data-id="{{ i['id'] }}"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><g fill="none" stroke="#666666" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M7 7H6a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2-2v-1"/><path d="M20.385 6.585a2.1 2.1 0 0 0-2.97-2.97L9 12v3h3zM16 5l3 3"/></g></svg></button>
+                        <button class="button button-delete-open-modal" data-id="{{ i['id'] }}"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path fill="#666666" d="M7 4a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v2h4a1 1 0 1 1 0 2h-1.069l-.867 12.142A2 2 0 0 1 17.069 22H6.93a2 2 0 0 1-1.995-1.858L4.07 8H3a1 1 0 0 1 0-2h4zm2 2h6V4H9zM6.074 8l.857 12H17.07l.857-12zM10 10a1 1 0 0 1 1 1v6a1 1 0 1 1-2 0v-6a1 1 0 0 1 1-1m4 0a1 1 0 0 1 1 1v6a1 1 0 1 1-2 0v-6a1 1 0 0 1 1-1"/></svg></button>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+    <div class="modal" id="modal-create-image">
+        <div class="modal-background"></div>
+        <div class="modal-content box">
+            <form action="{{ url_for('restaurant.images_create') }}" method="post" enctype="multipart/form-data">
+                <label for="">
+                    <span>Nombre *</span>
+                    <input type="text" class="input" name="food_name" required>
+                </label>
+                <label for="">
+                    <span>Imagen *</span>
+                    <input type="file" name="food_image" class="input" accept="image/*" required>
+                </label>
+                <button type="submit" class="button is-link">Subir</button>
+            </form>
+        </div>
+        <button class="button modal-close"></button>
+    </div>
+    <div class="modal" id="modal-update-image">
+        <div class="modal-background"></div>
+        <div class="modal-content box">
+            <form action="{{ url_for('restaurant.images_update') }}" method="post" enctype="multipart/form-data">
+                <input type="hidden" name="image_id" value="" required>
+                <label for="">
+                    <span>Nombre *</span>
+                    <input type="text" class="input" name="food_name_update" required>
+                </label>
+                <label for="">
+                    <span>Imagen</span>
+                    <input type="file" name="food_image_update" class="input" accept="image/*">
+                </label>
+                <button type="submit" class="button is-primary">Actualizar</button>
+            </form>
+        </div>
+        <button class="button modal-close"></button>
+    </div>
+    <div class="modal" id="modal-delete-image">
+        <div class="modal-background"></div>
+        <div class="modal-content box">
+            <form action="{{ url_for('restaurant.images_delete') }}" method="get">
+                <input type="hidden" name="image_id_delete" value="" required>
+                <span class="title is-4">¿Esta seguro de eliminar la imagen?</span>
+                <span class="title is-6">Eliminar esta imagen puede causar algunos problemas si hay platos o categorías que esten haciendo eso este imagen.</span>
+                <button type="submit" class="button is-danger">Eliminar</button>
+            </form>
+        </div>
+        <button class="button modal-close"></button>
+    </div>
+{% endblock %}
+
+{% block main_link_js %}
+    <script>
+        const btn_open_modal_create = document.querySelector(".button-open-modal-create");
+        const modal_create_image = document.getElementById("modal-create-image");
+        btn_open_modal_create.addEventListener("click", ()=>{
+            openModal(modal_create_image);
+        })
+        const buttons_open_modal_edit = document.querySelectorAll(".button-edit-open-modal");
+        buttons_open_modal_edit.forEach(btn =>{
+            btn.addEventListener("click", async()=>{
+                const id = btn.dataset.id;
+                await fetch("/honey/images/get?id_image="+String(id)).then(res => res.json()).then(data=>{
+                    openModal(document.getElementById("modal-update-image"));
+                    document.getElementsByName("food_name_update")[0].value = data[0].name;
+                    document.getElementsByName("image_id")[0].value = data[0].id;
+                })
+            })
+        })
+        const buttons_delete = document.querySelectorAll(".button-delete-open-modal");
+        buttons_delete.forEach(btn =>{
+            btn.addEventListener("click", ()=>{
+                const id = btn.dataset.id;
+                document.getElementsByName("image_id_delete")[0].value = id;
+                openModal(document.getElementById("modal-delete-image"));
+            })
+        })
+    </script>
+{% endblock %}

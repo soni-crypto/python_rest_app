@@ -1,0 +1,108 @@
+@import url("../config.css");
+body{
+    background-color: transparent;    
+    height: 100%;
+    box-sizing: border-box;
+}
+.container-main-all-dw{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    column-gap: 1rem;
+    width: 100%;
+    height: 100%;
+    flex-wrap: wrap;
+    padding-bottom: 0rem;
+    box-sizing: border-box;
+}
+
+.container-main-all-dw .container-text-info{
+    padding: .9rem;
+    width: auto;
+}
+.container-text-info .container-title-page{
+    text-align: center;
+    width: 100%;
+}
+.container-main-all-dw .container-text-info h1{
+    color: var(--color-main-3);
+    font-size: 2.9rem;
+    font-weight: 600;
+}
+.container-main-all-dw .container-text-info h2{
+    color: var(--color-blue-dark-4);   
+    font-size: 1.6rem;
+    font-weight: 600;
+}
+.container-main-all-dw .container-text-info ul{
+    margin-left: 1rem;
+}
+.container-main-all-dw .container-text-info ul li{
+    color: var(--color-blue-dark-3);
+}
+.container-main-image-model-app{
+    margin-left: 8rem;
+    margin-top: 1.7rem;
+    position: relative;
+    background-color: var(--color-main-3);
+    width: auto;
+    height: auto;
+    border-radius: 1.9rem;
+    transform: rotateZ(20deg);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: .6rem;
+    border: 2px solid white;
+}
+.container-main-image-model-app img{
+    /* position: absolute; */
+    width: 14rem;
+    border-radius: 1.9rem;
+    /* transform: rotateZ(20deg); */
+    /* transform: rotateY(50deg); */
+    /* box-shadow: 100px 100px 200px #fe8c01, -100px -100px 200px #fe8c01; */
+    border: 1px solid rgb(255, 255, 255);
+    z-index: -1;
+}
+.container-btn-redirect{
+    margin-top: .9rem;
+}
+.container-btn-redirect .a-play-store{
+    background-color: white;
+    border: 1px solid var(--color-blue-dark-3);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: .8rem;
+    border-radius: 1.5rem;
+    width: 100%;
+    column-gap: .6rem;
+    color:  rgb(82, 82, 164);
+}
+.container-btn-redirect .a-play-store:hover{
+    background-color: var(--color-blue-dark-3);
+    transition: .5s;
+    color: white;
+}
+.footer-image-background{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    z-index: -2;
+}
+
+@media screen and ( orientation : portrait ) {
+    .container-main-all-dw{
+        flex-direction: column;
+        justify-content: start;
+        align-items: center;
+    }
+    .container-main-image-model-app{
+        margin-left: 0;
+        width: 60%;
+    }
+    .footer-image-background{
+        position: relative;
+    }
+}

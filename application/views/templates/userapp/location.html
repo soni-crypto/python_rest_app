@@ -1,0 +1,94 @@
+{% extends "layouts/userapp.html" %}
+{% block styles %}
+<link rel="stylesheet" href="{{ url_for('static', filename='styles/userapp/location.css') }}">
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA_ddX0DZ2PhoqwRoHaoHVD9JZI8PcW9yc &libraries=places,geometry"></script>
+{% endblock %}
+
+{% block main_body %}
+    <div class="container-main-maps-app">
+        <div class="container-input-search">
+            <input type="text" class="input-autocomplet" id="my-input-1" autocomplete="off" autofocus>
+        </div>
+        <div class="container-map">
+            <div id="map-main"></div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block selected_route_2 %}
+    block-nav-circle-now__select
+{% endblock %}
+
+{% block scripts %}
+    <script>
+        const map_main = document.getElementById("map-main");
+        const input_search = document.getElementById('my-input-1');
+        
+        
+        // Crear una instancia del objeto Autocomplete
+        var autocomplete = new google.maps.places.Autocomplete(input_search, {
+                types: ['geocode'],  // Limitar las sugerencias a lugares geográficos
+            componentRestrictions: { country: 'PE' } // Limitar las sugerencias a Estados Unidos
+        });
+        
+        // Registrar un controlador de eventos para el evento de selección de una sugerencia
+        autocomplete.addListener('place_changed', async function() {
+            // Obtener los detalles del lugar seleccionado
+            var place = autocomplete.getPlace();
+            let infoWindow = new google.maps.InfoWindow();
+            // Actualizar los resultados de búsqueda en la página web
+            const lat = place.geometry.location.lat();
+            const lng = place.geometry.location.lng();
+
+            const location_coord = {lat : lat, lng: lng};
+            var mapa = new google.maps.Map(map_main, {
+                center : location_coord,
+                zoom : 15,
+                mapTypeControl: false,
+                fullscreenControl: false,
+                zoomControl: false,  
+                streetViewControl: false,
+                styles: [
+                    {
+                        featureType: 'poi',
+                        elementType: 'labels',
+                        stylers: [{ visibility: 'off' }]  // Oculta los lugares de interés (marcadores predeterminados)
+                    },
+                    {
+                        featureType: 'transit.station',
+                        elementType: 'labels.icon',
+                        stylers: [{ visibility: 'off' }]  // Oculta las estaciones de carros
+                    },
+                    {
+                        featureType: 'road',
+                        elementType: 'labels',
+                        stylers: [{ visibility: 'off' }]  // Oculta las etiquetas de las carreteras
+                    }
+                    // Puedes agregar más reglas de estilo según lo que desees ocultar
+                ]
+            })
+            await fetch("/userapp/coordinates/get/for_map").then(res => res.json()).then(data =>{
+                data.forEach(el =>{
+                    if (el.coordinates && el.id_secondary){
+                        let c_ = el.coordinates.split(",");
+                        const c_dict = {lat : parseFloat(c_[0]), lng : parseFloat(c_[1])};
+                        var marker = new google.maps.Marker({
+                            position: c_dict,
+                            map: mapa,
+                            title: el.id_secondary,
+                            icon:{url : "/static/images/userapp/images_default/restaurant-3d-neeva.min.png",scaledSize: new google.maps.Size(50, 39),},
+                        });
+            
+                        marker.addListener("click", (e) => {
+                            location.href = "/userapp/home?search="+String(marker.title);
+                        })
+                    }
+                })
+            })
+                        
+        });
+    
+        
+    </script>
+    
+{% endblock %}

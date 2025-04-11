@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!-- SEO -->
+    <meta name="title" content="Crear Cuenta - Foodie Admin">
+    <meta name="description" content="Crea tu cuenta en Foodie Admin y empieza a gestionar tu restaurante con nuestra plataforma integral. Regístrate para acceder a herramientas para meseros, delivery, órdenes y más.">
+    <meta name="keywords" content="crear cuenta, registrarse, Foodie Admin, sistema para restaurantes, gestión de meseros, delivery, órdenes, punto de venta, software de restaurantes">
+    <meta name="author" content="Foodie Admin">
+    <meta name="robots" content="index, follow">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta property="og:title" content="Crear Cuenta - Foodie Admin">
+    <meta property="og:description" content="Regístrate en Foodie Admin para acceder a un sistema completo de gestión para restaurantes. Obtén herramientas avanzadas para meseros, delivery, órdenes y más.">
+    <meta property="og:image" content="https://emtorch.pythonanywhere.com/static/pages/assets/images/icon-app-256x256.png">
+    <meta property="og:url" content="https://emtorch.pythonanywhere.com/register">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Crear Cuenta - Foodie Admin">
+    <meta name="twitter:description" content="Crea tu cuenta en Foodie Admin y optimiza la gestión de tu restaurante con herramientas para meseros, delivery, órdenes y más.">
+    <meta name="twitter:image" content="https://emtorch.pythonanywhere.com/static/pages/assets/images/icon-app-256x256.png">
+    <!-- END SEO -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registrarse</title>
+    <meta name="theme-color" content="#4f85ee">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='images/') }}emTorch-nuevo-48px-48px.transparent.min.png">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/styles_restaurant/signup_ui.css') }}">
+</head>
+<body>
+    <main class="main-container-all-login">
+        <div class="container-decoration-image">
+            <div class="container-decoration-image__all" id="container-decoration-image__all">
+                <img src="{{ url_for('static', filename='images/images_restaurant/images_default/Sign up-cuate.svg') }}" alt="">
+            </div>
+        </div>
+        <div class="form-login-container-main-div">
+            <form class="form" method="post" enctype="multipart/form-data">
+                <div class="container-main-logo-login-div">
+                    <img src="{{ url_for('static', filename='images/emTorch-nuevo-256px-256px.transparent.min.png') }}" alt="">
+                    <h2>FoodieAdmin</h2>
+                </div>
+                <div class="" style="display: flex; column-gap: .6rem;">
+                    <div>
+                        <div class="flex-column">
+                            <label for="names">Nombres *</label>
+                        </div>
+                        <div class="inputForm">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" fill="currentColor" class="bi bi-person" viewBox="0 0 16 16"><path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6Zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0Zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4Zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10Z"/></svg>
+                            <input type="text" value="" name="names" class="input" placeholder="" id="names" required>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="flex-column">
+                            <label for="surnames">Apellidos *</label>
+                        </div>
+                        <div class="inputForm">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" fill="currentColor" class="bi bi-person-badge" viewBox="0 0 16 16"><path d="M6.5 2a.5.5 0 0 0 0 1h3a.5.5 0 0 0 0-1h-3zM11 8a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/><path d="M4.5 0A2.5 2.5 0 0 0 2 2.5V14a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2.5A2.5 2.5 0 0 0 11.5 0h-7zM3 2.5A1.5 1.5 0 0 1 4.5 1h7A1.5 1.5 0 0 1 13 2.5v10.795a4.2 4.2 0 0 0-.776-.492C11.392 12.387 10.063 12 8 12s-3.392.387-4.224.803a4.2 4.2 0 0 0-.776.492V2.5z"/></svg>
+                            <input type="text" value="" name="surnames" class="input" placeholder="" id="surnames" required>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="flex-column">
+                    <label for="email">Email *</label>
+                </div>
+                <div class="inputForm">
+                    <svg height="13" viewBox="0 0 32 32" width="13" xmlns="http://www.w3.org/2000/svg"><g id="Layer_3" data-name="Layer 3"><path d="m30.853 13.87a15 15 0 0 0 -29.729 4.082 15.1 15.1 0 0 0 12.876 12.918 15.6 15.6 0 0 0 2.016.13 14.85 14.85 0 0 0 7.715-2.145 1 1 0 1 0 -1.031-1.711 13.007 13.007 0 1 1 5.458-6.529 2.149 2.149 0 0 1 -4.158-.759v-10.856a1 1 0 0 0 -2 0v1.726a8 8 0 1 0 .2 10.325 4.135 4.135 0 0 0 7.83.274 15.2 15.2 0 0 0 .823-7.455zm-14.853 8.13a6 6 0 1 1 6-6 6.006 6.006 0 0 1 -6 6z"></path></g></svg>
+                    <input type="email" value="" name="email" class="input" placeholder="" id="email" required>
+                </div>
+                
+                <div class="flex-column">
+                    <label for="telephone">Teléfono *</label>
+                </div>
+                <div class="inputForm">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" fill="currentColor" class="bi bi-telephone" viewBox="0 0 16 16"><path d="M3.654 1.328a.678.678 0 0 0-1.015-.063L1.605 2.3c-.483.484-.661 1.169-.45 1.77a17.568 17.568 0 0 0 4.168 6.608 17.569 17.569 0 0 0 6.608 4.168c.601.211 1.286.033 1.77-.45l1.034-1.034a.678.678 0 0 0-.063-1.015l-2.307-1.794a.678.678 0 0 0-.58-.122l-2.19.547a1.745 1.745 0 0 1-1.657-.459L5.482 8.062a1.745 1.745 0 0 1-.46-1.657l.548-2.19a.678.678 0 0 0-.122-.58L3.654 1.328zM1.884.511a1.745 1.745 0 0 1 2.612.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.678.678 0 0 0 .178.643l2.457 2.457a.678.678 0 0 0 .644.178l2.189-.547a1.745 1.745 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.634 18.634 0 0 1-7.01-4.42 18.634 18.634 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877L1.885.511z"/></svg>
+                    <input type="tel" name="telephone" class="input" placeholder="" id="telephone" required>
+                </div>
+
+                <div class="flex-column">
+                    <label for="password">Password *</label>
+                </div>
+                <div class="inputForm">
+                    <svg height="13" viewBox="-64 0 512 512" width="13" xmlns="http://www.w3.org/2000/svg"><path d="m336 512h-288c-26.453125 0-48-21.523438-48-48v-224c0-26.476562 21.546875-48 48-48h288c26.453125 0 48 21.523438 48 48v224c0 26.476562-21.546875 48-48 48zm-288-288c-8.8125 0-16 7.167969-16 16v224c0 8.832031 7.1875 16 16 16h288c8.8125 0 16-7.167969 16-16v-224c0-8.832031-7.1875-16-16-16zm0 0"></path><path d="m304 224c-8.832031 0-16-7.167969-16-16v-80c0-52.929688-43.070312-96-96-96s-96 43.070312-96 96v80c0 8.832031-7.167969 16-16 16s-16-7.167969-16-16v-80c0-70.59375 57.40625-128 128-128s128 57.40625 128 128v80c0 8.832031-7.167969 16-16 16zm0 0"></path></svg>        
+                    <input type="password" name="password" class="input" placeholder="" id="password" required minlength="6">
+                    <button class="btn-show-hide-password" type="button" id="btn-show-hide-password">
+                        <svg viewBox="0 0 576 512" height="15" xmlns="http://www.w3.org/2000/svg"><path d="M288 32c-80.8 0-145.5 36.8-192.6 80.6C48.6 156 17.3 208 2.5 243.7c-3.3 7.9-3.3 16.7 0 24.6C17.3 304 48.6 356 95.4 399.4C142.5 443.2 207.2 480 288 480s145.5-36.8 192.6-80.6c46.8-43.5 78.1-95.4 93-131.1c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C433.5 68.8 368.8 32 288 32zM144 256a144 144 0 1 1 288 0 144 144 0 1 1 -288 0zm144-64c0 35.3-28.7 64-64 64c-7.1 0-13.9-1.2-20.3-3.3c-5.5-1.8-11.9 1.6-11.7 7.4c.3 6.9 1.3 13.8 3.2 20.7c13.7 51.2 66.4 81.6 117.6 67.9s81.6-66.4 67.9-117.6c-11.1-41.5-47.8-69.4-88.6-71.1c-5.8-.2-9.2 6.1-7.4 11.7c2.1 6.4 3.3 13.2 3.3 20.3z"></path></svg>
+                    </button>
+                </div>
+
+                <!-- <div class="flex-column">
+                    <label for="">Tipo de usuario *</label>
+                </div>
+                <div class="input_radio_type_client">
+                    <label for="admin" class="radio_type_client">
+                        <input type="radio" value="2" name="type_client" class="input" placeholder="" id="admin" required>
+                        <span>Administrador</span>
+                    </label>
+                    <label for="wait_" class="radio_type_client">
+                        <input type="radio" value="4" name="type_client" class="input" placeholder="" id="wait_" required>
+                        <span>Camarero/a</span>
+                    </label>
+                </div> -->
+                
+                <button class="button-submit" type="submit">Crear cuenta</button>
+                <p class="p">
+                    <a href="{{ url_for('pages.loginApp') }}">
+                        Ya tienes una cuenta?  <span class="span">Acceder</span>
+                    </a>
+                </p>
+            </form>
+        </div>
+    </main>
+    <!-- MESSAGE ALERTS AND INFO -->
+    <div class="container-main-all-messages-and-notifications-in-app">
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for message in messages %}
+                <div class="alert-password-or-email-incorrect">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-exclamation-triangle" viewBox="0 0 16 16"><path d="M7.938 2.016A.13.13 0 0 1 8.002 2a.13.13 0 0 1 .063.016.146.146 0 0 1 .054.057l6.857 11.667c.036.06.035.124.002.183a.163.163 0 0 1-.054.06.116.116 0 0 1-.066.017H1.146a.115.115 0 0 1-.066-.017.163.163 0 0 1-.054-.06.176.176 0 0 1 .002-.183L7.884 2.073a.147.147 0 0 1 .054-.057zm1.044-.45a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566z"/><path d="M7.002 12a1 1 0 1 1 2 0 1 1 0 0 1-2 0zM7.1 5.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995z"/></svg>
+                    <strong>{{ message }}</strong><br>
+                </div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+    </div>
+    
+    <script>
+        const password_input = document.getElementById("password");
+        const btn_eyes = document.getElementById("btn-show-hide-password")
+        btn_eyes.addEventListener("click", ()=>{
+          if (password_input.type === "text"){
+            password_input.type = "password"
+          }else if(password_input.type === "password"){
+            password_input.type = "text"
+          }
+        })
+    </script>
+</body>
+</html>

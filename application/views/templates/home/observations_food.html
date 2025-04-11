@@ -1,0 +1,78 @@
+{% extends "layouts/nav_app_honey.html" %}
+
+{% block main_link_css %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/ui/input_simple.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/styles_restaurant/observations_foods.css') }}">
+{% endblock %}
+
+{% block main_body %}
+    <div class="container-fluid">
+        <div class="container-form-all">
+            <div class="container-title">
+                <h5>Configurar observaciones</h5>
+            </div>
+            <div class="container-form-main-div">
+                <form action="" class="form-create-job" method="post">
+                    <div class="block-container-form-div-main">
+                        <div class="container-main-template-input-simple">
+                            <label for="comment_text">
+                                <span>Observación *</span>
+                                <input type="text" value="" name="comment_text" id="comment_text" class="input-simple-main-template input_listener_event">
+                            </label>
+                        </div>
+                        
+                        <div class="container-main-template-input-simple">
+                            <label for="type_food">
+                                <span>Categoria</span>
+                                <select name="type_food" id="type_food" class="input-simple-main-template">
+                                    <option value="0">Todos</option>
+                                    {% for t in type_foods %}
+                                        <option value="{{ t.id }}">{{ t.name_type }}</option>
+                                    {% endfor %}
+                                </select>            
+                            </label>
+                        </div>
+
+                    </div>
+                    <button class="btn-submit-create" type="submit">Crear observación</button>
+                </form>
+                <div class="container-text-description">
+                    <span>Las observaciones son para facilitar la creación de platos con caracteristicas o servicios extras adicionales.</span>
+                </div>
+            </div>
+
+        </div>
+        <!--end row-->
+        <div class="container-obervations-text">
+            <div class="container-title">
+                <h2>Mis observaciones</h2>
+            </div>
+            <div class="container-all-observations">
+                {% for cm in comments_foods %}
+                <div class="container-text">
+                    <div class="container-text__header">
+                        {% if cm.id_type_food == 0 %}
+                            <span>Todos</span>
+                        {% else %}
+                            <span>{{ cm.id_type_food }}</span>
+                        {% endif %}
+                        <button class="btn-delete-observation" data-identifier="{{ cm.id }}"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 256 256"><path fill="#ffffff" d="M208.49 191.51a12 12 0 0 1-17 17L128 145l-63.51 63.49a12 12 0 0 1-17-17L111 128L47.51 64.49a12 12 0 0 1 17-17L128 111l63.51-63.52a12 12 0 0 1 17 17L145 128Z"/></svg></button>
+                    </div>
+                    <div class="container-text-data">
+                        <span>{{ cm.comment_text }}</span>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+
+    </div> <!-- container-fluid -->
+{% endblock %}
+
+{% block main_link_js %}
+    <script src="{{ url_for('static', filename='js/observationsFoodsController.js') }}"></script>
+    <script>
+        const app = new ObservationsFoodsController();
+        app.delete();
+    </script>
+{% endblock %}

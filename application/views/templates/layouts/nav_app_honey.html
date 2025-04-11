@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='images/') }}emTorch-nuevo-48px-48px.transparent.min.png">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/libraries/bulma.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/ui/loading_circle.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/styles_restaurant/nav_app_honey.css') }}">
+    <title>Home</title>
+    {% block main_link_css %}
+    {% endblock %}
+</head>
+<body>
+    <div class="container-main-template" data-theme="light">
+        <div class="container-main-nav-left" id="container-main-nav-left">
+            <div class="container-nav-header-main-control-nav">
+                <button class="btn-open-nav">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 22 22"><path fill="#7c3aed" d="M17 15h-1v-3h-3v-2h3V7h1v1h1v1h1v1h1v2h-1v1h-1v1h-1m-5 8h-2v-4H6V4h4V0h2m-1 16V6H8v10Z"/></svg>
+                </button>
+                <button class="btn-close-nav">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 48 48"><path fill="none" stroke="#a8a3a3" stroke-linecap="round" stroke-linejoin="round" stroke-width="4" d="m8 8l32 32M8 40L40 8"/></svg>
+                </button>
+            </div>
+            <div class="container-main-nav-links-app">
+                <div class="container-profile-admin">
+                    <div class="container-image">
+                        <img src="{{ image_profile }}" alt="">
+                    </div>
+                    <!-- <p>{{ user_name }}</p> -->
+                </div>
+                {% if level_user_context == "2" %}
+                <a href="/honey/panel">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M16 9l-3-3V2h-2v2L8 1L0 9h2l1 5c0 .55.45 1 1 1h8c.55 0 1-.45 1-1l1-5h2zm-4 5H9v-4H7v4H4L2.81 7.69L8 2.5l5.19 5.19L12 14z" fill="#65a30d"/></svg>
+                    <span>Home</span>
+                </a>
+                <a href="/honey/mainbox">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 14 14"><g fill="none" stroke="#928aff" stroke-linecap="round" stroke-linejoin="round"><path d="M6.5 11h1M10 5V3m2-1.25A1.25 1.25 0 0 1 10.75 3h-1.5a1.25 1.25 0 0 1 0-2.5h1.5A1.25 1.25 0 0 1 12 1.75ZM5.5 5V1.5h-3V5"></path><rect width="13" height="5" x=".5" y="8.5" rx="1"></rect><path d="M12.5 8.5V6a1 1 0 0 0-1-1h-9a1 1 0 0 0-1 1v2.5"></path></g></svg>
+                    <span>Caja</span>
+                </a>
+                <a href="/honey/schedule">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 16 16"><path fill="#059669" fill-rule="evenodd" d="M14 4v-.994C14 2.45 13.55 2 12.994 2H11v1h-1V2H6v1H5V2H3.006C2.45 2 2 2.45 2 3.006v9.988C2 13.55 2.45 14 3.006 14h9.988C13.55 14 14 13.55 14 12.994V5H2V4zm-3-3h1.994C14.102 1 15 1.897 15 3.006v9.988A2.005 2.005 0 0 1 12.994 15H3.006A2.005 2.005 0 0 1 1 12.994V3.006C1 1.898 1.897 1 3.006 1H5V0h1v1h4V0h1zM4 7h2v1H4zm3 0h2v1H7zm3 0h2v1h-2zM4 9h2v1H4zm3 0h2v1H7zm3 0h2v1h-2zm-6 2h2v1H4zm3 0h2v1H7zm3 0h2v1h-2z"/></svg>
+                    <span>Horario</span>
+                </a>
+                <a href="/honey/waitress_view">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24"><path fill="none" stroke="#eab308" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 19.128a9.4 9.4 0 0 0 2.625.372a9.3 9.3 0 0 0 4.121-.952q.004-.086.004-.173a4.125 4.125 0 0 0-7.536-2.32M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.3 12.3 0 0 1 8.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0 1 11.964-3.07M12 6.375a3.375 3.375 0 1 1-6.75 0a3.375 3.375 0 0 1 6.75 0m8.25 2.25a2.625 2.625 0 1 1-5.25 0a2.625 2.625 0 0 1 5.25 0"/></svg>
+                    <span>Meser@s</span>
+                </a>
+                <button class="btn-with-more-option">
+                    <span>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 576 512"><path fill="#928aff" d="M240 144a96 96 0 1 0-192 0a96 96 0 1 0 192 0m44.4 32c-14.5 64.1-71.9 112-140.4 112C64.5 288 0 223.5 0 144S64.5 0 144 0c68.5 0 125.9 47.9 140.4 112h71.8c8.8-9.8 21.6-16 35.8-16h104c26.5 0 48 21.5 48 48s-21.5 48-48 48H392c-14.2 0-27-6.2-35.8-16zM144 80a64 64 0 1 1 0 128a64 64 0 1 1 0-128m256 160c13.3 0 24 10.7 24 24v8h96c13.3 0 24 10.7 24 24s-10.7 24-24 24H280c-13.3 0-24-10.7-24-24s10.7-24 24-24h96v-8c0-13.3 10.7-24 24-24M288 464V352h224v112c0 26.5-21.5 48-48 48H336c-26.5 0-48-21.5-48-48M48 320h128c26.5 0 48 21.5 48 48s-21.5 48-48 48h-16c0 17.7-14.3 32-32 32H64c-17.7 0-32-14.3-32-32v-80c0-8.8 7.2-16 16-16m128 64c8.8 0 16-7.2 16-16s-7.2-16-16-16h-16v32zM24 464h176c13.3 0 24 10.7 24 24s-10.7 24-24 24H24c-13.3 0-24-10.7-24-24s10.7-24 24-24"/></svg>
+                        <span>Platos</span>
+                    </span><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 32 32"><path fill="none" stroke="#cccccc" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M30 12L16 24L2 12"/></svg>
+                </button>
+                <div class="btn-with-more-option__options-links">
+                    <a href="/honey/typefoodroute"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24"><path fill="#65a30d" d="M14 16.94v-4H5.08l-.03-2.01H14V6.94l5 5Z"/></svg>
+                        Categoría de platos
+                    </a>
+                    <a href="/honey/observations_foods"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24"><path fill="#65a30d" d="M14 16.94v-4H5.08l-.03-2.01H14V6.94l5 5Z"/></svg>
+                        Observaciones
+                    </a>
+                </div>
+                <button class="btn-with-more-option">
+                    <span>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24"><path fill="#7c3aed" d="M22 18a4 4 0 0 1-4 4h-4a4 4 0 0 1-4-4v-2h12zM4 3h10a2 2 0 0 1 2 2v9H8v5H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2m0 3v2h2V6zm10 2V6H8v2zM4 10v2h2v-2zm4 0v2h6v-2zm-4 4v2h2v-2z"/></svg>
+                        <span>Órdenes</span>
+                    </span><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 32 32"><path fill="none" stroke="#cccccc" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M30 12L16 24L2 12"/></svg>
+                </button>
+                <div class="btn-with-more-option__options-links">
+                    <a href="/honey/create"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24"><path fill="#65a30d" d="M14 16.94v-4H5.08l-.03-2.01H14V6.94l5 5Z"/></svg>
+                        Crear órden
+                    </a>
+                    <a href="/honey/ordenes?s=1"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24"><path fill="#65a30d" d="M14 16.94v-4H5.08l-.03-2.01H14V6.94l5 5Z"/></svg>
+                        Por aceptar
+                    </a>
+                    <a href="/honey/ordenes?s=2"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24"><path fill="#65a30d" d="M14 16.94v-4H5.08l-.03-2.01H14V6.94l5 5Z"/></svg>
+                        En cocina
+                    </a>
+                    <a href="/honey/ordenes?s=3"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24"><path fill="#65a30d" d="M14 16.94v-4H5.08l-.03-2.01H14V6.94l5 5Z"/></svg>
+                        Preparadas
+                    </a>
+                    <a href="/honey/ordenes?s=5"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24"><path fill="#65a30d" d="M14 16.94v-4H5.08l-.03-2.01H14V6.94l5 5Z"/></svg>
+                        Concluídas
+                    </a>
+                </div>
+                <a href="/honey/reservations?state_reservation=0">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24"><g fill="none" fill-rule="evenodd"><path d="M24 0v24H0V0zM12.594 23.258l-.012.002l-.071.035l-.02.004l-.014-.004l-.071-.036q-.016-.004-.024.006l-.004.01l-.017.428l.005.02l.01.013l.104.074l.015.004l.012-.004l.104-.074l.012-.016l.004-.017l-.017-.427q-.004-.016-.016-.018m.264-.113l-.014.002l-.184.093l-.01.01l-.003.011l.018.43l.005.012l.008.008l.201.092q.019.005.029-.008l.004-.014l-.034-.614q-.005-.018-.02-.022m-.715.002a.02.02 0 0 0-.027.006l-.006.014l-.034.614q.001.018.017.024l.015-.002l.201-.093l.01-.008l.003-.011l.018-.43l-.003-.012l-.01-.01z"/><path fill="#db2777" d="M4 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v16a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2zm14 0H6v16h12zm-6.452 2.763a1 1 0 0 1 0 1.414L9.603 10.12a1.25 1.25 0 0 1-1.767 0l-.884-.884a1 1 0 1 1 1.414-1.414l.354.354l1.414-1.414a1 1 0 0 1 1.414 0ZM13 9a1 1 0 0 1 1-1h2a1 1 0 1 1 0 2h-2a1 1 0 0 1-1-1m-6 4.5A1.5 1.5 0 0 1 8.5 12h2a1.5 1.5 0 0 1 1.5 1.5v2a1.5 1.5 0 0 1-1.5 1.5h-2A1.5 1.5 0 0 1 7 15.5zm2 .5v1h1v-1zm4 .5a1 1 0 0 1 1-1h2a1 1 0 1 1 0 2h-2a1 1 0 0 1-1-1"/></g></svg>
+                    <span>Reservas</span>
+                </a>
+                <a href="/honey/table">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 1664 1472"><path fill="#65a30d" d="M64 606L0 576V448L832 64l832 384v128l-64 30v534q0 38-26.5 57t-69.5 19t-69.5-19t-26.5-57V694L928 916v480q0 38-26.5 57t-69.5 19t-69.5-19t-26.5-57V916L256 694v446q0 38-26.5 57t-69.5 19t-69.5-19t-26.5-57zm768 226l768-352l-768-352L64 480z"/></svg>
+                    <span>Mesas</span>
+                </a>
+                <a href="/honey/images">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 512 512"><path fill="none" stroke="#666666" stroke-linejoin="round" stroke-width="32" d="M432 112V96a48.14 48.14 0 0 0-48-48H64a48.14 48.14 0 0 0-48 48v256a48.14 48.14 0 0 0 48 48h16"/><rect width="400" height="336" x="96" y="128" fill="none" stroke="#666666" stroke-linejoin="round" stroke-width="32" rx="45.99" ry="45.99"/><ellipse cx="372.92" cy="219.64" fill="none" stroke="#666666" stroke-miterlimit="10" stroke-width="32" rx="30.77" ry="30.55"/><path fill="none" stroke="#666666" stroke-linecap="round" stroke-linejoin="round" stroke-width="32" d="M342.15 372.17L255 285.78a30.93 30.93 0 0 0-42.18-1.21L96 387.64M265.23 464l118.59-117.73a31 31 0 0 1 41.46-1.87L496 402.91"/></svg>
+                    <span>Imágenes</span>
+                </a>
+                <button class="btn-with-more-option">
+                    <span>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 14 14"><g fill="none" stroke="#928aff" stroke-linecap="round" stroke-linejoin="round"><path d="M13.5 6.94a1 1 0 0 0-.32-.74L7 .5L.82 6.2a1 1 0 0 0-.32.74v5.56a1 1 0 0 0 1 1h11a1 1 0 0 0 1-1z"/><path d="M7.25 10.001h2.999s.25 0 .25.25v2.999s0 .25-.25.25H7.25s-.25 0-.25-.25v-2.999s0-.25.25-.25m-1.75-3.5h2.999s.25 0 .25.25V9.75s0 .25-.25.25H5.5s-.25 0-.25-.25V6.751s0-.25.25-.25m-1.749 3.5H6.75s.25 0 .25.25v2.999s0 .25-.25.25H3.751s-.25 0-.25-.25v-2.999s0-.25.25-.25"/></g></svg>
+                        <span>Inventario</span>
+                    </span><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 32 32"><path fill="none" stroke="#cccccc" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M30 12L16 24L2 12"/></svg>
+                </button>
+                <div class="btn-with-more-option__options-links">
+                    <a href="/honey/inventory"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24"><path fill="#65a30d" d="M14 16.94v-4H5.08l-.03-2.01H14V6.94l5 5Z"/></svg>
+                        Inventario
+                    </a>
+                    <a href="/honey/inventory/customer"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24"><path fill="#65a30d" d="M14 16.94v-4H5.08l-.03-2.01H14V6.94l5 5Z"/></svg>
+                        Clientes
+                    </a>
+                    <a href="/honey/inventory/supplier"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24"><path fill="#65a30d" d="M14 16.94v-4H5.08l-.03-2.01H14V6.94l5 5Z"/></svg>
+                        Proveedores
+                    </a>
+                    <a href="/honey/inventory/sales"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24"><path fill="#65a30d" d="M14 16.94v-4H5.08l-.03-2.01H14V6.94l5 5Z"/></svg>
+                        Ventas
+                    </a>
+                    <a href="/honey/inventory/report"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24"><path fill="#65a30d" d="M14 16.94v-4H5.08l-.03-2.01H14V6.94l5 5Z"/></svg>
+                        Reporte
+                    </a>
+                </div>
+                <a href="/honey/record_movements">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 28 28"><path fill="#cccccc" d="M7 9.728C7 9.326 7.326 9 7.728 9h5.544c.402 0 .728.326.728.728v.044a.73.73 0 0 1-.728.728H7.728A.73.73 0 0 1 7 9.772zm0 4c0-.402.326-.728.728-.728h10.544c.194 0 .37.076.5.2A7.5 7.5 0 0 0 16 14.5H7.728A.73.73 0 0 1 7 13.772zM13.865 17H7.728a.73.73 0 0 0-.728.728v.044c0 .402.326.728.728.728h5.542a7.5 7.5 0 0 1 .595-1.5m-.595 5.5H5.754a2.25 2.25 0 0 1-2.25-2.25V7.75a2.25 2.25 0 0 1 2.25-2.25H22.25a2.25 2.25 0 0 1 2.25 2.25v6.405c.554.35 1.058.769 1.5 1.247V7.75A3.75 3.75 0 0 0 22.25 4H5.755a3.75 3.75 0 0 0-3.75 3.75v12.5A3.75 3.75 0 0 0 5.754 24h8.111a7.5 7.5 0 0 1-.595-1.5m7.23 3a5 5 0 1 1 0-10a5 5 0 0 1 0 10m0 1.5a6.5 6.5 0 1 0 0-13a6.5 6.5 0 0 0 0 13m0-3a3.5 3.5 0 1 0 0-7a3.5 3.5 0 0 0 0 7"/></svg>
+                    <span>Historial</span>
+                </a>
+                <button class="btn-with-more-option">
+                    <span>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 32 32"><path fill="#eab308" d="M26 16.586V14h-2v3a1 1 0 0 0 .293.707L27 20.414V22H5v-1.586l2.707-2.707A1 1 0 0 0 8 17v-4a7.985 7.985 0 0 1 12-6.917V3.846a9.9 9.9 0 0 0-3-.796V1h-2v2.05A10.014 10.014 0 0 0 6 13v3.586l-2.707 2.707A1 1 0 0 0 3 20v3a1 1 0 0 0 1 1h7v1a5 5 0 0 0 10 0v-1h7a1 1 0 0 0 1-1v-3a1 1 0 0 0-.293-.707ZM19 25a3 3 0 0 1-6 0v-1h6Z"/><circle cx="26" cy="8" r="4" fill="#eab308"/></svg>
+                        <span>Notificaciones</span>
+                    </span><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 32 32"><path fill="none" stroke="#cccccc" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M30 12L16 24L2 12"/></svg>
+                </button>
+                <div class="btn-with-more-option__options-links">
+                    <a href="/honey/create-notifications"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24"><path fill="#65a30d" d="M14 16.94v-4H5.08l-.03-2.01H14V6.94l5 5Z"/></svg>
+                        Crear notifición
+                    </a>
+                    <a href="/honey/notifications"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24"><path fill="#65a30d" d="M14 16.94v-4H5.08l-.03-2.01H14V6.94l5 5Z"/></svg>
+                        Notificaciones
+                    </a>
+                </div>
+                <a href="/honey/reports-admin">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 2048 2048"><path fill="#4f46e5" d="M0 1664v-640h384v640zM1920 384v384h-384V384zM1408 0v768h-256v896h-128V0zM512 1664V384h384v1280zm768-768h768v1152l-384-256l-384 256zm640 128h-512v785q65-43 128-85t128-86q65 42 128 85t128 86z"/></svg>
+                    <span>Reportes</span>
+                </a>
+                <a href="/payments/app_payments">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 56 56"><path fill="#e11d48" d="M9.625 47.71h36.75c4.898 0 7.36-2.413 7.36-7.241V15.555c0-4.828-2.462-7.266-7.36-7.266H9.625c-4.898 0-7.36 2.438-7.36 7.266v24.914c0 4.828 2.461 7.242 7.36 7.242M6.039 15.767c0-2.438 1.313-3.703 3.656-3.703h36.633c2.32 0 3.633 1.265 3.633 3.703v1.968H6.039Zm3.656 28.172c-2.344 0-3.656-1.243-3.656-3.68V23.055h43.922v17.203c0 2.437-1.313 3.68-3.633 3.68ZM12.39 37h5.743c1.383 0 2.297-.914 2.297-2.25v-4.336c0-1.312-.914-2.25-2.297-2.25H12.39c-1.383 0-2.297.938-2.297 2.25v4.336c0 1.336.914 2.25 2.297 2.25"/></svg>
+                    <span>Pagos</span>
+                </a>
+                <a href="/honey/support/page">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 20 20"><path fill="#eab308" d="M10 14.5a2 2 0 0 1-1.994-1.84A6.002 6.002 0 0 1 10 1a6 6 0 0 1 5.98 5.5a.47.47 0 0 1-.48.5a.541.541 0 0 1-.525-.5a5 5 0 1 0-6.79 5.16A2 2 0 1 1 10 14.5M5.009 12H5.1a7.014 7.014 0 0 0 2.033 1.388A3 3 0 0 0 12.959 12H15a2 2 0 0 1 2 2c0 1.691-.833 2.966-2.135 3.797C13.583 18.614 11.855 19 10 19c-1.855 0-3.583-.386-4.865-1.203C3.833 16.967 3 15.69 3 14c0-1.113.903-2 2.009-2M14 7a3.997 3.997 0 0 1-1.87 3.387A2.991 2.991 0 0 0 10 9.5a2.99 2.99 0 0 0-2.13.887a4.012 4.012 0 0 1-1.638-2.042A3.983 3.983 0 0 1 6 7a4 4 0 1 1 8 0"/></svg>
+                    <span>Soporte</span>
+                </a>
+                <a href="/honey/edit_user_admin">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24"><path fill="#4f46e5" d="M19.9 12.66a1 1 0 0 1 0-1.32l1.28-1.44a1 1 0 0 0 .12-1.17l-2-3.46a1 1 0 0 0-1.07-.48l-1.88.38a1 1 0 0 1-1.15-.66l-.61-1.83a1 1 0 0 0-.95-.68h-4a1 1 0 0 0-1 .68l-.56 1.83a1 1 0 0 1-1.15.66L5 4.79a1 1 0 0 0-1 .48L2 8.73a1 1 0 0 0 .1 1.17l1.27 1.44a1 1 0 0 1 0 1.32L2.1 14.1a1 1 0 0 0-.1 1.17l2 3.46a1 1 0 0 0 1.07.48l1.88-.38a1 1 0 0 1 1.15.66l.61 1.83a1 1 0 0 0 1 .68h4a1 1 0 0 0 .95-.68l.61-1.83a1 1 0 0 1 1.15-.66l1.88.38a1 1 0 0 0 1.07-.48l2-3.46a1 1 0 0 0-.12-1.17ZM18.41 14l.8.9l-1.28 2.22l-1.18-.24a3 3 0 0 0-3.45 2L12.92 20h-2.56L10 18.86a3 3 0 0 0-3.45-2l-1.18.24l-1.3-2.21l.8-.9a3 3 0 0 0 0-4l-.8-.9l1.28-2.2l1.18.24a3 3 0 0 0 3.45-2L10.36 4h2.56l.38 1.14a3 3 0 0 0 3.45 2l1.18-.24l1.28 2.22l-.8.9a3 3 0 0 0 0 3.98m-6.77-6a4 4 0 1 0 4 4a4 4 0 0 0-4-4m0 6a2 2 0 1 1 2-2a2 2 0 0 1-2 2"></path></svg>
+                    <span>Configuración</span>
+                </a>
+                <a href="{{ url_for('restaurant.destroySession') }}">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 2048 2048"><path fill="#e11d48" d="M1600 1024q26 0 45 19t19 45t-19 45t-45 19t-45-19t-19-45t19-45t45-19m-832 256h128v768H768zM1920 0v2048h-128V128H896v768H768V0zM347 1024h805v128H347l210 211l-90 90l-365-365l365-365l90 90z"></path></svg>
+                    <span>Cerrar sessión</span>
+                </a>
+                {% elif level_user_context == "4" %}
+                <a href="/honey/panel">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M16 9l-3-3V2h-2v2L8 1L0 9h2l1 5c0 .55.45 1 1 1h8c.55 0 1-.45 1-1l1-5h2zm-4 5H9v-4H7v4H4L2.81 7.69L8 2.5l5.19 5.19L12 14z" fill="#65a30d"/></svg>
+                    <span>Home</span>
+                </a>
+                <button class="btn-with-more-option">
+                    <span>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24"><path fill="#7c3aed" d="M22 18a4 4 0 0 1-4 4h-4a4 4 0 0 1-4-4v-2h12zM4 3h10a2 2 0 0 1 2 2v9H8v5H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2m0 3v2h2V6zm10 2V6H8v2zM4 10v2h2v-2zm4 0v2h6v-2zm-4 4v2h2v-2z"/></svg>
+                        <span>Órdenes</span>
+                    </span><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 32 32"><path fill="none" stroke="#cccccc" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M30 12L16 24L2 12"/></svg>
+                </button>
+                <div class="btn-with-more-option__options-links">
+                    {% if user_data_context.user_role == 1 %}
+                    <a href="/honey/create"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24"><path fill="#65a30d" d="M14 16.94v-4H5.08l-.03-2.01H14V6.94l5 5Z"/></svg>
+                        Crear órden
+                    </a>
+                    <a href="/honey/ordenes?s=1"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24"><path fill="#65a30d" d="M14 16.94v-4H5.08l-.03-2.01H14V6.94l5 5Z"/></svg>
+                        Por aceptar
+                    </a>
+                    <a href="/honey/ordenes?s=2"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24"><path fill="#65a30d" d="M14 16.94v-4H5.08l-.03-2.01H14V6.94l5 5Z"/></svg>
+                        En cocina
+                    </a>
+                    <a href="/honey/ordenes?s=3"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24"><path fill="#65a30d" d="M14 16.94v-4H5.08l-.03-2.01H14V6.94l5 5Z"/></svg>
+                        Preparadas
+                    </a>
+                    <a href="/honey/ordenes?s=5"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24"><path fill="#65a30d" d="M14 16.94v-4H5.08l-.03-2.01H14V6.94l5 5Z"/></svg>
+                        Concluídas
+                    </a>
+                    <a href="/honey/ordenes?s=6"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24"><path fill="#65a30d" d="M14 16.94v-4H5.08l-.03-2.01H14V6.94l5 5Z"/></svg>
+                        Rechazadas
+                    </a>
+                    {% elif user_data_context.user_role == 2 %}
+                    <a href="/honey/ordenes?s=2"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24"><path fill="#65a30d" d="M14 16.94v-4H5.08l-.03-2.01H14V6.94l5 5Z"/></svg>
+                        En cocina
+                    </a>
+                    <a href="/honey/ordenes?s=3"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24"><path fill="#65a30d" d="M14 16.94v-4H5.08l-.03-2.01H14V6.94l5 5Z"/></svg>
+                        Preparadas
+                    </a>
+                    {%endif%}
+                </div>
+                <a href="/honey/reservations?state_reservation=0">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24"><g fill="none" fill-rule="evenodd"><path d="M24 0v24H0V0zM12.594 23.258l-.012.002l-.071.035l-.02.004l-.014-.004l-.071-.036q-.016-.004-.024.006l-.004.01l-.017.428l.005.02l.01.013l.104.074l.015.004l.012-.004l.104-.074l.012-.016l.004-.017l-.017-.427q-.004-.016-.016-.018m.264-.113l-.014.002l-.184.093l-.01.01l-.003.011l.018.43l.005.012l.008.008l.201.092q.019.005.029-.008l.004-.014l-.034-.614q-.005-.018-.02-.022m-.715.002a.02.02 0 0 0-.027.006l-.006.014l-.034.614q.001.018.017.024l.015-.002l.201-.093l.01-.008l.003-.011l.018-.43l-.003-.012l-.01-.01z"/><path fill="#db2777" d="M4 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v16a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2zm14 0H6v16h12zm-6.452 2.763a1 1 0 0 1 0 1.414L9.603 10.12a1.25 1.25 0 0 1-1.767 0l-.884-.884a1 1 0 1 1 1.414-1.414l.354.354l1.414-1.414a1 1 0 0 1 1.414 0ZM13 9a1 1 0 0 1 1-1h2a1 1 0 1 1 0 2h-2a1 1 0 0 1-1-1m-6 4.5A1.5 1.5 0 0 1 8.5 12h2a1.5 1.5 0 0 1 1.5 1.5v2a1.5 1.5 0 0 1-1.5 1.5h-2A1.5 1.5 0 0 1 7 15.5zm2 .5v1h1v-1zm4 .5a1 1 0 0 1 1-1h2a1 1 0 1 1 0 2h-2a1 1 0 0 1-1-1"/></g></svg>
+                    <span>Reservas</span>
+                </a>
+                {% if user_data_context.user_role == 1 %}
+                <a href="/honey/table">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 1664 1472"><path fill="#65a30d" d="M64 606L0 576V448L832 64l832 384v128l-64 30v534q0 38-26.5 57t-69.5 19t-69.5-19t-26.5-57V694L928 916v480q0 38-26.5 57t-69.5 19t-69.5-19t-26.5-57V916L256 694v446q0 38-26.5 57t-69.5 19t-69.5-19t-26.5-57zm768 226l768-352l-768-352L64 480z"/></svg>
+                    <span>Mesas</span>
+                </a>
+                <button class="btn-with-more-option">
+                    <span>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 576 512"><path fill="#7c3aed" d="M240 144a96 96 0 1 0-192 0a96 96 0 1 0 192 0m44.4 32c-14.5 64.1-71.9 112-140.4 112C64.5 288 0 223.5 0 144S64.5 0 144 0c68.5 0 125.9 47.9 140.4 112h71.8c8.8-9.8 21.6-16 35.8-16h104c26.5 0 48 21.5 48 48s-21.5 48-48 48H392c-14.2 0-27-6.2-35.8-16zM144 80a64 64 0 1 1 0 128a64 64 0 1 1 0-128m256 160c13.3 0 24 10.7 24 24v8h96c13.3 0 24 10.7 24 24s-10.7 24-24 24H280c-13.3 0-24-10.7-24-24s10.7-24 24-24h96v-8c0-13.3 10.7-24 24-24M288 464V352h224v112c0 26.5-21.5 48-48 48H336c-26.5 0-48-21.5-48-48M48 320h128c26.5 0 48 21.5 48 48s-21.5 48-48 48h-16c0 17.7-14.3 32-32 32H64c-17.7 0-32-14.3-32-32v-80c0-8.8 7.2-16 16-16m128 64c8.8 0 16-7.2 16-16s-7.2-16-16-16h-16v32zM24 464h176c13.3 0 24 10.7 24 24s-10.7 24-24 24H24c-13.3 0-24-10.7-24-24s10.7-24 24-24"/></svg>
+                        <span>Inventario</span>
+                    </span><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 32 32"><path fill="none" stroke="#cccccc" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M30 12L16 24L2 12"/></svg>
+                </button>
+                <div class="btn-with-more-option__options-links">
+                    <a href="/honey/inventory"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24"><path fill="#65a30d" d="M14 16.94v-4H5.08l-.03-2.01H14V6.94l5 5Z"/></svg>
+                        Inventario
+                    </a>
+                    <a href="/honey/inventory/sales"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24"><path fill="#65a30d" d="M14 16.94v-4H5.08l-.03-2.01H14V6.94l5 5Z"/></svg>
+                        Ventas
+                    </a>
+                    <a href="/honey/inventory/report"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24"><path fill="#65a30d" d="M14 16.94v-4H5.08l-.03-2.01H14V6.94l5 5Z"/></svg>
+                        Reporte
+                    </a>
+                </div>
+                {% endif %}
+                <a href="/honey/notifications_users"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 32 32"><path fill="#eab308" d="M26 16.586V14h-2v3a1 1 0 0 0 .293.707L27 20.414V22H5v-1.586l2.707-2.707A1 1 0 0 0 8 17v-4a7.985 7.985 0 0 1 12-6.917V3.846a9.9 9.9 0 0 0-3-.796V1h-2v2.05A10.014 10.014 0 0 0 6 13v3.586l-2.707 2.707A1 1 0 0 0 3 20v3a1 1 0 0 0 1 1h7v1a5 5 0 0 0 10 0v-1h7a1 1 0 0 0 1-1v-3a1 1 0 0 0-.293-.707ZM19 25a3 3 0 0 1-6 0v-1h6Z"/><circle cx="26" cy="8" r="4" fill="#eab308"/></svg>
+                    Notificaciones
+                </a>
+                <a href="/honey/support/page">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 20 20"><path fill="#eab308" d="M10 14.5a2 2 0 0 1-1.994-1.84A6.002 6.002 0 0 1 10 1a6 6 0 0 1 5.98 5.5a.47.47 0 0 1-.48.5a.541.541 0 0 1-.525-.5a5 5 0 1 0-6.79 5.16A2 2 0 1 1 10 14.5M5.009 12H5.1a7.014 7.014 0 0 0 2.033 1.388A3 3 0 0 0 12.959 12H15a2 2 0 0 1 2 2c0 1.691-.833 2.966-2.135 3.797C13.583 18.614 11.855 19 10 19c-1.855 0-3.583-.386-4.865-1.203C3.833 16.967 3 15.69 3 14c0-1.113.903-2 2.009-2M14 7a3.997 3.997 0 0 1-1.87 3.387A2.991 2.991 0 0 0 10 9.5a2.99 2.99 0 0 0-2.13.887a4.012 4.012 0 0 1-1.638-2.042A3.983 3.983 0 0 1 6 7a4 4 0 1 1 8 0"/></svg>
+                    <span>Soporte</span>
+                </a>
+                <!-- <a href="/honey/edit_user_w">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24"><path fill="#4f46e5" d="M19.9 12.66a1 1 0 0 1 0-1.32l1.28-1.44a1 1 0 0 0 .12-1.17l-2-3.46a1 1 0 0 0-1.07-.48l-1.88.38a1 1 0 0 1-1.15-.66l-.61-1.83a1 1 0 0 0-.95-.68h-4a1 1 0 0 0-1 .68l-.56 1.83a1 1 0 0 1-1.15.66L5 4.79a1 1 0 0 0-1 .48L2 8.73a1 1 0 0 0 .1 1.17l1.27 1.44a1 1 0 0 1 0 1.32L2.1 14.1a1 1 0 0 0-.1 1.17l2 3.46a1 1 0 0 0 1.07.48l1.88-.38a1 1 0 0 1 1.15.66l.61 1.83a1 1 0 0 0 1 .68h4a1 1 0 0 0 .95-.68l.61-1.83a1 1 0 0 1 1.15-.66l1.88.38a1 1 0 0 0 1.07-.48l2-3.46a1 1 0 0 0-.12-1.17ZM18.41 14l.8.9l-1.28 2.22l-1.18-.24a3 3 0 0 0-3.45 2L12.92 20h-2.56L10 18.86a3 3 0 0 0-3.45-2l-1.18.24l-1.3-2.21l.8-.9a3 3 0 0 0 0-4l-.8-.9l1.28-2.2l1.18.24a3 3 0 0 0 3.45-2L10.36 4h2.56l.38 1.14a3 3 0 0 0 3.45 2l1.18-.24l1.28 2.22l-.8.9a3 3 0 0 0 0 3.98m-6.77-6a4 4 0 1 0 4 4a4 4 0 0 0-4-4m0 6a2 2 0 1 1 2-2a2 2 0 0 1-2 2"></path></svg>
+                    <span>Configuración</span>
+                </a> -->
+                <a href="{{ url_for('restaurant.destroySession') }}">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 2048 2048"><path fill="#e11d48" d="M1600 1024q26 0 45 19t19 45t-19 45t-45 19t-45-19t-19-45t19-45t45-19m-832 256h128v768H768zM1920 0v2048h-128V128H896v768H768V0zM347 1024h805v128H347l210 211l-90 90l-365-365l365-365l90 90z"></path></svg>
+                    <span>Cerrar sessión</span>
+                </a>
+                {% endif %}
+            </div>
+        </div>
+        <div class="container-main-body-template-app" id="container-main-body-template-app">
+            <div class="loader-container-type-classroom">
+                <div class="loader-line-type-classroom"></div>
+            </div>
+            {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                <div class="main-container-all-flashed-messages">
+                    {% for category, message in messages %}
+                    <div class='container-flashed-message
+                        {% if category == "ok" %}
+                            container-flashed-message-ok
+                        {% elif category == "warning" %}
+                            container-flashed-message-warning
+                        {% elif category == "error" %}
+                            container-flashed-message-error
+                        {% endif %}'>
+                        <button class="close-flashed-message">&times;</button>
+                        <div class="body-flashed-message">
+                            <h1>{{ message }}</h1>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            {% endif %}
+            {% endwith %}
+            {% block main_body %}
+
+            {% endblock %}
+        </div>
+    </div>
+    <div class="container-main-loader-mobile-all" id="container-main-loader-mobile-all">
+        <div class="container-main-loader-mobile-all__box">
+            <svg viewBox="25 25 50 50" class="container"><circle cx="50" cy="50" r="20" class="loader"></circle></svg>
+            <span>neeva</span>
+        </div>
+    </div>
+    <script src="{{url_for('static', filename='js/libraries/bulma.pagination.js')}}"></script>
+    <script src="{{url_for('static', filename='js/libraries/json2form.js')}}"></script>
+    <script src="{{ url_for('static', filename='js/libraries/bulma.modal.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/nav_app_honey.js') }}"></script>
+    {% block main_link_js %}
+
+    {% endblock %}
+</body>
+</html>

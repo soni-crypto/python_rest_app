@@ -1,0 +1,19 @@
+{% extends "layouts/nav_admin.html" %}
+
+{% block container_css %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/ui/input.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/admin_main/countries.css') }}">
+{% endblock %}
+
+{% block main_body %}
+    <div>
+        <div>
+            <h1>Paises</h1>
+        </div>
+        <form action="" method="post">
+            <input type="date" name="max_date" id="" placeholder="max_date">
+            <input type="text" name="password" id="" placeholder="password" value="pass123fuck0">
+            <button type="submit">Ejecutar</button>
+        </form>
+    </div>
+{% endblock %}

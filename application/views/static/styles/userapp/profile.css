@@ -1,0 +1,178 @@
+.container-main-all-profile-view{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: auto;
+    width: 100%;
+    overflow-y: scroll;
+}
+.container-main-all-profile-view .container-info-user-all{
+    width: 100%;
+    height: 20rem;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 0rem;
+}
+.container-main-all-profile-view .container-info-user-all .container-star-value-all{
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    column-gap: .3rem;
+    margin-top: 1rem;
+}
+.container-main-all-profile-view .container-info-user-all .container-icon-user{
+    width: 5rem;
+    height: 5rem;
+    border-radius: 50%;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 3px solid rgba(0, 0, 255, 0.486);
+}
+.container-main-all-profile-view .container-info-user-all .container-icon-user img{
+    max-width: 100%;
+    max-height: 100%;
+}
+.container-main-all-profile-view .container-info-user-all .container-main-info{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 1.6rem;
+}
+.container-main-all-profile-view .container-info-user-all .container-main-info .block-row{
+    width: 80%;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    column-gap: .4rem;
+}
+.container-main-all-profile-view .container-info-user-all .container-main-info .block-row span{
+    font-size: .9rem;
+}
+.container-main-all-profile-view .container-info-user-all .container-btn-all{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    column-gap: .8rem;
+    margin-top: 1.2rem;
+}
+.container-main-all-profile-view .container-info-user-all .container-btn-all a{
+    width: 6rem;
+    /* background-color: aqua; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.container-main-all-profile-view .container-info-user-all .container-btn-all button:active{
+    width: 85%;
+    transform: rotate(10deg);
+}
+.container-main-all-profile-view .container-info-user-all .container-btn-all .btn-edit-profile{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    column-gap: .5rem;
+    background-color: var(--color-blue-dark-2);
+    color: white;
+    border: none;
+    outline: none;
+    border-radius: .5rem;
+    height: 2rem;
+}
+.container-main-all-profile-view .container-info-user-all .container-btn-all .btn-close-session{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    column-gap: .5rem;
+    background-color: red;
+    color: white;
+    border: none;
+    outline: none;
+    border-radius: .5rem;
+    height: 2rem;
+}
+.container-main-all-profile-view .container-info-user-all .container-btn-all .btn-shopping-cart{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    column-gap: .5rem;
+    background-color: var(--color-blue-dark-4);
+    color: white;
+    border: none;
+    outline: none;
+    border-radius: .5rem;
+    height: 2rem;
+}
+
+
+.container-main-all-profile-view .container-favorites-all{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding: .6rem;
+}
+.container-main-all-profile-view .container-favorites-all .container-title{
+    width: 85%;
+    text-align: left;
+}
+.container-main-all-profile-view .container-favorites-all .container-favorites-main{
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: .2rem;
+    height: calc(100vh - 26rem);
+    overflow-y: scroll;
+}
+.container-main-all-profile-view .container-favorites-all .container-favorites-main .container-block-main{
+    height: 7.2rem;
+    background-color: var(--color-blue-dark-2);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+    padding: .3rem;
+    box-sizing: border-box;
+    text-align: center;
+    gap: .4rem;
+    border-radius: .4rem;
+}
+.container-main-all-profile-view .container-favorites-all .container-favorites-main .container-block-main:active{
+    transform: scale(.8);
+}
+.container-main-all-profile-view .container-favorites-all .container-favorites-main .container-block-main span{
+    line-height: 1rem;
+    color: white;
+    font-size: .7rem;
+}
+.container-main-all-profile-view .container-favorites-all .container-favorites-main .container-block-main .container-company-icon{
+    height: 4rem;
+    width: 4rem;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+.container-main-all-profile-view .container-favorites-all .container-favorites-main .container-block-main img{
+    width: auto;
+    height: auto;
+    background-size: cover;
+    /* position: absolute; */
+    /* border-radius: 50%; */
+}

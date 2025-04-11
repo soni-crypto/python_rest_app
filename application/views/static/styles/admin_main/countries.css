@@ -1,0 +1,26 @@
+.container-main-country{
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    padding: .8rem;
+    /* background-color: aqua; */
+}
+.container-main-country .container-form-create-country{
+    width: 16rem;
+}
+.container-main-country .container-form-create-country form{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.container-main-country .container-form-create-country form button{
+    margin-top: .9rem;
+    height: 2.6rem;
+    width: 99%;
+    background-color: var(--color-blue-dark-4);
+    border: none;
+    border-radius: 1.5rem;
+    color: white;
+    font-size: 1.1rem;
+}

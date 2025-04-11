@@ -1,0 +1,48 @@
+{% extends "layouts/userapp.html" %}
+
+{% block styles %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/userapp/support.css') }}">
+{% endblock %}
+
+{% block main_body %}
+    <div class="container-main-all-support"> 
+        <div class="container-text">
+            <h1>Atención al Cliente</h1>
+            <div class="container-message">
+                <span>Si experimenta algún problema, ya sea con la funcionalidad de la app o con los dueños de los restaurantes, por favor envíe un mensaje a Neeva.</span>
+            </div>
+        </div>
+        <form action="" method="post" enctype="multipart/form-data">
+            <label for="">
+                <span>Escriba mensaje aquí:</span>
+                <textarea name="message" id="" placeholder="Escribe aquí" required></textarea>
+            </label>
+            <label for="">
+                <span>Adjunte archivos:</span>
+                <input type="file" name="files" id="" multiple>
+            </label>
+            <button type="submit">Enviar</button>
+        </form>
+        <div class="frequently-asked-questions">
+            <h2>
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 14 16"><path fill-rule="evenodd" d="M6 10h2v2H6v-2zm4-3.5C10 8.64 8 9 8 9H6c0-.55.45-1 1-1h.5c.28 0 .5-.22.5-.5v-1c0-.28-.22-.5-.5-.5h-1c-.28 0-.5.22-.5.5V7H4c0-1.5 1.5-3 3-3s3 1 3 2.5zM7 2.3c3.14 0 5.7 2.56 5.7 5.7s-2.56 5.7-5.7 5.7A5.71 5.71 0 0 1 1.3 8c0-3.14 2.56-5.7 5.7-5.7zM7 1C3.14 1 0 4.14 0 8s3.14 7 7 7s7-3.14 7-7s-3.14-7-7-7z" fill="#65a30d"/></svg>
+                Preguntas frecuentes:
+            </h2>
+            <details>
+                <summary>Como pago con yape?</summary>
+                <p>Presione en ver metodos de pago, descarga el QR yape, ve a la aplicación de yape, sube la imagen para escanear y luego pague.</p>
+            </details>
+            <details>
+                <summary>Puedo cancelar un pedido?</summary>
+                <p>Dependerá del proveedor(Dueño del restaurante, etc), para mayor información, contacte con el proveedor mediante correo o whatsapp que esta disponible en la sección de sus productos.</p>
+            </details>
+        </div>
+    </div>
+{% endblock %}
+
+{% block selected_route_5 %}
+    block-nav-circle-now__select
+{% endblock %}
+
+{% block scripts %}
+{% endblock %}

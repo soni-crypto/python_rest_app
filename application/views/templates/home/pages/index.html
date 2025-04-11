@@ -1,0 +1,348 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+
+    <meta charset="UTF-8">
+    <!-- SEO -->
+    <meta name="title" content="Foodie Admin - Sistema Integral para Restaurantes">
+    <meta name="description" content="Foodie Admin es un sistema completo para restaurantes que gestiona meseros, delivery, órdenes y más. Optimiza tu restaurante con nuestra plataforma eficiente y fácil de usar.">
+    <meta name="keywords" content="Foodie Admin, sistema para restaurantes, gestión de meseros, delivery, órdenes, punto de venta, software de restaurantes">
+    <meta name="author" content="Foodie Admin">
+    <meta name="robots" content="index, follow">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta property="og:title" content="Foodie Admin - Sistema Integral para Restaurantes">
+    <meta property="og:description" content="Foodie Admin ofrece soluciones avanzadas para la gestión de restaurantes, incluyendo sistemas para meseros, delivery, órdenes y más.">
+    <meta property="og:image" content="https://emtorch.pythonanywhere.com/static/pages/assets/images/icon-app-256x256.png">
+    <meta property="og:url" content="https://emtorch.pythonanywhere.com/">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Foodie Admin - Sistema Integral para Restaurantes">
+    <meta name="twitter:description" content="Con Foodie Admin, optimiza tu restaurante con herramientas para meseros, delivery, órdenes y mucho más.">
+    <meta name="twitter:image" content="https://emtorch.pythonanywhere.com/static/pages/assets/images/icon-app-256x256.png">
+    <!-- END SEO -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='images/') }}icon-app-48x48.min.png">
+    <title>Foodie Admin</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="{{ url_for('static', filename='pages/vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
+    <!-- Additional CSS Files -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='pages/assets/css/start-emtorch.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='pages/assets/css/animated.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='pages/assets/css/owl.css') }}">
+
+  </head>
+
+<body>
+
+  <!-- ***** Preloader Start ***** -->
+  <div id="js-preloader" class="js-preloader">
+    <div class="preloader-inner">
+      <span class="dot"></span>
+      <div class="dots">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </div>
+  <!-- ***** Preloader End ***** -->
+
+  <!-- ***** Header Area Start ***** -->
+  <header class="header-area header-sticky wow slideInDown" data-wow-duration="0.75s" data-wow-delay="0s">
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <nav class="main-nav">
+            <!-- ***** Logo Start ***** -->
+            <a href="" class="logo">
+              <img src="{{ url_for('static', filename='pages/assets/images/icon-app-256x256.png') }}" alt="Foodie Admin">
+            </a>
+            <!-- ***** Logo End ***** -->
+            <!-- ***** Menu Start ***** -->
+            <ul class="nav">
+              <li class="scroll-to-section"><a href="#top" class="active">Home</a></li>
+              <li class="scroll-to-section"><a href="#services">Servicios</a></li>
+              <li class="scroll-to-section"><a href="#about">Sobre Nosotros</a></li>
+              <li class="scroll-to-section"><a href="#pricing">Precios</a></li>
+              <li>
+                <div class="gradient-button">
+                  <a href="/login">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24"><path fill="#ffffff" d="M13 21q-.425 0-.712-.288T12 20q0-.425.288-.712T13 19h6V5h-6q-.425 0-.712-.288T12 4q0-.425.288-.712T13 3h6q.825 0 1.413.588T21 5v14q0 .825-.587 1.413T19 21zm-1.825-8H4q-.425 0-.712-.288T3 12q0-.425.288-.712T4 11h7.175L9.3 9.125q-.275-.275-.275-.675t.275-.7q.275-.3.7-.313t.725.288L14.3 11.3q.3.3.3.7t-.3.7l-3.575 3.575q-.3.3-.712.288T9.3 16.25q-.275-.3-.262-.712t.287-.688z"/></svg>
+                    Inciar sesión
+                  </a>
+                </div>
+              </li> 
+            </ul>        
+            <a class='menu-trigger'>
+                <span>Menu</span>
+            </a>
+            <!-- ***** Menu End ***** -->
+          </nav>
+        </div>
+      </div>
+    </div>
+  </header>
+  <!-- ***** Header Area End ***** -->
+</div>
+
+  <div class="main-banner wow" id="top" data-wow-duration="1s" data-wow-delay="0.5s">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="row">
+            <div class="col-lg-6 align-self-start">
+              <div class="left-content show-up header-text wow fadeInLeft" data-wow-duration="1s" data-wow-delay="1s">
+                <div class="row">
+                  <div class="col-lg-12">
+                    <h2 class="title-name-app-main">Foodie Admin</h2>
+                    <p class="text-main-app-details">Le presentamos nuestra innovadora aplicación web, diseñada específicamente para optimizar las operaciones de su restaurante y mejorar su experiencia de gestión.</p>
+                  </div>
+                  <div class="col-lg-12 mt-0">
+                    <div class="white-button scroll-to-section button-main-download-app-store">
+                      <a href="#">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 14 14"><path fill="none" stroke="#ffffff" stroke-linecap="round" stroke-linejoin="round" d="M.859 11.981V1.741c0-.672.79-1.098 1.434-.771L12.37 6.09c.662.336.662 1.207 0 1.543l-10.077 5.12c-.644.327-1.434-.099-1.434-.772M9.23 9.23l-8.1-8.101m8.1 3.364l-8.1 8.1"/></svg>
+                        Foodie Admin
+                      </a>
+                    </div>
+                    <div class="white-button scroll-to-section button-main-download-app-store">
+                      <a href="https://play.google.com/store/apps/details?id=emtorch.pqt.one&hl=es_419" target="_blank">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 14 14"><path fill="none" stroke="#ffffff" stroke-linecap="round" stroke-linejoin="round" d="M.859 11.981V1.741c0-.672.79-1.098 1.434-.771L12.37 6.09c.662.336.662 1.207 0 1.543l-10.077 5.12c-.644.327-1.434-.099-1.434-.772M9.23 9.23l-8.1-8.101m8.1 3.364l-8.1 8.1"/></svg>
+                        Neeva
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-6">
+              <div class="right-image wow fadeInRight" data-wow-duration="1s" data-wow-delay="0.5s">
+                <img src="{{ url_for('static', filename='pages/assets/images/slider-dec.png') }}" alt="">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="services" class="services section">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 offset-lg-2">
+          <div class="section-heading  wow fadeInDown" data-wow-duration="1s" data-wow-delay="0s">
+            <h4><em>Servicios &amp; Funciones</em> increibles para usted</h4>
+            <img src="{{ url_for('static', filename='pages/assets/images/heading-line-dec.png') }}" alt="">
+            <p>Nuestra completa aplicación web proporciona una plataforma centralizada para que tanto administradores como meseras gestionen todos los aspectos de las operaciones de su restaurante, accesible desde cualquier lugar con conexión a internet.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-3">
+          <div class="service-item first-service">
+            <div class="icon"></div>
+            <h4>Mantenimiento de la aplicación</h4>
+
+            <p>Nos dedicamos a ofrecer una experiencia excepcional a nuestros usuarios. Esto significa que nos esforzamos constantemente por mejorar nuestro producto y brindar el mejor servicio posible.</p>
+            <!-- <div class="text-button">
+              <a href="#">Read More <i class="fa fa-arrow-right"></i></a>
+            </div> -->
+          </div>
+        </div>
+        <div class="col-lg-3">
+          <div class="service-item second-service">
+            <div class="icon"></div>
+            <h4>Velocidad de la aplicación</h4>
+            <p>Experimenta una velocidad sin precedentes: Nuestra aplicación está diseñada para ofrecer una experiencia fluida y receptiva, sin demoras ni frustraciones.</p>
+            <!-- <div class="text-button">
+              <a href="#">Read More <i class="fa fa-arrow-right"></i></a>
+            </div> -->
+          </div>
+        </div>
+        <div class="col-lg-3">
+          <div class="service-item third-service">
+            <div class="icon"></div>
+            <h4>Flujo de trabajo múltiple</h4>
+            <p>La Solución Completa para Restaurantes: Eficiencia para Administradores, Éxito para Meseros</p>
+            <!-- <div class="text-button">
+              <a href="#">Read More <i class="fa fa-arrow-right"></i></a>
+            </div> -->
+          </div>
+        </div>
+        <div class="col-lg-3">
+          <div class="service-item fourth-service">
+            <div class="icon"></div>
+            <h4>Ayuda &amp; Soporte 24/7</h4>
+            <p>Nos comprometemos a brindarle un servicio al cliente excepcional y un soporte técnico confiable. Por eso, ofrecemos asistencia y soporte 24/7 para que siempre pueda obtener la ayuda que necesita, cuando la necesita.</p>
+            <!-- <div class="text-button">
+              <a href="#">Read More <i class="fa fa-arrow-right"></i></a>
+            </div> -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="about" class="about-us section">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-6 align-self-center">
+          <div class="section-heading">
+            <h4>Acerca <em>de lo que hacemos</em> &amp; quiénes somos</h4>
+            <img src="{{ url_for('static', filename='pages/assets/images/heading-line-dec.png') }}" alt="">
+            <p>Foodie Admin te ofrece una solución integral para gestionar tu restaurante de manera más inteligente, optimizar operaciones y llevar tu negocio al siguiente nivel.</p>
+          </div>
+          <div class="row">
+            <div class="col-lg-6">
+              <div class="box-item">
+                <h4><a href="#">Sistema de Reservas Online</a></h4>
+                <!-- <p>Lorem Ipsum Text</p> -->
+              </div>
+            </div>
+            <div class="col-lg-6">
+              <div class="box-item">
+                <h4><a href="#">Soporte de Delivery</a></h4>
+                <!-- <p>Lorem Ipsum Text</p> -->
+              </div>
+            </div>
+            <div class="col-lg-6">
+              <div class="box-item">
+                <h4><a href="#">Control y Seguimiento de Meseros</a></h4>
+                <!-- <p>Lorem Ipsum Text</p> -->
+              </div>
+            </div>
+            <div class="col-lg-6">
+              <div class="box-item">
+                <h4><a href="#">Gestión Integral de Pedidos</a></h4>
+                <!-- <p>Lorem Ipsum Text</p> -->
+              </div>
+            </div>
+            <div class="col-lg-12">
+              <p>Solicita una demostración gratuita hoy mismo y descubre cómo Foodie Admin puede potenciar tu restaurante.</p>
+              <div class="gradient-button">
+                <a href="#">Comience la prueba gratuita de 1 mes</a>
+              </div>
+              <span>*No se requiere tarjeta de crédito</span>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <div class="right-image">
+            <img src="{{ url_for('static', filename='pages/assets/images/about-right-dec.png') }}" alt="">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="pricing" class="pricing-tables">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 offset-lg-2">
+          <div class="section-heading">
+            <h4>Tenemos los mejores<em> precios </em> que puedes obtener</h4>
+            <img src="{{ url_for('static', filename='pages/assets/images/heading-line-dec.png') }}" alt="">
+            <p>Los pagos se realizan después de haber culminado 1 mes de prueba gratis, el pago se realiza dentro de la aplicación en la seccion de pagos.</p>
+          </div>
+        </div>
+        <div class="col-lg-4"></div>
+        <div class="col-lg-4">
+          <div class="pricing-item-pro">
+            <span class="price">S/ 35</span>
+            <h4>Plan Estándar</h4>
+            <div class="icon">
+              <img src="{{ url_for('static', filename='pages/assets/images/pricing-table-01.png') }}" alt="">
+            </div>
+            <ul>
+              <li class="">Soporte 24/7</li>
+              <li>10 Meseros/as</li>
+              <li>30 Reservaciones como maximo/Día</li>
+              <li>20 Categorías de platos</li>
+              <li>20 Platos por cada categoría</li>
+              <li>10 Observaciones por categoría</li>
+              <li>500 Órdenes por día</li>
+              <li></li>
+              <li class="non-function">More Options</li>
+            </ul>
+            <div class="border-button">
+              <a href="#">Comenzar</a>
+            </div>
+          </div>
+        </div>
+        <!-- <div class="col-lg-4">
+          <div class="pricing-item-pro">
+            <span class="price">S/10</span>
+            <h4>Business Plan App</h4>
+            <div class="icon">
+              <img src="assets/images/pricing-table-01.png" alt="">
+            </div>
+            <ul>
+              <li>Lorem Ipsum Dolores</li>
+              <li>50 TB of Storage</li>
+              <li>Life-time Support</li>
+              <li>Premium Add-Ons</li>
+              <li class="non-function">Fastest Network</li>
+              <li class="non-function">More Options</li>
+            </ul>
+            <div class="border-button">
+              <a href="#">Purchase This Plan Now</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4">
+          <div class="pricing-item-regular">
+            <span class="price">S/ 10</span>
+            <h4>Premium Plan App</h4>
+            <div class="icon">
+              <img src="assets/images/pricing-table-01.png" alt="">
+            </div>
+            <ul>
+              <li>Lorem Ipsum Dolores</li>
+              <li>120 TB of Storage</li>
+              <li>Life-time Support</li>
+              <li>Premium Add-Ons</li>
+              <li>Fastest Network</li>
+              <li>More Options</li>
+            </ul>
+            <div class="border-button">
+              <a href="#">Purchase This Plan Now</a>
+            </div>
+          </div>
+        </div> -->
+      </div>
+    </div>
+  </div> 
+  
+  <a href="https://api.whatsapp.com/send/?phone=%2B51927106331&text=Solicito+demo+sobre+Foodie+Admin" target="_blank" class="link-whatsapp-btn">
+    <button>
+      <svg xmlns="http://www.w3.org/2000/svg" width="40" height="41" viewBox="0 0 256 258"><defs><linearGradient id="IconifyId1917be207a3dfda450" x1="50%" x2="50%" y1="100%" y2="0%"><stop offset="0%" stop-color="#1FAF38"/><stop offset="100%" stop-color="#60D669"/></linearGradient><linearGradient id="IconifyId1917be207a3dfda451" x1="50%" x2="50%" y1="100%" y2="0%"><stop offset="0%" stop-color="#F9F9F9"/><stop offset="100%" stop-color="#FFF"/></linearGradient></defs><path fill="url(#IconifyId1917be207a3dfda450)" d="M5.463 127.456c-.006 21.677 5.658 42.843 16.428 61.499L4.433 252.697l65.232-17.104a123 123 0 0 0 58.8 14.97h.054c67.815 0 123.018-55.183 123.047-123.01c.013-32.867-12.775-63.773-36.009-87.025c-23.23-23.25-54.125-36.061-87.043-36.076c-67.823 0-123.022 55.18-123.05 123.004"/><path fill="url(#IconifyId1917be207a3dfda451)" d="M1.07 127.416c-.007 22.457 5.86 44.38 17.014 63.704L0 257.147l67.571-17.717c18.618 10.151 39.58 15.503 60.91 15.511h.055c70.248 0 127.434-57.168 127.464-127.423c.012-34.048-13.236-66.065-37.3-90.15C194.633 13.286 162.633.014 128.536 0C58.276 0 1.099 57.16 1.071 127.416m40.24 60.376l-2.523-4.005c-10.606-16.864-16.204-36.352-16.196-56.363C22.614 69.029 70.138 21.52 128.576 21.52c28.3.012 54.896 11.044 74.9 31.06c20.003 20.018 31.01 46.628 31.003 74.93c-.026 58.395-47.551 105.91-105.943 105.91h-.042c-19.013-.01-37.66-5.116-53.922-14.765l-3.87-2.295l-40.098 10.513z"/><path fill="#FFF" d="M96.678 74.148c-2.386-5.303-4.897-5.41-7.166-5.503c-1.858-.08-3.982-.074-6.104-.074c-2.124 0-5.575.799-8.492 3.984c-2.92 3.188-11.148 10.892-11.148 26.561s11.413 30.813 13.004 32.94c1.593 2.123 22.033 35.307 54.405 48.073c26.904 10.609 32.379 8.499 38.218 7.967c5.84-.53 18.844-7.702 21.497-15.139c2.655-7.436 2.655-13.81 1.859-15.142c-.796-1.327-2.92-2.124-6.105-3.716s-18.844-9.298-21.763-10.361c-2.92-1.062-5.043-1.592-7.167 1.597c-2.124 3.184-8.223 10.356-10.082 12.48c-1.857 2.129-3.716 2.394-6.9.801c-3.187-1.598-13.444-4.957-25.613-15.806c-9.468-8.442-15.86-18.867-17.718-22.056c-1.858-3.184-.199-4.91 1.398-6.497c1.431-1.427 3.186-3.719 4.78-5.578c1.588-1.86 2.118-3.187 3.18-5.311c1.063-2.126.531-3.986-.264-5.579c-.798-1.593-6.987-17.343-9.819-23.64"/></svg>
+      Solicitar demostración
+    </button>
+  </a>
+  <footer id="newsletter">
+    <br><br><br>
+    <div class="col-lg-12">
+      <div class="copyright-text">
+        <p>Copyright &copy; 2023 &raquo; Foodie Admin from DBS. All Rights Reserved. </p>
+      </div>
+    </div>
+    
+  </footer>
+
+
+  <!-- Scripts -->
+  <script src="{{ url_for('static', filename='pages/vendor/jquery/jquery.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='pages/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='pages/assets/js/owl-carousel.js') }}"></script>
+  <script src="{{ url_for('static', filename='pages/assets/js/animation.js') }}"></script>
+  <script src="{{ url_for('static', filename='pages/assets/js/imagesloaded.js') }}"></script>
+  <script src="{{ url_for('static', filename='pages/assets/js/popup.js') }}"></script>
+  <script src="{{ url_for('static', filename='pages/assets/js/custom.js') }}"></script>
+</body>
+</html>

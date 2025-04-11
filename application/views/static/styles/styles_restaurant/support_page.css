@@ -1,0 +1,174 @@
+.container-main-support{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: start;
+}
+.container-main-support .container-block-support{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: start;
+    flex-wrap: wrap;
+    column-gap: 2rem;
+    row-gap: 1rem;
+    margin-top: 2rem;
+    padding-bottom: 2rem;
+}
+.container-main-support .container-block-support .container-text-title{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    max-width: 26rem;
+    padding: .6rem;
+    box-sizing: border-box;
+}
+.container-main-support .container-block-support .container-text-title h1{
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--color-blue-dark-4);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    column-gap: .6rem;
+}
+.container-main-support .container-block-support .container-text-title .container-text{
+    width: 100%;
+    margin-top: .8rem;
+}
+.container-main-support .container-block-support .container-text-title .container-text p{
+    font-size: .9rem;
+    color: rgb(36, 33, 33);
+}
+.container-main-support .container-block-support .container-text-title .container-img-descr{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 2rem;
+}
+.container-main-support .container-block-support .container-text-title .container-img-descr img{
+    width: 16rem;
+}
+
+
+
+
+
+
+.container-main-support .container-block-support .container-section-form{
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+    width: 95%;
+    max-width: 24rem;
+    background-color: white;
+    box-shadow: 2px 2px 28px rgb(227, 220, 220);
+    padding: .8rem;
+    box-sizing: border-box;
+    border-radius: .6rem;
+    margin-top: 3rem;
+}
+.container-main-support .container-block-support .container-section-form .form-title{
+    width: 100%;
+    text-align: start;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 1rem;
+    box-sizing: border-box;
+}
+.container-main-support .container-block-support .container-section-form .form-title h2{
+    font-size: 1.4rem;
+    font-weight: bold;
+    color: var(--color-blue-dark-4);
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    column-gap: .6rem;
+}
+.container-main-support .container-block-support .container-section-form form{
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+    row-gap: .9rem;
+    width: 100%;
+    margin-top: .8rem;
+}
+.container-main-support .container-block-support .container-section-form form label{
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: start;
+    row-gap: .4rem;
+    width: 95%;
+}
+.container-main-support .container-block-support .container-section-form form label span{
+    font-size: .9rem;
+    font-weight: bold;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    column-gap: .4rem;
+    color: var(--color-blue-dark-4);
+}
+.container-main-support .container-block-support .container-section-form form label textarea{
+    width: 100%;
+    padding: .5rem;
+    font-size: 1rem;
+    border: none;
+    outline: 1px solid rgb(231, 219, 219);
+    border-radius: .4rem;
+    min-height: 6rem;
+    max-height: 10rem;
+}
+.container-main-support .container-block-support .container-section-form form label input{
+    width: 100%;
+    padding: .5rem;
+    font-size: 1rem;
+    border: none;
+    outline: 1px solid rgb(231, 219, 219);
+    border-radius: .4rem;
+    background-color: white;
+}
+.container-main-support .container-block-support .container-section-form form label textarea:focus,
+.container-main-support .container-block-support .container-section-form form label input:focus{
+    outline: 3px solid rgb(125, 137, 203);
+}
+.container-main-support .container-block-support .container-section-form form button{
+    width: 95%;
+    padding: .6rem;
+    font-size: 1rem;
+    background-color: var(--color-blue-dark-4);
+    color: white;
+    border-radius: 5rem;
+    border: none;
+    outline: none;
+    margin-top: 1.2rem;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    column-gap: .4rem;
+}
+.container-main-support .container-block-support .container-section-form form button:hover{
+    background-color: var(--color-blue-dark-3);
+}
+.container-main-support .container-block-support .container-section-form form button:active{
+    background-color: var(--color-skyblue-3);
+}
+@media screen and (orientation: portrait){
+    .container-main-support .container-block-support .container-text-title .container-text{
+        display: none;
+    }
+    .container-main-support .container-block-support .container-text-title .container-img-descr{
+        display: none;
+    }
+    .container-main-support .container-block-support .container-section-form{
+        margin-top: .1rem;
+    }
+}

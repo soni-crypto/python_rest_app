@@ -1,0 +1,65 @@
+.section-container-all{
+    width: 100%;
+    height: 100vh;
+    padding: .6rem;
+}
+.section-container-all #calendar{
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+}
+#config-disp-hour-app .modal-content,
+#config-disp-day-app .modal-content{
+    width: 100%;
+    max-width: 38rem;
+    padding: .8rem;
+    border-radius: .6rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+    gap: .4rem;
+}
+#config-disp-hour-app .modal-content .container-inputs-btn,
+#config-disp-day-app .modal-content .container-inputs-btn{
+    display: flex;
+    justify-content: center;
+    align-items: start;
+    flex-wrap: wrap;
+    column-gap: .8rem;
+    row-gap: .8rem;
+}
+#config-disp-hour-app .modal-content .container-inputs-btn .container-button,
+#config-disp-day-app .modal-content .container-inputs-btn .container-button{
+    display: flex;
+    justify-content: center;
+    align-items: start;
+    width: 95%;
+    gap: .6rem;
+    margin-top: .8rem;
+}
+#config-disp-hour-app .modal-content .container-inputs-btn .container-button button,
+#config-disp-day-app .modal-content .container-inputs-btn .container-button button{
+    width: 100%;
+}
+#config-disp-hour-app .modal-content .container-inputs-btn label,
+#config-disp-day-app .modal-content .container-inputs-btn label{
+    width: 100%;
+    max-width: 17rem;
+}
+
+#modal-delete-event .modal-content{
+    width: 90%;
+    max-width: 18rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: start;
+}
+#modal-delete-event .modal-content .container-button{
+    width: 100%;
+    gap: .4rem;
+}
+#modal-delete-event .modal-content .container-button button{
+    width: 50%;
+}

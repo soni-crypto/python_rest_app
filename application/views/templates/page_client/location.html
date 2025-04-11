@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/libraries/bulma.min.css') }}">
+    <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='styles/page_client/location.css') }}"/>
+    <title>Delivery</title>
+</head>
+<body>
+    <div class="section-container-all">
+        <div class="container-main-app box">
+            <div class="title">
+                <h3>Dirección de Entrega</h3>
+            </div>
+            <div class="container-main-map-marker-app">
+                <div class="map map_view_location_main" id="gmp-map"></div>
+                <img src="{{ url_for('static', filename='images/userapp/images_default/3d-location-pin-icon.min.png') }}" alt="">
+            </div>
+            <div class="container-input-search-location">
+                <input type="hidden" placeholder="Ubicación" id="location-input" autofocus>
+                <input type="hidden" value="{{ data_admin.company_location_coord }}" name="my_location_coordinate" id="company_location_coord">
+                <input type="hidden" name="postal_code" placeholder="Código postal" id="postal_code-input">
+                <input type="hidden" value="{{ dataConfigAdmin.price_per_delivery }}" name="price_per_delivery" id="price_per_delivery">
+                <input type="hidden" value="{{ data_admin.company_location_coord }}" id="location_coord_restaurant">
+                <input type="hidden" value="{{ dataConfigAdmin.maximum_distance_range }}" id="distance_max_delivery_cfg">
+            </div>
+        
+            <div class="box">
+                <span>Costo del delivery:</span>
+                <span>{{ dataConfigAdmin.currency }} {{ dataConfigAdmin.price_per_delivery }}</span>
+            </div>
+            <div class="container-buttons-nav-return-continue">
+                <a href="calendar">
+                    <button class="button is-primary is-rounded">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"><path fill="#ffffff" d="m3.55 12l7.35 7.35q.375.375.363.875t-.388.875t-.875.375t-.875-.375l-7.7-7.675q-.3-.3-.45-.675T.825 12t.15-.75t.45-.675l7.7-7.7q.375-.375.888-.363t.887.388t.375.875t-.375.875z"/></svg>
+                        Volver
+                    </button>
+                </a>
+                <button class="button is-link is-rounded" id="button_continue">
+                    Continuar
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"><path fill="#ffffff" d="m14.475 12l-7.35-7.35q-.375-.375-.363-.888t.388-.887t.888-.375t.887.375l7.675 7.7q.3.3.45.675t.15.75t-.15.75t-.45.675l-7.7 7.7q-.375.375-.875.363T7.15 21.1t-.375-.888t.375-.887z"/></svg>
+                </button>
+            </div>
+        </div>
+    </div>
+    <!-- <script src="{{ url_for('static', filename='js/pages_admin/controll_pay.js') }}"></script> -->
+    <script>
+        let cmpny_ltlg= document.getElementById("location_coord_restaurant").value;
+        function calcularDistancia(lat1, lon1, lat2, lon2) {
+            const R = 6371; // Radio de la Tierra en kilómetros
+            const dLat = gradosARadianes(lat2 - lat1);
+            const dLon = gradosARadianes(lon2 - lon1);
+            const a = 
+                Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+                Math.cos(gradosARadianes(lat1)) * Math.cos(gradosARadianes(lat2)) *
+                Math.sin(dLon / 2) * Math.sin(dLon / 2);
+            const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+            const distancia = R * c; // Distancia en kilómetros
+            return distancia;
+        }
+
+        function gradosARadianes(grados) {
+            return grados * (Math.PI / 180);
+        }
+        // const distance_with_coord = document.getElementById("distance-with-coord");
+        const input_company_location_coord = document.getElementById("company_location_coord");
+        input_company_location_coord.addEventListener("new_coordinate", ()=>{
+            let lat_1 = null;
+            let lng_1 = null;
+            if (cmpny_ltlg){
+                let temp_1 = cmpny_ltlg.split(",");
+                lat_1 = temp_1[0];
+                lng_1 = temp_1[1];   
+            
+                let temp = input_company_location_coord.value.split(",");
+                const distancia = calcularDistancia(lat_1, lng_1, temp[0], temp[1]);
+                // distance_with_coord.textContent = distancia.toFixed(2);
+                const price_delivery = document.getElementById("price_per_delivery").value;
+                const distance_max_delivery_cfg = document.getElementById("distance_max_delivery_cfg").value;
+                // const btn_confirm_delivery = document.getElementById("confirm-send-by-delivery");
+                // if (distancia.toFixed(2) <= parseFloat(distance_max_delivery_cfg)){
+                //     btn_confirm_delivery.removeAttribute("disabled");
+                //     btn_confirm_delivery.removeAttribute("style");
+                // }else{
+                //     btn_confirm_delivery.style.textDecoration = "line-through";
+                //     btn_confirm_delivery.disabled = true;
+                //     openModalMessageLittle("<span>Rango de distancia no permitida.</span>", true);
+                // }
+                // update_cost_delivery(price_delivery);
+            }
+        });
+
+    </script>
+    <script>
+        function loadGoogleScripts() {
+            if (!document.getElementById('google-autocomplete-script')) {
+                // Crear el primer script que carga googleAutoComplet.js
+                var script1 = document.createElement('script');
+                script1.src = "/static/js/google_/googleAutoComplet.js";
+                script1.id = 'google-autocomplete-script';
+
+                // Crear el segundo script que carga la API de Google Maps
+                var script2 = document.createElement('script');
+                script2.src = "https://maps.googleapis.com/maps/api/js?key=AIzaSyA_ddX0DZ2PhoqwRoHaoHVD9JZI8PcW9yc&libraries=places&callback=initProgram";
+                script2.async = true;
+                script2.defer = true;
+
+                // Asegurar que script2 se cargue después de script1
+                script1.onload = function() {
+                    document.body.appendChild(script2);
+                };
+
+                // Insertar el primer script en el cuerpo
+                document.body.appendChild(script1);
+            }
+        }
+        loadGoogleScripts();
+    </script>
+    <script>
+        const company_location_coord = document.getElementById("company_location_coord");
+        const button_continue = document.getElementById("button_continue");
+        let data = localStorage.getItem("jdapp");
+        if (data){
+            data = JSON.parse(data);
+            button_continue.addEventListener("click", ()=>{
+                data.data.delivery_address = company_location_coord.value;
+                localStorage.setItem("jdapp", JSON.stringify(data));
+                location.href = "checkout";
+            })
+        }
+    </script>
+</body>
+</html>

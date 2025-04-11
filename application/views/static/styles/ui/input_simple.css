@@ -1,0 +1,43 @@
+/* @import url("../config.css"); */
+.container-main-template-input-simple{
+    width: 100%;
+}
+.container-main-template-input-simple label{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: start;
+    width: 100%;
+}
+.container-main-template-input-simple label span{
+    font-size: .8rem;
+    color: rgb(97, 97, 99);   
+}
+.container-main-template-input-simple .input-simple-main-template{
+    padding: .4rem;
+    font-size: .8rem;
+    border: 1px solid #bababa;
+    border-radius: .3rem;
+    width: 100%;
+    outline: none;
+    background-color: white;
+}
+.container-main-template-input-simple .input-simple-main-template:hover{
+    /* outline: 2px solid #50acfc; */
+    border: 1px solid #50acfc;
+}
+.container-main-template-input-simple .input-simple-main-template:focus{
+    /* outline: 1px solid rgb(125, 125, 125); */
+    border: 1px solid #5d5d5d;
+}
+
+/* 
+
+<div class="container-main-template-input-simple">
+    <label for="">
+        <span>Nombre *</span>
+        <input type="text" value="" name="" class="input-simple-main-template">
+    </label>
+</div>
+
+*/

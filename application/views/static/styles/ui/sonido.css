@@ -1,0 +1,54 @@
+/*------ Settings ------*/
+.container {
+    --color: #c0d810;
+    --size: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    cursor: pointer;
+    font-size: var(--size);
+    user-select: none;
+    fill: var(--color);
+  }
+  
+  .container .mute {
+    position: absolute;
+    animation: keyframes-fill .5s;
+  }
+  
+  .container .voice {
+    position: absolute;
+    display: none;
+    animation: keyframes-fill .5s;
+  }
+  
+  /* ------ On check event ------ */
+  .container input:checked ~ .mute {
+    display: none;
+  }
+  
+  .container input:checked ~ .voice {
+    display: block;
+  }
+  
+  /* ------ Hide the default checkbox ------ */
+  .container input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+  }
+  
+  /* ------ Animation ------ */
+  @keyframes keyframes-fill {
+    0% {
+      transform: rotate(0deg) scale(0);
+      opacity: 0;
+    }
+  
+    50% {
+      transform: rotate(-10deg) scale(1.2);
+    }
+  }

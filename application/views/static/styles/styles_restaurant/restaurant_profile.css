@@ -1,0 +1,86 @@
+.container-main-section-flex-row .profile-user-details-in-panel{
+    position: relative;
+    width: 16rem;
+    height: 100%;
+    background-color: rgb(9, 7, 38);
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    transition: .2s;
+    z-index: 5;
+    box-sizing: border-box;
+}
+.profile-user-details-in-panel .container-image-profile-panel{
+    width: 7rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    border: 2px solid white;
+}
+.profile-user-details-in-panel .container-image-profile-panel img{
+    width: 100%;
+}
+.profile-user-details-in-panel .container-main-block-info-user{
+    width: 90%;
+}
+.profile-user-details-in-panel .container-main-block-info-user .block-container-flex-in-row{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.container-buttons-open-close-profile{
+    overflow: visible;
+    position: absolute;
+    width: 5rem;
+    left: 0;
+    top: 10px;
+}
+.container-buttons-open-close-profile__inside{
+    position: absolute;
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+.container-buttons-open-close-profile button,
+.container-buttons-open-close-profile__inside button{
+    background-color: rgba(0, 0, 0, 0);
+    border: none;
+    outline: none;
+    cursor: pointer;
+    z-index: 10000;
+}
+.container-buttons-open-close-profile button:hover,
+.container-buttons-open-close-profile__inside button:hover{
+    outline: 3px solid rgba(57, 57, 219, 0.548);
+    border-radius: .6rem;
+}
+.container-buttons-open-close-profile__inside button{
+    display: none;
+}
+.container-buttons-open-close-profile button svg{
+    fill: black;
+    height: 1.2rem;
+    width: 1.2rem;
+}
+.container-buttons-open-close-profile__inside button svg{
+    fill: white;
+    height: 2rem;
+    width: 2rem;
+}
+@media screen and (max-width:1000px) {
+    .container-main-section-flex-row .profile-user-details-in-panel{
+        width: 0px;
+        overflow-x: hidden;
+    }   
+    .container-buttons-open-close-profile__inside button{
+        display: block;
+    }
+}

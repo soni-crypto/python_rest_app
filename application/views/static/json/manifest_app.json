@@ -1,0 +1,23 @@
+{
+    "name": "Neeva",
+    "short_name": "Neeva",
+    "description": "Neeva",
+    "start_url": "/userapp/",
+    "display": "standalone",
+    "background_color": "#fe8c01",
+    "theme_color": "#fe8c01",
+    "icons": [
+      {
+        "src": "/static/images/emTorch-nuevo-512px-512px.min.png",
+        "sizes": "512x512",
+        "type": "image/png"
+      },
+      {
+        "src": "/static/images/emTorch-nuevo-256px-256px.min.png",
+        "sizes": "256x256",
+        "type": "image/png"
+      }
+    ],
+    "orientation": "portrait"
+  }
+  

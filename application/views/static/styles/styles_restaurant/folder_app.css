@@ -1,0 +1,262 @@
+@import url("../config.css");
+.container-all-of-folder-block__one,
+.container-all-of-folder-block{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: .5rem;
+    padding: .5rem;
+    box-sizing: border-box;
+    /* background-color: rgb(59, 135, 201); */
+}
+.container-all-of-folder-block__two{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    justify-content: center;
+    align-items: start;
+    gap: .5rem;
+}
+.container-all-of-folder-block__two .block-main__body{
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+}
+.container-all-of-folder-block__two .block-main__body .block-main__body-icon {
+    width: 100%;
+    min-height: 4rem;
+}
+.container-all-of-folder-block__two .block-main__body .block-main__body-icon img{
+    max-width: 4rem;
+    max-height: 4rem;
+}
+.container-all-of-folder-block__block-main{
+    max-width: 14rem;
+    width: 100%;
+    min-height: 6.3rem;
+    background-color: rgb(255, 255, 255);
+    padding: .6rem;
+    box-sizing: border-box;
+    box-shadow: 3px 3px 10px rgb(210, 210, 210);
+    border-radius: .4rem;
+    user-select: none;
+    position: relative;
+}
+.container-all-of-folder-block__one .container-all-of-folder-block__block-main a{
+    color: rgb(44, 42, 42);
+}
+.container-all-of-folder-block__block-main .block-main__header{
+    height: 22%;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: start;
+    /* background-color: blue; */
+    position: relative;
+    box-sizing: border-box;
+}
+.block-main__header .block-main__header-text{
+    height: 100%;
+    font-size: .8rem;
+    white-space: nowrap;
+    
+    text-overflow: ellipsis;
+    color: rgb(16, 16, 172);
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    column-gap: .3rem;
+}
+.block-main__header .block-main__header-more{
+    position: absolute;
+    width: auto;
+    height: 100%;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: end;
+    top: 0;
+    right: 0;
+}
+.block-main__header .block-main__header-more > button{
+    background-color: rgb(255, 253, 253);
+    position: relative;
+    border: none;
+    outline: none;
+
+}
+.block-main__header .block-main__header-more .block-main__header-more-data{
+    position: relative;
+    display: flex;
+    width: auto;
+    right: 0rem;
+    top: .6rem;
+    background-color: rgb(255, 255, 255);
+
+    
+    width: 0;
+    height: 0;
+    overflow: hidden;
+}
+.block-main__header .block-main__header-more:hover{
+    width: auto;
+    height: auto;
+}
+.block-main__header .block-main__header-more:hover .block-main__header-more-data{
+    display: flex;
+    gap: .3rem;
+    height: auto;
+    width: auto;
+    max-width: 10rem;
+    box-shadow: 1px 1px 10px rgb(212, 212, 212);
+    color: white;
+    padding: .5rem;
+    border-radius: .5rem;
+    cursor: auto;
+    transition: .3s;
+}
+
+
+
+
+
+.container-all-of-folder-block__block-main .block-main__body{
+    height: 100%;
+    width: 100%;
+    /* background-color: red; */
+    display: flex;
+    justify-content: start;
+    align-items: start;
+    column-gap: .3rem;
+}
+.block-main__body .block-main__body-icon{
+    margin-top: .5rem;
+    width: calc( 100% - 9.4rem );
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* background-color: black; */
+}
+.block-main__body .block-main__body-icon img{
+    max-width: 100%;
+    max-height: 100%;
+    border-radius: .5rem;
+}
+.block-main__body .block-main__body-text{
+    width: 9.4rem;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+    row-gap: .3rem;
+}
+.block-main__body .block-main__body-text > .block-main__body-text-parts{ 
+    width: 9.4rem;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    display: flex;
+    justify-content: space-between;
+    align-items: start;
+    flex-wrap: wrap;
+}
+.block-main__body .block-main__body-text .block-main__body-text-parts-name{
+    width: 100%;
+    text-align: start;
+}
+.block-main__body .block-main__body-text .block-main__body-text-parts-name span{
+    font-size: .8rem;
+    line-height: .9rem;
+    display: block;
+    color: rgb(30, 28, 28);
+    font-weight: bold;
+}
+.block-main__body .block-main__body-text-parts .block-main-description-food span{
+    font-size: .8rem;
+    line-height: .9rem;
+    margin: 0;
+    
+}
+.block-main__body .block-main__body-text-parts span{
+    font-size: .8rem;
+    line-height: .8rem;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    column-gap: .3rem;
+}
+.block-main__body .block-main__body-text-parts .block-main-description-food{
+    padding: 0;
+    margin: 0;
+    display: block;
+    line-height: .8rem;
+}
+.block-main__body .block-main__body-text-parts .block-main-description-food:hover{
+    position: absolute;
+    background-color: rgb(52, 48, 48);
+    left: .6rem;
+    width: calc(100% - 1.2rem);
+    color: white;
+    border-radius: .4rem;
+    padding: .6rem;
+    white-space:initial;
+    z-index: 1;
+}
+
+
+/* OTROS BOTONES VIEW */
+.btn-lock-more-data svg,
+.btn-del-more-data svg,
+.btn-edit-more-data svg{
+    width: 1.2rem;
+    height: 1.2rem;
+}
+
+.btn-lock-more-data,
+.btn-edit-more-data,
+.btn-del-more-data{
+    border: none;
+    width: 2rem;
+    height: 2rem;
+    background-color: rgb(255, 255, 255);
+    border-radius: .3rem;
+}
+.btn-lock-more-data:hover svg,
+.btn-edit-more-data:hover svg,
+.btn-del-more-data:hover svg{
+    transform: scale(1.2);
+}
+
+@media screen and (orientation: portrait) {
+    .container-all-of-folder-block__one .container-all-of-folder-block__block-main{
+        width: 100%;
+        max-width: 100%;
+    }
+    .container-all-of-folder-block__one{
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        justify-content: center;
+        align-items: start;
+        gap: .5rem;
+    }
+    .container-all-of-folder-block__one .block-main__body{
+        display: flex;
+        flex-direction: column;
+        justify-content: start;
+        align-items: center;
+    }
+    .container-all-of-folder-block__one .block-main__body .block-main__body-icon {
+        width: 100%;
+        min-height: 2.8rem;
+    }
+    .container-all-of-folder-block__one .block-main__body .block-main__body-icon img{
+        max-width: 4rem;
+        max-height: 2.8rem;
+    }
+}

@@ -1,0 +1,29 @@
+.header-profile-user{
+    background-color: rgba(255, 255, 255, 0);
+}
+.logo_image_profile_navigation_main_div{
+    width: 100%;
+    height: auto;
+}
+.logo_image_profile_navigation_main_div .logo-sm img{
+    max-width: 4.3rem;
+    max-height: 4.3rem;
+
+}
+.logo_image_profile_navigation_main_div .logo-lg img{
+    max-width: 4.3rem;
+    max-height: 4.3rem;
+}
+
+
+@media screen and (max-width:994px) {
+    .navbar-brand-box .logo_image_profile_navigation_main_div{
+        
+        position: relative;
+        top: auto;
+        left: auto;
+    }
+    .sidebar-menu-css-pure{
+        margin-top: auto;
+    }
+}

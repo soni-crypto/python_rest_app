@@ -1,0 +1,84 @@
+.container-main-all-edit-profile{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;   
+}
+.container-main-all-edit-profile .container-main-inputs-all{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    
+}
+.container-main-all-edit-profile .container-main-inputs-all .block-inputs{
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    row-gap: .8rem;
+}
+
+.container-main-all-edit-profile .container-main-inputs-all .container-main-profile-image{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    position: relative;
+}
+.container-main-all-edit-profile .container-main-inputs-all .container-main-profile-image label{
+    width: 6rem;
+    height: 6rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 3px solid rgba(0, 0, 255, 0.486);
+    border-radius: 50%;
+    position: relative;
+    overflow: hidden;
+}
+.container-main-all-edit-profile .container-main-inputs-all .container-main-profile-image label img{
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.container-main-all-edit-profile .container-main-inputs-all .container-main-profile-image label input{
+    overflow: hidden;
+    height: 0;
+    width: 0;
+}
+.container-main-all-edit-profile .container-main-inputs-all .container-main-buton-save{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 2rem;
+}
+.container-main-all-edit-profile .container-main-inputs-all .container-main-buton-save .btn-save{
+    padding: .8rem 1rem;
+    border: none;
+    background-color: var(--color-blue-dark-2);
+    color: white;
+    border-radius: .8rem;
+    outline: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    column-gap: .6rem;
+    font-size: 1rem;
+}
+.container-main-all-edit-profile .container-main-inputs-all .container-main-buton-save .btn-save:active{
+    /* background-color: var(--color-green-1); */
+    transform: scale(.9);
+}
+.container-main-all-edit-profile .container-main-inputs-all .container-main-message-saved{
+    width: 100%;
+    text-align: center;
+    margin-top: 1.3rem;
+}
+.container-main-all-edit-profile .container-main-inputs-all .container-main-message-saved span{
+    font-size: 1.2rem;
+    color: var(--color-blue-dark-2);
+}

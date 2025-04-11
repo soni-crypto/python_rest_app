@@ -1,0 +1,729 @@
+{% extends "layouts/nav_app_honey.html" %}
+
+{% block main_link_css %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/styles_restaurant/inventory.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/ui/input_simple.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/ui/btn_div_1.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/ui/input_radio_square.css') }}">
+{% endblock %}
+
+{% block main_body %}
+    <section class="section-container-all">
+        <div class="container-header">
+            {% if level_user_context | int == 2 %}
+            <button onclick="openModal(document.getElementById('create-new-product'))">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 2048 2048"><path fill="#ffffff" d="m1344 2l704 352v785l-128-64V497l-512 256v258l-128 64V753L768 497v227l-128-64V354zm0 640l177-89l-463-265l-211 106zm315-157l182-91l-497-249l-149 75zm-507 654l-128 64v-1l-384 192v455l384-193v144l-448 224L0 1735v-676l576-288l576 288zm-640 710v-455l-384-192v454zm64-566l369-184l-369-185l-369 185zm576-1l448-224l448 224v527l-448 224l-448-224zm384 576v-305l-256-128v305zm384-128v-305l-256 128v305zm-320-288l241-121l-241-120l-241 120z"/></svg>
+                Nuevo producto
+            </button>
+            <button onclick="openModal(document.getElementById('create-new-category-product'))">
+                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 24 24"><path fill="#ffffff" d="M15 7.808h4zm-10 0h9.046h-.834h.311zm.38-1H18.6L17.077 5H6.904zM10 12.962l2-1l2 1V7.808h-4zM14.03 20H4V6.916L6.416 4h11.15L20 6.954v4.355q-.206-.059-.437-.082q-.23-.023-.447-.023H19V7.808h-4v5.152q-.279.192-.554.516t-.4.634L12 13.096l-3 1.5V7.808H5V19h8.523q.09.28.224.524q.134.243.284.476m4.565.596v-3h-3v-1h3v-3h1v3h3v1h-3v3z"/></svg>
+                Nueva categoría
+            </button>
+            {% elif level_user_context | int == 4 %}
+                <span>Listado de mesas</span>
+            {% endif %}
+            <input type="text" class="input-search-product-in-table" placeholder="Buscar producto">
+            <input type="number" id="input_quantity_max" value="100" max="999" min="100" placeholder="Cantidad maxima">
+            <input type="date" id="input_expiration_date_start_filter" placeholder="">
+            <input type="date" id="input_expiration_date_end_filter" placeholder="">
+            <button id="btn-search-filter-inventory">
+                <svg xmlns="http://www.w3.org/2000/svg" height="15" fill="#ffffff" class="bi bi-search" viewBox="0 0 16 16"><path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"></path></svg>
+                Filtar
+            </button>
+        </div>
+        <div class="container-all-data-product-category">
+            <div class="container-categories-product">
+                <div class="container-title">
+                    <h1>Categoría</h1>
+                </div>
+                <div class="container-all-categories">
+                    <div class="container-row {% if not category_selected %} container-row-selected {% endif %}">
+                        <a href="?c=" data-category="0" class="a-link-category-product-all">Todos</a>
+                        <!-- <div class="container-btns-action">
+                            <button><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"><path fill="none" stroke="#132be7" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="m19.5 5.5l-.402 6.506M4.5 5.5l.605 10.025c.154 2.567.232 3.85.874 4.774c.317.456.726.842 1.2 1.131c.671.41 1.502.533 2.821.57m10-7l-7 7m7 0l-7-7M3 5.5h18m-4.944 0l-.683-1.408c-.453-.936-.68-1.403-1.071-1.695a2 2 0 0 0-.275-.172C13.594 2 13.074 2 12.035 2c-1.066 0-1.599 0-2.04.234a2 2 0 0 0-.278.18c-.395.303-.616.788-1.058 1.757L8.053 5.5" color="#ffffff"/></svg></button>
+                            <button><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"><path fill="none" stroke="#f50f0f" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="m14.363 5.652l1.48-1.48a2 2 0 0 1 2.829 0l1.414 1.414a2 2 0 0 1 0 2.828l-1.48 1.48m-4.243-4.242l-9.616 9.615a2 2 0 0 0-.578 1.238l-.242 2.74a1 1 0 0 0 1.084 1.085l2.74-.242a2 2 0 0 0 1.24-.578l9.615-9.616m-4.243-4.242l4.243 4.242"/></svg></button>
+                        </div> -->
+                    </div>
+                    {% for c in categories_inventory %}
+                    <div class="container-row {% if category_selected == c.id | string %} container-row-selected {% endif %}">
+                        <a href="?c={{ c.id }}" data-category="{{ c.id }}" class="a-link-category-product-all">{{ c.name }}</a>
+                        {% if level_user_context | int == 2 %}
+                        <div class="container-btns-action">
+                            <button class="btns-delete-category-product" data-identifier="{{ c.id }}"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"><path fill="none" stroke="#f50f0f" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="m19.5 5.5l-.402 6.506M4.5 5.5l.605 10.025c.154 2.567.232 3.85.874 4.774c.317.456.726.842 1.2 1.131c.671.41 1.502.533 2.821.57m10-7l-7 7m7 0l-7-7M3 5.5h18m-4.944 0l-.683-1.408c-.453-.936-.68-1.403-1.071-1.695a2 2 0 0 0-.275-.172C13.594 2 13.074 2 12.035 2c-1.066 0-1.599 0-2.04.234a2 2 0 0 0-.278.18c-.395.303-.616.788-1.058 1.757L8.053 5.5" color="#ffffff"/></svg></button>
+                            <button class="btns-update-category-product" data-identifier="{{ c.id }}"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"><path fill="none" stroke="#132be7" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="m14.363 5.652l1.48-1.48a2 2 0 0 1 2.829 0l1.414 1.414a2 2 0 0 1 0 2.828l-1.48 1.48m-4.243-4.242l-9.616 9.615a2 2 0 0 0-.578 1.238l-.242 2.74a1 1 0 0 0 1.084 1.085l2.74-.242a2 2 0 0 0 1.24-.578l9.615-9.616m-4.243-4.242l4.243 4.242"/></svg></button>
+                        </div>
+                        {% endif %}
+                    </div>
+                    {% endfor %}
+                </div>
+                <div class="container-actions-option-inventory">
+                    <!-- <button id="btn-buy-product" disabled>
+                        Comprar
+                    </button> -->
+                    <button id="btn-sell-product" disabled onclick="openModal(document.getElementById('modal-vender-producto'))">
+                        Vender
+                    </button>
+                    <!-- <button id="btn-transfer-product" disabled>
+                        Transferir
+                    </button> -->
+                </div>
+            </div>
+            <div class="container-products-main-block">
+                <!-- <div class="container-title">
+                    <h2>listado de mesas</h2>
+                </div> -->
+                <div class="table-container container-product-all">
+                    <table class="table">
+                        <thead>
+                          <tr>
+                            <th><abbr title="Position">#</abbr></th>
+                            <th><abbr title="Código">Código</abbr></th>
+                            <th><abbr title="Nombre">Nombre</abbr></th>
+                            <th><abbr title="Imagen">I</abbr></th>
+                            <th><abbr title="Descripción">Descr.</abbr></th>
+                            <th><abbr title="Cantidad">Cant.</abbr></th>
+                            <th><abbr title="Precio de compra">P. C.</abbr></th>
+                            <th><abbr title="Precio de venta">P. V.</abbr></th>
+                            <th><abbr title="Unidad de medida">U. M.</abbr></th>
+                            <th><abbr title="Fecha de vencimiento">F. Exp.</abbr></th>
+                            <th>Proveedor</th>
+                            <th></th>
+                          </tr>
+                        </thead>
+                        <tbody id="table-container-products-main">
+                            {% for i in inventories %}
+                            <tr class="block-row-product" data-i="{{ i.id }}" data-category="{{ i.inventory_category_id }}">
+                                <th>{{ loop.index }}</th>
+                                <td class="td-no-wrap">{{ i.product_code }}</td>
+                                <td>{{ i.name }}</td>
+                                <td>
+                                    <img src="/static/images/images_restaurant/images_inventory/box.png" alt="icon" class="img-icon-product">
+                                </td>
+                                <td>{{ i.description }}</td>
+                                <td>{{ i.quantity }}</td>
+                                <td class="td-no-wrap">S/. {{ i.purchase_price }}</td>
+                                <td class="td-no-wrap">S/. {{ i.sale_price }}</td>
+                                <td>{{ i.unit_of_measurement }}</td>
+                                <td class="td-no-wrap">{{ i.expiration_date }}</td>
+                                <td>{{ i.supplier_name }}</td>
+                                <td>
+                                    <div class="container-btn-action">
+                                        <button class="btn-edit-product" data-id="{{ i.id }}"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"><path fill="none" stroke="#132be7" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="m14.363 5.652l1.48-1.48a2 2 0 0 1 2.829 0l1.414 1.414a2 2 0 0 1 0 2.828l-1.48 1.48m-4.243-4.242l-9.616 9.615a2 2 0 0 0-.578 1.238l-.242 2.74a1 1 0 0 0 1.084 1.085l2.74-.242a2 2 0 0 0 1.24-.578l9.615-9.616m-4.243-4.242l4.243 4.242"/></svg></button>
+                                        <button class="btn-delete-product" data-id="{{ i.id }}"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"><path fill="none" stroke="#f50f0f" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="m19.5 5.5l-.402 6.506M4.5 5.5l.605 10.025c.154 2.567.232 3.85.874 4.774c.317.456.726.842 1.2 1.131c.671.41 1.502.533 2.821.57m10-7l-7 7m7 0l-7-7M3 5.5h18m-4.944 0l-.683-1.408c-.453-.936-.68-1.403-1.071-1.695a2 2 0 0 0-.275-.172C13.594 2 13.074 2 12.035 2c-1.066 0-1.599 0-2.04.234a2 2 0 0 0-.278.18c-.395.303-.616.788-1.058 1.757L8.053 5.5" color="#ffffff"/></svg></button>
+                                    </div>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                <nav class="pagination is-small" role="navigation" aria-label="pagination">
+                    <a href="#" class="pagination-previous is-disabled" title="This is the first page">Previous</a>
+                    <a href="#" class="pagination-next">Next page</a>
+                    <ul class="pagination-list">
+                        
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </section>
+    <!-- Modals create-->
+    <div class="modal" id="create-new-product">
+        <div class="modal-background"></div>
+        <div class="modal-content">
+            <div class="container-title">
+                <h1>Crear nuevo producto</h1>
+            </div>
+            <form action="" id="form-new-product">
+                <div class="container-grid-column-2">
+                    <div class="container-main-template-input-simple">
+                        <label for="id_supplier">
+                            <span>Proveedor *</span>
+                            <select name="id_supplier" id="id_supplier" class="input-simple-main-template" required>
+                                <option value="" disabled selected>seleccione proveedor</option>
+                                {% for s in suppliers %}
+                                <option value="{{ s.id }}">{{ s.name }}</option>
+                                {% endfor %}
+                            </select>
+                        </label>
+                    </div>
+                    <div class="container-main-template-input-simple">
+                        <label for="name">
+                            <span>Nombre del producto *</span>
+                            <input type="text" value="" name="name" id="name" class="input-simple-main-template" required>
+                        </label>
+                    </div>
+                    <div class="container-main-template-input-simple">
+                        <label for="description">
+                            <span>Descripción </span>
+                            <input type="text" value="" name="description" id="description" class="input-simple-main-template">
+                        </label>
+                    </div>
+                    <div class="container-main-template-input-simple">
+                        <label for="quantity">
+                            <span>Cantidad *</span>
+                            <input type="number" value="" name="quantity" id="quantity" class="input-simple-main-template" required>
+                        </label>
+                    </div>
+                    <div class="container-main-template-input-simple">
+                        <label for="purchase_price">
+                            <span>Precio de compra *</span>
+                            <input type="text" value="" name="purchase_price" id="purchase_price" class="input-simple-main-template" required>
+                        </label>
+                    </div>
+                    <div class="container-main-template-input-simple">
+                        <label for="sale_price">
+                            <span>Precio de venta *</span>
+                            <input type="text" value="" name="sale_price" id="sale_price" class="input-simple-main-template" required>
+                        </label>
+                    </div>
+                    <div class="container-main-template-input-simple">
+                        <label for="unit_of_measurement">
+                            <span>Unidad de medida *</span>
+                            <input type="text" value="" name="unit_of_measurement" id="unit_of_measurement" class="input-simple-main-template" required>
+                        </label>
+                    </div>
+                    <div class="container-main-template-input-simple">
+                        <label for="expiration_date">
+                            <span>Fecha de vencimiento *</span>
+                            <input type="date" value="" name="expiration_date" id="expiration_date" class="input-simple-main-template" required>
+                        </label>
+                    </div>
+                    <div class="container-main-template-input-simple">
+                        <label for="state">
+                            <span>Estado *</span>
+                            <select name="state" id="state" class="input-simple-main-template" required>
+                                <option value="" disabled selected>Seleccionar</option>
+                                <option value="1">Activo</option>
+                                <option value="0">Inactivo</option>
+                            </select>
+                        </label>
+                    </div>
+                    <div class="container-main-template-input-simple">
+                        <label for="category_id">
+                            <span>Categoria *</span>
+                            <select name="category_id" id="category_id" class="input-simple-main-template" required>
+                                <option value="" disabled selected>Seleccionar</option>
+                                {% for c in categories_inventory %}
+                                <option value="{{ c.id }}">{{ c.name }}</option>
+                                {% endfor %}
+                            </select>
+                        </label>
+                    </div>
+                    <div class="container-main-template-input-simple">
+                        <label for="image_id">
+                            <span>Imagen</span>
+                            <input type="text" value="0" name="image_id" id="image_id" class="input-simple-main-template">
+                        </label>
+                    </div>
+
+                </div>
+                <div class="container-buttons">
+                    <button class="btn-close-modal" onclick="closeModal(document.getElementById('create-new-product'))">Cerrar</button>
+                    <button class="btn-edit-modal" id="btn-submit-new-product" type="submit">Enviar</button>
+                </div>
+            </form>
+        </div>
+        <button class="modal-close is-large"></button>
+    </div>
+    <!-- Modal edit -->
+    <div class="modal" id="update-product">
+        <div class="modal-background"></div>
+        <div class="modal-content">
+            <div class="container-title">
+                <h1>Actualizar producto</h1>
+            </div>
+            <form action="" id="form-update-product">
+                <div class="container-grid-column-2">
+                    <div class="container-main-template-input-simple">
+                        <label for="id_supplier">
+                            <span>Proveedor *</span>
+                            <select name="id_supplier" id="id_supplier" class="input-simple-main-template" required>
+                                <option value="" disabled selected>seleccione proveedor</option>
+                                {% for s in suppliers %}
+                                <option value="{{ s.id }}">{{ s.name }}</option>
+                                {% endfor %}
+                            </select>
+                        </label>
+                    </div>
+                    <div class="container-main-template-input-simple">
+                        <label for="name">
+                            <span>Nombre del producto *</span>
+                            <input type="text" value="" name="name" id="name" class="input-simple-main-template">
+                        </label>
+                    </div>
+                    <div class="container-main-template-input-simple">
+                        <label for="description">
+                            <span>Descripción </span>
+                            <input type="text" value="" name="description" id="description" class="input-simple-main-template">
+                        </label>
+                    </div>
+                    <div class="container-main-template-input-simple">
+                        <label for="quantity">
+                            <span>Cantidad *</span>
+                            <input type="number" value="" name="quantity" id="quantity" class="input-simple-main-template">
+                        </label>
+                    </div>
+                    <div class="container-main-template-input-simple">
+                        <label for="purchase_price">
+                            <span>Precio de compra *</span>
+                            <input type="text" value="" name="purchase_price" id="purchase_price" class="input-simple-main-template">
+                        </label>
+                    </div>
+                    <div class="container-main-template-input-simple">
+                        <label for="sale_price">
+                            <span>Precio de venta *</span>
+                            <input type="text" value="" name="sale_price" id="sale_price" class="input-simple-main-template">
+                        </label>
+                    </div>
+                    <div class="container-main-template-input-simple">
+                        <label for="unit_of_measurement">
+                            <span>Unidad de medida *</span>
+                            <input type="text" value="" name="unit_of_measurement" id="unit_of_measurement" class="input-simple-main-template">
+                        </label>
+                    </div>
+                    <div class="container-main-template-input-simple">
+                        <label for="expiration_date">
+                            <span>Fecha de vencimiento *</span>
+                            <input type="date" value="" name="expiration_date" id="expiration_date" class="input-simple-main-template" required>
+                        </label>
+                    </div>
+                    <div class="container-main-template-input-simple">
+                        <label for="state">
+                            <span>Estado *</span>
+                            <select name="state" id="state" class="input-simple-main-template">
+                                <option value="" disabled selected>Seleccionar</option>
+                                <option value="1">Activo</option>
+                                <option value="0">Inactivo</option>
+                            </select>
+                        </label>
+                    </div>
+                    <div class="container-main-template-input-simple">
+                        <label for="category_id">
+                            <span>Categoria *</span>
+                            <select name="inventory_category_id" id="category_id" class="input-simple-main-template">
+                                <option value="" disabled selected>Seleccionar</option>
+                                {% for c in categories_inventory %}
+                                <option value="{{ c.id }}">{{ c.name }}</option>
+                                {% endfor %}
+                            </select>
+                        </label>
+                    </div>
+                    <div class="container-main-template-input-simple">
+                        <label for="image_id">
+                            <span>Imagen</span>
+                            <input type="text" value="" name="image_id" id="image_id" class="input-simple-main-template">
+                        </label>
+                    </div>
+                </div>
+                <div class="container-buttons">
+                    <button onclick="closeModal(document.getElementById('update-product'))">Cerrar</button>
+                    <button id="btn-submit-update-product">Actualizar</button>
+                </div>
+            </form>
+        </div>
+        <button class="modal-close is-large"></button>
+    </div>
+    <!-- End Modal edit -->
+    <div class="modal" id="delete-product-modal">
+        <div class="modal-background"></div>
+        <div class="modal-content">
+            <div class="container-title">
+                <h1>Eliminar producto?</h1>
+            </div>
+            <div class="container-text">
+                <br>
+                <!-- <span></span> -->
+            </div>
+            <div class="container-buttons">
+                <button onclick="closeModal(document.getElementById('delete-product-modal'))">Cerrar</button>
+                <button id="btn-submit-delete-product">Eliminar</button>
+            </div>
+        </div>
+        <button class="modal-close is-large"></button>
+    </div>
+    <div class="modal" id="delete-category-product-modal">
+        <div class="modal-background"></div>
+        <div class="modal-content">
+            <div class="container-title">
+                <h1>Eliminar categoría?</h1>
+            </div>
+            <div class="container-text">
+                <span>Se eliminarán todas los productos asignados a esta categoría.</span>
+            </div>
+            <div class="container-buttons">
+                <button onclick="closeModal(document.getElementById('delete-category-product-modal'))">Cerrar</button>
+                <button id="btn-submit-delete-category-product">Eliminar</button>
+            </div>
+        </div>
+        <button class="modal-close is-large"></button>
+    </div>
+    <div class="modal" id="create-new-category-product">
+        <div class="modal-background"></div>
+        <div class="modal-content">
+            <div class="container-title">
+                <h1>Crear categoría</h1>
+            </div>
+            <form action="" id="form-create-category">
+                <div class="container-main-template-input-simple">
+                    <label for="category_name">
+                        <span>Nombre de la categoría *</span>
+                        <input type="text" value="" name="name" id="category_name" class="input-simple-main-template">
+                    </label>
+                </div>
+                <div class="container-main-template-input-simple">
+                    <label for="category_description">
+                        <span>Descripción</span>
+                        <input type="text" value="" name="description" id="category_description" class="input-simple-main-template">
+                    </label>
+                </div>
+            </form>
+            <div class="container-buttons">
+                <button onclick="closeModal(document.getElementById('create-new-category-product'))">Cerrar</button>
+                <button id="btn-submit-create-category">Enviar</button>
+            </div>
+        </div>
+    </div>
+    <div class="modal" id="update-category-product">
+        <div class="modal-background"></div>
+        <div class="modal-content">
+            <div class="container-title">
+                <h1>Actualizar categoría</h1>
+            </div>
+            <div class="container-main-template-input-simple">
+                <label for="category_name_update">
+                    <span>Nombre de la categoría *</span>
+                    <input type="text" value="" name="category_name_update" id="category_name_update" class="input-simple-main-template">
+                </label>
+            </div>
+            <div class="container-buttons">
+                <button onclick="closeModal(document.getElementById('update-category-product'))">Cerrar</button>
+                <button id="btn-submit-update-category">Actualizar</button>
+            </div>
+        </div>
+    </div>
+    <div class="modal" id="modal-vender-producto">
+        <div class="modal-background"></div>
+        <div class="modal-content">
+            <div class="container-details-product" id="container-details-product">
+                <div class="container-title">
+                    <h1>Vender producto</h1>
+                </div>
+                <div class="container-details-product_header">
+                    <div class="container-icon">
+                        <img src="/static/images/images_restaurant/images_inventory/box.png" alt="icon">
+                    </div>
+                    <div class="container-data">
+                        <div class="product-name-div">
+                            <strong class="name">...</strong>
+                        </div>
+                        <div class="details-product"> 
+                            <strong>Código:</strong>
+                            <span class="product_code">...</span>
+                        </div>
+                        <div class="details-product">
+                            <strong>Precio de Compra:</strong>
+                            <span>S/. <span class="purchase_price">...</span></span>
+                        </div>
+                        <div class="details-product">
+                            <strong>Precio de Venta:</strong>
+                            <span>S/. <span class="sale_price">...</span></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="container-details-product_descr">
+                    <div class="container-f-v">
+                        <strong>Descripción: </strong>
+                        <span class="description">...</span>
+                    </div>
+                    <div class="container-row-data">
+                        <div class="container-f-v">
+                            <strong>Disponible: </strong>
+                            <span class="quantity">...</span>
+                        </div>
+                        <div class="container-f-v">
+                            <strong>F. de vencimiento: </strong>
+                            <span class="expiration_date">...</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <form action="" id="id-form-create-sell-data">
+                <div class="container-inputs-main">
+                    <div class="container-input-row">
+                        <div class="container-main-template-input-simple">
+                            <label for="">
+                                <span>Cliente *</span>
+                                <select name="customer" id="cliente-select-sell" class="input-simple-main-template" required>
+                                    <option value="" selected disabled>Seleccione cliente</option>
+                                    <option value="0">Otros</option>
+                                    {% for c in customers %}
+                                    <option value="{{ c.id }}">{{ c.name }}</option>
+                                    {% endfor %}
+                                </select>
+                                <input type="hidden" value="" name="customer_other" id="cliente-select-sell__others" placeholder="Nombre de cliente" class="input-simple-main-template mt-2">
+                            </label>
+                        </div>
+                    </div>
+                    <div class="container-2-columns">
+                        <div class="container-main-template-input-simple">
+                            <label for="">
+                                <span>Cantidad: *</span>
+                                <input type="text" value="" placeholder="Cantidad" name="quantity" id="quantity_sell" class="input-simple-main-template" required>
+                            </label>
+                        </div>
+                        <div class="container-main-template-input-simple">
+                            <label for="">
+                                <span>Precio total a cobrar:</span>
+                                <input type="text" value="" readonly placeholder="Precio a cobrar" name="" id="price_total_sell_render" class="input-simple-main-template" required>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="container-2-columns">
+                        <div class="container-main-template-input-simple">
+                            <label for="">
+                                <span>Descuento %:</span>
+                                <input type="text" value="" placeholder="Descuento" name="discount" id="discount_sell_appli" class="input-simple-main-template">
+                            </label>
+                        </div>
+                        <div class="container-main-template-input-simple">
+                            <label for="">
+                                <span>Monto abonado: *</span>
+                                <input type="text" value="" placeholder="Monto abonado" name="amount_paid" id="amount_paid_sell_appli" class="input-simple-main-template" required>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="container-2-columns">
+                        <div class="container-main-template-input-simple">
+                            <label for="">
+                                <span>Estado de la venta *</span>
+                                <select name="state" id="select-state-sell-main" class="input-simple-main-template" required>
+                                    <option value="" selected disabled>--Seleccione estado---</option>
+                                    <option value="1">Completado</option>
+                                    <option value="2">Monto por cobrar</option>
+                                    <option value="3">Monto por abonar</option>
+                                </select>
+                            </label>
+                        </div>
+                        <div class="container-main-template-input-simple">
+                            <label for="">
+                                <span id="select-state-sell-main__text"></span>
+                                <input type="hidden" value="" placeholder="Monto por cobrar" name="amount_unsettled" id="select-state-sell-main__2" class="input-simple-main-template">
+                                <input type="hidden" value="" placeholder="Monto por abonar" name="amount_due" id="select-state-sell-main__3" class="input-simple-main-template">
+                            </label>
+                        </div>
+                    </div>
+                    <div class="container-input-row">
+                        <h2>Método de pago</h2>
+                        <div class="radio-inputs-methods-pay">
+                            <label>
+                                <input checked="" value="1" class="radio-input" type="radio" name="pay_method">
+                                <span class="radio-tile">
+                                    <span class="radio-icon">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="m2 11l2.807-3.157A4 4 0 0 1 7.797 6.5H8m-6 13h5.5l4-3s.81-.547 2-1.5c2.5-2 0-5.166-2.5-3.5C8.964 12.857 7 14 7 14"/><path d="M8 13.5V7a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v6a2 2 0 0 1-2 2h-6.5"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 12a2 2 0 1 1 0-4a2 2 0 0 1 0 4m4.5-1.99l.01-.011m-9.01.011l.01-.011"/></g></svg>
+                                    </span>
+                                    <span class="radio-label">Efectivo</span>
+                                </span>
+                            </label>
+                            <label>
+                                <input value="2" class="radio-input" type="radio" name="pay_method">
+                                <span class="radio-tile">
+                                    <span class="radio-icon">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" viewBox="0 0 32 32"><path fill="currentColor" d="M2 9.5A4.5 4.5 0 0 1 6.5 5h19A4.5 4.5 0 0 1 30 9.5v13a4.5 4.5 0 0 1-4.5 4.5h-19A4.5 4.5 0 0 1 2 22.5zM6.5 7A2.5 2.5 0 0 0 4 9.5V11h24V9.5A2.5 2.5 0 0 0 25.5 7zM4 22.5A2.5 2.5 0 0 0 6.5 25h19a2.5 2.5 0 0 0 2.5-2.5V13H4zM21 19h3a1 1 0 1 1 0 2h-3a1 1 0 1 1 0-2"/></svg>
+                                    </span>
+                                    <span class="radio-label">Tarjeta</span>
+                                </span>
+                            </label>
+                            <label>
+                                <input value="3" class="radio-input" type="radio" name="pay_method">
+                                <span class="radio-tile">
+                                    <span class="radio-icon">
+                                        <img src="{{ url_for('static', filename='images/images_restaurant/images_default/min.yape.min.jpg') }}" alt="">
+                                    </span>
+                                    <span class="radio-label">Yape</span>
+                                </span>
+                            </label>
+                            <label>
+                                <input value="4" class="radio-input" type="radio" name="pay_method">
+                                <span class="radio-tile">
+                                    <span class="radio-icon">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" viewBox="0 0 512 512"><path fill="currentColor" d="m210.6 44.39l-7-4.39c-13.7-8.4-30.8-13.28-45.5-8.7c-15.8 4.92-28.4 17.09-35 35.37l-9.4-4.84c-16.2-8.34-24.68-8.47-31.71-5.31c-5.61 2.51-11.46 8.55-18.09 17.37l82.4 63.71c12.9 4.2 31.8 4.1 50.7-.8c19-4.9 37.9-14.5 51.7-27.4l31.1-76.9c-27.4-21.65-52.4-9.11-69.2 11.89m53.1 76.51c-17 17.2-42.3 28.8-62 34c-6.9 1.8-13.8 3.1-20.5 3.8c-3.7 6.1-6.8 12.3-9.2 18.5c4.8 24.4 13.8 44.4 27.3 60.8l-14.4 12c-8.3-10-15.7-20.8-21.3-32.8c-.9 23.2 4.3 47.2 12.8 72.2l-17.7 6c-15.6-45.6-20.9-92.3 1-136.3c-7.4-.6-14.4-2-20.9-4.3l-.3-.1q-6.45 6.15-12.3 12.9c-31.57 36.6-48.96 85.3-39.86 123.2c4.87 20.3 13.6 39.5 26.16 55.9c18.4-.4 35.8 0 51.6 6c7.5-.8 15.2-1.3 23.2-1.3c28.5 0 54.3 5.3 73.8 14.5c7.6 3.6 14.5 7.9 20 12.8c0-5.3.8-11 2.4-15.2c-8.9-8.4-14.5-18.6-14.5-30.2c0-16.1 10.7-29.4 26.2-39c0-4.6.9-9 2.5-13.2c-10.1-8.7-16.6-19.5-16.6-32.1c0-7.9 2.6-15.1 7-21.6c-4.4-6.4-7-13.6-7-21.5c0-3.9.6-7.5 1.7-11c-9.7-8.6-15.8-19.2-15.8-31.4c0-12.1 6-22.6 15.6-31.1c-5.9-4.6-12.2-8.5-18.9-11.5m111.4 2.3c-26 0-49.5 5.5-65.6 13.6c-16.2 8.1-23.8 18.1-23.8 26.7c0 8.7 7.6 18.7 23.8 26.8c16.1 8.1 39.6 13.6 65.6 13.6c11.3 0 22-1.1 31.9-2.9v-17c13.9-2.1 25.4-5.9 32.8-10.8v17.6c12.5-3.6 24.5-16.9 24.8-27.3c0-8.6-7.6-18.6-23.8-26.7s-39.6-13.6-65.7-13.6m96.5 67.7c-3.3 3.5-7.2 6.8-11.6 9.8l.2 29c12.6-7.5 18.5-16.2 18.5-23.8c0-4.8-2.3-10-7.1-15m-171.8 15.4c.3 8.6 7.9 18.3 23.8 26.3c16.2 8.2 39.6 13.6 65.7 13.6c16.3 0 31.6-2.2 44.7-5.8l.7-27.2c-17.2 6-37.6 9.3-59.6 9.3c-28.5 0-54.4-5.7-74-15.5c-.5-.2-.9-.5-1.3-.7m2 34.8c-1.4 2.7-2 5.4-2 7.9c0 8.7 7.6 18.7 23.8 26.8s39.6 13.5 65.7 13.5c13.2 0 25.7-1.3 37-3.8v-24c-11.6 2.2-24 3.3-37 3.3c-28.6 0-54.5-5.6-74.1-15.5c-4.9-2.4-9.4-5.2-13.4-8.2m174.9 0c-6.1 4.3-11.4 7.5-17.6 10.2v22.3c13.3-7.7 19.6-16.7 19.6-24.6c0-2.5-.6-5.2-2-7.9m7.5 36.8c-2 2-4.2 3.9-6.6 5.8v32.4c10.3-7 15.3-14.7 15.3-21.7c0-5.3-2.9-11-8.7-16.5m-170.1 14c-.1.9-.2 1.7-.2 2.5c0 8.7 7.6 18.6 23.8 26.7c16.2 8.2 39.7 13.6 65.7 13.6c14.9 0 29.1-1.8 41.4-4.8V300c-16.3 5.2-35.2 8-55.5 8c-28.6 0-54.5-5.7-74.1-15.5c-.4-.2-.7-.4-1.1-.6m-13.6 21.4c-8.7 6.5-12.8 13.6-12.8 20c0 8.7 7.6 18.6 23.8 26.8c16.2 8.1 39.6 13.5 65.7 13.5c9.5 0 18.7-.7 27.3-2v-18.2h-1.1c-28.6 0-54.5-5.7-74.1-15.6c-12.5-6.2-22.9-14.5-28.8-24.5M463 343.9c-7.9 2.8-16.5 5.1-25.7 6.6v12.1c1.9-.8 3.8-1.6 5.6-2.5c9.8-5 16.4-10.6 20.1-16.2m9.2 18.2c-3.8 3.8-8.2 7.2-13.1 10.3V401c13.3-7.6 19.6-16.6 19.6-24.5c0-4.6-2.1-9.6-6.5-14.4m-348.7 2.8c-10.2.1-21.2 1.4-32.6 4.1c-22.81 5.3-42.42 15-55.22 25.7c-12.8 10.6-17.8 21.4-16.3 29.1s9.4 14.8 24.8 18.9c15.35 4 36.82 4.2 59.62-1.1c9.2-2.2 17.8-5 25.7-8.3v-20.7c14.6-6.5 25.5-14.3 30.4-21.9v24.4c12.1-10.4 16.8-20.8 15.4-28.4c-1.4-7.7-9.4-14.8-24.8-18.8c-7.7-2-16.9-3.1-27-3m64.6 5.2c2.7 3.9 4.6 8.3 5.6 13.2c1.1 6 .6 11.8-1.2 17.5c9.9 2.6 18.9 6.1 26.7 10.5c4.4 2.4 8.5 5.3 12.1 8.3c9-2.1 16.6-5.1 22-8.7v20.6c16.1-7.6 23.5-16.9 23.5-24.3c0-7.5-7.4-16.8-23.6-24.4c-16.1-7.5-39.3-12.6-65.1-12.7m111.8 5c-.1.4-.1.9-.1 1.4c0 8.7 7.6 18.6 23.8 26.8c16.2 8.1 39.6 13.5 65.7 13.5c13.2 0 25.7-1.4 37-3.8v-26.9c-14.8 4-31.5 6.2-49.1 6.2c-28.6 0-54.5-5.7-74.1-15.5c-1.1-.6-2.2-1.2-3.2-1.7m2.8 37.3c-2 3.3-2.9 6.5-2.9 9.6c0 8.7 7.6 18.6 23.8 26.8c16.2 8.1 39.6 13.5 65.7 13.5c13.2 0 25.7-1.4 37-3.8v-26.4c-11.6 2.2-24 3.4-37 3.4c-28.6 0-54.5-5.7-74.1-15.6c-4.5-2.2-8.7-4.7-12.5-7.5m173.1 0c-5.8 3.9-10.9 7-16.7 9.5v24.6c13.3-7.6 19.6-16.6 19.6-24.5c0-3.1-.9-6.3-2.9-9.6m-292.6 5.4c-3.5 4.4-7.6 8.6-12.2 12.4c-15.6 13.1-37.6 23.7-63 29.6c-9.06 2.1-18.06 3.4-26.7 4.1c3.2 5.3 8.83 10.5 17.07 15.1c13.63 7.7 33.63 12.9 55.83 12.9c10.1 0 19.7-1.1 28.5-3v-20.8c13.8-2.1 25.4-5.9 32.8-10.8v18.4c10-7 14.8-14.9 14.8-22.4c0-8.7-6.5-18-20.2-25.7c-7.4-4.1-16.6-7.5-26.9-9.8"/></svg>
+                                    </span>
+                                    <span class="radio-label">Otro</span>
+                                </span>
+                            </label>
+                        </div> 
+                    </div>
+                </div>
+                <div class="container-buttons-action">
+                    <button type="button" onclick="closeModal(document.getElementById('modal-vender-producto'))">Cerrar</button>
+                    <button type="submit" id="btn-confirm-sell-product">Confirmar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock %}
+
+{% block main_link_js %}
+    <script src="{{url_for('static', filename='js/inventoryController.js')}}"></script>
+    <script>
+        create_new_product();
+        update_product();
+        delete_product();
+        createCategory();
+        updateCategory();
+        deleteCategory();
+        sellProductPrepared();
+
+        BulmaPagination("table-container-products-main", 15);
+
+        const select_state_sell_main = document.getElementById("select-state-sell-main");
+        const select_state_sell_main__text = document.getElementById("select-state-sell-main__text");
+        const select_state_sell_main__2 = document.getElementById("select-state-sell-main__2");
+        const select_state_sell_main__3 = document.getElementById("select-state-sell-main__3");
+        const amount_paid_sell_appli = document.getElementById("amount_paid_sell_appli");
+        const price_total_sell_render = document.getElementById("price_total_sell_render");
+        const discount_sell_appli = document.getElementById("discount_sell_appli");
+        amount_paid_sell_appli.addEventListener("input", ()=>{
+            const opts = select_state_sell_main.querySelectorAll("option");
+            let val1 = parseFloat(price_total_sell_render.value);
+            let val2 = parseFloat(amount_paid_sell_appli.value);
+            if (val1 > val2){
+                select_state_sell_main.value = "2";
+            }else if(val1 < val2){
+                select_state_sell_main.value = "3";
+            }else{
+                select_state_sell_main.value = "1";
+            }
+            select_state_sell_main.dispatchEvent(new Event("change"));
+        });
+        select_state_sell_main.addEventListener("change", ()=>{
+            if (select_state_sell_main.value === "2"){
+                select_state_sell_main__text.textContent = "Monto por cobrar *";
+                select_state_sell_main__2.type = "text";
+                select_state_sell_main__2.value = (parseFloat(price_total_sell_render.value) - parseFloat(amount_paid_sell_appli.value)).toFixed(2);
+                select_state_sell_main__3.type = "hidden";
+                select_state_sell_main__2.setAttribute("required", true);
+                select_state_sell_main__3.removeAttribute("required");
+            }else if (select_state_sell_main.value === "3"){
+                select_state_sell_main__text.textContent = "Monto por abonar *";
+                select_state_sell_main__2.type = "hidden";
+                select_state_sell_main__3.type = "text";
+                select_state_sell_main__3.value = (parseFloat(amount_paid_sell_appli.value) - parseFloat(price_total_sell_render.value)).toFixed(2);
+                select_state_sell_main__3.setAttribute("required", true);
+                select_state_sell_main__2.removeAttribute("required");
+            }else{
+                select_state_sell_main__text.textContent = "";
+                select_state_sell_main__2.type = "hidden";
+                select_state_sell_main__3.type = "hidden";
+                select_state_sell_main__2.removeAttribute("required");
+                select_state_sell_main__3.removeAttribute("required");
+            }
+        })
+
+        const cliente_select_sell = document.getElementById("cliente-select-sell");
+        const cliente_select_sell__others = document.getElementById("cliente-select-sell__others")
+        cliente_select_sell.addEventListener("change", ()=>{
+            if (cliente_select_sell.value === "0"){
+                cliente_select_sell__others.type = "text";
+                cliente_select_sell__others.value = "";
+                cliente_select_sell.removeAttribute("required");
+                cliente_select_sell__others.setAttribute("required", true);
+            }else{
+                cliente_select_sell.setAttribute("required", true);
+                cliente_select_sell__others.type = "hidden";
+                cliente_select_sell__others.value = "";
+                cliente_select_sell__others.removeAttribute("required");
+            }
+        })
+
+        const btn_filter = document.getElementById("btn-search-filter-inventory");
+        const input_quantity_max = document.getElementById("input_quantity_max");
+        const input_expiration_date_start_filter = document.getElementById("input_expiration_date_start_filter");
+        const input_expiration_date_end_filter = document.getElementById("input_expiration_date_end_filter");
+        btn_filter.addEventListener("click", ()=>{
+            let route_serach = window.location.search;
+            if (route_serach){
+                if (input_expiration_date_start_filter.value){
+                    if (route_serach.includes("edmin")){
+                        let ps = route_serach.indexOf("edmin");
+                        route_serach = route_serach.slice(0, ps+6)+ input_expiration_date_start_filter.value + route_serach.slice(ps+16) 
+                    }else{
+                        route_serach = route_serach + "&edmin="+input_expiration_date_start_filter.value;
+                    };
+                };
+                if (input_expiration_date_end_filter.value){
+                    if (route_serach.includes("edmax")){
+                        let ps = route_serach.indexOf("edmax");
+                        route_serach = route_serach.slice(0, ps+6)+ input_expiration_date_end_filter.value + route_serach.slice(ps+16) 
+                    }else{
+                        route_serach = route_serach + "&edmax="+input_expiration_date_end_filter.value;
+                    };
+                };
+                if (input_quantity_max.value){
+                    if (parseInt(input_quantity_max.value) >= 100 && parseInt(input_quantity_max.value) <= 999){
+                        if (route_serach.includes("qm")){
+                            let ps = route_serach.indexOf("qm");
+                            route_serach = route_serach.slice(0, ps+3)+ input_quantity_max.value + route_serach.slice(ps+6) 
+                        }else{
+                            route_serach = route_serach + "&qm="+input_quantity_max.value
+                        };
+                    }else{
+                        alert("La cantidad de datos debe estar entre 100 - 999");
+                    }
+                };
+            }else{
+                route_serach = "?c=";
+                if (input_expiration_date_start_filter.value){
+                    route_serach = route_serach + "&edmin="+input_expiration_date_end_filter.value
+                };
+                if (input_expiration_date_end_filter.value){
+                    route_serach = route_serach + "&edmax="+input_expiration_date_start_filter.value
+                };
+                if (input_quantity_max.value){
+                    route_serach = route_serach + "&qm="+input_quantity_max.value
+                };
+            }
+            location.href = route_serach;
+            
+        })
+    </script>
+    <script>
+        const input_search = document.querySelector(".input-search-product-in-table");
+        const table_container = document.getElementById("table-container-products-main");
+        input_search.addEventListener("input", ()=>{
+            if (input_search.value){
+                const tr_all = table_container.querySelectorAll("tr");
+                tr_all.forEach(tr =>{
+                    let tr_yes = false;
+                    let td_all = tr.querySelectorAll("td");
+                    td_all.forEach(td=>{
+                        if (td.textContent.toLocaleLowerCase().includes(input_search.value.toLocaleLowerCase())){
+                            if (!tr_yes){
+                                tr_yes = true;
+                            };
+                            td.style.backgroundColor = "yellow";
+                        }else{
+                            td.removeAttribute("style");
+                        };
+                    });
+                    if (tr_yes){
+                        tr.removeAttribute("style");
+                    }else{
+                        tr.style.display = "none";
+                    };
+                })
+            }else{
+                const tr_all = table_container.querySelectorAll("tr");
+                tr_all.forEach(tr =>{
+                    let td_all = tr.querySelectorAll("td");
+                    td_all.forEach(td=>{
+                        td.removeAttribute("style");
+                    });         
+                    tr.removeAttribute("style");
+                });
+            };
+        });
+    </script>
+{% endblock %}

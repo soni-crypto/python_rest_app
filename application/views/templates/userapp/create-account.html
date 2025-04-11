@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#fc9504">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/libraries/bulma.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/ui/input_border.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/userapp/create_account.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/ui/loading_circle.css') }}">
+        
+    <title>Create Account</title>
+</head>
+<body>
+    <div class="container-main-login">
+        <div class="container-header">
+            <div class="container-logo">
+                <img src="{{ url_for('static', filename='images/') }}emTorch-nuevo-256px-256px.transparent.min.png" alt="logo">
+            </div>
+            <h1>neeva</h1>
+        </div>
+
+
+        <div class="container-inputs-main-all">
+            <div class="block-inputs">
+                <div class="input-group-ui-style">
+                    <input required="" type="text" id="first_name" autocomplete="off" class="input-required input-ui-style">
+                    <label class="user-label-ui-style">Nombres</label>
+                </div>
+
+                <div class="input-group-ui-style">
+                    <input required="" type="text" id="last_name" autocomplete="off" class="input-required input-ui-style">
+                    <label class="user-label-ui-style">Apellidos</label>
+                </div>
+                <div class="input-group-ui-style">
+                    <input required="" type="email" id="email" autocomplete="off" class="input-required input-ui-style">
+                    <label class="user-label-ui-style">Correo</label>
+                </div>
+                <div class="input-group-ui-style">
+                    <input required="" type="tel" id="telephone" autocomplete="off" class="input-required input-ui-style">
+                    <label class="user-label-ui-style">Número de telefono</label>
+                </div>
+                <div class="input-group-ui-style">
+                    <input required="" type="password" id="password" autocomplete="off" class="input-required input-ui-style">
+                    <label class="user-label-ui-style">Contraseña</label>
+                    <button class="btn-view-password" id="btn-view-password">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="" d="M2 5.27L3.28 4L20 20.72L18.73 22l-3.08-3.08c-1.15.38-2.37.58-3.65.58c-5 0-9.27-3.11-11-7.5c.69-1.76 1.79-3.31 3.19-4.54zM12 9a3 3 0 0 1 3 3a3 3 0 0 1-.17 1L11 9.17A3 3 0 0 1 12 9m0-4.5c5 0 9.27 3.11 11 7.5a11.8 11.8 0 0 1-4 5.19l-1.42-1.43A9.86 9.86 0 0 0 20.82 12A9.82 9.82 0 0 0 12 6.5c-1.09 0-2.16.18-3.16.5L7.3 5.47c1.44-.62 3.03-.97 4.7-.97M3.18 12A9.82 9.82 0 0 0 12 17.5c.69 0 1.37-.07 2-.21L11.72 15A3.064 3.064 0 0 1 9 12.28L5.6 8.87c-.99.85-1.82 1.91-2.42 3.13"/></svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024"><path fill="" d="M515.472 321.408c-106.032 0-192 85.968-192 192c0 106.016 85.968 192 192 192s192-85.968 192-192s-85.968-192-192-192m0 320c-70.576 0-129.473-58.816-129.473-129.393s57.424-128 128-128c70.592 0 128 57.424 128 128s-55.935 129.393-126.527 129.393m508.208-136.832c-.368-1.616-.207-3.325-.688-4.91c-.208-.671-.624-1.055-.864-1.647c-.336-.912-.256-1.984-.72-2.864c-93.072-213.104-293.663-335.76-507.423-335.76S95.617 281.827 2.497 494.947c-.4.897-.336 1.824-.657 2.849c-.223.624-.687.975-.895 1.567c-.496 1.616-.304 3.296-.608 4.928c-.591 2.88-1.135 5.68-1.135 8.592c0 2.944.544 5.664 1.135 8.591c.32 1.6.113 3.344.609 4.88c.208.72.672 1.024.895 1.68c.336.88.256 1.968.656 2.848c93.136 213.056 295.744 333.712 509.504 333.712c213.776 0 416.336-120.4 509.44-333.505c.464-.912.369-1.872.72-2.88c.224-.56.655-.976.848-1.6c.496-1.568.336-3.28.687-4.912c.56-2.864 1.088-5.664 1.088-8.624c0-2.816-.528-5.6-1.104-8.497M512 800.595c-181.296 0-359.743-95.568-447.423-287.681c86.848-191.472 267.68-289.504 449.424-289.504c181.68 0 358.496 98.144 445.376 289.712C872.561 704.53 693.744 800.595 512 800.595"/></svg>
+                    </button>
+                </div>
+            </div>
+            <div class="block-buttons">
+                <button id="btn-create-account">Crear cuenta</button>
+            </div>
+            <div class="block-links">
+                <a href="/userapp">Ya tienes una cuenta?</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="modal-code-verification-main">
+        <div class="modal-background"></div>
+        <div class="modal-content">
+            <div class="content-modal-all-main">
+                <div class="div-modal-verification-close">
+                    <button class="modal-verification-close" id="modal-verification-close">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"><path fill="none" stroke="#954d4d" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 6L6 18M6 6l12 12"/></svg>
+                    </button>
+                </div>
+                <div class="block-header">
+                    <div class="container-icon-app-main">
+                        <img src="{{ url_for('static' , filename='images/emTorch-nuevo-256px-256px.transparent.min.png') }}" alt="">
+                    </div>
+                    <h1>Verificación de cuenta</h1>
+                    <h2>Se ha enviado un código de verificación a: <a href="mailto:" id="email-verification-link"></a></h2>
+                </div>
+                <div class="block-body-inputs">
+                    <input type="tel" id="code-1" maxlength="1" autofocus>
+                    <input type="tel" id="code-2" maxlength="1">
+                    <input type="tel" id="code-3" maxlength="1">
+                    <input type="tel" id="code-4" maxlength="1">
+                </div>
+                <div class="container-message-code-incorrect">
+                    <span id="container-message-code-incorrect__text">Código de verificación incorrecto</span>
+                </div>
+                <div class="block-buttons">
+                    <button class="continue-btn" id="continue-btn">Continuar</button>
+                    <button class="resend-btn" id="resend-btn">Reenviar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/user_app/create_account.js') }}"></script>
+    <script>
+        create_account();
+        closeModelVerification();
+        const btn_view_password = document.getElementById("btn-view-password");
+        let state_eye = true;
+        btn_view_password.addEventListener("click", ()=>{
+            if(state_eye){
+                document.getElementById("password").type = "text";
+                btn_view_password.querySelector(".btn-view-password svg:nth-child(1)").style.display = "block";
+                btn_view_password.querySelector(".btn-view-password svg:nth-child(2)").style.display = "none";
+                state_eye = false;
+            }else{
+                document.getElementById("password").type = "password";
+                btn_view_password.querySelector(".btn-view-password svg:nth-child(1)").style.display = "none";
+                btn_view_password.querySelector(".btn-view-password svg:nth-child(2)").style.display = "block";
+                state_eye = true;
+            }
+        })
+    </script>
+</body>
+</html>

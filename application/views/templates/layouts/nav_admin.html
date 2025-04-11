@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+        
+        <meta charset="utf-8" />
+        <title></title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta content="Panel de administración" name="description" />
+        <meta content="Over Rimachi" name="author" />
+        <meta name="theme-color" content="#fe8c01">
+        <!-- App favicon -->
+        <link rel="stylesheet" href="{{ url_for('static', filename='styles/libraries/bulma.min.css') }}">
+        <link rel="stylesheet" href="{{url_for('static', filename='styles/admin_main/nav_admin.css')  }}">
+        {% block container_css %}
+
+        {% endblock %}
+    </head>
+
+    <body>
+        <div class="container_layout_nav_app">
+            <div class="navigation_container_main">
+                <div class="container_btn_redirect_all">
+                    <a href="/onlyadmin/home">Home</a>
+                    <a href="/onlyadmin/country">Contry</a>
+                    <a href="/onlyadmin/payments/control">Pagos</a>
+                    <a href="/onlyadmin/images/imagesfood">Iconos food</a>
+                    <a href="/onlyadmin/data/reservation/delete">Reservas</a>
+                </div>
+            </div>
+            <div class="container_body_main">
+                {% block main_body %}            
+        
+                {% endblock %}
+            </div>
+        </div>
+                    
+        
+        <!-- App js -->
+        {% block container_js %}
+
+        {% endblock %}
+    </body>
+
+</html>
