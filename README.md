@@ -11,10 +11,10 @@ Crear una base de datos con el nombre: proyecto_python
 
 Acceder al proyecto, abrir la terminal o CMD y ejecutar:
 
-1 => pip install -r requirements.txt
-2 => flask db init
-3 => flask db migrate
-4 => py app.py
+1. pip install -r requirements.txt
+2. flask db init
+3. flask db migrate
+4. py app.py
 
 ### Configuración Final
 
